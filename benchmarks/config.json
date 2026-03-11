@@ -4,5 +4,19 @@
     "medium": 0.55
   },
   "default_max_file_size_kb": 1024,
-  "default_max_code_files_per_language": 400
+  "default_max_code_files_per_language": 400,
+  "reduced_case_ids": [
+    "agency-agents",
+    "openai-agents-python",
+    "openai-python",
+    "openai-cookbook",
+    "claude-code"
+  ],
+  "regression_thresholds": {
+    "family_exact_match_delta_min": 0,
+    "archetype_exact_match_delta_min": 0,
+    "orchestration_exact_match_delta_min": 0,
+    "memory_exact_match_delta_min": 0,
+    "low_confidence_delta_max": 0
+  }
 }

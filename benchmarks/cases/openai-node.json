@@ -8,5 +8,6 @@
   "memory_model": "none",
   "confidence_expectation": "high",
   "rationale": "TypeScript SDK negative control for the benchmark corpus.",
+  "calibration_note": "The repo has enough runtime-facing tooling that archetype drift toward mixed should be treated as a calibration watch item.",
   "tags": ["sdk", "typescript", "negative-control"]
 }

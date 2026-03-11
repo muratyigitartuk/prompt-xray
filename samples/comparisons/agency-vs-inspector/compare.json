@@ -4,7 +4,7 @@
     "repo_family": "prompt-pack",
     "archetype": "prompt-library",
     "orchestration": "prompt-defined",
-    "memory": "documented-only",
+    "memory": "none",
     "xray_call": "Prompt pack, not agent runtime.",
     "artifacts": 325,
     "confidence": {
@@ -68,15 +68,15 @@
   },
   "right": {
     "name": "inspector",
-    "repo_family": "application-repo",
-    "archetype": "mixed",
+    "repo_family": "infra-tooling",
+    "archetype": "unclear",
     "orchestration": "runtime-implemented",
-    "memory": "implemented-runtime",
-    "xray_call": "Real runtime with linked prompt layers.",
+    "memory": "none",
+    "xray_call": "AI-adjacent runtime or tooling repo.",
     "artifacts": 1,
     "confidence": {
       "family": {
-        "score": 0.93,
+        "score": 0.98,
         "level": "high",
         "reasons": [
           "runtime=10",
@@ -110,7 +110,7 @@
         ]
       },
       "overall": {
-        "score": 0.95,
+        "score": 0.96,
         "level": "high",
         "reasons": [
           "combined family/archetype/orchestration/memory confidence"
@@ -246,10 +246,12 @@
     "same_family": false,
     "same_archetype": false,
     "same_orchestration": false,
-    "same_memory": false,
+    "same_memory": true,
     "artifact_gap": 324,
     "runtime_density_gap": -307,
     "prompt_density_gap": 1066,
+    "contradiction_gap": 1,
+    "linkage_gap": -13,
     "shared_tooling": [
       "MCP"
     ],
@@ -263,6 +265,15 @@
       "Windsurf"
     ],
     "right_only_tooling": [],
-    "confidence_gap": -0.13
-  }
+    "confidence_gap": -0.14
+  },
+  "why_they_differ": [
+    "Repo family: prompt-pack vs infra-tooling",
+    "Runtime density gap: -307",
+    "Prompt density gap: 1066",
+    "Confidence gap: -0.14",
+    "Contradiction gap: 1",
+    "Linkage gap: -13"
+  ],
+  "most_defensible_difference": "agency-agents reads as prompt-pack; inspector reads as infra-tooling."
 }

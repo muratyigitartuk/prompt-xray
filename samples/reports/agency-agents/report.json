@@ -10,7 +10,7 @@
     "repo_family": "prompt-pack",
     "repo_archetype": "prompt-library",
     "orchestration_model": "prompt-defined",
-    "memory_model": "documented-only",
+    "memory_model": "none",
     "xray_call": "Prompt pack, not agent runtime.",
     "verdict": "This is best understood as a prompt-library inside the prompt-pack family."
   },
@@ -326,7 +326,6 @@
     }
   ],
   "missing_runtime_pieces": [
-    "Memory/state signals exist, but there is not enough storage/runtime evidence to call them fully implemented.",
     "No orchestration engine, scheduler, or runtime-backed control loop was detected.",
     "The repo exposes agent behavior mainly through authored assets rather than executable runtime code.",
     "The repo talks about memory/state, but there is little or no runtime-backed persistence evidence."

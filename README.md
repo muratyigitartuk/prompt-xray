@@ -108,6 +108,7 @@ Benchmark examples:
 
 ```bash
 prompt-xray bench run --out .prompt-xray/bench/latest
+prompt-xray bench run --subset --out .prompt-xray/bench/reduced
 prompt-xray bench report .prompt-xray/bench/latest/benchmark.json
 prompt-xray bench diff .prompt-xray/bench/before/benchmark.json .prompt-xray/bench/after/benchmark.json
 ```
@@ -162,7 +163,7 @@ The Markdown report uses this structure:
 Family: prompt-pack
 Archetype: prompt-library
 Orchestration: prompt-defined
-Memory: documented-only
+Memory: none
 Call: Prompt pack, not agent runtime.
 ```
 
@@ -172,7 +173,7 @@ Call: Prompt pack, not agent runtime.
 Family: plugin-ecosystem
 Archetype: mixed
 Orchestration: runtime-implemented
-Memory: implemented-runtime
+Memory: tool-assisted
 Call: Real runtime with visible prompt layers.
 ```
 
@@ -190,11 +191,33 @@ Call: Real runtime with visible prompt layers.
 
 The repo ships with a pinned corpus under [`benchmarks/cases`](./benchmarks/cases):
 
-- 30+ public repos
+- 35 public repos
 - prompt packs, workflow packs, runtime frameworks, SDKs, plugin ecosystems, infra/tooling, docs/examples, and negative controls
 - expected repo family, archetype, orchestration, memory, and confidence tier per case
 
 This is the calibration layer for heuristic and parser changes.
+
+Checked-in baselines live under [`benchmarks/baselines`](./benchmarks/baselines):
+
+- `full/benchmark.json` and `full/benchmark.md`
+- `reduced/benchmark.json` and `reduced/benchmark.md`
+
+The reduced baseline is the fast CI gate. The full baseline is the slower `main` and manual benchmark gate.
+
+## Confidence and contradictions
+
+Prompt-xray now reports:
+
+- confidence per family, archetype, orchestration, memory, and overall call
+- claim/implementation contradictions
+- runtime-to-prompt/config linkage
+
+Interpretation:
+
+- `high` confidence means multiple evidence classes agree on the same call
+- `medium` confidence means the direction is useful but still mixed
+- `low` confidence means the repo should be treated as ambiguous
+- contradictions are the fastest way to spot "claims X, implements less than X"
 
 ## How it works
 
@@ -234,3 +257,16 @@ Run tests:
 ```bash
 python -m pytest -q
 ```
+
+Maintainer workflow:
+
+```bash
+prompt-xray bench run --out .prompt-xray/bench/latest
+prompt-xray bench diff benchmarks/baselines/full/benchmark.json .prompt-xray/bench/latest/benchmark.json
+prompt-xray scan https://github.com/msitarzewski/agency-agents --out samples/reports/agency-agents --format json
+```
+
+Only refresh `samples/` or `benchmarks/baselines/` when:
+
+- benchmark metrics improve, or
+- benchmark expectations/calibration notes were intentionally updated

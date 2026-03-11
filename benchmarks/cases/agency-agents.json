@@ -5,7 +5,7 @@
   "repo_family": "prompt-pack",
   "repo_archetype": "prompt-library",
   "orchestration_model": "prompt-defined",
-  "memory_model": "documented-only",
+  "memory_model": "none",
   "confidence_expectation": "high",
   "rationale": "Large prompt catalog with integrations and workflow docs, but no real runtime.",
   "tags": ["prompt-heavy", "python-light", "benchmark"]

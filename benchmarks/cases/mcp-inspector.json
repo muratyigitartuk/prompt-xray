@@ -8,5 +8,6 @@
   "memory_model": "none",
   "confidence_expectation": "high",
   "rationale": "Real runtime developer tool for inspecting MCP servers, not an agent repo.",
+  "calibration_note": "Infrastructure-tooling vs mixed is an intentional boundary because the repo has a substantial runtime app surface.",
   "tags": ["infra", "typescript", "negative-control"]
 }

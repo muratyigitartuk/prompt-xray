@@ -2,7 +2,7 @@
   "id": "openhands",
   "repo_url": "https://github.com/All-Hands-AI/OpenHands.git",
   "commit": "4eb6e4da09a75ca831adf183579cd242bc133832",
-  "repo_family": "application-repo",
+  "repo_family": "runtime-framework",
   "repo_archetype": "mixed",
   "orchestration_model": "runtime-implemented",
   "memory_model": "implemented-runtime",

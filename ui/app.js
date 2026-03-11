@@ -347,6 +347,10 @@ const renderComparison = (comparison) => {
       <p class="eyebrow">Comparison</p>
       <h3>${escapeHtml(comparison.left.name)} vs ${escapeHtml(comparison.right.name)}</h3>
       <p class="muted">This is the fastest way to explain why two AI repos that look similar from the outside are structurally different.</p>
+      <div class="callout" style="margin-top:16px;">
+        <strong>${escapeHtml(comparison.most_defensible_difference || "Difference summary unavailable.")}</strong>
+        <span class="muted">Shareable comparison call</span>
+      </div>
     </section>
 
     <section class="comparison-headline">
@@ -395,6 +399,12 @@ const renderComparison = (comparison) => {
         <div class="metric-value" style="font-size:18px;">${escapeHtml(comparison.left.call_basis)}</div>
         <div class="metric-caption">${escapeHtml(comparison.right.call_basis)}</div>
       </article>
+    </section>
+
+    <section class="list-panel">
+      <p class="eyebrow">Why They Differ</p>
+      <h3>Evidence-backed delta summary</h3>
+      <ul>${formatList(comparison.why_they_differ, "No difference summary available")}</ul>
     </section>
 
     <section class="two-col">

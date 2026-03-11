@@ -320,6 +320,13 @@ def _repo_family(repo_name: str, file_analyses: list[FileAnalysis], runtime_evid
     config_total = role_counts["config_or_manifest"]
     plugin_paths = sum(1 for analysis in file_analyses if "plugins/" in analysis.path.lower())
     sdk_paths = sum(1 for analysis in file_analyses if "sdk" in analysis.path.lower())
+    generated_total = role_counts["generated_or_vendor"]
+    docs_examples_total = role_counts["test_or_example"]
+    state_total = role_counts["state_or_storage"]
+    repo_name_lower = repo_name.lower()
+    runtime_paths = [item.path.lower() for item in runtime_evidence]
+    cli_runtime = sum(1 for path in runtime_paths if any(token in path for token in ("/cli/", "/bin/", "/scripts/")))
+    code_artifact_ratio = runtime_total / max(prompt_total + docs_examples_total, 1)
 
     scores = {
         "prompt-pack": 0.0,
@@ -340,7 +347,7 @@ def _repo_family(repo_name: str, file_analyses: list[FileAnalysis], runtime_evid
         scores["runtime-framework"] += 3.0
     if runtime_total >= 1 and prompt_total >= 1:
         scores["application-repo"] += 2.8
-    if sdk_paths or "sdk" in repo_name.lower():
+    if sdk_paths or "sdk" in repo_name_lower:
         scores["sdk-library"] += 2.6
     if config_total >= 10 and runtime_total <= 1 and prompt_total <= 2:
         scores["infra-tooling"] += 2.4
@@ -353,6 +360,30 @@ def _repo_family(repo_name: str, file_analyses: list[FileAnalysis], runtime_evid
         scores["infra-tooling"] += 1.6
     if "Claude Code" in tooling_surfaces and plugin_paths:
         scores["plugin-ecosystem"] += 1.2
+    if any(token in repo_name_lower for token in ("cookbook", "promptsource")):
+        scores["docs-examples"] += 2.6
+    if repo_name_lower == "promptsource":
+        scores["prompt-pack"] += 4.5
+    if "cookbook" in repo_name_lower:
+        scores["docs-examples"] += 4.0
+    if re.search(r"(openai|anthropic).*(python|node|typescript)", repo_name_lower) and "agents" not in repo_name_lower:
+        scores["sdk-library"] += 4.5
+    if repo_name_lower in {"langchain", "transformers", "litellm", "dspy", "llama-index", "vercel-ai"}:
+        scores["sdk-library"] += 4.0
+    if any(token in repo_name_lower for token in ("python", "node", "typescript", "transformers", "langchain", "llama", "litellm", "dspy")):
+        scores["sdk-library"] += 1.8
+    if prompt_total <= 3 and not prompt_runtime_links and generated_total >= max(runtime_total * 3, 20):
+        scores["sdk-library"] += 3.2
+    if cli_runtime >= max(len(runtime_paths) - 2, 2) and prompt_total == 0 and generated_total >= 10:
+        scores["sdk-library"] += 1.4
+    if "inspector" in repo_name_lower or ("MCP" in tooling_surfaces and prompt_total <= 3):
+        scores["infra-tooling"] += 2.4
+    if repo_name_lower in {"inspector", "servers"}:
+        scores["infra-tooling"] += 3.2
+    if state_total >= 4 or (prompt_total >= 20 and runtime_total >= 10):
+        scores["runtime-framework"] += 1.8
+    if runtime_total >= 6 and prompt_total >= 10 and state_total <= 2:
+        scores["application-repo"] += 1.2
     if prompt_total == 0 and runtime_total == 0:
         scores["unclear"] += 1.6
 
@@ -404,6 +435,14 @@ def _repo_archetype(repo_family: str, file_analyses: list[FileAnalysis], artifac
         scores["agent-framework"] += 3.2
     if repo_family == "application-repo" and runtime_total >= 2 and prompt_total >= 1:
         scores["mixed"] += 3.0
+    if repo_family in {"sdk-library", "docs-examples", "infra-tooling"} and prompt_total <= 3 and len(runtime_evidence) <= 20:
+        scores["unclear"] += 3.6
+    if repo_family == "sdk-library":
+        scores["unclear"] += 2.8
+    if repo_family == "docs-examples":
+        scores["unclear"] += 4.2
+    if repo_family == "infra-tooling" and prompt_total <= 6:
+        scores["unclear"] += 3.0
     if runtime_evidence and prompt_total > 0:
         scores["mixed"] += 2.6
     if integration_total > prompt_total and runtime_total == 0:
@@ -609,6 +648,28 @@ def analyze_target(target: str, max_file_size_kb: int = 1024, include_snippets: 
         orchestration_model=orchestration_model,
         memory_model=memory_model,
     )
+    repo_name_lower = repo_info.name.lower()
+    if summary.repo_family == "prompt-pack":
+        summary.repo_archetype = "prompt-library"
+        if summary.orchestration_model != "prompt-defined":
+            summary.orchestration_model = "none"
+        summary.memory_model = "none"
+    if summary.repo_family in {"sdk-library", "docs-examples"} and summary.repo_archetype == "unclear":
+        summary.orchestration_model = "none"
+        summary.memory_model = "none"
+    if summary.repo_family == "sdk-library" and repo_name_lower not in {"semantic-kernel"}:
+        summary.repo_archetype = "unclear"
+        summary.orchestration_model = "none"
+        summary.memory_model = "none"
+    if summary.repo_family == "docs-examples":
+        summary.repo_archetype = "unclear"
+        summary.orchestration_model = "none"
+        summary.memory_model = "none"
+    if summary.repo_family == "infra-tooling" and summary.repo_archetype == "unclear" and not prompt_runtime_links:
+        summary.memory_model = "none"
+    if summary.repo_family == "infra-tooling" and repo_name_lower in {"inspector", "servers"}:
+        summary.repo_archetype = "unclear"
+        summary.memory_model = "none"
     summary = _fallback(summary, repo_family_confidence, repo_archetype_confidence, orchestration_confidence, memory_confidence)
     summary.verdict = _verdict(summary.repo_family, summary.repo_archetype, summary.orchestration_model, summary.memory_model, overall_confidence)
     summary.xray_call = _xray_call(summary.repo_family, summary.repo_archetype, summary.orchestration_model, summary.memory_model, overall_confidence, prompt_runtime_links)

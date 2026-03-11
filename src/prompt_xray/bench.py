@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 from collections import Counter, defaultdict
-from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -21,6 +20,7 @@ class BenchmarkCase(BaseModel):
     memory_model: str
     confidence_expectation: str
     rationale: str
+    calibration_note: str = ""
     tags: list[str] = Field(default_factory=list)
 
 
@@ -32,6 +32,7 @@ class BenchmarkCaseResult(BaseModel):
     actual: dict
     confidence: dict
     mismatches: list[str] = Field(default_factory=list)
+    error: str = ""
 
 
 class BenchmarkMetrics(BaseModel):
@@ -52,6 +53,7 @@ class BenchmarkRun(BaseModel):
     generated_at: str
     config_path: str
     case_count: int
+    baseline_name: str = ""
     results: list[BenchmarkCaseResult]
     metrics: BenchmarkMetrics
 
@@ -63,8 +65,29 @@ class BenchmarkDiff(BaseModel):
     changed_cases: list[dict]
 
 
+class BenchmarkConfig(BaseModel):
+    confidence_thresholds: dict[str, float] = Field(default_factory=lambda: {"high": 0.8, "medium": 0.55})
+    default_max_file_size_kb: int = 1024
+    default_max_code_files_per_language: int = 400
+    reduced_case_ids: list[str] = Field(default_factory=list)
+    regression_thresholds: dict[str, int] = Field(
+        default_factory=lambda: {
+            "family_exact_match_delta_min": 0,
+            "archetype_exact_match_delta_min": 0,
+            "orchestration_exact_match_delta_min": 0,
+            "memory_exact_match_delta_min": 0,
+            "low_confidence_delta_max": 0,
+        }
+    )
+
+
 def _project_root() -> Path:
     return Path(__file__).resolve().parents[2]
+
+
+def load_benchmark_config(config_path: Path | None = None) -> BenchmarkConfig:
+    path = config_path or (_project_root() / "benchmarks" / "config.json")
+    return BenchmarkConfig.model_validate_json(path.read_text(encoding="utf-8"))
 
 
 def load_cases(cases_dir: Path | None = None) -> list[BenchmarkCase]:
@@ -84,37 +107,49 @@ def _confusion_key(expected: str, actual: str) -> str:
 
 
 def _evaluate_case(case: BenchmarkCase, max_file_size_kb: int, max_code_files_per_language: int) -> BenchmarkCaseResult:
-    report = analyze_target(
-        case.repo_url,
-        max_file_size_kb=max_file_size_kb,
-        max_code_files_per_language=max_code_files_per_language,
-        include_snippets=False,
-        git_ref=case.commit,
-    )
-    actual = {
-        "repo_family": report.summary.repo_family,
-        "repo_archetype": report.summary.repo_archetype,
-        "orchestration_model": report.summary.orchestration_model,
-        "memory_model": report.summary.memory_model,
-        "xray_call": report.summary.xray_call,
-    }
     expected = case.model_dump(include={"repo_family", "repo_archetype", "orchestration_model", "memory_model"})
-    mismatches = [key for key, value in expected.items() if actual.get(key) != value]
-    return BenchmarkCaseResult(
-        id=case.id,
-        repo_url=case.repo_url,
-        commit=case.commit,
-        expected=expected,
-        actual=actual,
-        confidence={
-            "repo_family": report.repo_family_confidence.model_dump(mode="json"),
-            "repo_archetype": report.repo_archetype_confidence.model_dump(mode="json"),
-            "orchestration": report.orchestration_confidence.model_dump(mode="json"),
-            "memory": report.memory_confidence.model_dump(mode="json"),
-            "overall": report.overall_confidence.model_dump(mode="json"),
-        },
-        mismatches=mismatches,
-    )
+    try:
+        report = analyze_target(
+            case.repo_url,
+            max_file_size_kb=max_file_size_kb,
+            max_code_files_per_language=max_code_files_per_language,
+            include_snippets=False,
+            git_ref=case.commit,
+        )
+        actual = {
+            "repo_family": report.summary.repo_family,
+            "repo_archetype": report.summary.repo_archetype,
+            "orchestration_model": report.summary.orchestration_model,
+            "memory_model": report.summary.memory_model,
+            "xray_call": report.summary.xray_call,
+        }
+        mismatches = [key for key, value in expected.items() if actual.get(key) != value]
+        return BenchmarkCaseResult(
+            id=case.id,
+            repo_url=case.repo_url,
+            commit=case.commit,
+            expected=expected,
+            actual=actual,
+            confidence={
+                "repo_family": report.repo_family_confidence.model_dump(mode="json"),
+                "repo_archetype": report.repo_archetype_confidence.model_dump(mode="json"),
+                "orchestration": report.orchestration_confidence.model_dump(mode="json"),
+                "memory": report.memory_confidence.model_dump(mode="json"),
+                "overall": report.overall_confidence.model_dump(mode="json"),
+            },
+            mismatches=mismatches,
+        )
+    except Exception as exc:
+        return BenchmarkCaseResult(
+            id=case.id,
+            repo_url=case.repo_url,
+            commit=case.commit,
+            expected=expected,
+            actual={},
+            confidence={"overall": {"score": 0.0, "level": "low", "reasons": ["benchmark-case-error"]}},
+            mismatches=sorted(expected.keys()),
+            error=f"{type(exc).__name__}: {exc}",
+        )
 
 
 def _metrics(results: list[BenchmarkCaseResult]) -> BenchmarkMetrics:
@@ -131,27 +166,35 @@ def _metrics(results: list[BenchmarkCaseResult]) -> BenchmarkMetrics:
     low_confidence = 0
 
     for result in results:
-        if result.expected["repo_family"] == result.actual["repo_family"]:
+        actual_family = result.actual.get("repo_family", "error")
+        actual_archetype = result.actual.get("repo_archetype", "error")
+        actual_orchestration = result.actual.get("orchestration_model", "error")
+        actual_memory = result.actual.get("memory_model", "error")
+
+        if result.expected["repo_family"] == actual_family:
             family_matches += 1
         else:
-            family_confusions[_confusion_key(result.expected["repo_family"], result.actual["repo_family"])] += 1
-        if result.expected["repo_archetype"] == result.actual["repo_archetype"]:
+            family_confusions[_confusion_key(result.expected["repo_family"], actual_family)] += 1
+        if result.expected["repo_archetype"] == actual_archetype:
             archetype_matches += 1
         else:
-            archetype_confusions[_confusion_key(result.expected["repo_archetype"], result.actual["repo_archetype"])] += 1
-        if result.expected["orchestration_model"] == result.actual["orchestration_model"]:
+            archetype_confusions[_confusion_key(result.expected["repo_archetype"], actual_archetype)] += 1
+        if result.expected["orchestration_model"] == actual_orchestration:
             orchestration_matches += 1
         else:
-            orchestration_confusions[_confusion_key(result.expected["orchestration_model"], result.actual["orchestration_model"])] += 1
-        if result.expected["memory_model"] == result.actual["memory_model"]:
+            orchestration_confusions[_confusion_key(result.expected["orchestration_model"], actual_orchestration)] += 1
+        if result.expected["memory_model"] == actual_memory:
             memory_matches += 1
         else:
-            memory_confusions[_confusion_key(result.expected["memory_model"], result.actual["memory_model"])] += 1
+            memory_confusions[_confusion_key(result.expected["memory_model"], actual_memory)] += 1
 
         if _confidence_level(result.confidence["overall"]) == "low":
             low_confidence += 1
         if len(result.mismatches) >= 2:
             major_regressions.append(result.id)
+        if result.error:
+            if result.id not in major_regressions:
+                major_regressions.append(result.id)
 
     return BenchmarkMetrics(
         total_cases=len(results),
@@ -168,7 +211,12 @@ def _metrics(results: list[BenchmarkCaseResult]) -> BenchmarkMetrics:
     )
 
 
-def run_benchmark(cases: list[BenchmarkCase], max_file_size_kb: int = 1024, max_code_files_per_language: int = 400) -> BenchmarkRun:
+def run_benchmark(
+    cases: list[BenchmarkCase],
+    max_file_size_kb: int = 1024,
+    max_code_files_per_language: int = 400,
+    baseline_name: str = "",
+) -> BenchmarkRun:
     results = [
         _evaluate_case(case, max_file_size_kb=max_file_size_kb, max_code_files_per_language=max_code_files_per_language)
         for case in cases
@@ -177,6 +225,7 @@ def run_benchmark(cases: list[BenchmarkCase], max_file_size_kb: int = 1024, max_
         generated_at=datetime.now(timezone.utc).isoformat(),
         config_path="benchmarks/cases",
         case_count=len(cases),
+        baseline_name=baseline_name,
         results=results,
         metrics=_metrics(results),
     )
@@ -187,6 +236,7 @@ def render_benchmark_markdown(run: BenchmarkRun) -> str:
 
 - Generated at: {run.generated_at}
 - Cases: {run.case_count}
+- Baseline name: {run.baseline_name or 'ad hoc'}
 - Family exact matches: {run.metrics.family_exact_matches}/{run.metrics.total_cases}
 - Archetype exact matches: {run.metrics.archetype_exact_matches}/{run.metrics.total_cases}
 - Orchestration exact matches: {run.metrics.orchestration_exact_matches}/{run.metrics.total_cases}
@@ -196,6 +246,10 @@ def render_benchmark_markdown(run: BenchmarkRun) -> str:
 ## Major regressions
 
 {chr(10).join(f"- `{item}`" for item in run.metrics.major_regressions) or "- None"}
+
+## Case errors
+
+{chr(10).join(f"- `{item.id}`: {item.error}" for item in run.results if item.error) or "- None"}
 
 ## Family confusions
 
@@ -243,6 +297,8 @@ def diff_benchmark_runs(left: BenchmarkRun, right: BenchmarkRun, left_path: Path
                     "after": after.actual,
                     "before_confidence": before.confidence["overall"],
                     "after_confidence": after.confidence["overall"],
+                    "before_error": before.error,
+                    "after_error": after.error,
                 }
             )
     summary = {
@@ -284,3 +340,10 @@ def write_benchmark_diff(diff: BenchmarkDiff, out_dir: Path) -> list[Path]:
     json_path.write_text(json.dumps(diff.model_dump(mode="json"), indent=2), encoding="utf-8")
     md_path.write_text(render_benchmark_diff_markdown(diff), encoding="utf-8")
     return [json_path, md_path]
+
+
+def select_cases(cases: list[BenchmarkCase], case_ids: list[str]) -> list[BenchmarkCase]:
+    if not case_ids:
+        return cases
+    selected = {case_id.strip() for case_id in case_ids if case_id.strip()}
+    return [case for case in cases if case.id in selected]

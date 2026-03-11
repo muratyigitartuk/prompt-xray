@@ -1,0 +1,336 @@
+{
+  "generated_at": "2026-03-11T22:41:18.029419+00:00",
+  "config_path": "benchmarks/cases",
+  "case_count": 5,
+  "baseline_name": "reduced",
+  "results": [
+    {
+      "id": "agency-agents",
+      "repo_url": "https://github.com/msitarzewski/agency-agents.git",
+      "commit": "5e59a20bbfb1c801e2d12b70c684b48db652bcff",
+      "expected": {
+        "repo_family": "prompt-pack",
+        "repo_archetype": "prompt-library",
+        "orchestration_model": "prompt-defined",
+        "memory_model": "none"
+      },
+      "actual": {
+        "repo_family": "prompt-pack",
+        "repo_archetype": "prompt-library",
+        "orchestration_model": "prompt-defined",
+        "memory_model": "none",
+        "xray_call": "Prompt pack, not agent runtime."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.9,
+          "level": "high",
+          "reasons": [
+            "runtime=0",
+            "tooling=8",
+            "links=0"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.9,
+          "level": "high",
+          "reasons": [
+            "prompt-assets=118",
+            "runtime-signals=0",
+            "workflow-artifacts=29"
+          ]
+        },
+        "orchestration": {
+          "score": 0.74,
+          "level": "medium",
+          "reasons": [
+            "evidence=10",
+            "model=prompt-defined"
+          ]
+        },
+        "memory": {
+          "score": 0.74,
+          "level": "medium",
+          "reasons": [
+            "evidence=10",
+            "model=documented-only"
+          ]
+        },
+        "overall": {
+          "score": 0.82,
+          "level": "high",
+          "reasons": [
+            "combined family/archetype/orchestration/memory confidence"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "claude-code",
+      "repo_url": "https://github.com/anthropics/claude-code.git",
+      "commit": "45b54301267d60b8c2b482ab80d2c0b36443a5f1",
+      "expected": {
+        "repo_family": "plugin-ecosystem",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted"
+      },
+      "actual": {
+        "repo_family": "plugin-ecosystem",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.98,
+          "level": "high",
+          "reasons": [
+            "runtime=9",
+            "tooling=1",
+            "links=0"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.98,
+          "level": "high",
+          "reasons": [
+            "prompt-assets=61",
+            "runtime-signals=9",
+            "workflow-artifacts=5"
+          ]
+        },
+        "orchestration": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "evidence=10",
+            "model=runtime-implemented"
+          ]
+        },
+        "memory": {
+          "score": 0.8,
+          "level": "high",
+          "reasons": [
+            "evidence=10",
+            "model=tool-assisted"
+          ]
+        },
+        "overall": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "combined family/archetype/orchestration/memory confidence"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "openai-agents-python",
+      "repo_url": "https://github.com/openai/openai-agents-python.git",
+      "commit": "a8be7c0056a268399b5f4641d04b15e25373bfe6",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.98,
+          "level": "high",
+          "reasons": [
+            "runtime=10",
+            "tooling=2",
+            "links=0"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.98,
+          "level": "high",
+          "reasons": [
+            "prompt-assets=356",
+            "runtime-signals=10",
+            "workflow-artifacts=5"
+          ]
+        },
+        "orchestration": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "evidence=10",
+            "model=runtime-implemented"
+          ]
+        },
+        "memory": {
+          "score": 0.95,
+          "level": "high",
+          "reasons": [
+            "evidence=10",
+            "model=implemented-runtime"
+          ]
+        },
+        "overall": {
+          "score": 0.96,
+          "level": "high",
+          "reasons": [
+            "combined family/archetype/orchestration/memory confidence"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "openai-cookbook",
+      "repo_url": "https://github.com/openai/openai-cookbook.git",
+      "commit": "c2d6fbe04fa19709ededb1e617d9a7fa5aec6cdb",
+      "expected": {
+        "repo_family": "docs-examples",
+        "repo_archetype": "unclear",
+        "orchestration_model": "none",
+        "memory_model": "none"
+      },
+      "actual": {
+        "repo_family": "docs-examples",
+        "repo_archetype": "unclear",
+        "orchestration_model": "none",
+        "memory_model": "none",
+        "xray_call": "Not a prompt-centric repo."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.98,
+          "level": "high",
+          "reasons": [
+            "runtime=0",
+            "tooling=0",
+            "links=0"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.88,
+          "level": "high",
+          "reasons": [
+            "prompt-assets=0",
+            "runtime-signals=0",
+            "workflow-artifacts=0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.45,
+          "level": "low",
+          "reasons": [
+            "evidence=0",
+            "model=none"
+          ]
+        },
+        "memory": {
+          "score": 0.45,
+          "level": "low",
+          "reasons": [
+            "evidence=0",
+            "model=none"
+          ]
+        },
+        "overall": {
+          "score": 0.69,
+          "level": "medium",
+          "reasons": [
+            "combined family/archetype/orchestration/memory confidence"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "openai-python",
+      "repo_url": "https://github.com/openai/openai-python.git",
+      "commit": "15afa21e54952c06e2ac4d3e3a82f144c2cf9ed9",
+      "expected": {
+        "repo_family": "sdk-library",
+        "repo_archetype": "unclear",
+        "orchestration_model": "none",
+        "memory_model": "none"
+      },
+      "actual": {
+        "repo_family": "sdk-library",
+        "repo_archetype": "unclear",
+        "orchestration_model": "none",
+        "memory_model": "none",
+        "xray_call": "AI-adjacent runtime or tooling repo."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.98,
+          "level": "high",
+          "reasons": [
+            "runtime=10",
+            "tooling=0",
+            "links=0"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.88,
+          "level": "high",
+          "reasons": [
+            "prompt-assets=0",
+            "runtime-signals=10",
+            "workflow-artifacts=0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "evidence=10",
+            "model=runtime-implemented"
+          ]
+        },
+        "memory": {
+          "score": 0.8,
+          "level": "high",
+          "reasons": [
+            "evidence=10",
+            "model=tool-assisted"
+          ]
+        },
+        "overall": {
+          "score": 0.9,
+          "level": "high",
+          "reasons": [
+            "combined family/archetype/orchestration/memory confidence"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    }
+  ],
+  "metrics": {
+    "total_cases": 5,
+    "archetype_exact_matches": 5,
+    "orchestration_exact_matches": 5,
+    "memory_exact_matches": 5,
+    "family_exact_matches": 5,
+    "low_confidence_cases": 0,
+    "major_regressions": [],
+    "family_confusions": {},
+    "archetype_confusions": {},
+    "orchestration_confusions": {},
+    "memory_confusions": {}
+  }
+}

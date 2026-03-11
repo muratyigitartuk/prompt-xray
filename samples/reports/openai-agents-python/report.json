@@ -346,122 +346,111 @@
   ],
   "memory_evidence": [
     {
-      "path": "examples/agent_patterns/agents_as_tools_conditional.py",
-      "label": "test_or_example",
+      "path": "src/agents/extensions/memory/__init__.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
-        "ast:entrypoint",
-        "ast:state",
+        "regex:storage",
         "text:agent",
-        "text:tooling",
-        "text:you are"
+        "text:memory"
       ]
     },
     {
-      "path": "examples/agent_patterns/human_in_the_loop.py",
-      "label": "test_or_example",
+      "path": "src/agents/extensions/memory/async_sqlite_session.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
-        "ast:entrypoint",
+        "regex:storage",
         "ast:state",
         "text:agent",
-        "text:you are",
-        "imports:examples/auto_mode.py"
+        "text:memory"
       ]
     },
     {
-      "path": "examples/agent_patterns/human_in_the_loop_custom_rejection.py",
-      "label": "test_or_example",
+      "path": "src/agents/extensions/memory/dapr_session.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
-        "ast:entrypoint",
+        "regex:storage",
         "ast:state",
         "text:agent",
-        "imports:examples/auto_mode.py"
+        "text:memory"
       ]
     },
     {
-      "path": "examples/agent_patterns/human_in_the_loop_stream.py",
-      "label": "test_or_example",
+      "path": "src/agents/extensions/memory/encrypt_session.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
-        "ast:entrypoint",
+        "regex:storage",
         "ast:state",
         "text:agent",
-        "text:you are",
-        "imports:examples/auto_mode.py"
+        "text:memory"
       ]
     },
     {
-      "path": "examples/basic/stream_ws.py",
-      "label": "test_or_example",
+      "path": "src/agents/extensions/memory/redis_session.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
-        "ast:entrypoint",
+        "regex:storage",
+        "ast:state",
+        "ast:storage",
+        "text:agent",
+        "text:memory"
+      ]
+    },
+    {
+      "path": "src/agents/extensions/memory/sqlalchemy_session.py",
+      "label": "state_or_storage",
+      "strength": "implemented",
+      "reasons": [
+        "regex:storage",
+        "ast:state",
+        "text:agent",
+        "text:memory"
+      ]
+    },
+    {
+      "path": "src/agents/memory/openai_conversations_session.py",
+      "label": "state_or_storage",
+      "strength": "implemented",
+      "reasons": [
         "ast:state",
         "text:agent",
         "text:memory",
-        "text:workflow"
+        "imports:src/agents/models/_openai_shared.py"
       ]
     },
     {
-      "path": "examples/handoffs/message_filter.py",
-      "label": "test_or_example",
+      "path": "src/agents/memory/openai_responses_compaction_session.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
         "regex:storage",
-        "ast:entrypoint",
         "ast:state",
         "text:agent",
         "text:memory"
       ]
     },
     {
-      "path": "examples/handoffs/message_filter_streaming.py",
-      "label": "test_or_example",
+      "path": "src/agents/memory/session.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
         "regex:storage",
-        "ast:entrypoint",
         "ast:state",
         "text:agent",
         "text:memory"
       ]
     },
     {
-      "path": "examples/hosted_mcp/human_in_the_loop.py",
-      "label": "test_or_example",
+      "path": "src/agents/memory/session_settings.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
-        "regex:cli",
-        "ast:entrypoint",
         "ast:state",
-        "text:agent",
-        "imports:examples/auto_mode.py"
-      ]
-    },
-    {
-      "path": "examples/mcp/get_all_mcp_tools_example/main.py",
-      "label": "test_or_example",
-      "strength": "implemented",
-      "reasons": [
-        "ast:entrypoint",
-        "ast:state",
-        "text:agent",
-        "text:tooling",
-        "text:workflow"
-      ]
-    },
-    {
-      "path": "examples/mcp/manager_example/app.py",
-      "label": "test_or_example",
-      "strength": "implemented",
-      "reasons": [
-        "regex:fastapi",
-        "ast:entrypoint",
-        "ast:state",
-        "ast:web-service",
-        "text:agent"
+        "text:memory"
       ]
     }
   ],
@@ -569,7 +558,7 @@
     }
   ],
   "repo_family_confidence": {
-    "score": 0.87,
+    "score": 0.98,
     "level": "high",
     "reasons": [
       "runtime=10",
@@ -603,7 +592,7 @@
     ]
   },
   "overall_confidence": {
-    "score": 0.93,
+    "score": 0.96,
     "level": "high",
     "reasons": [
       "combined family/archetype/orchestration/memory confidence"

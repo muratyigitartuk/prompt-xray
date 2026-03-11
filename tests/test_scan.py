@@ -56,7 +56,7 @@ Rollback when QA fails.
     assert report.summary.repo_family == "prompt-pack"
     assert report.summary.repo_archetype in {"prompt-library", "workflow-pack", "tool-integration-pack"}
     assert report.summary.orchestration_model == "prompt-defined"
-    assert report.summary.memory_model in {"documented-only", "tool-assisted", "config-only"}
+    assert report.summary.memory_model == "none"
     assert "Cursor" in report.tooling_surfaces
     assert report.artifacts
     assert report.file_roles_summary

@@ -5,8 +5,9 @@
   "repo_family": "plugin-ecosystem",
   "repo_archetype": "mixed",
   "orchestration_model": "runtime-implemented",
-  "memory_model": "documented-only",
+  "memory_model": "tool-assisted",
   "confidence_expectation": "medium",
   "rationale": "Real coding runtime plus visible plugin, agent, and skill layers.",
+  "calibration_note": "Memory classification can drift between documented-only and tool-assisted depending on how plugin state is weighted.",
   "tags": ["mixed-runtime", "typescript", "benchmark"]
 }

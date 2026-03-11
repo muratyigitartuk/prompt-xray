@@ -9,7 +9,7 @@
     "artifacts": 28,
     "confidence": {
       "family": {
-        "score": 0.87,
+        "score": 0.98,
         "level": "high",
         "reasons": [
           "runtime=10",
@@ -43,7 +43,7 @@
         ]
       },
       "overall": {
-        "score": 0.93,
+        "score": 0.96,
         "level": "high",
         "reasons": [
           "combined family/archetype/orchestration/memory confidence"
@@ -106,7 +106,7 @@
   },
   "right": {
     "name": "langgraph",
-    "repo_family": "application-repo",
+    "repo_family": "runtime-framework",
     "archetype": "mixed",
     "orchestration": "runtime-implemented",
     "memory": "implemented-runtime",
@@ -114,7 +114,7 @@
     "artifacts": 10,
     "confidence": {
       "family": {
-        "score": 0.93,
+        "score": 0.98,
         "level": "high",
         "reasons": [
           "runtime=10",
@@ -148,7 +148,7 @@
         ]
       },
       "overall": {
-        "score": 0.95,
+        "score": 0.96,
         "level": "high",
         "reasons": [
           "combined family/archetype/orchestration/memory confidence"
@@ -225,13 +225,15 @@
     ]
   },
   "differences": {
-    "same_family": false,
+    "same_family": true,
     "same_archetype": false,
     "same_orchestration": true,
     "same_memory": true,
     "artifact_gap": 18,
     "runtime_density_gap": 1141,
     "prompt_density_gap": 279,
+    "contradiction_gap": 0,
+    "linkage_gap": -2,
     "shared_tooling": [],
     "left_only_tooling": [
       "Gemini CLI"
@@ -239,6 +241,15 @@
     "right_only_tooling": [
       "Claude Code"
     ],
-    "confidence_gap": -0.02
-  }
+    "confidence_gap": 0.0
+  },
+  "why_they_differ": [
+    "Repo family: runtime-framework vs runtime-framework",
+    "Runtime density gap: 1141",
+    "Prompt density gap: 279",
+    "Confidence gap: 0.0",
+    "Contradiction gap: 0",
+    "Linkage gap: -2"
+  ],
+  "most_defensible_difference": "browser-use has the stronger runtime evidence stack."
 }

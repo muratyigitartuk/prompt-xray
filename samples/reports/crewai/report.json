@@ -317,18 +317,18 @@
   ],
   "memory_evidence": [
     {
-      "path": "lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/invoke_agent_tool.py",
-      "label": "runtime_module",
+      "path": "lib/crewai/src/crewai/cli/memory_tui.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
         "ast:state",
-        "text:agent",
-        "text:memory"
+        "text:memory",
+        "text:recall"
       ]
     },
     {
-      "path": "lib/crewai/src/crewai/a2a/auth/utils.py",
-      "label": "runtime_module",
+      "path": "lib/crewai/src/crewai/events/types/memory_events.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
         "ast:state",
@@ -336,93 +336,90 @@
       ]
     },
     {
-      "path": "lib/crewai/src/crewai/a2a/extensions/base.py",
-      "label": "runtime_module",
+      "path": "lib/crewai/src/crewai/memory/analyze.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
         "regex:storage",
         "ast:state",
-        "text:agent",
-        "text:memory"
+        "text:memory",
+        "text:recall",
+        "text:remember"
       ]
     },
     {
-      "path": "lib/crewai/src/crewai/a2a/task_helpers.py",
-      "label": "runtime_module",
+      "path": "lib/crewai/src/crewai/memory/encoding_flow.py",
+      "label": "state_or_storage",
+      "strength": "implemented",
+      "reasons": [
+        "ast:state",
+        "text:memory",
+        "text:remember"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/memory/memory_scope.py",
+      "label": "state_or_storage",
+      "strength": "implemented",
+      "reasons": [
+        "ast:state",
+        "text:memory",
+        "text:recall",
+        "text:remember"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/memory/recall_flow.py",
+      "label": "state_or_storage",
+      "strength": "implemented",
+      "reasons": [
+        "ast:state",
+        "text:memory",
+        "text:recall"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/memory/storage/kickoff_task_outputs_storage.py",
+      "label": "state_or_storage",
+      "strength": "implemented",
+      "reasons": [
+        "regex:storage",
+        "ast:storage",
+        "ast:state"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/memory/types.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
         "regex:storage",
         "ast:state",
-        "text:agent",
-        "text:memory"
+        "text:memory",
+        "text:recall",
+        "text:remember"
       ]
     },
     {
-      "path": "lib/crewai/src/crewai/a2a/updates/base.py",
-      "label": "runtime_module",
-      "strength": "implemented",
-      "reasons": [
-        "regex:storage",
-        "ast:state",
-        "text:agent",
-        "text:memory"
-      ]
-    },
-    {
-      "path": "lib/crewai/src/crewai/a2a/updates/polling/handler.py",
-      "label": "runtime_module",
-      "strength": "implemented",
-      "reasons": [
-        "regex:storage",
-        "ast:state",
-        "text:agent",
-        "text:memory"
-      ]
-    },
-    {
-      "path": "lib/crewai/src/crewai/a2a/updates/push_notifications/handler.py",
-      "label": "runtime_module",
-      "strength": "implemented",
-      "reasons": [
-        "regex:storage",
-        "ast:state",
-        "text:agent",
-        "text:memory"
-      ]
-    },
-    {
-      "path": "lib/crewai/src/crewai/a2a/utils/delegation.py",
-      "label": "runtime_module",
-      "strength": "implemented",
-      "reasons": [
-        "regex:storage",
-        "ast:state",
-        "text:agent",
-        "text:memory"
-      ]
-    },
-    {
-      "path": "lib/crewai/src/crewai/a2a/utils/task.py",
-      "label": "runtime_module",
-      "strength": "implemented",
-      "reasons": [
-        "regex:storage",
-        "regex:worker",
-        "ast:worker",
-        "ast:state",
-        "ast:storage"
-      ]
-    },
-    {
-      "path": "lib/crewai/src/crewai/a2a/wrapper.py",
-      "label": "generated_or_vendor",
+      "path": "lib/crewai/src/crewai/memory/unified_memory.py",
+      "label": "state_or_storage",
       "strength": "implemented",
       "reasons": [
         "regex:storage",
         "ast:state",
         "text:agent",
         "text:memory",
-        "text:tooling"
+        "text:recall"
+      ]
+    },
+    {
+      "path": "lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/invoke_agent_tool.py",
+      "label": "runtime_module",
+      "strength": "interface",
+      "reasons": [
+        "ast:state",
+        "text:agent",
+        "text:memory"
       ]
     }
   ],
@@ -545,7 +542,7 @@
     }
   ],
   "repo_family_confidence": {
-    "score": 0.87,
+    "score": 0.98,
     "level": "high",
     "reasons": [
       "runtime=10",
@@ -579,7 +576,7 @@
     ]
   },
   "overall_confidence": {
-    "score": 0.93,
+    "score": 0.96,
     "level": "high",
     "reasons": [
       "combined family/archetype/orchestration/memory confidence"

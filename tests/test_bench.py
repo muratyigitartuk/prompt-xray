@@ -5,10 +5,12 @@ from pathlib import Path
 
 from prompt_xray.bench import (
     diff_benchmark_runs,
+    load_benchmark_config,
     load_benchmark_run,
     load_cases,
     render_benchmark_markdown,
     run_benchmark,
+    select_cases,
     write_benchmark_diff,
     write_benchmark_run,
 )
@@ -115,3 +117,66 @@ def test_benchmark_run_and_diff_are_stable(monkeypatch, tmp_path: Path) -> None:
     assert diff.changed_cases
     assert diff.summary["archetype_delta"] == -1
     assert all(path.exists() for path in diff_written)
+
+
+def test_benchmark_config_and_subset_selection(tmp_path: Path) -> None:
+    config_path = tmp_path / "config.json"
+    config_path.write_text(
+        json.dumps(
+            {
+                "confidence_thresholds": {"high": 0.8, "medium": 0.55},
+                "default_max_file_size_kb": 256,
+                "default_max_code_files_per_language": 123,
+                "reduced_case_ids": ["one"],
+                "regression_thresholds": {
+                    "family_exact_match_delta_min": 0,
+                    "archetype_exact_match_delta_min": 0,
+                    "orchestration_exact_match_delta_min": 0,
+                    "memory_exact_match_delta_min": 0,
+                    "low_confidence_delta_max": 1,
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    config = load_benchmark_config(config_path)
+    cases = [
+        type("Case", (), {"id": "one"})(),
+        type("Case", (), {"id": "two"})(),
+    ]
+
+    selected = select_cases(cases, config.reduced_case_ids)
+
+    assert config.default_max_code_files_per_language == 123
+    assert len(selected) == 1
+    assert selected[0].id == "one"
+
+
+def test_benchmark_run_records_case_errors(monkeypatch, tmp_path: Path) -> None:
+    cases_dir = tmp_path / "cases"
+    _write_case(
+        cases_dir / "one.json",
+        {
+            "id": "one",
+            "repo_url": "https://github.com/example/one.git",
+            "commit": "deadbeef",
+            "repo_family": "prompt-pack",
+            "repo_archetype": "prompt-library",
+            "orchestration_model": "prompt-defined",
+            "memory_model": "documented-only",
+            "confidence_expectation": "high",
+            "rationale": "fixture",
+            "tags": ["fixture"],
+        },
+    )
+    cases = load_cases(cases_dir)
+
+    def boom(*args, **kwargs):
+        raise RuntimeError("cannot clone")
+
+    monkeypatch.setattr("prompt_xray.bench.analyze_target", boom)
+    run = run_benchmark(cases)
+
+    assert run.metrics.total_cases == 1
+    assert run.metrics.major_regressions == ["one"]
+    assert run.results[0].error == "RuntimeError: cannot clone"

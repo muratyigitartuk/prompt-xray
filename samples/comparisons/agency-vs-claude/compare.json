@@ -4,7 +4,7 @@
     "repo_family": "prompt-pack",
     "archetype": "prompt-library",
     "orchestration": "prompt-defined",
-    "memory": "documented-only",
+    "memory": "none",
     "xray_call": "Prompt pack, not agent runtime.",
     "artifacts": 325,
     "confidence": {
@@ -71,7 +71,7 @@
     "repo_family": "plugin-ecosystem",
     "archetype": "mixed",
     "orchestration": "runtime-implemented",
-    "memory": "implemented-runtime",
+    "memory": "tool-assisted",
     "xray_call": "Real runtime with visible prompt layers.",
     "artifacts": 68,
     "confidence": {
@@ -102,15 +102,15 @@
         ]
       },
       "memory": {
-        "score": 0.95,
+        "score": 0.8,
         "level": "high",
         "reasons": [
           "evidence=10",
-          "model=implemented-runtime"
+          "model=tool-assisted"
         ]
       },
       "overall": {
-        "score": 0.96,
+        "score": 0.92,
         "level": "high",
         "reasons": [
           "combined family/archetype/orchestration/memory confidence"
@@ -179,6 +179,8 @@
     "artifact_gap": 257,
     "runtime_density_gap": -25,
     "prompt_density_gap": 746,
+    "contradiction_gap": 1,
+    "linkage_gap": 0,
     "shared_tooling": [
       "Claude Code"
     ],
@@ -192,6 +194,15 @@
       "Windsurf"
     ],
     "right_only_tooling": [],
-    "confidence_gap": -0.14
-  }
+    "confidence_gap": -0.1
+  },
+  "why_they_differ": [
+    "Repo family: prompt-pack vs plugin-ecosystem",
+    "Runtime density gap: -25",
+    "Prompt density gap: 746",
+    "Confidence gap: -0.1",
+    "Contradiction gap: 1",
+    "Linkage gap: 0"
+  ],
+  "most_defensible_difference": "agency-agents reads as prompt-pack; claude-code reads as plugin-ecosystem."
 }

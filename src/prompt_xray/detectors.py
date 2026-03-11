@@ -388,14 +388,21 @@ def build_memory_evidence(file_analyses: list[FileAnalysis]) -> list[EvidenceIte
     items = []
     for analysis in file_analyses:
         evidence = " ".join(analysis.path_evidence + analysis.text_evidence + analysis.code_evidence + analysis.graph_evidence).lower()
-        if not any(token in evidence for token in ("memory", "checkpoint", "history", "session", "store", "ast:state", "ast:storage")):
+        if analysis.role == "test_or_example":
+            continue
+        if not any(token in evidence for token in ("memory", "checkpoint", "history", "store", "ast:state", "ast:storage", "regex:storage")):
             continue
         strength = "documented"
-        if analysis.role == "state_or_storage" or any(token in evidence for token in ("ast:storage", "ast:state")):
+        if analysis.role == "state_or_storage":
             strength = "implemented"
-        elif analysis.role == "config_or_manifest":
+        elif analysis.role == "config_or_manifest" and any(
+            token in evidence for token in ("memory", "checkpoint", "history", "store")
+        ):
             strength = "config"
-        elif analysis.role.startswith("runtime"):
+        elif analysis.role.startswith("runtime") and (
+            any(token in evidence for token in ("ast:storage", "ast:state", "regex:storage"))
+            or any(token in evidence for token in ("memory", "checkpoint", "history"))
+        ):
             strength = "interface"
         items.append(
             EvidenceItem(

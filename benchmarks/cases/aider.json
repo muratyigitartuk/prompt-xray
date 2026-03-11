@@ -2,10 +2,10 @@
   "id": "aider",
   "repo_url": "https://github.com/Aider-AI/aider.git",
   "commit": "861a1e4d154f268547a06497cc380e5a5dc8483a",
-  "repo_family": "application-repo",
+  "repo_family": "runtime-framework",
   "repo_archetype": "mixed",
   "orchestration_model": "runtime-implemented",
-  "memory_model": "documented-only",
+  "memory_model": "implemented-runtime",
   "confidence_expectation": "medium",
   "rationale": "Coding tool with real runtime behavior plus prompt/system instruction surfaces.",
   "tags": ["mixed-runtime", "python", "benchmark"]

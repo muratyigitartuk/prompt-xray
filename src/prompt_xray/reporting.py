@@ -355,6 +355,36 @@ def build_comparison(left: ScanReport, right: ScanReport) -> dict[str, Any]:
             return "docs-led"
         return "combined"
 
+    runtime_gap = (left.evidence_summary.code_evidence + left.evidence_summary.graph_evidence) - (
+        right.evidence_summary.code_evidence + right.evidence_summary.graph_evidence
+    )
+    prompt_gap = (left.counts.artifacts + left.evidence_summary.text_evidence) - (
+        right.counts.artifacts + right.evidence_summary.text_evidence
+    )
+    confidence_gap = round(left.overall_confidence.score - right.overall_confidence.score, 2)
+    contradiction_gap = len(left.contradictions) - len(right.contradictions)
+    linkage_gap = len(left.prompt_runtime_links) - len(right.prompt_runtime_links)
+    why_they_differ = [
+        f"Repo family: {left.summary.repo_family} vs {right.summary.repo_family}",
+        f"Runtime density gap: {runtime_gap}",
+        f"Prompt density gap: {prompt_gap}",
+        f"Confidence gap: {confidence_gap}",
+        f"Contradiction gap: {contradiction_gap}",
+        f"Linkage gap: {linkage_gap}",
+    ]
+    if left.summary.repo_family != right.summary.repo_family:
+        most_defensible_difference = (
+            f"{left.repo.name} reads as {left.summary.repo_family}; {right.repo.name} reads as {right.summary.repo_family}."
+        )
+    elif runtime_gap != 0:
+        heavier = left.repo.name if runtime_gap > 0 else right.repo.name
+        most_defensible_difference = f"{heavier} has the stronger runtime evidence stack."
+    elif prompt_gap != 0:
+        heavier = left.repo.name if prompt_gap > 0 else right.repo.name
+        most_defensible_difference = f"{heavier} has the denser prompt and doc behavior surface."
+    else:
+        most_defensible_difference = "The repos differ more in confidence and contradictions than in raw shape."
+
     return {
         "left": {
             "name": left.repo.name,
@@ -408,15 +438,17 @@ def build_comparison(left: ScanReport, right: ScanReport) -> dict[str, Any]:
             "same_orchestration": left.summary.orchestration_model == right.summary.orchestration_model,
             "same_memory": left.summary.memory_model == right.summary.memory_model,
             "artifact_gap": left.counts.artifacts - right.counts.artifacts,
-            "runtime_density_gap": (left.evidence_summary.code_evidence + left.evidence_summary.graph_evidence)
-            - (right.evidence_summary.code_evidence + right.evidence_summary.graph_evidence),
-            "prompt_density_gap": (left.counts.artifacts + left.evidence_summary.text_evidence)
-            - (right.counts.artifacts + right.evidence_summary.text_evidence),
+            "runtime_density_gap": runtime_gap,
+            "prompt_density_gap": prompt_gap,
+            "contradiction_gap": contradiction_gap,
+            "linkage_gap": linkage_gap,
             "shared_tooling": sorted(set(left.tooling_surfaces).intersection(right.tooling_surfaces)),
             "left_only_tooling": sorted(set(left.tooling_surfaces) - set(right.tooling_surfaces)),
             "right_only_tooling": sorted(set(right.tooling_surfaces) - set(left.tooling_surfaces)),
-            "confidence_gap": round(left.overall_confidence.score - right.overall_confidence.score, 2),
+            "confidence_gap": confidence_gap,
         },
+        "why_they_differ": why_they_differ,
+        "most_defensible_difference": most_defensible_difference,
     }
 
 
@@ -444,6 +476,11 @@ def render_comparison_markdown(left: ScanReport, right: ScanReport) -> str:
 - Artifact count: `{left.counts.artifacts}` vs `{right.counts.artifacts}`
 - Evidence basis: `{comparison["left"]["call_basis"]}` vs `{comparison["right"]["call_basis"]}`
 - Overall confidence: `{left.overall_confidence.level}` ({left.overall_confidence.score:.2f}) vs `{right.overall_confidence.level}` ({right.overall_confidence.score:.2f})
+
+## Why They Differ
+
+- Most defensible difference: {comparison["most_defensible_difference"]}
+{chr(10).join(f"- {item}" for item in comparison["why_they_differ"])}
 
 ## Tooling Overlap
 
@@ -526,6 +563,8 @@ def render_comparison_html(left: ScanReport, right: ScanReport) -> str:
           <tr><td style="padding:8px 0;color:#94a3b8;">Artifacts</td><td style="padding:8px 0;">{left.counts.artifacts}</td><td style="padding:8px 0;">{right.counts.artifacts}</td></tr>
         </tbody>
       </table>
+      <p style="margin:18px 0 0;"><strong>Most defensible difference:</strong> {escape(comparison["most_defensible_difference"])}</p>
+      <ul style="margin:12px 0 0;padding-left:18px;line-height:1.6;">{"".join(f"<li>{escape(item)}</li>" for item in comparison["why_they_differ"])}</ul>
     </section>
 
     <section style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">

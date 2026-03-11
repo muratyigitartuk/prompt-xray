@@ -9,10 +9,12 @@ import uvicorn
 from .analysis import analyze_target
 from .bench import (
     diff_benchmark_runs,
+    load_benchmark_config,
     load_benchmark_run,
     load_cases,
     render_benchmark_markdown,
     run_benchmark,
+    select_cases,
     write_benchmark_diff,
     write_benchmark_run,
 )
@@ -131,18 +133,25 @@ def serve(
 def bench_run(
     cases_dir: Optional[Path] = typer.Option(None, "--cases-dir", help="Directory containing benchmark case JSON files."),
     out: Optional[Path] = typer.Option(None, "--out", help="Output directory."),
-    max_file_size_kb: int = typer.Option(1024, "--max-file-size-kb", min=1),
-    max_code_files_per_language: int = typer.Option(400, "--max-code-files-per-language", min=25),
+    max_file_size_kb: Optional[int] = typer.Option(None, "--max-file-size-kb", min=1),
+    max_code_files_per_language: Optional[int] = typer.Option(None, "--max-code-files-per-language", min=25),
+    subset: bool = typer.Option(False, "--subset", help="Run only the reduced benchmark subset from benchmarks/config.json."),
     verbose: bool = typer.Option(False, "--verbose"),
 ) -> None:
+    config = load_benchmark_config()
     cases = load_cases(cases_dir)
     if not cases:
         raise typer.BadParameter("No benchmark cases found.")
+    if subset:
+        cases = select_cases(cases, config.reduced_case_ids)
+        if not cases:
+            raise typer.BadParameter("Reduced benchmark subset is empty.")
 
     run = run_benchmark(
         cases,
-        max_file_size_kb=max_file_size_kb,
-        max_code_files_per_language=max_code_files_per_language,
+        max_file_size_kb=max_file_size_kb or config.default_max_file_size_kb,
+        max_code_files_per_language=max_code_files_per_language or config.default_max_code_files_per_language,
+        baseline_name="reduced" if subset else "full",
     )
     out_dir = out or (Path.cwd() / ".prompt-xray" / "bench" / "latest")
     written = write_benchmark_run(run, out_dir)

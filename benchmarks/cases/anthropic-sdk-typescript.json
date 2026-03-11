@@ -8,5 +8,6 @@
   "memory_model": "none",
   "confidence_expectation": "high",
   "rationale": "TypeScript SDK negative control with no repo-level agent runtime identity.",
+  "calibration_note": "This repo includes executable examples and tooling; keep expectations conservative if mixed/runtime signals grow.",
   "tags": ["sdk", "typescript", "negative-control"]
 }

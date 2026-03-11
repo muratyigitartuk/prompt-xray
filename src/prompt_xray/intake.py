@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+import shutil
 import subprocess
 import tempfile
 from pathlib import Path
@@ -45,34 +46,62 @@ def _clone_repo(url: str, git_ref: str = "") -> Path:
     clone_path = cache_root / f"{slug}-{digest}"
     cache_root.mkdir(parents=True, exist_ok=True)
 
-    if clone_path.exists():
+    if clone_path.exists() and (clone_path / ".git").exists():
         return clone_path
+    if clone_path.exists():
+        shutil.rmtree(clone_path, ignore_errors=True)
 
-    clone_path.mkdir(parents=True, exist_ok=True)
-    subprocess.run(["git", "init"], cwd=clone_path, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    subprocess.run(
-        ["git", "remote", "add", "origin", url],
-        cwd=clone_path,
-        check=True,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
-    ref = git_ref or "HEAD"
-    subprocess.run(
-        ["git", "fetch", "--depth", "1", "origin", ref],
-        cwd=clone_path,
-        check=True,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
-    subprocess.run(
-        ["git", "checkout", "--detach", "FETCH_HEAD"],
-        cwd=clone_path,
-        check=True,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
-    return clone_path
+    try:
+        if git_ref:
+            subprocess.run(
+                ["git", "clone", "--filter=blob:none", "--no-checkout", url, str(clone_path)],
+                check=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            try:
+                subprocess.run(
+                    ["git", "checkout", "--detach", git_ref],
+                    cwd=clone_path,
+                    check=True,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                )
+            except subprocess.CalledProcessError:
+                subprocess.run(
+                    ["git", "fetch", "--filter=blob:none", "origin", git_ref],
+                    cwd=clone_path,
+                    check=True,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                )
+                subprocess.run(
+                    ["git", "checkout", "--detach", git_ref],
+                    cwd=clone_path,
+                    check=True,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                )
+        else:
+            try:
+                subprocess.run(
+                    ["git", "clone", "--depth", "1", url, str(clone_path)],
+                    check=True,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                )
+            except subprocess.CalledProcessError:
+                shutil.rmtree(clone_path, ignore_errors=True)
+                subprocess.run(
+                    ["git", "clone", "--filter=blob:none", url, str(clone_path)],
+                    check=True,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                )
+        return clone_path
+    except subprocess.CalledProcessError:
+        shutil.rmtree(clone_path, ignore_errors=True)
+        raise
 
 
 def resolve_target(target: str, git_ref: str = "") -> tuple[RepoInfo, Path]:

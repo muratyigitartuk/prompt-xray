@@ -10,7 +10,7 @@
     "repo_family": "plugin-ecosystem",
     "repo_archetype": "mixed",
     "orchestration_model": "runtime-implemented",
-    "memory_model": "implemented-runtime",
+    "memory_model": "tool-assisted",
     "xray_call": "Real runtime with visible prompt layers.",
     "verdict": "This repo behaves like a plugin-ecosystem with real implementation and prompt/config behavior surfaces; the call is grounded in runtime, graph, and prompt evidence together."
   },
@@ -170,11 +170,12 @@
       ]
     }
   ],
-  "missing_runtime_pieces": [],
+  "missing_runtime_pieces": [
+    "Memory/state signals exist, but there is not enough storage/runtime evidence to call them fully implemented."
+  ],
   "real_vs_packaging": {
     "real_implementation": [
-      "Runtime-backed behavior is supported by code and graph evidence in entrypoints, services, or stateful modules.",
-      "State or memory behavior is backed by parser-detected runtime/storage evidence."
+      "Runtime-backed behavior is supported by code and graph evidence in entrypoints, services, or stateful modules."
     ],
     "prompt_config_structure": [
       "Tool-specific behavior layers are packaged for multiple AI ecosystems.",
@@ -317,7 +318,7 @@
     {
       "path": "plugins/security-guidance/hooks/security_reminder_hook.py",
       "label": "runtime_entrypoint",
-      "strength": "implemented",
+      "strength": "interface",
       "reasons": [
         "ast:entrypoint",
         "ast:state",
@@ -329,7 +330,7 @@
     {
       "path": "scripts/backfill-duplicate-comments.ts",
       "label": "runtime_module",
-      "strength": "implemented",
+      "strength": "interface",
       "reasons": [
         "ast:storage",
         "ast:state",
@@ -540,15 +541,15 @@
     ]
   },
   "memory_confidence": {
-    "score": 0.95,
+    "score": 0.8,
     "level": "high",
     "reasons": [
       "evidence=10",
-      "model=implemented-runtime"
+      "model=tool-assisted"
     ]
   },
   "overall_confidence": {
-    "score": 0.96,
+    "score": 0.92,
     "level": "high",
     "reasons": [
       "combined family/archetype/orchestration/memory confidence"

@@ -8,5 +8,6 @@
   "memory_model": "none",
   "confidence_expectation": "medium",
   "rationale": "Prompt dataset/library negative control against runtime overclassification.",
+  "calibration_note": "This repo still contains executable utilities; preserve prompt-pack expectations as a regression check against runtime overcalling.",
   "tags": ["prompt-heavy", "python", "benchmark"]
 }

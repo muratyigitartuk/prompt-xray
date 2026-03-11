@@ -1,8 +1,16 @@
 from __future__ import annotations
 
 import ast
+import warnings
 from dataclasses import dataclass, field
 from pathlib import Path
+
+warnings.filterwarnings(
+    "ignore",
+    message=r"Language\(path, name\) is deprecated\. Use Language\(ptr, name\) instead\.",
+    category=FutureWarning,
+    module="tree_sitter",
+)
 
 from tree_sitter_languages import get_parser
 

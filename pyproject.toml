@@ -30,3 +30,4 @@ packages = ["src/prompt_xray"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
+asyncio_default_fixture_loop_scope = "function"
