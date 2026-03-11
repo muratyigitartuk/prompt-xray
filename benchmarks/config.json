@@ -1,0 +1,8 @@
+{
+  "confidence_thresholds": {
+    "high": 0.8,
+    "medium": 0.55
+  },
+  "default_max_file_size_kb": 1024,
+  "default_max_code_files_per_language": 400
+}

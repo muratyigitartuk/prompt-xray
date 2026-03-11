@@ -1,0 +1,12 @@
+{
+  "id": "smolagents",
+  "repo_url": "https://github.com/huggingface/smolagents.git",
+  "commit": "5c684c18df01895832ed0e0caecb6896f72890da",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "agent-framework",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "none",
+  "confidence_expectation": "medium",
+  "rationale": "Agent runtime library with real execution flows but lighter persistent-memory signals.",
+  "tags": ["runtime-heavy", "python", "benchmark"]
+}

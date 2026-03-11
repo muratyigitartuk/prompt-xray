@@ -37,9 +37,10 @@ def _git_output(repo_path: Path, *args: str) -> str:
         return ""
 
 
-def _clone_repo(url: str) -> Path:
+def _clone_repo(url: str, git_ref: str = "") -> Path:
     slug = slug_from_target(url)
-    digest = hashlib.sha1(url.encode("utf-8")).hexdigest()[:10]
+    ref_part = git_ref.strip()[:12] if git_ref else "head"
+    digest = hashlib.sha1(f"{url}@{ref_part}".encode("utf-8")).hexdigest()[:10]
     cache_root = Path(tempfile.gettempdir()) / "prompt_xray_cache"
     clone_path = cache_root / f"{slug}-{digest}"
     cache_root.mkdir(parents=True, exist_ok=True)
@@ -47,8 +48,26 @@ def _clone_repo(url: str) -> Path:
     if clone_path.exists():
         return clone_path
 
+    clone_path.mkdir(parents=True, exist_ok=True)
+    subprocess.run(["git", "init"], cwd=clone_path, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     subprocess.run(
-        ["git", "clone", "--depth", "1", url, str(clone_path)],
+        ["git", "remote", "add", "origin", url],
+        cwd=clone_path,
+        check=True,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    ref = git_ref or "HEAD"
+    subprocess.run(
+        ["git", "fetch", "--depth", "1", "origin", ref],
+        cwd=clone_path,
+        check=True,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    subprocess.run(
+        ["git", "checkout", "--detach", "FETCH_HEAD"],
+        cwd=clone_path,
         check=True,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
@@ -56,9 +75,9 @@ def _clone_repo(url: str) -> Path:
     return clone_path
 
 
-def resolve_target(target: str) -> tuple[RepoInfo, Path]:
+def resolve_target(target: str, git_ref: str = "") -> tuple[RepoInfo, Path]:
     if is_github_url(target):
-        repo_path = _clone_repo(target)
+        repo_path = _clone_repo(target, git_ref=git_ref)
         info = RepoInfo(
             name=slug_from_target(target),
             target=target,

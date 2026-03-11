@@ -24,7 +24,7 @@
       </div>
 
       <p class="sidebar-copy collapsible-copy">
-        Browse the strongest scans and comparisons without reading raw JSON. This UI is powered by the generated report artifacts already in the repo.
+        Browse scans and comparisons without reading raw JSON. The viewport now exposes family, confidence, contradictions, and runtime linkage instead of only the headline call.
       </p>
 
       <section class="nav-group collapsible-block">
@@ -50,8 +50,8 @@
           <p class="eyebrow">Live Demo Surface</p>
           <h2>See where the real behavior comes from.</h2>
           <p>
-            Select any sample on the left. Reports show prompt surfaces, behavior sources, and missing runtime pieces.
-            Comparisons show the fastest way to explain why two AI repos are structurally different.
+            Select any sample on the left. Reports show prompt surfaces, behavior sources, confidence, contradictions, and missing runtime pieces.
+            Comparisons show why two AI repos diverge structurally, not just how their labels differ.
           </p>
         </div>
         <div class="hero-note">
@@ -69,6 +69,10 @@
                 <label>
                   <span>Max file size KB</span>
                   <input id="scan-size" name="max_file_size_kb" type="number" min="1" value="1024">
+                </label>
+                <label>
+                  <span>Max code files / lang</span>
+                  <input id="scan-code-cap" name="max_code_files_per_language" type="number" min="25" value="400">
                 </label>
                 <label class="checkbox-row">
                   <input id="scan-snippets" name="include_snippets" type="checkbox" checked>
@@ -92,6 +96,10 @@
                   <span>Max file size KB</span>
                   <input id="compare-size" name="max_file_size_kb" type="number" min="1" value="1024">
                 </label>
+                <label>
+                  <span>Max code files / lang</span>
+                  <input id="compare-code-cap" name="max_code_files_per_language" type="number" min="25" value="400">
+                </label>
                 <label class="checkbox-row">
                   <input id="compare-snippets" name="include_snippets" type="checkbox">
                   <span>Include snippets</span>
@@ -103,7 +111,7 @@
             <div id="hero-status" class="hero-status">
               <span>Best first click</span>
               <strong>`agency-agents` vs `claude-code`</strong>
-              <small>The cleanest contrast in the current benchmark set.</small>
+              <small>A prompt-pack benchmark against a runtime-heavy mixed repo.</small>
             </div>
           </div>
         </div>

@@ -1,0 +1,12 @@
+{
+  "id": "openai-agents-python",
+  "repo_url": "https://github.com/openai/openai-agents-python.git",
+  "commit": "a8be7c0056a268399b5f4641d04b15e25373bfe6",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "agent-framework",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "high",
+  "rationale": "Framework-style runtime with stateful features and explicit agent machinery.",
+  "tags": ["runtime-heavy", "python", "benchmark"]
+}

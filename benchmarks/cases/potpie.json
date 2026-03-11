@@ -1,0 +1,12 @@
+{
+  "id": "potpie",
+  "repo_url": "https://github.com/potpie-ai/potpie.git",
+  "commit": "62434265809c306348d234bc9f1ca426b1b2b8f7",
+  "repo_family": "application-repo",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "medium",
+  "rationale": "Repo intelligence application with executable runtime, state, and prompt/config surfaces.",
+  "tags": ["mixed-runtime", "python", "benchmark"]
+}

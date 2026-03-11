@@ -1,0 +1,12 @@
+{
+  "id": "langchain",
+  "repo_url": "https://github.com/langchain-ai/langchain.git",
+  "commit": "f9dbd22fe18184c8f929ab933f36215b2940037f",
+  "repo_family": "sdk-library",
+  "repo_archetype": "unclear",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "medium",
+  "rationale": "Broad SDK/library surface with AI utilities rather than a single prompt-centric repo identity.",
+  "tags": ["sdk", "python", "negative-control"]
+}

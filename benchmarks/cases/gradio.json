@@ -1,0 +1,12 @@
+{
+  "id": "gradio",
+  "repo_url": "https://github.com/gradio-app/gradio.git",
+  "commit": "7874d0411c81dcde9c4b08e7e064ca0dbef94e2e",
+  "repo_family": "application-repo",
+  "repo_archetype": "unclear",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "none",
+  "confidence_expectation": "medium",
+  "rationale": "Real application/runtime tooling repo that is AI-adjacent but not prompt-centric.",
+  "tags": ["application", "python", "negative-control"]
+}

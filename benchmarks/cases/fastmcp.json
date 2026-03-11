@@ -1,0 +1,12 @@
+{
+  "id": "fastmcp",
+  "repo_url": "https://github.com/jlowin/fastmcp.git",
+  "commit": "30308332bb13e75282f1bea5214a112db743454a",
+  "repo_family": "infra-tooling",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "none",
+  "confidence_expectation": "medium",
+  "rationale": "Protocol/runtime tooling with real code execution and AI-adjacent docs/config.",
+  "tags": ["infra", "python", "benchmark"]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "mcp-inspector",
+  "repo_url": "https://github.com/modelcontextprotocol/inspector.git",
+  "commit": "7c8b031ffac663031ee5a0d0a7dc79735321c2d1",
+  "repo_family": "infra-tooling",
+  "repo_archetype": "unclear",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "none",
+  "confidence_expectation": "high",
+  "rationale": "Real runtime developer tool for inspecting MCP servers, not an agent repo.",
+  "tags": ["infra", "typescript", "negative-control"]
+}

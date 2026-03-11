@@ -1,0 +1,12 @@
+{
+  "id": "openai-python",
+  "repo_url": "https://github.com/openai/openai-python.git",
+  "commit": "15afa21e54952c06e2ac4d3e3a82f144c2cf9ed9",
+  "repo_family": "sdk-library",
+  "repo_archetype": "unclear",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "high",
+  "rationale": "API SDK negative control; should not be mistaken for an agent system.",
+  "tags": ["sdk", "python", "negative-control"]
+}

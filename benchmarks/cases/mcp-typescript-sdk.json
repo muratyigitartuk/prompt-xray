@@ -1,0 +1,12 @@
+{
+  "id": "mcp-typescript-sdk",
+  "repo_url": "https://github.com/modelcontextprotocol/typescript-sdk.git",
+  "commit": "108f2f3ab6a1267587c7c4f900b6eca3cc2dae51",
+  "repo_family": "sdk-library",
+  "repo_archetype": "unclear",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "high",
+  "rationale": "TypeScript protocol SDK and negative control for agent overclassification.",
+  "tags": ["sdk", "typescript", "negative-control"]
+}

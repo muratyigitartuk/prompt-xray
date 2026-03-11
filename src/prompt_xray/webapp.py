@@ -16,6 +16,7 @@ from .reporting import build_comparison
 class ScanRequest(BaseModel):
     target: str
     max_file_size_kb: int = Field(default=1024, ge=1)
+    max_code_files_per_language: int = Field(default=400, ge=25)
     include_snippets: bool = True
 
 
@@ -23,6 +24,7 @@ class CompareRequest(BaseModel):
     left: str
     right: str
     max_file_size_kb: int = Field(default=1024, ge=1)
+    max_code_files_per_language: int = Field(default=400, ge=25)
     include_snippets: bool = False
 
 
@@ -50,6 +52,7 @@ def create_app(project_root: Optional[Path] = None) -> FastAPI:
             target=payload.target,
             max_file_size_kb=payload.max_file_size_kb,
             include_snippets=payload.include_snippets,
+            max_code_files_per_language=payload.max_code_files_per_language,
         )
         return report.model_dump(mode="json")
 
@@ -59,11 +62,13 @@ def create_app(project_root: Optional[Path] = None) -> FastAPI:
             target=payload.left,
             max_file_size_kb=payload.max_file_size_kb,
             include_snippets=payload.include_snippets,
+            max_code_files_per_language=payload.max_code_files_per_language,
         )
         right_report = analyze_target(
             target=payload.right,
             max_file_size_kb=payload.max_file_size_kb,
             include_snippets=payload.include_snippets,
+            max_code_files_per_language=payload.max_code_files_per_language,
         )
         return build_comparison(left_report, right_report)
 
@@ -73,4 +78,3 @@ def create_app(project_root: Optional[Path] = None) -> FastAPI:
 
     app.mount("/", StaticFiles(directory=root, html=True), name="static")
     return app
-

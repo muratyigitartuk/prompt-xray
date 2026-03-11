@@ -1,0 +1,197 @@
+{
+  "left": {
+    "name": "agency-agents",
+    "repo_family": "prompt-pack",
+    "archetype": "prompt-library",
+    "orchestration": "prompt-defined",
+    "memory": "documented-only",
+    "xray_call": "Prompt pack, not agent runtime.",
+    "artifacts": 325,
+    "confidence": {
+      "family": {
+        "score": 0.9,
+        "level": "high",
+        "reasons": [
+          "runtime=0",
+          "tooling=8",
+          "links=0"
+        ]
+      },
+      "archetype": {
+        "score": 0.9,
+        "level": "high",
+        "reasons": [
+          "prompt-assets=118",
+          "runtime-signals=0",
+          "workflow-artifacts=29"
+        ]
+      },
+      "orchestration": {
+        "score": 0.74,
+        "level": "medium",
+        "reasons": [
+          "evidence=10",
+          "model=prompt-defined"
+        ]
+      },
+      "memory": {
+        "score": 0.74,
+        "level": "medium",
+        "reasons": [
+          "evidence=10",
+          "model=documented-only"
+        ]
+      },
+      "overall": {
+        "score": 0.82,
+        "level": "high",
+        "reasons": [
+          "combined family/archetype/orchestration/memory confidence"
+        ]
+      }
+    },
+    "contradictions": [
+      "The repo talks about memory/state, but there is little or no runtime-backed persistence evidence."
+    ],
+    "prompt_runtime_links": [],
+    "call_basis": "docs-led",
+    "runtime_density": 0,
+    "prompt_density": 1116,
+    "runtime_evidence": [],
+    "top_behavior_sources": [
+      "specialized/specialized-model-qa.md",
+      "project-management/project-management-jira-workflow-steward.md",
+      "integrations/mcp-memory/backend-architect-with-memory.md",
+      "support/support-legal-compliance-checker.md",
+      "specialized/identity-graph-operator.md"
+    ]
+  },
+  "right": {
+    "name": "claude-code",
+    "repo_family": "plugin-ecosystem",
+    "archetype": "mixed",
+    "orchestration": "runtime-implemented",
+    "memory": "implemented-runtime",
+    "xray_call": "Real runtime with visible prompt layers.",
+    "artifacts": 68,
+    "confidence": {
+      "family": {
+        "score": 0.98,
+        "level": "high",
+        "reasons": [
+          "runtime=9",
+          "tooling=1",
+          "links=0"
+        ]
+      },
+      "archetype": {
+        "score": 0.98,
+        "level": "high",
+        "reasons": [
+          "prompt-assets=61",
+          "runtime-signals=9",
+          "workflow-artifacts=5"
+        ]
+      },
+      "orchestration": {
+        "score": 0.92,
+        "level": "high",
+        "reasons": [
+          "evidence=10",
+          "model=runtime-implemented"
+        ]
+      },
+      "memory": {
+        "score": 0.95,
+        "level": "high",
+        "reasons": [
+          "evidence=10",
+          "model=implemented-runtime"
+        ]
+      },
+      "overall": {
+        "score": 0.96,
+        "level": "high",
+        "reasons": [
+          "combined family/archetype/orchestration/memory confidence"
+        ]
+      }
+    },
+    "contradictions": [],
+    "prompt_runtime_links": [],
+    "call_basis": "docs-led",
+    "runtime_density": 25,
+    "prompt_density": 370,
+    "runtime_evidence": [
+      {
+        "path": "plugins/hookify/core/config_loader.py",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "ast:entrypoint",
+          "referenced-by:5"
+        ]
+      },
+      {
+        "path": "plugins/hookify/core/rule_engine.py",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "ast:entrypoint",
+          "imports:plugins/hookify/core/config_loader.py",
+          "referenced-by:4"
+        ]
+      },
+      {
+        "path": "plugins/hookify/hooks/posttooluse.py",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "ast:entrypoint",
+          "imports:plugins/hookify/core/config_loader.py",
+          "imports:plugins/hookify/core/rule_engine.py"
+        ]
+      },
+      {
+        "path": "plugins/hookify/hooks/pretooluse.py",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "ast:entrypoint",
+          "imports:plugins/hookify/core/config_loader.py",
+          "imports:plugins/hookify/core/rule_engine.py"
+        ]
+      }
+    ],
+    "top_behavior_sources": [
+      "plugins/hookify/hooks/stop.py",
+      "plugins/security-guidance/hooks/security_reminder_hook.py",
+      "plugins/hookify/core/rule_engine.py",
+      "plugins/hookify/hooks/posttooluse.py",
+      "plugins/hookify/hooks/pretooluse.py"
+    ]
+  },
+  "differences": {
+    "same_family": false,
+    "same_archetype": false,
+    "same_orchestration": false,
+    "same_memory": false,
+    "artifact_gap": 257,
+    "runtime_density_gap": -25,
+    "prompt_density_gap": 746,
+    "shared_tooling": [
+      "Claude Code"
+    ],
+    "left_only_tooling": [
+      "Aider",
+      "Copilot",
+      "Cursor",
+      "Gemini CLI",
+      "MCP",
+      "OpenCode",
+      "Windsurf"
+    ],
+    "right_only_tooling": [],
+    "confidence_gap": -0.14
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "crewai",
+  "repo_url": "https://github.com/crewAIInc/crewAI.git",
+  "commit": "542afe61a8adfca1b9a0434189b9f339dfb07817",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "agent-framework",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "medium",
+  "rationale": "Large agent runtime with runtime orchestration and persistent execution/state concepts.",
+  "tags": ["runtime-heavy", "python", "benchmark"]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "anthropic-cookbook",
+  "repo_url": "https://github.com/anthropics/anthropic-cookbook.git",
+  "commit": "410d60f2ac532bfd66b00746ec419c8dba5e8984",
+  "repo_family": "docs-examples",
+  "repo_archetype": "unclear",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "high",
+  "rationale": "Cookbook/examples negative control with no unified runtime identity.",
+  "tags": ["docs", "python", "negative-control"]
+}

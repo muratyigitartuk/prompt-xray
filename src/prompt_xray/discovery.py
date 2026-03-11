@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Iterable
 
 TEXT_EXTENSIONS = {".md", ".mdc", ".txt", ".yaml", ".yml", ".json", ".toml"}
 SPECIAL_FILENAMES = {
@@ -34,6 +35,10 @@ NOISE_DIRS = {
     "__pycache__",
     ".mypy_cache",
     ".pytest_cache",
+    ".turbo",
+    ".pnpm-store",
+    ".yarn",
+    "vendor",
 }
 NOISE_FILES = {
     "package-lock.json",
@@ -55,6 +60,29 @@ CODE_EXTENSIONS = {
     ".rb",
     ".php",
     ".sh",
+}
+LANGUAGE_EXTENSIONS = {
+    "python": {".py"},
+    "javascript": {".js", ".jsx", ".mjs", ".cjs"},
+    "typescript": {".ts", ".tsx", ".mts", ".cts"},
+}
+NOISE_PATH_PARTS = {
+    "tests",
+    "__tests__",
+    "test",
+    "testing",
+    "examples",
+    "example",
+    "benchmarks",
+    "benchmark",
+    "fixtures",
+    "fixture",
+    "migrations",
+    "snapshot",
+    "snapshots",
+    "vendor",
+    "generated",
+    ".generated",
 }
 
 
@@ -88,6 +116,10 @@ def _should_include(rel_path: Path, file_path: Path) -> bool:
     return False
 
 
+def _should_skip_by_noise(parts_lower: set[str]) -> bool:
+    return bool(NOISE_DIRS.intersection(parts_lower))
+
+
 def discover_candidate_files(repo_path: Path, max_file_size_kb: int) -> list[Path]:
     max_bytes = max_file_size_kb * 1024
     candidates: list[Path] = []
@@ -98,7 +130,7 @@ def discover_candidate_files(repo_path: Path, max_file_size_kb: int) -> list[Pat
 
         rel_path = file_path.relative_to(repo_path)
         parts_lower = {part.lower() for part in rel_path.parts}
-        if NOISE_DIRS.intersection(parts_lower):
+        if _should_skip_by_noise(parts_lower):
             continue
 
         if not _should_include(rel_path, file_path):
@@ -118,6 +150,61 @@ def discover_candidate_files(repo_path: Path, max_file_size_kb: int) -> list[Pat
     return sorted(candidates)
 
 
+def _language_for_file(file_path: Path) -> str | None:
+    suffix = file_path.suffix.lower()
+    for language, suffixes in LANGUAGE_EXTENSIONS.items():
+        if suffix in suffixes:
+            return language
+    return None
+
+
+def discover_code_files(
+    repo_path: Path,
+    max_file_size_kb: int,
+    max_files_per_language: int = 400,
+) -> tuple[list[Path], dict[str, int], list[str]]:
+    max_bytes = max_file_size_kb * 1024
+    code_files: list[Path] = []
+    totals: dict[str, int] = {language: 0 for language in LANGUAGE_EXTENSIONS}
+    kept: dict[str, int] = {language: 0 for language in LANGUAGE_EXTENSIONS}
+
+    for file_path in repo_path.rglob("*"):
+        if not file_path.is_file():
+            continue
+
+        rel_path = file_path.relative_to(repo_path)
+        parts_lower = {part.lower() for part in rel_path.parts}
+        if _should_skip_by_noise(parts_lower):
+            continue
+
+        language = _language_for_file(file_path)
+        if not language:
+            continue
+
+        totals[language] += 1
+        if kept[language] >= max_files_per_language:
+            continue
+
+        try:
+            if file_path.stat().st_size > max_bytes:
+                continue
+        except OSError:
+            continue
+
+        if _is_binary(file_path):
+            continue
+
+        kept[language] += 1
+        code_files.append(file_path)
+
+    truncated_languages = [
+        language
+        for language, total in totals.items()
+        if total > kept[language]
+    ]
+    return sorted(code_files), totals, sorted(truncated_languages)
+
+
 def discover_runtime_markers(repo_path: Path, max_scan_files: int = 5000) -> list[str]:
     markers: list[str] = []
     scanned = 0
@@ -130,7 +217,7 @@ def discover_runtime_markers(repo_path: Path, max_scan_files: int = 5000) -> lis
 
         rel_path = file_path.relative_to(repo_path)
         parts_lower = {part.lower() for part in rel_path.parts}
-        if NOISE_DIRS.intersection(parts_lower):
+        if _should_skip_by_noise(parts_lower):
             continue
 
         scanned += 1

@@ -304,7 +304,7 @@ body {
 
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr auto;
   gap: 12px;
   align-items: end;
 }
@@ -431,6 +431,16 @@ body {
   color: var(--alert);
 }
 
+.badge.ok {
+  background: #ffffff;
+  color: var(--signal);
+}
+
+.badge.bad {
+  background: #ffffff;
+  color: #7a1f1f;
+}
+
 .badge.dark {
   background: #ffffff;
   color: var(--violet);
@@ -525,6 +535,11 @@ code {
 }
 
 .list-panel li + li {
+  margin-top: 10px;
+}
+
+.list-panel strong + ul,
+.list-panel strong + ol {
   margin-top: 10px;
 }
 

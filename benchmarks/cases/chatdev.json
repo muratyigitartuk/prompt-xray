@@ -1,0 +1,12 @@
+{
+  "id": "chatdev",
+  "repo_url": "https://github.com/OpenBMB/ChatDev.git",
+  "commit": "980f6249fa2bde13f3ff4e739a1804eb8a02764e",
+  "repo_family": "application-repo",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "documented-only",
+  "confidence_expectation": "medium",
+  "rationale": "Multi-agent app framing with runtime behavior, but less clear persistent memory implementation.",
+  "tags": ["mixed-runtime", "python", "benchmark"]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "semantic-kernel",
+  "repo_url": "https://github.com/microsoft/semantic-kernel.git",
+  "commit": "02da6c47d768b0e84512557f046e913e0bd08d75",
+  "repo_family": "sdk-library",
+  "repo_archetype": "agent-framework",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "medium",
+  "rationale": "SDK-like repo that still exposes framework-style runtime, orchestration, and memory features.",
+  "tags": ["sdk", "mixed-runtime", "benchmark"]
+}

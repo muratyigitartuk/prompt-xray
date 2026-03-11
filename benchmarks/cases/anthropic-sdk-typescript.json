@@ -1,0 +1,12 @@
+{
+  "id": "anthropic-sdk-typescript",
+  "repo_url": "https://github.com/anthropics/anthropic-sdk-typescript.git",
+  "commit": "fdaa72bed14cdd9671bba1add1ba9e912c9d1ced",
+  "repo_family": "sdk-library",
+  "repo_archetype": "unclear",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "high",
+  "rationale": "TypeScript SDK negative control with no repo-level agent runtime identity.",
+  "tags": ["sdk", "typescript", "negative-control"]
+}

@@ -1,0 +1,244 @@
+{
+  "left": {
+    "name": "browser-use",
+    "repo_family": "runtime-framework",
+    "archetype": "agent-framework",
+    "orchestration": "runtime-implemented",
+    "memory": "implemented-runtime",
+    "xray_call": "Real runtime with visible prompt layers.",
+    "artifacts": 28,
+    "confidence": {
+      "family": {
+        "score": 0.87,
+        "level": "high",
+        "reasons": [
+          "runtime=10",
+          "tooling=1",
+          "links=0"
+        ]
+      },
+      "archetype": {
+        "score": 0.98,
+        "level": "high",
+        "reasons": [
+          "prompt-assets=45",
+          "runtime-signals=10",
+          "workflow-artifacts=6"
+        ]
+      },
+      "orchestration": {
+        "score": 0.92,
+        "level": "high",
+        "reasons": [
+          "evidence=10",
+          "model=runtime-implemented"
+        ]
+      },
+      "memory": {
+        "score": 0.95,
+        "level": "high",
+        "reasons": [
+          "evidence=10",
+          "model=implemented-runtime"
+        ]
+      },
+      "overall": {
+        "score": 0.93,
+        "level": "high",
+        "reasons": [
+          "combined family/archetype/orchestration/memory confidence"
+        ]
+      }
+    },
+    "contradictions": [],
+    "prompt_runtime_links": [],
+    "call_basis": "code-led",
+    "runtime_density": 1467,
+    "prompt_density": 609,
+    "runtime_evidence": [
+      {
+        "path": "browser_use/actor/playground/flights.py",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "ast:entrypoint",
+          "imports:browser_use/__init__.py"
+        ]
+      },
+      {
+        "path": "browser_use/actor/playground/mixed_automation.py",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "ast:entrypoint",
+          "imports:browser_use/__init__.py"
+        ]
+      },
+      {
+        "path": "browser_use/actor/playground/playground.py",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "ast:entrypoint",
+          "imports:browser_use/__init__.py"
+        ]
+      },
+      {
+        "path": "browser_use/cli.py",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "regex:cli",
+          "regex:storage",
+          "ast:state",
+          "ast:entrypoint",
+          "ast:cli"
+        ]
+      }
+    ],
+    "top_behavior_sources": [
+      "browser_use/cli.py",
+      "browser_use/mcp/server.py",
+      "browser_use/browser/session.py",
+      "browser_use/dom/playground/extraction.py",
+      "browser_use/skill_cli/server.py"
+    ]
+  },
+  "right": {
+    "name": "langgraph",
+    "repo_family": "application-repo",
+    "archetype": "mixed",
+    "orchestration": "runtime-implemented",
+    "memory": "implemented-runtime",
+    "xray_call": "Real runtime with linked prompt layers.",
+    "artifacts": 10,
+    "confidence": {
+      "family": {
+        "score": 0.93,
+        "level": "high",
+        "reasons": [
+          "runtime=10",
+          "tooling=1",
+          "links=2"
+        ]
+      },
+      "archetype": {
+        "score": 0.98,
+        "level": "high",
+        "reasons": [
+          "prompt-assets=19",
+          "runtime-signals=10",
+          "workflow-artifacts=0"
+        ]
+      },
+      "orchestration": {
+        "score": 0.92,
+        "level": "high",
+        "reasons": [
+          "evidence=10",
+          "model=runtime-implemented"
+        ]
+      },
+      "memory": {
+        "score": 0.95,
+        "level": "high",
+        "reasons": [
+          "evidence=10",
+          "model=implemented-runtime"
+        ]
+      },
+      "overall": {
+        "score": 0.95,
+        "level": "high",
+        "reasons": [
+          "combined family/archetype/orchestration/memory confidence"
+        ]
+      }
+    },
+    "contradictions": [],
+    "prompt_runtime_links": [
+      {
+        "source_path": "libs/cli/js-examples/.eslintrc.cjs",
+        "target_path": "libs/cli/js-examples/tsconfig.json",
+        "kind": "runtime-loads-asset",
+        "strength": "linked",
+        "reasons": [
+          "ast:loads-prompt-asset",
+          "links:libs/cli/js-examples/tsconfig.json"
+        ]
+      },
+      {
+        "source_path": "libs/cli/js-monorepo-example/.eslintrc.cjs",
+        "target_path": "libs/cli/js-monorepo-example/tsconfig.json",
+        "kind": "runtime-loads-asset",
+        "strength": "linked",
+        "reasons": [
+          "ast:loads-prompt-asset",
+          "links:libs/cli/js-monorepo-example/tsconfig.json"
+        ]
+      }
+    ],
+    "call_basis": "docs-led",
+    "runtime_density": 326,
+    "prompt_density": 330,
+    "runtime_evidence": [
+      {
+        "path": ".github/scripts/check_sdk_methods.py",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "ast:entrypoint"
+        ]
+      },
+      {
+        "path": ".github/scripts/run_langgraph_cli_test.py",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "regex:cli",
+          "ast:entrypoint"
+        ]
+      },
+      {
+        "path": "libs/cli/generate_schema.py",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "ast:entrypoint"
+        ]
+      },
+      {
+        "path": "libs/cli/langgraph_cli/__main__.py",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "ast:entrypoint"
+        ]
+      }
+    ],
+    "top_behavior_sources": [
+      "libs/langgraph/bench/fanout_to_subgraph.py",
+      "libs/langgraph/bench/react_agent.py",
+      ".github/scripts/run_langgraph_cli_test.py",
+      "libs/checkpoint-postgres/langgraph/store/postgres/aio.py",
+      "libs/checkpoint-sqlite/langgraph/store/sqlite/aio.py"
+    ]
+  },
+  "differences": {
+    "same_family": false,
+    "same_archetype": false,
+    "same_orchestration": true,
+    "same_memory": true,
+    "artifact_gap": 18,
+    "runtime_density_gap": 1141,
+    "prompt_density_gap": 279,
+    "shared_tooling": [],
+    "left_only_tooling": [
+      "Gemini CLI"
+    ],
+    "right_only_tooling": [
+      "Claude Code"
+    ],
+    "confidence_gap": -0.02
+  }
+}

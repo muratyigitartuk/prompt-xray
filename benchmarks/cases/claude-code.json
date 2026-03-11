@@ -1,0 +1,12 @@
+{
+  "id": "claude-code",
+  "repo_url": "https://github.com/anthropics/claude-code.git",
+  "commit": "45b54301267d60b8c2b482ab80d2c0b36443a5f1",
+  "repo_family": "plugin-ecosystem",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "documented-only",
+  "confidence_expectation": "medium",
+  "rationale": "Real coding runtime plus visible plugin, agent, and skill layers.",
+  "tags": ["mixed-runtime", "typescript", "benchmark"]
+}

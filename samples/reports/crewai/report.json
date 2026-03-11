@@ -1,0 +1,2290 @@
+{
+  "repo": {
+    "name": "crewAI",
+    "target": "https://github.com/crewAIInc/crewAI",
+    "source_type": "github",
+    "commit": "542afe61a8adfca1b9a0434189b9f339dfb07817",
+    "root_path": "C:\\Users\\mur4t\\AppData\\Local\\Temp\\prompt_xray_cache\\crewAI-0f02a2c093"
+  },
+  "summary": {
+    "repo_family": "runtime-framework",
+    "repo_archetype": "agent-framework",
+    "orchestration_model": "runtime-implemented",
+    "memory_model": "implemented-runtime",
+    "xray_call": "Real runtime with visible prompt layers.",
+    "verdict": "This repo behaves like a runtime-framework with real implementation and prompt/config behavior surfaces; the call is grounded in runtime, graph, and prompt evidence together."
+  },
+  "counts": {
+    "candidate_files": 1196,
+    "artifacts": 52
+  },
+  "tooling_surfaces": [
+    "Claude Code",
+    "Gemini CLI"
+  ],
+  "behavior_sources": [
+    {
+      "path": "lib/crewai/src/crewai/cli/cli.py",
+      "score": 13.7,
+      "kinds": [
+        "runtime_entrypoint"
+      ],
+      "reasons": [
+        "ast:cli",
+        "ast:entrypoint",
+        "ast:state",
+        "regex:cli",
+        "text:agent"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/flow/visualization/assets/interactive.js",
+      "score": 13.25,
+      "kinds": [
+        "runtime_entrypoint"
+      ],
+      "reasons": [
+        "ast:cli",
+        "ast:entrypoint",
+        "ast:state",
+        "ast:storage",
+        "text:agent"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_adapter.py",
+      "score": 11.42,
+      "kinds": [
+        "agent_prompt",
+        "runtime_module",
+        "system_prompt"
+      ],
+      "reasons": [
+        "ast:state",
+        "path:agent",
+        "path:agents/",
+        "regex:storage",
+        "text:agent",
+        "text:instructions",
+        "text:memory",
+        "text:system prompt",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/utils/task.py",
+      "score": 11.05,
+      "kinds": [
+        "runtime_module"
+      ],
+      "reasons": [
+        "ast:state",
+        "ast:storage",
+        "ast:worker",
+        "regex:storage",
+        "regex:worker"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/crew.py",
+      "score": 11.0,
+      "kinds": [
+        "runtime_module"
+      ],
+      "reasons": [
+        "ast:state",
+        "ast:worker",
+        "regex:storage",
+        "regex:worker",
+        "text:agent"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/memory/storage/kickoff_task_outputs_storage.py",
+      "score": 10.95,
+      "kinds": [
+        "state_or_storage"
+      ],
+      "reasons": [
+        "ast:state",
+        "ast:storage",
+        "regex:storage"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/memory/unified_memory.py",
+      "score": 10.9,
+      "kinds": [
+        "state_or_storage"
+      ],
+      "reasons": [
+        "ast:state",
+        "regex:storage",
+        "text:agent",
+        "text:memory",
+        "text:recall"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/memory/analyze.py",
+      "score": 10.75,
+      "kinds": [
+        "state_or_storage"
+      ],
+      "reasons": [
+        "ast:state",
+        "regex:storage",
+        "text:memory",
+        "text:recall",
+        "text:remember"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/memory/types.py",
+      "score": 10.75,
+      "kinds": [
+        "state_or_storage"
+      ],
+      "reasons": [
+        "ast:state",
+        "regex:storage",
+        "text:memory",
+        "text:recall",
+        "text:remember"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/memory/memory_scope.py",
+      "score": 10.1,
+      "kinds": [
+        "state_or_storage"
+      ],
+      "reasons": [
+        "ast:state",
+        "text:memory",
+        "text:recall",
+        "text:remember"
+      ]
+    }
+  ],
+  "missing_runtime_pieces": [],
+  "real_vs_packaging": {
+    "real_implementation": [
+      "Runtime-backed behavior is supported by code and graph evidence in entrypoints, services, or stateful modules.",
+      "State or memory behavior is backed by parser-detected runtime/storage evidence."
+    ],
+    "prompt_config_structure": [
+      "Tool-specific behavior layers are packaged for multiple AI ecosystems.",
+      "Prompt, rule, and skill files still materially shape visible behavior.",
+      "Config and manifest files contribute to how the runtime and prompts are wired together."
+    ],
+    "presentation_marketing_layer": [
+      "README-level framing contributes to the product story users see first."
+    ]
+  },
+  "file_roles_summary": [
+    {
+      "role": "test_or_example",
+      "count": 583
+    },
+    {
+      "role": "prompt_doc",
+      "count": 252
+    },
+    {
+      "role": "unknown",
+      "count": 243
+    },
+    {
+      "role": "runtime_module",
+      "count": 44
+    },
+    {
+      "role": "config_or_manifest",
+      "count": 32
+    },
+    {
+      "role": "generated_or_vendor",
+      "count": 31
+    },
+    {
+      "role": "state_or_storage",
+      "count": 9
+    },
+    {
+      "role": "runtime_entrypoint",
+      "count": 2
+    }
+  ],
+  "evidence_summary": {
+    "path_evidence": 362,
+    "text_evidence": 1668,
+    "code_evidence": 106,
+    "graph_evidence": 0,
+    "negative_evidence": 807
+  },
+  "runtime_evidence": [
+    {
+      "path": "lib/crewai/src/crewai/cli/cli.py",
+      "label": "runtime_entrypoint",
+      "strength": "entrypoint",
+      "reasons": [
+        "regex:cli",
+        "ast:entrypoint",
+        "ast:cli",
+        "ast:state"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/flow/visualization/assets/interactive.js",
+      "label": "runtime_entrypoint",
+      "strength": "entrypoint",
+      "reasons": [
+        "ast:storage",
+        "ast:state",
+        "ast:cli",
+        "ast:entrypoint"
+      ]
+    },
+    {
+      "path": "lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/invoke_agent_tool.py",
+      "label": "runtime_module",
+      "strength": "stateful_runtime",
+      "reasons": [
+        "ast:state"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/auth/utils.py",
+      "label": "runtime_module",
+      "strength": "stateful_runtime",
+      "reasons": [
+        "ast:state"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/extensions/base.py",
+      "label": "runtime_module",
+      "strength": "stateful_runtime",
+      "reasons": [
+        "regex:storage",
+        "ast:state"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/extensions/registry.py",
+      "label": "runtime_module",
+      "strength": "stateful_runtime",
+      "reasons": [
+        "regex:storage"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/task_helpers.py",
+      "label": "runtime_module",
+      "strength": "stateful_runtime",
+      "reasons": [
+        "regex:storage",
+        "ast:state"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/templates.py",
+      "label": "runtime_module",
+      "strength": "stateful_runtime",
+      "reasons": [
+        "regex:storage"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/updates/base.py",
+      "label": "runtime_module",
+      "strength": "stateful_runtime",
+      "reasons": [
+        "regex:storage",
+        "ast:state"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/updates/polling/handler.py",
+      "label": "runtime_module",
+      "strength": "stateful_runtime",
+      "reasons": [
+        "regex:storage",
+        "ast:state"
+      ]
+    }
+  ],
+  "memory_evidence": [
+    {
+      "path": "lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/invoke_agent_tool.py",
+      "label": "runtime_module",
+      "strength": "implemented",
+      "reasons": [
+        "ast:state",
+        "text:agent",
+        "text:memory"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/auth/utils.py",
+      "label": "runtime_module",
+      "strength": "implemented",
+      "reasons": [
+        "ast:state",
+        "text:agent"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/extensions/base.py",
+      "label": "runtime_module",
+      "strength": "implemented",
+      "reasons": [
+        "regex:storage",
+        "ast:state",
+        "text:agent",
+        "text:memory"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/task_helpers.py",
+      "label": "runtime_module",
+      "strength": "implemented",
+      "reasons": [
+        "regex:storage",
+        "ast:state",
+        "text:agent",
+        "text:memory"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/updates/base.py",
+      "label": "runtime_module",
+      "strength": "implemented",
+      "reasons": [
+        "regex:storage",
+        "ast:state",
+        "text:agent",
+        "text:memory"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/updates/polling/handler.py",
+      "label": "runtime_module",
+      "strength": "implemented",
+      "reasons": [
+        "regex:storage",
+        "ast:state",
+        "text:agent",
+        "text:memory"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/updates/push_notifications/handler.py",
+      "label": "runtime_module",
+      "strength": "implemented",
+      "reasons": [
+        "regex:storage",
+        "ast:state",
+        "text:agent",
+        "text:memory"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/utils/delegation.py",
+      "label": "runtime_module",
+      "strength": "implemented",
+      "reasons": [
+        "regex:storage",
+        "ast:state",
+        "text:agent",
+        "text:memory"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/utils/task.py",
+      "label": "runtime_module",
+      "strength": "implemented",
+      "reasons": [
+        "regex:storage",
+        "regex:worker",
+        "ast:worker",
+        "ast:state",
+        "ast:storage"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/a2a/wrapper.py",
+      "label": "generated_or_vendor",
+      "strength": "implemented",
+      "reasons": [
+        "regex:storage",
+        "ast:state",
+        "text:agent",
+        "text:memory",
+        "text:tooling"
+      ]
+    }
+  ],
+  "orchestration_evidence": [
+    {
+      "path": "lib/crewai/src/crewai/a2a/utils/task.py",
+      "label": "runtime_module",
+      "strength": "runtime",
+      "reasons": [
+        "regex:storage",
+        "regex:worker",
+        "ast:worker",
+        "ast:state",
+        "ast:storage"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_adapter.py",
+      "label": "runtime_module",
+      "strength": "runtime",
+      "reasons": [
+        "regex:storage",
+        "ast:state",
+        "text:agent",
+        "text:memory",
+        "text:system prompt"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/protocols.py",
+      "label": "runtime_module",
+      "strength": "runtime",
+      "reasons": [
+        "regex:storage",
+        "ast:state",
+        "text:agent",
+        "text:memory",
+        "text:tooling"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/agents/agent_builder/base_agent.py",
+      "label": "runtime_module",
+      "strength": "runtime",
+      "reasons": [
+        "ast:state",
+        "text:agent",
+        "text:tooling"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/agents/crew_agent_executor.py",
+      "label": "runtime_module",
+      "strength": "runtime",
+      "reasons": [
+        "regex:storage",
+        "text:agent",
+        "text:memory",
+        "text:tooling"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/cli/cli.py",
+      "label": "runtime_entrypoint",
+      "strength": "runtime",
+      "reasons": [
+        "regex:cli",
+        "ast:entrypoint",
+        "ast:cli",
+        "ast:state"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/crew.py",
+      "label": "runtime_module",
+      "strength": "runtime",
+      "reasons": [
+        "regex:storage",
+        "regex:worker",
+        "ast:state",
+        "ast:worker",
+        "text:agent"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/crews/utils.py",
+      "label": "runtime_module",
+      "strength": "runtime",
+      "reasons": [
+        "regex:worker",
+        "ast:worker",
+        "text:agent",
+        "text:tooling",
+        "text:workflow"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/events/utils/console_formatter.py",
+      "label": "runtime_module",
+      "strength": "runtime",
+      "reasons": [
+        "regex:storage",
+        "ast:state",
+        "text:agent",
+        "text:memory",
+        "text:tooling"
+      ]
+    },
+    {
+      "path": "lib/crewai/src/crewai/experimental/agent_executor.py",
+      "label": "runtime_module",
+      "strength": "runtime",
+      "reasons": [
+        "regex:storage",
+        "ast:state",
+        "text:agent",
+        "text:memory",
+        "text:tooling"
+      ]
+    }
+  ],
+  "repo_family_confidence": {
+    "score": 0.87,
+    "level": "high",
+    "reasons": [
+      "runtime=10",
+      "tooling=2",
+      "links=0"
+    ]
+  },
+  "repo_archetype_confidence": {
+    "score": 0.98,
+    "level": "high",
+    "reasons": [
+      "prompt-assets=252",
+      "runtime-signals=10",
+      "workflow-artifacts=0"
+    ]
+  },
+  "orchestration_confidence": {
+    "score": 0.92,
+    "level": "high",
+    "reasons": [
+      "evidence=10",
+      "model=runtime-implemented"
+    ]
+  },
+  "memory_confidence": {
+    "score": 0.95,
+    "level": "high",
+    "reasons": [
+      "evidence=10",
+      "model=implemented-runtime"
+    ]
+  },
+  "overall_confidence": {
+    "score": 0.93,
+    "level": "high",
+    "reasons": [
+      "combined family/archetype/orchestration/memory confidence"
+    ]
+  },
+  "contradictions": [],
+  "prompt_runtime_links": [],
+  "scan_limits": {
+    "max_file_size_kb": 1024,
+    "max_code_files_per_language": 400,
+    "candidate_files_scanned": 821,
+    "code_files_scanned": 403,
+    "code_files_total": 1018,
+    "truncated_languages": [
+      "python"
+    ]
+  },
+  "file_analyses": [
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [
+        "text:agent"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/codeql/codeql-config.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/security.md",
+      "role": "generated_or_vendor",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [
+        "text:you are"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:generated-text"
+      ]
+    },
+    {
+      "path": ".github/workflows/build-uv-cache.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:workflows"
+      ],
+      "text_evidence": [
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/workflows/codeql.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:workflows"
+      ],
+      "text_evidence": [
+        "text:workflow",
+        "text:you are"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/workflows/docs-broken-links.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:workflows"
+      ],
+      "text_evidence": [
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/workflows/generate-tool-specs.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:workflows"
+      ],
+      "text_evidence": [
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/workflows/linter.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:workflows"
+      ],
+      "text_evidence": [],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/workflows/nightly.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:workflows"
+      ],
+      "text_evidence": [
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/workflows/publish.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:workflows"
+      ],
+      "text_evidence": [
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/workflows/stale.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:workflows"
+      ],
+      "text_evidence": [
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/workflows/tests.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:workflows"
+      ],
+      "text_evidence": [
+        "text:memory"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/workflows/type-checker.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:workflows"
+      ],
+      "text_evidence": [
+        "text:memory"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".github/workflows/update-test-durations.yml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:workflows"
+      ],
+      "text_evidence": [
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": ".pre-commit-config.yaml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": "README.md",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:special-doc"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:orchestration",
+        "text:tooling",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:readme"
+      ]
+    },
+    {
+      "path": "conftest.py",
+      "role": "prompt_doc",
+      "language": "python",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [
+        "text:agent",
+        "text:memory"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": []
+    },
+    {
+      "path": "docs/common-room-tracking.js",
+      "role": "unknown",
+      "language": "javascript",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/docs.json",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/asana.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/box.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/clickup.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/github.mdx",
+      "role": "generated_or_vendor",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs",
+        "negative:generated-text"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/gmail.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/google_calendar.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/google_contacts.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/google_docs.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:memory",
+        "text:remember",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/google_drive.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/google_sheets.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/google_slides.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/hubspot.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/jira.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/linear.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/microsoft_excel.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/microsoft_onedrive.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/microsoft_outlook.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:orchestration"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/microsoft_sharepoint.mdx",
+      "role": "generated_or_vendor",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs",
+        "negative:generated-text"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/microsoft_teams.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:orchestration",
+        "text:workflow",
+        "text:you are"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/microsoft_word.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/notion.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/salesforce.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/shopify.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:memory"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/slack.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/stripe.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/enterprise/integrations/zendesk.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:memory",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/en/guides/agents/crafting-effective-agents.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:agents"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:memory",
+        "text:orchestration",
+        "text:remember",
+        "text:tooling",
+        "text:workflow",
+        "text:you are"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/enterprise-api.base.yaml",
+      "role": "generated_or_vendor",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs",
+        "negative:generated-text"
+      ]
+    },
+    {
+      "path": "docs/enterprise-api.en.yaml",
+      "role": "generated_or_vendor",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs",
+        "negative:generated-text"
+      ]
+    },
+    {
+      "path": "docs/enterprise-api.ko.yaml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/enterprise-api.pt-BR.yaml",
+      "role": "config_or_manifest",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/ko/enterprise/integrations/asana.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/ko/enterprise/integrations/box.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/ko/enterprise/integrations/clickup.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/ko/enterprise/integrations/github.mdx",
+      "role": "generated_or_vendor",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs",
+        "negative:generated-text"
+      ]
+    },
+    {
+      "path": "docs/ko/enterprise/integrations/gmail.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/ko/enterprise/integrations/google_calendar.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent",
+        "text:workflow"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    },
+    {
+      "path": "docs/ko/enterprise/integrations/google_contacts.mdx",
+      "role": "prompt_doc",
+      "language": "",
+      "runtime_level": "none",
+      "path_evidence": [
+        "path:integrations"
+      ],
+      "text_evidence": [
+        "text:agent"
+      ],
+      "code_evidence": [],
+      "graph_evidence": [],
+      "negative_evidence": [
+        "negative:docs"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "docs/en/enterprise/integrations/linear.mdx::integration_manifest",
+      "kind": "integration_manifest",
+      "path": "docs/en/enterprise/integrations/linear.mdx",
+      "title": "linear.mdx",
+      "summary": "Integration manifest or packaging surface found in docs/en/enterprise/integrations/linear.mdx.",
+      "signals": [
+        "path:integrations/",
+        "text:compatible with"
+      ],
+      "confidence": 0.51,
+      "source_snippet": "- Verify that the team ID for sub-issues matches or is compatible with the parent issue's team"
+    },
+    {
+      "id": "docs/en/enterprise/integrations/microsoft_teams.mdx::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "docs/en/enterprise/integrations/microsoft_teams.mdx",
+      "title": "microsoft_teams.mdx",
+      "summary": "Prompt-like agent definition in docs/en/enterprise/integrations/microsoft_teams.mdx.",
+      "signals": [
+        "frontmatter:description",
+        "text:you are"
+      ],
+      "confidence": 0.51,
+      "source_snippet": "- Ensure you are a member of the teams you're trying to access."
+    },
+    {
+      "id": "docs/en/guides/agents/crafting-effective-agents.mdx::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "docs/en/guides/agents/crafting-effective-agents.mdx",
+      "title": "crafting-effective-agents.mdx",
+      "summary": "Prompt-like agent definition in docs/en/guides/agents/crafting-effective-agents.mdx.",
+      "signals": [
+        "frontmatter:description",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.67,
+      "source_snippet": "backstory: \"You are a writer who creates content for websites.\" | backstory: \"You are good at finding information online.\" | backstory: \"You are good at business analysis.\""
+    },
+    {
+      "id": "docs/en/guides/agents/crafting-effective-agents.mdx::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/en/guides/agents/crafting-effective-agents.mdx",
+      "title": "crafting-effective-agents.mdx",
+      "summary": "System-level instruction source detected in docs/en/guides/agents/crafting-effective-agents.mdx.",
+      "signals": [
+        "path:agents.md",
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.59,
+      "source_snippet": "- Spend most of your time writing clear task instructions | backstory: \"You are a writer who creates content for websites.\" | backstory: \"You are good at finding information online.\""
+    },
+    {
+      "id": "docs/ko/guides/agents/crafting-effective-agents.mdx::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "docs/ko/guides/agents/crafting-effective-agents.mdx",
+      "title": "crafting-effective-agents.mdx",
+      "summary": "Prompt-like agent definition in docs/ko/guides/agents/crafting-effective-agents.mdx.",
+      "signals": [
+        "frontmatter:description",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.67,
+      "source_snippet": "backstory: \"You are a writer who creates content for websites.\" | backstory: \"You are good at finding information online.\" | backstory: \"You are good at business analysis.\""
+    },
+    {
+      "id": "docs/ko/guides/agents/crafting-effective-agents.mdx::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ko/guides/agents/crafting-effective-agents.mdx",
+      "title": "crafting-effective-agents.mdx",
+      "summary": "System-level instruction source detected in docs/ko/guides/agents/crafting-effective-agents.mdx.",
+      "signals": [
+        "path:agents.md",
+        "text:you are"
+      ],
+      "confidence": 0.51,
+      "source_snippet": "backstory: \"You are a writer who creates content for websites.\" | backstory: \"You are good at finding information online.\" | backstory: \"You are good at business analysis.\""
+    },
+    {
+      "id": "docs/pt-BR/guides/agents/crafting-effective-agents.mdx::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "docs/pt-BR/guides/agents/crafting-effective-agents.mdx",
+      "title": "crafting-effective-agents.mdx",
+      "summary": "Prompt-like agent definition in docs/pt-BR/guides/agents/crafting-effective-agents.mdx.",
+      "signals": [
+        "frontmatter:description",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.67,
+      "source_snippet": "backstory: \"You are a writer who creates content for websites.\" | backstory: \"You are good at finding information online.\" | backstory: \"You are good at business analysis.\""
+    },
+    {
+      "id": "docs/pt-BR/guides/agents/crafting-effective-agents.mdx::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/pt-BR/guides/agents/crafting-effective-agents.mdx",
+      "title": "crafting-effective-agents.mdx",
+      "summary": "System-level instruction source detected in docs/pt-BR/guides/agents/crafting-effective-agents.mdx.",
+      "signals": [
+        "path:agents.md",
+        "text:you are"
+      ],
+      "confidence": 0.51,
+      "source_snippet": "backstory: \"You are a writer who creates content for websites.\" | backstory: \"You are good at finding information online.\" | backstory: \"You are good at business analysis.\""
+    },
+    {
+      "id": "lib/crewai-tools/README.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "lib/crewai-tools/README.md",
+      "title": "README.md",
+      "summary": "Tool contract or integration guidance detected in lib/crewai-tools/README.md.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.51,
+      "source_snippet": "CrewAI offers two straightforward approaches to creating custom tools: | with MCPServerAdapter(serverparams) as tools: | with MCPServerAdapter(serverparams) as tools:"
+    },
+    {
+      "id": "lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/README.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/README.md",
+      "title": "README.md",
+      "summary": "Prompt-like agent definition in lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/README.md.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.51,
+      "source_snippet": "The `BedrockInvokeAgentTool` enables CrewAI agents to invoke Amazon Bedrock Agents and leverage their capabilities within your workflows. | ### Multi-Agent Workflow with Session Management | - Create workflows where CrewAI agents collaborate with managed Bedrock agents running as services in AWS"
+    },
+    {
+      "id": "lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/invoke_agent_tool.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/invoke_agent_tool.py",
+      "title": "invoke_agent_tool.py",
+      "summary": "Prompt-like agent definition in lib/crewai-tools/src/crewai_tools/aws/bedrock/agents/invoke_agent_tool.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.56,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai-tools/src/crewai_tools/aws/bedrock/browser/README.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "lib/crewai-tools/src/crewai_tools/aws/bedrock/browser/README.md",
+      "title": "README.md",
+      "summary": "Tool contract or integration guidance detected in lib/crewai-tools/src/crewai_tools/aws/bedrock/browser/README.md.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.51,
+      "source_snippet": "The toolkit provides the following tools:"
+    },
+    {
+      "id": "lib/crewai-tools/src/crewai_tools/aws/bedrock/code_interpreter/README.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "lib/crewai-tools/src/crewai_tools/aws/bedrock/code_interpreter/README.md",
+      "title": "README.md",
+      "summary": "Tool contract or integration guidance detected in lib/crewai-tools/src/crewai_tools/aws/bedrock/code_interpreter/README.md.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.51,
+      "source_snippet": "The toolkit provides the following tools:"
+    },
+    {
+      "id": "lib/crewai-tools/src/crewai_tools/tools/composio_tool/README.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "lib/crewai-tools/src/crewai_tools/tools/composio_tool/README.md",
+      "title": "README.md",
+      "summary": "System-level instruction source detected in lib/crewai-tools/src/crewai_tools/tools/composio_tool/README.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.51,
+      "source_snippet": "To incorporate this tool into your project, follow the installation instructions below: | \"You are AI agent that is responsible for taking actions on Github \""
+    },
+    {
+      "id": "lib/crewai-tools/src/crewai_tools/tools/merge_agent_handler_tool/README.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai-tools/src/crewai_tools/tools/merge_agent_handler_tool/README.md",
+      "title": "README.md",
+      "summary": "Prompt-like agent definition in lib/crewai-tools/src/crewai_tools/tools/merge_agent_handler_tool/README.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.51,
+      "source_snippet": "\"You are an experienced project manager who tracks tasks \" | \"You are a skilled support engineer who can access customer \""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/base_agent_adapter.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/base_agent_adapter.py",
+      "title": "base_agent_adapter.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/base_agent_adapter.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": "def configure_tools(self, tools: list[BaseTool] | None = None) -> None: | tools: Optional list of BaseTool instances to be configured"
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/base_converter_adapter.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/base_converter_adapter.py",
+      "title": "base_converter_adapter.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/base_converter_adapter.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/base_converter_adapter.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/base_converter_adapter.py",
+      "title": "base_converter_adapter.py",
+      "summary": "System-level instruction source detected in lib/crewai/src/crewai/agents/agent_adapters/base_converter_adapter.py.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt"
+      ],
+      "confidence": 0.54,
+      "source_snippet": "\"\"\"Enhance the system prompt with structured output instructions. | base_prompt: The original system prompt."
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/base_tool_adapter.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/base_tool_adapter.py",
+      "title": "base_tool_adapter.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/base_tool_adapter.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": "def __init__(self, tools: list[BaseTool] | None = None): | self.converted_tools: list[Any] = [] | def configure_tools(self, tools: list[BaseTool]) -> None:"
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/base_tool_adapter.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/base_tool_adapter.py",
+      "title": "base_tool_adapter.py",
+      "summary": "Tool contract or integration guidance detected in lib/crewai/src/crewai/agents/agent_adapters/base_tool_adapter.py.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.54,
+      "source_snippet": "def __init__(self, tools: list[BaseTool] | None = None): | self.converted_tools: list[Any] = [] | def configure_tools(self, tools: list[BaseTool]) -> None:"
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/langgraph/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_adapter.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_adapter.py",
+      "title": "langgraph_adapter.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_adapter.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.66,
+      "source_snippet": "You are {self.role}."
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_adapter.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_adapter.py",
+      "title": "langgraph_adapter.py",
+      "summary": "System-level instruction source detected in lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_adapter.py.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.66,
+      "source_snippet": "\"\"\"Build a system prompt for the LangGraph agent. | The complete system prompt string. | You are {self.role}."
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_tool_adapter.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_tool_adapter.py",
+      "title": "langgraph_tool_adapter.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_tool_adapter.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": "def __init__(self, tools: list[BaseTool] | None = None) -> None: | tools: Optional list of CrewAI tools to adapt. | self.original_tools: list[BaseTool] = tools or []"
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_tool_adapter.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_tool_adapter.py",
+      "title": "langgraph_tool_adapter.py",
+      "summary": "Tool contract or integration guidance detected in lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_tool_adapter.py.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.54,
+      "source_snippet": "def __init__(self, tools: list[BaseTool] | None = None) -> None: | tools: Optional list of CrewAI tools to adapt. | self.original_tools: list[BaseTool] = tools or []"
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/protocols.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/protocols.py",
+      "title": "protocols.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/langgraph/protocols.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.58,
+      "source_snippet": "tools: list[Any], | tools: List of tools available to the agent."
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/structured_output_converter.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/structured_output_converter.py",
+      "title": "structured_output_converter.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/langgraph/structured_output_converter.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/structured_output_converter.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/structured_output_converter.py",
+      "title": "structured_output_converter.py",
+      "summary": "System-level instruction source detected in lib/crewai/src/crewai/agents/agent_adapters/langgraph/structured_output_converter.py.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt"
+      ],
+      "confidence": 0.54,
+      "source_snippet": "Converts task output requirements into system prompt modifications and | _system_prompt_appendix: Cached system prompt instructions for structured output. | \"\"\"Generate an appendix for the system prompt to enforce structured output."
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/openai_agents/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/openai_adapter.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/openai_adapter.py",
+      "title": "openai_adapter.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/openai_agents/openai_adapter.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.62,
+      "source_snippet": "You are {self.role}."
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/openai_adapter.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/openai_adapter.py",
+      "title": "openai_adapter.py",
+      "summary": "System-level instruction source detected in lib/crewai/src/crewai/agents/agent_adapters/openai_agents/openai_adapter.py.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.62,
+      "source_snippet": "\"\"\"Build a system prompt for the OpenAI agent. | then enhances it with structured output instructions if needed. | The complete system prompt string."
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/openai_agent_tool_adapter.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/openai_agent_tool_adapter.py",
+      "title": "openai_agent_tool_adapter.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/openai_agents/openai_agent_tool_adapter.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": "def __init__(self, tools: list[BaseTool] | None = None) -> None: | tools: Optional list of CrewAI tools to adapt. | self.original_tools: list[BaseTool] = tools or []"
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/openai_agent_tool_adapter.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/openai_agent_tool_adapter.py",
+      "title": "openai_agent_tool_adapter.py",
+      "summary": "Tool contract or integration guidance detected in lib/crewai/src/crewai/agents/agent_adapters/openai_agents/openai_agent_tool_adapter.py.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.54,
+      "source_snippet": "def __init__(self, tools: list[BaseTool] | None = None) -> None: | tools: Optional list of CrewAI tools to adapt. | self.original_tools: list[BaseTool] = tools or []"
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/protocols.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/protocols.py",
+      "title": "protocols.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/openai_agents/protocols.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": "tools: list[BaseTool] | None | tools: list[Any]"
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/structured_output_converter.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/structured_output_converter.py",
+      "title": "structured_output_converter.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_adapters/openai_agents/structured_output_converter.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/structured_output_converter.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_adapters/openai_agents/structured_output_converter.py",
+      "title": "structured_output_converter.py",
+      "summary": "System-level instruction source detected in lib/crewai/src/crewai/agents/agent_adapters/openai_agents/structured_output_converter.py.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt"
+      ],
+      "confidence": 0.54,
+      "source_snippet": "\"\"\"Enhance the base system prompt with structured output requirements if needed. | base_prompt: The original system prompt. | Enhanced system prompt with output format instructions if needed."
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_builder/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_builder/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_builder/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_builder/base_agent.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_builder/base_agent.py",
+      "title": "base_agent.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_builder/base_agent.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.56,
+      "source_snippet": "execute_task(task: Any, context: str | None = None, tools: list[BaseTool] | None = None) -> str: | tools: list[BaseTool] | None = Field( | def validate_tools(cls, tools: list[Any]) -> list[BaseTool]:"
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_builder/base_agent.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "lib/crewai/src/crewai/agents/agent_builder/base_agent.py",
+      "title": "base_agent.py",
+      "summary": "Tool contract or integration guidance detected in lib/crewai/src/crewai/agents/agent_builder/base_agent.py.",
+      "signals": [
+        "text:mcpservers",
+        "text:tools:"
+      ],
+      "confidence": 0.56,
+      "source_snippet": "execute_task(task: Any, context: str | None = None, tools: list[BaseTool] | None = None) -> str: | tools: list[BaseTool] | None = Field( | def validate_tools(cls, tools: list[Any]) -> list[BaseTool]:"
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_builder/base_agent_executor_mixin.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_builder/base_agent_executor_mixin.py",
+      "title": "base_agent_executor_mixin.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_builder/base_agent_executor_mixin.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.56,
+      "source_snippet": "memory.remember_many(extracted, agent_role=self.agent.role)"
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_builder/utilities/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_builder/utilities/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_builder/utilities/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_builder/utilities/base_output_converter.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_builder/utilities/base_output_converter.py",
+      "title": "base_output_converter.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_builder/utilities/base_output_converter.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/agent_builder/utilities/base_token_process.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/agent_builder/utilities/base_token_process.py",
+      "title": "base_token_process.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/agent_builder/utilities/base_token_process.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/cache/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/cache/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/cache/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/cache/cache_handler.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/cache/cache_handler.py",
+      "title": "cache_handler.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/cache/cache_handler.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/constants.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/constants.py",
+      "title": "constants.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/constants.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/crew_agent_executor.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/crew_agent_executor.py",
+      "title": "crew_agent_executor.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/crew_agent_executor.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.56,
+      "source_snippet": "tools: list[CrewStructuredTool], | original_tools: list[BaseTool] | None = None, | tools: Available tools."
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/parser.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/parser.py",
+      "title": "parser.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/parser.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    },
+    {
+      "id": "lib/crewai/src/crewai/agents/tools_handler.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "lib/crewai/src/crewai/agents/tools_handler.py",
+      "title": "tools_handler.py",
+      "summary": "Prompt-like agent definition in lib/crewai/src/crewai/agents/tools_handler.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.54,
+      "source_snippet": ""
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "autogpt",
+  "repo_url": "https://github.com/Significant-Gravitas/AutoGPT.git",
+  "commit": "19d775c43578696baa1db1e0eaf93e701752fa2a",
+  "repo_family": "application-repo",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "medium",
+  "rationale": "End-user agent application with both runtime machinery and prompt/config layers.",
+  "tags": ["mixed-runtime", "python", "benchmark"]
+}

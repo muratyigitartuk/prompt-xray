@@ -1,0 +1,12 @@
+{
+  "id": "litellm",
+  "repo_url": "https://github.com/BerriAI/litellm.git",
+  "commit": "59c24b74051cbe5052b4cfce08f6459e0771c754",
+  "repo_family": "sdk-library",
+  "repo_archetype": "unclear",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "high",
+  "rationale": "Provider abstraction SDK rather than an agent runtime or prompt pack.",
+  "tags": ["sdk", "python", "negative-control"]
+}

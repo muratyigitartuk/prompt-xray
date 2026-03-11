@@ -1,0 +1,12 @@
+{
+  "id": "agency-agents",
+  "repo_url": "https://github.com/msitarzewski/agency-agents.git",
+  "commit": "5e59a20bbfb1c801e2d12b70c684b48db652bcff",
+  "repo_family": "prompt-pack",
+  "repo_archetype": "prompt-library",
+  "orchestration_model": "prompt-defined",
+  "memory_model": "documented-only",
+  "confidence_expectation": "high",
+  "rationale": "Large prompt catalog with integrations and workflow docs, but no real runtime.",
+  "tags": ["prompt-heavy", "python-light", "benchmark"]
+}

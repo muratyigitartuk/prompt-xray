@@ -53,11 +53,14 @@ Rollback when QA fails.
 
     report = analyze_target(str(repo))
 
+    assert report.summary.repo_family == "prompt-pack"
     assert report.summary.repo_archetype in {"prompt-library", "workflow-pack", "tool-integration-pack"}
     assert report.summary.orchestration_model == "prompt-defined"
-    assert report.summary.memory_model in {"documented-only", "tool-assisted"}
+    assert report.summary.memory_model in {"documented-only", "tool-assisted", "config-only"}
     assert "Cursor" in report.tooling_surfaces
     assert report.artifacts
+    assert report.file_roles_summary
+    assert report.repo_family_confidence.level in {"medium", "high"}
 
 
 def test_tool_specific_rules_are_detected(tmp_path: Path) -> None:
@@ -103,6 +106,7 @@ def test_repo_with_little_prompt_content_is_graceful(tmp_path: Path) -> None:
     assert report.counts.candidate_files >= 1
     assert report.summary.repo_archetype in {"unclear", "mixed"}
     assert "prompt" in report.summary.verdict.lower() or "agent" in report.summary.verdict.lower()
+    assert report.evidence_summary.code_evidence >= 0
 
 
 def test_mixed_repo_is_not_prompt_only(tmp_path: Path) -> None:
@@ -118,8 +122,10 @@ app = FastAPI()
     report = analyze_target(str(repo))
 
     assert report.summary.repo_archetype == "mixed"
+    assert report.summary.repo_family in {"application-repo", "runtime-framework"}
     assert report.summary.orchestration_model == "runtime-implemented"
-    assert any("Runtime-oriented files" in item for item in report.real_vs_packaging.real_implementation)
+    assert any("Runtime-backed behavior" in item for item in report.real_vs_packaging.real_implementation)
+    assert report.runtime_evidence
 
 
 def test_markdown_and_json_shapes_are_stable(tmp_path: Path) -> None:
@@ -148,6 +154,12 @@ You are surgical.
     assert report.summary.xray_call in html
     assert payload["summary"]["repo_archetype"]
     assert isinstance(payload["artifacts"], list)
+    assert "runtime_evidence" in payload
+    assert "file_roles_summary" in payload
+    assert "scan_limits" in payload
+    assert "repo_family_confidence" in payload
+    assert "contradictions" in payload
+    assert "prompt_runtime_links" in payload
     json.dumps(payload)
 
 
@@ -211,3 +223,137 @@ app = FastAPI()
     assert "# Prompt-xray Compare:" in markdown
     assert "## Headline Difference" in markdown
     assert "Prompt-xray Compare" in html
+    assert "runtime_evidence" in comparison["right"]
+
+
+def test_docs_only_memory_is_not_marked_as_implemented(tmp_path: Path) -> None:
+    repo = tmp_path / "docs-memory"
+    _write(
+        repo / "docs" / "memory.md",
+        """Remember previous sessions.
+Checkpoint each run.
+Session history should survive restarts.
+""",
+    )
+    _write(repo / "README.md", "This project documents memory and orchestration.")
+
+    report = analyze_target(str(repo))
+
+    assert report.summary.memory_model == "documented-only"
+    assert not any(item.strength == "implemented" for item in report.memory_evidence)
+
+
+def test_stateful_runtime_is_detected_from_python_code(tmp_path: Path) -> None:
+    repo = tmp_path / "stateful-python"
+    _write(
+        repo / "src" / "server.py",
+        """from fastapi import FastAPI
+from .checkpoint_store import CheckpointStore
+
+app = FastAPI()
+store = CheckpointStore()
+""",
+    )
+    _write(
+        repo / "src" / "checkpoint_store.py",
+        """import sqlite3
+
+class CheckpointStore:
+    def __init__(self):
+        self.conn = sqlite3.connect("state.db")
+""",
+    )
+    _write(repo / "AGENTS.md", "You are the system prompt.")
+
+    report = analyze_target(str(repo))
+
+    assert report.summary.repo_archetype == "mixed"
+    assert report.summary.memory_model == "implemented-runtime"
+    assert any(item.strength == "implemented" for item in report.memory_evidence)
+    assert any(item.strength == "entrypoint" for item in report.runtime_evidence)
+
+
+def test_typescript_runtime_is_detected(tmp_path: Path) -> None:
+    repo = tmp_path / "ts-runtime"
+    _write(
+        repo / "src" / "server.ts",
+        """import express from "express";
+import { sessionStore } from "./store";
+
+const app = express();
+app.listen(3000);
+""",
+    )
+    _write(
+        repo / "src" / "store.ts",
+        """export const sessionStore = new Map();
+export const checkpoint = "enabled";
+""",
+    )
+    _write(repo / "AGENTS.md", "You are the system prompt.")
+
+    report = analyze_target(str(repo))
+
+    assert report.summary.repo_archetype == "mixed"
+    assert report.summary.orchestration_model == "runtime-implemented"
+    assert report.summary.memory_model in {"implemented-runtime", "interface-only"}
+    assert any(item.path == "src/server.ts" for item in report.runtime_evidence)
+
+
+def test_prompt_runtime_links_are_detected(tmp_path: Path) -> None:
+    repo = tmp_path / "linked-runtime"
+    _write(
+        repo / "src" / "runner.py",
+        """from pathlib import Path
+
+PROMPT = Path("prompts/system.md").read_text()
+
+if __name__ == "__main__":
+    print(PROMPT)
+""",
+    )
+    _write(repo / "prompts" / "system.md", "You are the linked system prompt.")
+
+    report = analyze_target(str(repo))
+
+    assert report.prompt_runtime_links
+    assert report.prompt_runtime_links[0].target_path == "prompts/system.md"
+    assert report.summary.repo_archetype in {"mixed", "agent-framework"}
+
+
+def test_docs_claims_create_contradictions_when_runtime_is_missing(tmp_path: Path) -> None:
+    repo = tmp_path / "contradiction-repo"
+    _write(
+        repo / "README.md",
+        """This autonomous agent framework has memory, orchestration, and a scheduler.
+Phase 1.
+Handoff.
+Remember every run forever.
+""",
+    )
+
+    report = analyze_target(str(repo))
+
+    assert report.contradictions
+    assert any("memory/state" in item.lower() or "orchestration" in item.lower() for item in report.contradictions)
+    assert report.overall_confidence.level in {"low", "medium"}
+
+
+def test_examples_and_tests_do_not_dominate_behavior_sources(tmp_path: Path) -> None:
+    repo = tmp_path / "noisy-repo"
+    _write(repo / "README.md", "Prompt repo with docs.")
+    _write(repo / "tests" / "test_prompt.md", "You are a test agent. Critical rules.")
+    _write(repo / "examples" / "demo.md", "You are an example agent. Phase 1.")
+    _write(
+        repo / "src" / "app.py",
+        """from fastapi import FastAPI
+app = FastAPI()
+""",
+    )
+    _write(repo / "AGENTS.md", "You are the production agent.")
+
+    report = analyze_target(str(repo))
+
+    assert report.behavior_sources
+    assert report.behavior_sources[0].path in {"src/app.py", "AGENTS.md"}
+    assert all(not source.path.startswith("tests/") for source in report.behavior_sources[:3])

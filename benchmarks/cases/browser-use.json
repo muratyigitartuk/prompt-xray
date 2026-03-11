@@ -1,0 +1,12 @@
+{
+  "id": "browser-use",
+  "repo_url": "https://github.com/browser-use/browser-use.git",
+  "commit": "3e70fa9d6eebf37db5950fb0bb62ab1952d87de1",
+  "repo_family": "application-repo",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "none",
+  "confidence_expectation": "medium",
+  "rationale": "Runtime-heavy browser agent application with less emphasis on persistent memory.",
+  "tags": ["mixed-runtime", "python", "benchmark"]
+}

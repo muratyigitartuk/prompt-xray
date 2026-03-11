@@ -1,0 +1,12 @@
+{
+  "id": "transformers",
+  "repo_url": "https://github.com/huggingface/transformers.git",
+  "commit": "852f785aa36683f808892a3e519fab23db5ddb60",
+  "repo_family": "sdk-library",
+  "repo_archetype": "unclear",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "high",
+  "rationale": "Large ML library negative control with massive docs/examples surface.",
+  "tags": ["sdk", "python", "negative-control"]
+}

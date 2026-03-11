@@ -1,0 +1,12 @@
+{
+  "id": "llama-index",
+  "repo_url": "https://github.com/run-llama/llama_index.git",
+  "commit": "6109664cf26ae41177356dd5cf51ec52b1b96c3b",
+  "repo_family": "sdk-library",
+  "repo_archetype": "unclear",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "medium",
+  "rationale": "Large AI SDK and framework surface that should resist overclassification as a prompt pack.",
+  "tags": ["sdk", "python", "negative-control"]
+}

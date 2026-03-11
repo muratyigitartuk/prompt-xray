@@ -7,11 +7,22 @@ import typer
 import uvicorn
 
 from .analysis import analyze_target
+from .bench import (
+    diff_benchmark_runs,
+    load_benchmark_run,
+    load_cases,
+    render_benchmark_markdown,
+    run_benchmark,
+    write_benchmark_diff,
+    write_benchmark_run,
+)
 from .intake import slug_from_target
 from .reporting import write_comparison_outputs, write_outputs
 from .webapp import create_app
 
 app = typer.Typer(add_completion=False, help="Prompt archaeology for AI repos.")
+bench_app = typer.Typer(add_completion=False, help="Run and compare benchmark corpora.")
+app.add_typer(bench_app, name="bench")
 
 
 @app.callback()
@@ -26,6 +37,7 @@ def scan(
     format_: str = typer.Option("both", "--format", help="markdown, json, or both."),
     html: bool = typer.Option(False, "--html", help="Also emit a screenshot-friendly HTML report."),
     max_file_size_kb: int = typer.Option(1024, "--max-file-size-kb", min=1),
+    max_code_files_per_language: int = typer.Option(400, "--max-code-files-per-language", min=25),
     include_snippets: bool = typer.Option(True, "--include-snippets/--no-include-snippets"),
     verbose: bool = typer.Option(False, "--verbose"),
 ) -> None:
@@ -40,6 +52,7 @@ def scan(
         target=target,
         max_file_size_kb=max_file_size_kb,
         include_snippets=include_snippets,
+        max_code_files_per_language=max_code_files_per_language,
     )
 
     out_dir = out or (Path.cwd() / ".prompt-xray" / slug_from_target(target))
@@ -66,6 +79,7 @@ def compare(
     format_: str = typer.Option("both", "--format", help="markdown, json, or both."),
     html: bool = typer.Option(False, "--html", help="Also emit a screenshot-friendly HTML comparison."),
     max_file_size_kb: int = typer.Option(1024, "--max-file-size-kb", min=1),
+    max_code_files_per_language: int = typer.Option(400, "--max-code-files-per-language", min=25),
     include_snippets: bool = typer.Option(False, "--include-snippets/--no-include-snippets"),
     verbose: bool = typer.Option(False, "--verbose"),
 ) -> None:
@@ -80,11 +94,13 @@ def compare(
         target=left,
         max_file_size_kb=max_file_size_kb,
         include_snippets=include_snippets,
+        max_code_files_per_language=max_code_files_per_language,
     )
     right_report = analyze_target(
         target=right,
         max_file_size_kb=max_file_size_kb,
         include_snippets=include_snippets,
+        max_code_files_per_language=max_code_files_per_language,
     )
 
     out_dir = out or (
@@ -109,3 +125,69 @@ def serve(
 ) -> None:
     typer.echo(f"Serving Prompt-xray UI on http://{host}:{port}")
     uvicorn.run(create_app(), host=host, port=port, log_level="warning")
+
+
+@bench_app.command("run")
+def bench_run(
+    cases_dir: Optional[Path] = typer.Option(None, "--cases-dir", help="Directory containing benchmark case JSON files."),
+    out: Optional[Path] = typer.Option(None, "--out", help="Output directory."),
+    max_file_size_kb: int = typer.Option(1024, "--max-file-size-kb", min=1),
+    max_code_files_per_language: int = typer.Option(400, "--max-code-files-per-language", min=25),
+    verbose: bool = typer.Option(False, "--verbose"),
+) -> None:
+    cases = load_cases(cases_dir)
+    if not cases:
+        raise typer.BadParameter("No benchmark cases found.")
+
+    run = run_benchmark(
+        cases,
+        max_file_size_kb=max_file_size_kb,
+        max_code_files_per_language=max_code_files_per_language,
+    )
+    out_dir = out or (Path.cwd() / ".prompt-xray" / "bench" / "latest")
+    written = write_benchmark_run(run, out_dir)
+
+    typer.echo(f"Prompt-xray benchmark run: {run.case_count} cases")
+    typer.echo(f"- Family exact matches: {run.metrics.family_exact_matches}/{run.metrics.total_cases}")
+    typer.echo(f"- Archetype exact matches: {run.metrics.archetype_exact_matches}/{run.metrics.total_cases}")
+    typer.echo(f"- Orchestration exact matches: {run.metrics.orchestration_exact_matches}/{run.metrics.total_cases}")
+    typer.echo(f"- Memory exact matches: {run.metrics.memory_exact_matches}/{run.metrics.total_cases}")
+    typer.echo(f"- Low-confidence cases: {run.metrics.low_confidence_cases}")
+    typer.echo(f"- Output: {out_dir}")
+    if verbose:
+        for path in written:
+            typer.echo(f"  wrote {path}")
+
+
+@bench_app.command("diff")
+def bench_diff(
+    left: Path = typer.Argument(..., help="Path to a benchmark.json file from an earlier run."),
+    right: Path = typer.Argument(..., help="Path to a benchmark.json file from a later run."),
+    out: Optional[Path] = typer.Option(None, "--out", help="Output directory."),
+    verbose: bool = typer.Option(False, "--verbose"),
+) -> None:
+    left_run = load_benchmark_run(left)
+    right_run = load_benchmark_run(right)
+    diff = diff_benchmark_runs(left_run, right_run, left, right)
+    out_dir = out or (Path.cwd() / ".prompt-xray" / "bench" / "diff")
+    written = write_benchmark_diff(diff, out_dir)
+
+    typer.echo("Prompt-xray benchmark diff")
+    typer.echo(f"- Family delta: {diff.summary['family_delta']}")
+    typer.echo(f"- Archetype delta: {diff.summary['archetype_delta']}")
+    typer.echo(f"- Orchestration delta: {diff.summary['orchestration_delta']}")
+    typer.echo(f"- Memory delta: {diff.summary['memory_delta']}")
+    typer.echo(f"- Low-confidence delta: {diff.summary['low_confidence_delta']}")
+    typer.echo(f"- Changed cases: {len(diff.changed_cases)}")
+    typer.echo(f"- Output: {out_dir}")
+    if verbose:
+        for path in written:
+            typer.echo(f"  wrote {path}")
+
+
+@bench_app.command("report")
+def bench_report(
+    benchmark_json: Path = typer.Argument(..., help="Path to a benchmark.json file."),
+) -> None:
+    run = load_benchmark_run(benchmark_json)
+    typer.echo(render_benchmark_markdown(run))

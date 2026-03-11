@@ -1,0 +1,12 @@
+{
+  "id": "anthropic-sdk-python",
+  "repo_url": "https://github.com/anthropics/anthropic-sdk-python.git",
+  "commit": "49d639a671cb0ac30c767e8e1e68fdd5925205d5",
+  "repo_family": "sdk-library",
+  "repo_archetype": "unclear",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "high",
+  "rationale": "Provider SDK rather than an agent runtime or workflow pack.",
+  "tags": ["sdk", "python", "negative-control"]
+}

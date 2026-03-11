@@ -1,0 +1,268 @@
+{
+  "left": {
+    "name": "agency-agents",
+    "repo_family": "prompt-pack",
+    "archetype": "prompt-library",
+    "orchestration": "prompt-defined",
+    "memory": "documented-only",
+    "xray_call": "Prompt pack, not agent runtime.",
+    "artifacts": 325,
+    "confidence": {
+      "family": {
+        "score": 0.9,
+        "level": "high",
+        "reasons": [
+          "runtime=0",
+          "tooling=8",
+          "links=0"
+        ]
+      },
+      "archetype": {
+        "score": 0.9,
+        "level": "high",
+        "reasons": [
+          "prompt-assets=118",
+          "runtime-signals=0",
+          "workflow-artifacts=29"
+        ]
+      },
+      "orchestration": {
+        "score": 0.74,
+        "level": "medium",
+        "reasons": [
+          "evidence=10",
+          "model=prompt-defined"
+        ]
+      },
+      "memory": {
+        "score": 0.74,
+        "level": "medium",
+        "reasons": [
+          "evidence=10",
+          "model=documented-only"
+        ]
+      },
+      "overall": {
+        "score": 0.82,
+        "level": "high",
+        "reasons": [
+          "combined family/archetype/orchestration/memory confidence"
+        ]
+      }
+    },
+    "contradictions": [
+      "The repo talks about memory/state, but there is little or no runtime-backed persistence evidence."
+    ],
+    "prompt_runtime_links": [],
+    "call_basis": "docs-led",
+    "runtime_density": 0,
+    "prompt_density": 1116,
+    "runtime_evidence": [],
+    "top_behavior_sources": [
+      "specialized/specialized-model-qa.md",
+      "project-management/project-management-jira-workflow-steward.md",
+      "integrations/mcp-memory/backend-architect-with-memory.md",
+      "support/support-legal-compliance-checker.md",
+      "specialized/identity-graph-operator.md"
+    ]
+  },
+  "right": {
+    "name": "inspector",
+    "repo_family": "application-repo",
+    "archetype": "mixed",
+    "orchestration": "runtime-implemented",
+    "memory": "implemented-runtime",
+    "xray_call": "Real runtime with linked prompt layers.",
+    "artifacts": 1,
+    "confidence": {
+      "family": {
+        "score": 0.93,
+        "level": "high",
+        "reasons": [
+          "runtime=10",
+          "tooling=1",
+          "links=13"
+        ]
+      },
+      "archetype": {
+        "score": 0.98,
+        "level": "high",
+        "reasons": [
+          "prompt-assets=6",
+          "runtime-signals=10",
+          "workflow-artifacts=0"
+        ]
+      },
+      "orchestration": {
+        "score": 0.92,
+        "level": "high",
+        "reasons": [
+          "evidence=10",
+          "model=runtime-implemented"
+        ]
+      },
+      "memory": {
+        "score": 0.95,
+        "level": "high",
+        "reasons": [
+          "evidence=10",
+          "model=implemented-runtime"
+        ]
+      },
+      "overall": {
+        "score": 0.95,
+        "level": "high",
+        "reasons": [
+          "combined family/archetype/orchestration/memory confidence"
+        ]
+      }
+    },
+    "contradictions": [],
+    "prompt_runtime_links": [
+      {
+        "source_path": "cli/src/index.ts",
+        "target_path": "cli/package.json",
+        "kind": "runtime-loads-asset",
+        "strength": "linked",
+        "reasons": [
+          "regex:cli",
+          "ast:loads-prompt-asset",
+          "links:cli/package.json"
+        ]
+      },
+      {
+        "source_path": "cli/src/index.ts",
+        "target_path": "package.json",
+        "kind": "runtime-loads-asset",
+        "strength": "linked",
+        "reasons": [
+          "regex:cli",
+          "ast:loads-prompt-asset",
+          "links:package.json"
+        ]
+      },
+      {
+        "source_path": "client/jest.config.cjs",
+        "target_path": "client/tsconfig.jest.json",
+        "kind": "runtime-loads-asset",
+        "strength": "linked",
+        "reasons": [
+          "ast:loads-prompt-asset",
+          "links:client/tsconfig.jest.json"
+        ]
+      },
+      {
+        "source_path": "client/src/components/Sidebar.tsx",
+        "target_path": "package.json",
+        "kind": "runtime-loads-asset",
+        "strength": "linked",
+        "reasons": [
+          "regex:storage",
+          "ast:storage",
+          "ast:state",
+          "ast:loads-prompt-asset"
+        ]
+      },
+      {
+        "source_path": "client/src/lib/constants.ts",
+        "target_path": "client/package.json",
+        "kind": "runtime-loads-asset",
+        "strength": "linked",
+        "reasons": [
+          "regex:storage",
+          "ast:loads-prompt-asset",
+          "links:client/package.json"
+        ]
+      },
+      {
+        "source_path": "scripts/check-version-consistency.js",
+        "target_path": "package.json",
+        "kind": "runtime-loads-asset",
+        "strength": "linked",
+        "reasons": [
+          "ast:loads-prompt-asset",
+          "links:package.json"
+        ]
+      }
+    ],
+    "call_basis": "code-led",
+    "runtime_density": 307,
+    "prompt_density": 50,
+    "runtime_evidence": [
+      {
+        "path": "cli/src/cli.ts",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "regex:cli"
+        ]
+      },
+      {
+        "path": "client/bin/client.js",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "regex:storage",
+          "ast:cli",
+          "ast:entrypoint",
+          "ast:storage",
+          "ast:state"
+        ]
+      },
+      {
+        "path": "client/src/App.tsx",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "regex:storage",
+          "ast:web-service",
+          "ast:entrypoint",
+          "ast:storage",
+          "ast:state"
+        ]
+      },
+      {
+        "path": "server/src/index.ts",
+        "label": "runtime_entrypoint",
+        "strength": "entrypoint",
+        "reasons": [
+          "regex:express",
+          "regex:storage",
+          "ast:web-service",
+          "ast:entrypoint",
+          "ast:storage"
+        ]
+      }
+    ],
+    "top_behavior_sources": [
+      "client/src/App.tsx",
+      "server/src/index.ts",
+      "client/bin/client.js",
+      "client/src/components/Sidebar.tsx",
+      "client/src/lib/hooks/useConnection.ts"
+    ]
+  },
+  "differences": {
+    "same_family": false,
+    "same_archetype": false,
+    "same_orchestration": false,
+    "same_memory": false,
+    "artifact_gap": 324,
+    "runtime_density_gap": -307,
+    "prompt_density_gap": 1066,
+    "shared_tooling": [
+      "MCP"
+    ],
+    "left_only_tooling": [
+      "Aider",
+      "Claude Code",
+      "Copilot",
+      "Cursor",
+      "Gemini CLI",
+      "OpenCode",
+      "Windsurf"
+    ],
+    "right_only_tooling": [],
+    "confidence_gap": -0.13
+  }
+}

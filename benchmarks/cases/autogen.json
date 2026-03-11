@@ -1,0 +1,12 @@
+{
+  "id": "autogen",
+  "repo_url": "https://github.com/microsoft/autogen.git",
+  "commit": "b0477309d2a0baf489aa256646e41e513ab3bfe8",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "agent-framework",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "medium",
+  "rationale": "Agent framework with explicit orchestration/runtime constructs and state-bearing components.",
+  "tags": ["runtime-heavy", "python", "benchmark"]
+}

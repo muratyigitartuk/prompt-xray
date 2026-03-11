@@ -3,45 +3,45 @@
     {
       "id": "agency-agents",
       "label": "agency-agents",
-      "path": "./samples/reports/agency-agents.json",
+      "path": "./samples/reports/agency-agents/report.json",
       "highlight": "Prompt pack, not agent runtime."
     },
     {
       "id": "claude-code",
       "label": "claude-code",
-      "path": "./samples/reports/claude-code.json",
+      "path": "./samples/reports/claude-code/report.json",
       "highlight": "Real runtime with visible prompt layers."
     },
     {
       "id": "openai-agents-python",
       "label": "openai-agents-python",
-      "path": "./samples/reports/openai-agents-python.json",
-      "highlight": "Framework/runtime with heavy skill surfaces."
+      "path": "./samples/reports/openai-agents-python/report.json",
+      "highlight": "Agent framework with runtime-backed state."
     },
     {
       "id": "crewai",
       "label": "crewAI",
-      "path": "./samples/reports/crewai.json",
-      "highlight": "Large mixed repo with adapter-heavy runtime signals."
+      "path": "./samples/reports/crewai/report.json",
+      "highlight": "Large agent framework with runtime-backed state."
     }
   ],
   "comparisons": [
     {
       "id": "agency-vs-claude",
       "label": "agency-agents vs claude-code",
-      "path": "./samples/comparisons/agency-vs-claude.json",
+      "path": "./samples/comparisons/agency-vs-claude/compare.json",
       "highlight": "Cleanest benchmark contrast."
     },
     {
       "id": "agency-vs-inspector",
       "label": "agency-agents vs inspector",
-      "path": "./samples/comparisons/agency-vs-inspector.json",
+      "path": "./samples/comparisons/agency-vs-inspector/compare.json",
       "highlight": "Prompt-heavy repo vs not-prompt-centric tool."
     },
     {
       "id": "browser-vs-langgraph",
       "label": "browser-use vs langgraph",
-      "path": "./samples/comparisons/browser-vs-langgraph.json",
+      "path": "./samples/comparisons/browser-vs-langgraph/compare.json",
       "highlight": "Two runtimes, different prompt density."
     }
   ]

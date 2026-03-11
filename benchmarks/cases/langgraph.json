@@ -1,0 +1,12 @@
+{
+  "id": "langgraph",
+  "repo_url": "https://github.com/langchain-ai/langgraph.git",
+  "commit": "7488cf2448dc796ce8fb338b2dff315da81f83c7",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "agent-framework",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "medium",
+  "rationale": "Graph-based runtime with checkpointing and orchestration as first-class implementation.",
+  "tags": ["runtime-heavy", "python", "benchmark"]
+}

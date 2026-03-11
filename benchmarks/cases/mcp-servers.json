@@ -1,0 +1,12 @@
+{
+  "id": "mcp-servers",
+  "repo_url": "https://github.com/modelcontextprotocol/servers.git",
+  "commit": "a97aba19eb218bedd37ae19c27893ee6659f1555",
+  "repo_family": "infra-tooling",
+  "repo_archetype": "unclear",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "medium",
+  "rationale": "Collection of protocol servers and tooling rather than a prompt-centric agent system.",
+  "tags": ["infra", "mixed-language", "benchmark"]
+}

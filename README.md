@@ -4,6 +4,8 @@
 
 Prompt-xray scans or compares GitHub repos and local folders, then reports where the behavior of an AI system is really defined. It is built for repos where prompts, skills, rules, docs, integrations, and runtime code are mixed together.
 
+It now includes a pinned benchmark corpus, parser-backed Python and TS/JS analysis, confidence scoring, contradiction detection, and prompt/runtime linkage reporting.
+
 It uses deterministic heuristics only:
 
 - no API keys
@@ -13,9 +15,9 @@ It uses deterministic heuristics only:
 Typical output:
 
 ```text
-agency-agents   -> Prompt pack, not agent runtime.
-claude-code     -> Real runtime with visible prompt layers.
-mcp-inspector   -> Not a prompt-centric repo.
+agency-agents          -> Prompt pack, not agent runtime.
+claude-code            -> Real runtime with visible prompt layers.
+openai-agents-python   -> Real runtime with visible prompt layers.
 ```
 
 ## What it does
@@ -27,6 +29,9 @@ For a single repo, Prompt-xray tells you:
 - whether orchestration is implemented or only described
 - whether memory is runtime-backed or only documented
 - what looks like implementation versus packaging
+- how confident the classifier is
+- where claims and implementation diverge
+- whether runtime code actually loads prompt/config assets
 
 For two repos, it shows the differences side by side.
 
@@ -69,7 +74,7 @@ The included web app exposes the same functionality as the CLI:
 
 - scan a local path or GitHub repo
 - compare two local paths or GitHub repos
-- inspect the repo call, behavior sources, orchestration, and memory classification
+- inspect the repo family, confidence, contradictions, orchestration, and memory classification
 - browse a small curated set of sample scans and comparisons
 
 ## Command reference
@@ -77,6 +82,9 @@ The included web app exposes the same functionality as the CLI:
 ```bash
 prompt-xray scan <target> [--out <dir>] [--format markdown|json|both] [--html]
 prompt-xray compare <left> <right> [--out <dir>] [--format markdown|json|both] [--html]
+prompt-xray bench run [--cases-dir <dir>] [--out <dir>]
+prompt-xray bench diff <left-benchmark.json> <right-benchmark.json> [--out <dir>]
+prompt-xray bench report <benchmark.json>
 prompt-xray serve [--host 127.0.0.1] [--port 8765]
 ```
 
@@ -96,6 +104,14 @@ prompt-xray compare https://github.com/msitarzewski/agency-agents https://github
 prompt-xray compare https://github.com/browser-use/browser-use https://github.com/langchain-ai/langgraph --html
 ```
 
+Benchmark examples:
+
+```bash
+prompt-xray bench run --out .prompt-xray/bench/latest
+prompt-xray bench report .prompt-xray/bench/latest/benchmark.json
+prompt-xray bench diff .prompt-xray/bench/before/benchmark.json .prompt-xray/bench/after/benchmark.json
+```
+
 ## Output
 
 Each scan can write:
@@ -110,6 +126,16 @@ Each comparison can write:
 - `compare.json`
 - `compare.html` when `--html` is passed
 
+Each benchmark run can write:
+
+- `benchmark.md`
+- `benchmark.json`
+
+Each benchmark diff can write:
+
+- `benchmark-diff.md`
+- `benchmark-diff.json`
+
 The Markdown report uses this structure:
 
 ```md
@@ -122,6 +148,8 @@ The Markdown report uses this structure:
 ## Orchestration And Memory
 ## Real Versus Packaging
 ## Missing Pieces
+## Confidence And Uncertainty
+## Evidence Summary
 ## Artifact Inventory
 ## Verdict
 ```
@@ -131,6 +159,7 @@ The Markdown report uses this structure:
 ### `agency-agents`
 
 ```text
+Family: prompt-pack
 Archetype: prompt-library
 Orchestration: prompt-defined
 Memory: documented-only
@@ -140,35 +169,32 @@ Call: Prompt pack, not agent runtime.
 ### `claude-code`
 
 ```text
+Family: plugin-ecosystem
 Archetype: mixed
 Orchestration: runtime-implemented
-Memory: documented-only
+Memory: implemented-runtime
 Call: Real runtime with visible prompt layers.
 ```
 
-### `browser-use`
+### `openai-agents-python`
 
 ```text
-Archetype: mixed
+Family: runtime-framework
+Archetype: agent-framework
 Orchestration: runtime-implemented
-Memory: none
+Memory: implemented-runtime
 Call: Real runtime with visible prompt layers.
 ```
 
-## Comparison snapshot
+## Benchmark corpus
 
-Generated from Prompt-xray runs on March 11, 2026.
+The repo ships with a pinned corpus under [`benchmarks/cases`](./benchmarks/cases):
 
-| Repo | Archetype | Orchestration | Memory | Artifacts | Summary |
-| --- | --- | --- | --- | ---: | --- |
-| `msitarzewski/agency-agents` | `prompt-library` | `prompt-defined` | `documented-only` | 416 | Prompt-heavy library with packaging logic, not a runtime agent system. |
-| `anthropics/claude-code` | `mixed` | `runtime-implemented` | `documented-only` | 90 | Real product/runtime with visible skill and prompt layers. |
-| `browser-use/browser-use` | `mixed` | `runtime-implemented` | `none` | 32 | Runtime-first repo with prompt files that still shape behavior. |
-| `openai/openai-agents-python` | `mixed` | `runtime-implemented` | `implemented-runtime` | 302 | Framework/runtime plus strong internal skill and instruction surfaces. |
-| `crewAIInc/crewAI` | `mixed` | `runtime-implemented` | `implemented-runtime` | 317 | Large runtime framework with a lot of prompt and doc-level behavior clues. |
-| `langchain-ai/langgraph` | `mixed` | `runtime-implemented` | `none` | 2 | Mostly runtime from Prompt-xray's perspective with very little prompt surface. |
-| `modelcontextprotocol/servers` | `mixed` | `runtime-implemented` | `implemented-runtime` | 9 | Implementation repo with limited prompt surface and clear MCP/runtime signals. |
-| `modelcontextprotocol/inspector` | `unclear` | `runtime-implemented` | `none` | 1 | Useful negative control for non prompt-centric AI tooling. |
+- 30+ public repos
+- prompt packs, workflow packs, runtime frameworks, SDKs, plugin ecosystems, infra/tooling, docs/examples, and negative controls
+- expected repo family, archetype, orchestration, memory, and confidence tier per case
+
+This is the calibration layer for heuristic and parser changes.
 
 ## How it works
 
@@ -176,9 +202,10 @@ Prompt-xray runs a static analysis pipeline:
 
 1. resolve a local folder or clone a GitHub repo with `git clone --depth 1`
 2. collect candidate prompt, rule, config, and documentation files
-3. extract prompt-like artifacts and file-level signals
-4. classify the repo using deterministic heuristics
-5. render Markdown, JSON, and optional HTML reports
+3. build file-role, evidence, and lightweight graph models
+4. parse Python and TS/JS structure to detect entrypoints, services, storage/state, workers, and asset loads
+5. classify the repo using deterministic heuristics plus confidence and contradiction scoring
+6. render Markdown, JSON, and optional HTML reports
 
 It looks for signals such as:
 
@@ -188,14 +215,16 @@ It looks for signals such as:
 - orchestration markers such as handoff, phases, gates, and retry loops
 - memory markers in docs, config, and runtime paths
 - runtime code that suggests actual implementation rather than documentation alone
+- links where runtime modules actually load prompt/config assets
 
 ## Limitations
 
 Prompt-xray is useful as a first-pass analysis tool, not as a formal verifier.
 
 - it relies on heuristics rather than execution
+- non-Python/non-TS repos still rely more on heuristic than parser-backed analysis
 - large mixed repos are harder to classify cleanly than prompt-heavy repos
-- runtime and memory detection are directional, not guaranteed
+- benchmark expectations are curated and may need revision as repos evolve
 - generated, vendored, binary, and oversized files are skipped
 
 ## Development

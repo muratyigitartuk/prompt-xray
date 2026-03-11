@@ -1,0 +1,12 @@
+{
+  "id": "openai-node",
+  "repo_url": "https://github.com/openai/openai-node.git",
+  "commit": "09de6c0ec40e860583d6581973cbd3ede76de4c9",
+  "repo_family": "sdk-library",
+  "repo_archetype": "unclear",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "high",
+  "rationale": "TypeScript SDK negative control for the benchmark corpus.",
+  "tags": ["sdk", "typescript", "negative-control"]
+}

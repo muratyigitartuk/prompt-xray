@@ -1,0 +1,12 @@
+{
+  "id": "promptsource",
+  "repo_url": "https://github.com/bigscience-workshop/promptsource.git",
+  "commit": "7dab96a3eeb3717cea633705135ebc488885d709",
+  "repo_family": "prompt-pack",
+  "repo_archetype": "prompt-library",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "medium",
+  "rationale": "Prompt dataset/library negative control against runtime overclassification.",
+  "tags": ["prompt-heavy", "python", "benchmark"]
+}

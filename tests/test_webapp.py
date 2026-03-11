@@ -39,6 +39,10 @@ Remember prior state.
     payload = response.json()
     assert payload["repo"]["name"] == "scan-repo"
     assert payload["summary"]["xray_call"]
+    assert payload["summary"]["repo_family"]
+    assert "runtime_evidence" in payload
+    assert "overall_confidence" in payload
+    assert "scan_limits" in payload
 
 
 def test_compare_endpoint_returns_comparison(tmp_path: Path) -> None:
@@ -59,3 +63,6 @@ def test_compare_endpoint_returns_comparison(tmp_path: Path) -> None:
     assert payload["left"]["name"] == "left-repo"
     assert payload["right"]["name"] == "right-repo"
     assert "xray_call" in payload["left"]
+    assert "repo_family" in payload["left"]
+    assert "confidence" in payload["left"]
+    assert "runtime_evidence" in payload["right"]
