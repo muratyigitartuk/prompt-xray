@@ -1,0 +1,608 @@
+{
+  "repo": {
+    "name": "browser-use",
+    "target": "https://github.com/browser-use/browser-use",
+    "source_type": "github",
+    "commit": "83c9d63842f8fa3f6720a6b63e78da3355f2a180",
+    "root_path": "C:\\Users\\mur4t\\AppData\\Local\\Temp\\prompt_xray_cache\\browser-use-44f0426e61"
+  },
+  "summary": {
+    "repo_archetype": "mixed",
+    "orchestration_model": "runtime-implemented",
+    "memory_model": "none",
+    "verdict": "This repo mixes real implementation with prompt/config behavior surfaces; it is not prompt-only."
+  },
+  "counts": {
+    "candidate_files": 66,
+    "artifacts": 32
+  },
+  "tooling_surfaces": [],
+  "behavior_sources": [
+    {
+      "path": "browser_use/agent/prompts.py",
+      "score": 7.19,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "browser_use/agent/system_prompts/system_prompt.md",
+      "score": 7.19,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "browser_use/agent/system_prompts/system_prompt_anthropic_flash.md",
+      "score": 7.19,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "browser_use/agent/system_prompts/system_prompt_browser_use.md",
+      "score": 7.19,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "browser_use/agent/system_prompts/system_prompt_browser_use_flash.md",
+      "score": 7.19,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "browser_use/agent/system_prompts/system_prompt_browser_use_no_thinking.md",
+      "score": 7.19,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "browser_use/agent/system_prompts/system_prompt_flash.md",
+      "score": 7.19,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "browser_use/agent/system_prompts/system_prompt_flash_anthropic.md",
+      "score": 7.19,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "browser_use/agent/system_prompts/system_prompt_no_thinking.md",
+      "score": 7.19,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "browser_use/code_use/system_prompt.md",
+      "score": 6.58,
+      "kinds": [
+        "system_prompt",
+        "workflow_instruction"
+      ],
+      "reasons": [
+        "path:system",
+        "text:phase 1",
+        "text:phase 2",
+        "text:system prompt",
+        "text:you are"
+      ]
+    }
+  ],
+  "missing_runtime_pieces": [],
+  "real_vs_packaging": {
+    "real_implementation": [
+      "Runtime-oriented files were detected (5 shown): Dockerfile, browser_use/mcp/server.py, browser_use/skill_cli/main.py, browser_use/skill_cli/server.py, docker/base-images/chromium/Dockerfile",
+      "The repo contains real packaging/integration logic for multiple AI tool surfaces."
+    ],
+    "prompt_config_structure": [
+      "Behavior is primarily defined through prompt/rule assets rather than executable runtime code.",
+      "Workflow, handoff, and memory behavior is largely expressed as instructions in docs/prompts."
+    ],
+    "presentation_marketing_layer": []
+  },
+  "artifacts": [
+    {
+      "id": ".github/workflows/claude.yml::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": ".github/workflows/claude.yml",
+      "title": "claude.yml",
+      "summary": "Workflow or handoff instructions detected in .github/workflows/claude.yml.",
+      "signals": [
+        "path:workflow",
+        "text:activate"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "activate-environment: true"
+    },
+    {
+      "id": ".github/workflows/install-script.yml::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": ".github/workflows/install-script.yml",
+      "title": "install-script.yml",
+      "summary": "Workflow or handoff instructions detected in .github/workflows/install-script.yml.",
+      "signals": [
+        "path:workflow",
+        "text:activate"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "source ~/.browser-use-env/bin/activate | source ~/.browser-use-env/bin/activate | source ~/.browser-use-env/bin/activate"
+    },
+    {
+      "id": ".github/workflows/package.yaml::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": ".github/workflows/package.yaml",
+      "title": "package.yaml",
+      "summary": "Workflow or handoff instructions detected in .github/workflows/package.yaml.",
+      "signals": [
+        "path:workflow",
+        "text:activate"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ". /tmp/testenv/Scripts/activate | source /tmp/testenv/bin/activate"
+    },
+    {
+      "id": ".github/workflows/publish.yml::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": ".github/workflows/publish.yml",
+      "title": "publish.yml",
+      "summary": "Workflow or handoff instructions detected in .github/workflows/publish.yml.",
+      "signals": [
+        "path:workflow",
+        "text:activate"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "activate-environment: true"
+    },
+    {
+      "id": ".github/workflows/test.yaml::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": ".github/workflows/test.yaml",
+      "title": "test.yaml",
+      "summary": "Workflow or handoff instructions detected in .github/workflows/test.yaml.",
+      "signals": [
+        "path:workflow",
+        "text:activate"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "activate-environment: true | activate-environment: true"
+    },
+    {
+      "id": "AGENTS.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "AGENTS.md",
+      "title": "AGENTS.md",
+      "summary": "System-level instruction source detected in AGENTS.md.",
+      "signals": [
+        "path:agents.md",
+        "text:instructions",
+        "text:system prompt"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "* `override_system_message`: Completely replace the default system prompt. | * `extend_system_message`: Add additional instructions to the default system prompt. [Example](https://github.com/browser-use/browser-use/blob/main/examples/features/custom_system_prompt.py)"
+    },
+    {
+      "id": "CLOUD.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "CLOUD.md",
+      "title": "CLOUD.md",
+      "summary": "System-level instruction source detected in CLOUD.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "Instructions for AI Agents to assist the user in using Browser Use Cloud | Avoid giving the user all of the following steps at once as it may seem overwheling. Instead present one step at a time and only continue when asked. Do as much for the user as you are able to."
+    },
+    {
+      "id": "browser_use/agent/prompts.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "browser_use/agent/prompts.py",
+      "title": "prompts.py",
+      "summary": "Prompt-like agent definition in browser_use/agent/prompts.py.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "return f'''You are analyzing the completion of a rerun task. Based on the screenshot and execution info, provide a summary. | You are an expert at extracting data from webpages."
+    },
+    {
+      "id": "browser_use/agent/prompts.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "browser_use/agent/prompts.py",
+      "title": "prompts.py",
+      "summary": "System-level instruction source detected in browser_use/agent/prompts.py.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "raise RuntimeError(f'Failed to load system prompt template: {e}') | Get the system prompt for the agent. | SystemMessage: Formatted system prompt"
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt.md",
+      "title": "system_prompt.md",
+      "summary": "Prompt-like agent definition in browser_use/agent/system_prompts/system_prompt.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are an AI agent designed to operate in an iterative loop to automate browser tasks. Your ultimate goal is accomplishing the task provided in <user_request>. | Current URL: URL of the page you are currently viewing. | Use screenshot if you are unsure or simply want more information."
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt.md",
+      "title": "system_prompt.md",
+      "summary": "System-level instruction source detected in browser_use/agent/system_prompts/system_prompt.md.",
+      "signals": [
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "You are an AI agent designed to operate in an iterative loop to automate browser tasks. Your ultimate goal is accomplishing the task provided in <user_request>. | Current URL: URL of the page you are currently viewing. | Use screenshot if you are unsure or simply want more information."
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_anthropic_flash.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_anthropic_flash.md",
+      "title": "system_prompt_anthropic_flash.md",
+      "summary": "Prompt-like agent definition in browser_use/agent/system_prompts/system_prompt_anthropic_flash.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are an AI agent designed to operate in an iterative loop to automate browser tasks. Your ultimate goal is accomplishing the task provided in <user_request>. | - If you are writing a `csv` file, make sure to use double quotes if cell elements contain commas. | - If the file is too large, you are only given a preview of your file. Use `read_file` to see the full content if necessary."
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_anthropic_flash.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_anthropic_flash.md",
+      "title": "system_prompt_anthropic_flash.md",
+      "summary": "System-level instruction source detected in browser_use/agent/system_prompts/system_prompt_anthropic_flash.md.",
+      "signals": [
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "You are an AI agent designed to operate in an iterative loop to automate browser tasks. Your ultimate goal is accomplishing the task provided in <user_request>. | - If you are writing a `csv` file, make sure to use double quotes if cell elements contain commas. | - If the file is too large, you are only given a preview of your file. Use `read_file` to see the full content if necessary."
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_browser_use.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_browser_use.md",
+      "title": "system_prompt_browser_use.md",
+      "summary": "Prompt-like agent definition in browser_use/agent/system_prompts/system_prompt_browser_use.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are a browser-use agent operating in thinking mode. You automate browser tasks by outputting structured JSON actions."
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_browser_use.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_browser_use.md",
+      "title": "system_prompt_browser_use.md",
+      "summary": "System-level instruction source detected in browser_use/agent/system_prompts/system_prompt_browser_use.md.",
+      "signals": [
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "You are a browser-use agent operating in thinking mode. You automate browser tasks by outputting structured JSON actions. | Instructions containing \"do NOT\", \"never\", \"avoid\", \"skip\", or \"only X\" are hard constraints. Before each action, check: does this violate any constraint? If yes, stop and find an alternative."
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_browser_use_flash.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_browser_use_flash.md",
+      "title": "system_prompt_browser_use_flash.md",
+      "summary": "Prompt-like agent definition in browser_use/agent/system_prompts/system_prompt_browser_use_flash.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are a browser-use agent operating in flash mode. You automate browser tasks by outputting structured JSON actions."
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_browser_use_flash.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_browser_use_flash.md",
+      "title": "system_prompt_browser_use_flash.md",
+      "summary": "System-level instruction source detected in browser_use/agent/system_prompts/system_prompt_browser_use_flash.md.",
+      "signals": [
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "You are a browser-use agent operating in flash mode. You automate browser tasks by outputting structured JSON actions. | Instructions containing \"do NOT\", \"never\", \"avoid\", \"skip\", or \"only X\" are hard constraints. Before each action, check: does this violate any constraint? If yes, stop and find an alternative."
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_browser_use_no_thinking.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_browser_use_no_thinking.md",
+      "title": "system_prompt_browser_use_no_thinking.md",
+      "summary": "Prompt-like agent definition in browser_use/agent/system_prompts/system_prompt_browser_use_no_thinking.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are a browser-use agent. You automate browser tasks by outputting structured JSON actions."
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_browser_use_no_thinking.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_browser_use_no_thinking.md",
+      "title": "system_prompt_browser_use_no_thinking.md",
+      "summary": "System-level instruction source detected in browser_use/agent/system_prompts/system_prompt_browser_use_no_thinking.md.",
+      "signals": [
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "You are a browser-use agent. You automate browser tasks by outputting structured JSON actions. | Instructions containing \"do NOT\", \"never\", \"avoid\", \"skip\", or \"only X\" are hard constraints. Before each action, check: does this violate any constraint? If yes, stop and find an alternative."
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_flash.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_flash.md",
+      "title": "system_prompt_flash.md",
+      "summary": "Prompt-like agent definition in browser_use/agent/system_prompts/system_prompt_flash.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are an AI agent designed to operate in an iterative loop to automate browser tasks. Your ultimate goal is accomplishing the task provided in <user_request>. | You are allowed to use a maximum of {max_actions} actions per step. Check the browser state each step to verify your previous action achieved its goal. When chaining multiple actions, never take consequential actions (submitting forms, c"
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_flash.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_flash.md",
+      "title": "system_prompt_flash.md",
+      "summary": "System-level instruction source detected in browser_use/agent/system_prompts/system_prompt_flash.md.",
+      "signals": [
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "You are an AI agent designed to operate in an iterative loop to automate browser tasks. Your ultimate goal is accomplishing the task provided in <user_request>. | You are allowed to use a maximum of {max_actions} actions per step. Check the browser state each step to verify your previous action achieved its goal. When chaining multiple actions, never take consequential actions (submitting forms, c"
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_flash_anthropic.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_flash_anthropic.md",
+      "title": "system_prompt_flash_anthropic.md",
+      "summary": "Prompt-like agent definition in browser_use/agent/system_prompts/system_prompt_flash_anthropic.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are an AI agent designed to operate in an iterative loop to automate browser tasks. Your ultimate goal is accomplishing the task provided in <user_request>. | You are allowed to use a maximum of {max_actions} actions per step. Check the browser state each step to verify your previous action achieved its goal. When chaining multiple actions, never take consequential actions (submitting forms, c"
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_flash_anthropic.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_flash_anthropic.md",
+      "title": "system_prompt_flash_anthropic.md",
+      "summary": "System-level instruction source detected in browser_use/agent/system_prompts/system_prompt_flash_anthropic.md.",
+      "signals": [
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "You are an AI agent designed to operate in an iterative loop to automate browser tasks. Your ultimate goal is accomplishing the task provided in <user_request>. | User request is the ultimate objective. For tasks with specific instructions, follow each step. For open-ended tasks, plan your own approach. | You are allowed to use a maximum of {max_actions} actions per step. Check the browser state e"
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_no_thinking.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_no_thinking.md",
+      "title": "system_prompt_no_thinking.md",
+      "summary": "Prompt-like agent definition in browser_use/agent/system_prompts/system_prompt_no_thinking.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are an AI agent designed to operate in an iterative loop to automate browser tasks. Your ultimate goal is accomplishing the task provided in <user_request>. | Current URL: URL of the page you are currently viewing. | Use screenshot if you are unsure or simply want more information."
+    },
+    {
+      "id": "browser_use/agent/system_prompts/system_prompt_no_thinking.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "browser_use/agent/system_prompts/system_prompt_no_thinking.md",
+      "title": "system_prompt_no_thinking.md",
+      "summary": "System-level instruction source detected in browser_use/agent/system_prompts/system_prompt_no_thinking.md.",
+      "signals": [
+        "path:system",
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "You are an AI agent designed to operate in an iterative loop to automate browser tasks. Your ultimate goal is accomplishing the task provided in <user_request>. | Current URL: URL of the page you are currently viewing. | Use screenshot if you are unsure or simply want more information."
+    },
+    {
+      "id": "browser_use/code_use/system_prompt.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "browser_use/code_use/system_prompt.md",
+      "title": "system_prompt.md",
+      "summary": "System-level instruction source detected in browser_use/code_use/system_prompt.md.",
+      "signals": [
+        "path:system",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "# Coding Browser Agent - System Prompt | You are created by browser-use for complex automated browser tasks."
+    },
+    {
+      "id": "browser_use/code_use/system_prompt.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "browser_use/code_use/system_prompt.md",
+      "title": "system_prompt.md",
+      "summary": "Workflow or handoff instructions detected in browser_use/code_use/system_prompt.md.",
+      "signals": [
+        "text:phase 1",
+        "text:phase 2"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "### Phase 1: Exploration | ### Phase 2: Validation (Execute Cell-by-Cell!)"
+    },
+    {
+      "id": "browser_use/integrations/gmail/actions.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "browser_use/integrations/gmail/actions.py",
+      "title": "actions.py",
+      "summary": "Tool contract or integration guidance detected in browser_use/integrations/gmail/actions.py.",
+      "signals": [
+        "path:integration",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "def register_gmail_actions(tools: Tools, gmail_service: GmailService | None = None, access_token: str | None = None) -> Tools: | tools: The browser-use tools to register actions with"
+    },
+    {
+      "id": "examples/integrations/agentmail/email_tools.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/integrations/agentmail/email_tools.py",
+      "title": "email_tools.py",
+      "summary": "Prompt-like agent definition in examples/integrations/agentmail/email_tools.py.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "If you are not on free tier it is recommended to create 1 inbox per agent. | If you are not on free tier it is recommended to create 1 inbox per agent."
+    },
+    {
+      "id": "examples/integrations/agentmail/email_tools.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/integrations/agentmail/email_tools.py",
+      "title": "email_tools.py",
+      "summary": "Tool contract or integration guidance detected in examples/integrations/agentmail/email_tools.py.",
+      "signals": [
+        "path:integration",
+        "path:tool"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "If you are not on free tier it is recommended to create 1 inbox per agent. | If you are not on free tier it is recommended to create 1 inbox per agent."
+    },
+    {
+      "id": "skills/browser-use/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "skills/browser-use/SKILL.md",
+      "title": "browser-use",
+      "summary": "Skill definition or skill-like instruction source in skills/browser-use/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "allowed-tools: Bash(browser-use:*) | The `browser-use` command provides fast, persistent browser automation. It maintains browser sessions across commands, enabling complex multi-step workflows. | ## Core Workflow"
+    },
+    {
+      "id": "skills/remote-browser/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "skills/remote-browser/SKILL.md",
+      "title": "remote-browser",
+      "summary": "Skill definition or skill-like instruction source in skills/remote-browser/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "allowed-tools: Bash(browser-use:*) | ## Core Workflow | ## Common Workflows"
+    }
+  ]
+}

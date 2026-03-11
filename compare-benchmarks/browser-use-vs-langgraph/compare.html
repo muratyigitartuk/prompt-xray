@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt-xray Compare: browser-use vs langgraph</title>
+</head>
+<body style="margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:#0b1020;color:#e5e7eb;">
+  <main style="max-width:1200px;margin:0 auto;padding:40px 24px 80px;">
+    <section style="background:linear-gradient(135deg,#111827,#172554);border:1px solid #334155;border-radius:24px;padding:28px;">
+      <h1 style="margin:0 0 14px;font-size:38px;">Prompt-xray Compare</h1>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:#0f172a;border:1px solid #334155;border-radius:18px;padding:18px;">
+          <div style="margin-bottom:10px;"><span style="display:inline-block;padding:6px 10px;border-radius:999px;background:#dbeafe;font-size:12px;font-weight:700;letter-spacing:0.02em;">mixed</span> <span style="display:inline-block;padding:6px 10px;border-radius:999px;background:#fef3c7;font-size:12px;font-weight:700;letter-spacing:0.02em;">runtime-implemented</span></div>
+          <h2 style="margin:0 0 8px;">browser-use</h2>
+          <p style="margin:0;font-size:20px;font-weight:700;">Runtime-first repo with prompt surfaces on top.</p>
+        </div>
+        <div style="background:#0f172a;border:1px solid #334155;border-radius:18px;padding:18px;">
+          <div style="margin-bottom:10px;"><span style="display:inline-block;padding:6px 10px;border-radius:999px;background:#dbeafe;font-size:12px;font-weight:700;letter-spacing:0.02em;">mixed</span> <span style="display:inline-block;padding:6px 10px;border-radius:999px;background:#fef3c7;font-size:12px;font-weight:700;letter-spacing:0.02em;">runtime-implemented</span></div>
+          <h2 style="margin:0 0 8px;">langgraph</h2>
+          <p style="margin:0;font-size:20px;font-weight:700;">Real runtime with visible prompt layers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#111827;border:1px solid #334155;border-radius:18px;padding:22px;margin-top:20px;">
+      <h2 style="margin-top:0;">Headline difference</h2>
+      <table style="width:100%;border-collapse:collapse;">
+        <tbody>
+          <tr><td style="padding:8px 0;color:#94a3b8;">Archetype</td><td style="padding:8px 0;">mixed</td><td style="padding:8px 0;">mixed</td></tr>
+          <tr><td style="padding:8px 0;color:#94a3b8;">Orchestration</td><td style="padding:8px 0;">runtime-implemented</td><td style="padding:8px 0;">runtime-implemented</td></tr>
+          <tr><td style="padding:8px 0;color:#94a3b8;">Memory</td><td style="padding:8px 0;">none</td><td style="padding:8px 0;">implemented-runtime</td></tr>
+          <tr><td style="padding:8px 0;color:#94a3b8;">Artifacts</td><td style="padding:8px 0;">32</td><td style="padding:8px 0;">2</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
+      <div style="background:#111827;border:1px solid #334155;border-radius:18px;padding:22px;">
+        <h2 style="margin-top:0;">browser-use top sources</h2>
+        <ul style="margin:0;padding-left:18px;line-height:1.6;"><li><code>browser_use/agent/prompts.py</code></li><li><code>browser_use/agent/system_prompts/system_prompt.md</code></li><li><code>browser_use/agent/system_prompts/system_prompt_anthropic_flash.md</code></li><li><code>browser_use/agent/system_prompts/system_prompt_browser_use.md</code></li><li><code>browser_use/agent/system_prompts/system_prompt_browser_use_flash.md</code></li></ul>
+      </div>
+      <div style="background:#111827;border:1px solid #334155;border-radius:18px;padding:22px;">
+        <h2 style="margin-top:0;">langgraph top sources</h2>
+        <ul style="margin:0;padding-left:18px;line-height:1.6;"><li><code>AGENTS.md</code></li><li><code>libs/cli/js-examples/README.md</code></li></ul>
+      </div>
+    </section>
+
+    <section style="background:#111827;border:1px solid #334155;border-radius:18px;padding:22px;margin-top:20px;">
+      <h2 style="margin-top:0;">Tooling overlap</h2>
+      <p><strong>Shared:</strong> None</p>
+      <p><strong>browser-use only:</strong> None</p>
+      <p><strong>langgraph only:</strong> Claude Code</p>
+    </section>
+  </main>
+</body>
+</html>

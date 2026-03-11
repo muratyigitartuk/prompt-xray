@@ -1,0 +1,40 @@
+{
+  "left": {
+    "name": "browser-use",
+    "archetype": "mixed",
+    "orchestration": "runtime-implemented",
+    "memory": "none",
+    "xray_call": "Runtime-first repo with prompt surfaces on top.",
+    "artifacts": 32,
+    "top_behavior_sources": [
+      "browser_use/agent/prompts.py",
+      "browser_use/agent/system_prompts/system_prompt.md",
+      "browser_use/agent/system_prompts/system_prompt_anthropic_flash.md",
+      "browser_use/agent/system_prompts/system_prompt_browser_use.md",
+      "browser_use/agent/system_prompts/system_prompt_browser_use_flash.md"
+    ]
+  },
+  "right": {
+    "name": "langgraph",
+    "archetype": "mixed",
+    "orchestration": "runtime-implemented",
+    "memory": "implemented-runtime",
+    "xray_call": "Real runtime with visible prompt layers.",
+    "artifacts": 2,
+    "top_behavior_sources": [
+      "AGENTS.md",
+      "libs/cli/js-examples/README.md"
+    ]
+  },
+  "differences": {
+    "same_archetype": true,
+    "same_orchestration": true,
+    "same_memory": false,
+    "artifact_gap": 30,
+    "shared_tooling": [],
+    "left_only_tooling": [],
+    "right_only_tooling": [
+      "Claude Code"
+    ]
+  }
+}

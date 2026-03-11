@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "prompt-xray"
+version = "0.1.0"
+description = "Static prompt archaeology for AI repos."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "pydantic>=2.10,<3",
+  "typer>=0.7,<1",
+  "uvicorn>=0.34,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0,<9",
+]
+
+[project.scripts]
+prompt-xray = "prompt_xray.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/prompt_xray"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

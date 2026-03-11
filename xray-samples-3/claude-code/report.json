@@ -1,0 +1,1477 @@
+{
+  "repo": {
+    "name": "claude-code",
+    "target": "https://github.com/anthropics/claude-code",
+    "source_type": "github",
+    "commit": "f6dbf44cd5f5a90f8fd2608c13f3d7bcf15bfe6f",
+    "root_path": "C:\\Users\\mur4t\\AppData\\Local\\Temp\\prompt_xray_cache\\claude-code-9c241fb43b"
+  },
+  "summary": {
+    "repo_archetype": "mixed",
+    "orchestration_model": "runtime-implemented",
+    "memory_model": "documented-only",
+    "xray_call": "Real runtime with visible prompt layers.",
+    "verdict": "This repo mixes real implementation with prompt/config behavior surfaces; it is not prompt-only."
+  },
+  "counts": {
+    "candidate_files": 143,
+    "artifacts": 90
+  },
+  "tooling_surfaces": [
+    "Claude Code"
+  ],
+  "behavior_sources": [
+    {
+      "path": "plugins/plugin-dev/skills/agent-development/SKILL.md",
+      "score": 12.88,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "skill_definition",
+        "system_prompt"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:skill",
+        "path:skill.md",
+        "text:system prompt",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md",
+      "score": 11.63,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "system_prompt",
+        "workflow_instruction"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:skill",
+        "path:system",
+        "text:instructions",
+        "text:phase 1",
+        "text:phase 2",
+        "text:system prompt",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/SKILL.md",
+      "score": 10.96,
+      "kinds": [
+        "agent_prompt",
+        "skill_definition",
+        "system_prompt"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:claude",
+        "path:skill.md",
+        "text:instructions",
+        "text:system prompt"
+      ]
+    },
+    {
+      "path": "plugins/plugin-dev/agents/agent-creator.md",
+      "score": 10.53,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt",
+        "tool_contract"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "frontmatter:tools",
+        "path:agent",
+        "text:instructions",
+        "text:system prompt",
+        "text:tools:",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "plugins/plugin-dev/agents/plugin-validator.md",
+      "score": 10.32,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt",
+        "tool_contract"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "frontmatter:tools",
+        "path:agent",
+        "text:mcpservers",
+        "text:system prompt",
+        "text:tools:",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "plugins/plugin-dev/skills/agent-development/references/agent-creation-system-prompt.md",
+      "score": 9.2,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:skill",
+        "path:system",
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "plugins/agent-sdk-dev/agents/agent-sdk-verifier-py.md",
+      "score": 8.39,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "plugins/agent-sdk-dev/agents/agent-sdk-verifier-ts.md",
+      "score": 8.39,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "plugins/plugin-dev/skills/agent-development/examples/agent-creation-prompt.md",
+      "score": 8.23,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:skill",
+        "text:system prompt",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "plugins/plugin-dev/agents/skill-reviewer.md",
+      "score": 7.91,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "tool_contract"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "frontmatter:tools",
+        "path:agent",
+        "path:skill",
+        "text:tools:"
+      ]
+    }
+  ],
+  "missing_runtime_pieces": [],
+  "real_vs_packaging": {
+    "real_implementation": [
+      "Runtime-oriented files were detected (1 shown): .devcontainer/Dockerfile",
+      "The repo contains real packaging/integration logic for multiple AI tool surfaces."
+    ],
+    "prompt_config_structure": [
+      "Behavior is primarily defined through prompt/rule assets rather than executable runtime code.",
+      "Workflow, handoff, and memory behavior is largely expressed as instructions in docs/prompts.",
+      "Behavior is adapted across tool ecosystems via repo-specific prompt packaging."
+    ],
+    "presentation_marketing_layer": []
+  },
+  "artifacts": [
+    {
+      "id": ".claude/commands/commit-push-pr.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".claude/commands/commit-push-pr.md",
+      "title": "commit-push-pr.md",
+      "summary": "Prompt-like agent definition in .claude/commands/commit-push-pr.md.",
+      "signals": [
+        "frontmatter:description",
+        "path:claude"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "allowed-tools: Bash(git checkout --branch:*), Bash(git add:*), Bash(git status:*), Bash(git push:*), Bash(git commit:*), Bash(gh pr create:*)"
+    },
+    {
+      "id": ".claude/commands/dedupe.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".claude/commands/dedupe.md",
+      "title": "dedupe.md",
+      "summary": "Prompt-like agent definition in .claude/commands/dedupe.md.",
+      "signals": [
+        "frontmatter:description",
+        "path:claude"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "allowed-tools: Bash(./scripts/gh.sh:*), Bash(./scripts/comment-on-duplicates.sh:*)"
+    },
+    {
+      "id": ".claude/commands/triage-issue.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".claude/commands/triage-issue.md",
+      "title": "triage-issue.md",
+      "summary": "Prompt-like agent definition in .claude/commands/triage-issue.md.",
+      "signals": [
+        "frontmatter:description",
+        "path:claude"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "allowed-tools: Bash(./scripts/gh.sh:*),Bash(./scripts/edit-issue-labels.sh:*) | TOOLS:"
+    },
+    {
+      "id": "CHANGELOG.md::memory_pattern",
+      "kind": "memory_pattern",
+      "path": "CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "summary": "Memory or recall behavior is described in CHANGELOG.md.",
+      "signals": [
+        "text:recall",
+        "text:rollback"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- Fixed terminal flicker caused by animated elements at the scrollback boundary | - Claude now automatically records and recalls memories as it works | - Add Ctrl-R history search to recall previous commands like bash/zsh"
+    },
+    {
+      "id": "CHANGELOG.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "summary": "System-level instruction source detected in CHANGELOG.md.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- Fixed prompt-cache bust when an MCP server with `instructions` connects after the first turn | - Added `includeGitInstructions` setting (and `CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS` env var) to remove built-in commit and PR workflow instructions from Claude's system prompt | - Added `InstructionsLoaded` hook event that fires when CLAUDE.md or `.claude/rules/*.md` files are loaded into context"
+    },
+    {
+      "id": "plugins/agent-sdk-dev/.claude-plugin/plugin.json::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/agent-sdk-dev/.claude-plugin/plugin.json",
+      "title": "plugin.json",
+      "summary": "Prompt-like agent definition in plugins/agent-sdk-dev/.claude-plugin/plugin.json.",
+      "signals": [
+        "path:agent",
+        "path:claude"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "plugins/agent-sdk-dev/agents/agent-sdk-verifier-py.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/agent-sdk-dev/agents/agent-sdk-verifier-py.md",
+      "title": "agent-sdk-verifier-py",
+      "summary": "Prompt-like agent definition in plugins/agent-sdk-dev/agents/agent-sdk-verifier-py.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are a Python Agent SDK application verifier. Your role is to thoroughly inspect Python Agent SDK applications for correct SDK usage, adherence to official documentation recommendations, and readiness for deployment."
+    },
+    {
+      "id": "plugins/agent-sdk-dev/agents/agent-sdk-verifier-py.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/agent-sdk-dev/agents/agent-sdk-verifier-py.md",
+      "title": "agent-sdk-verifier-py",
+      "summary": "System-level instruction source detected in plugins/agent-sdk-dev/agents/agent-sdk-verifier-py.md.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "You are a Python Agent SDK application verifier. Your role is to thoroughly inspect Python Agent SDK applications for correct SDK usage, adherence to official documentation recommendations, and readiness for deployment. | - Validate that agent configuration follows SDK patterns (system prompts, models, etc.) | - System prompts are clear and well-structured"
+    },
+    {
+      "id": "plugins/agent-sdk-dev/agents/agent-sdk-verifier-ts.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/agent-sdk-dev/agents/agent-sdk-verifier-ts.md",
+      "title": "agent-sdk-verifier-ts",
+      "summary": "Prompt-like agent definition in plugins/agent-sdk-dev/agents/agent-sdk-verifier-ts.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are a TypeScript Agent SDK application verifier. Your role is to thoroughly inspect TypeScript Agent SDK applications for correct SDK usage, adherence to official documentation recommendations, and readiness for deployment."
+    },
+    {
+      "id": "plugins/agent-sdk-dev/agents/agent-sdk-verifier-ts.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/agent-sdk-dev/agents/agent-sdk-verifier-ts.md",
+      "title": "agent-sdk-verifier-ts",
+      "summary": "System-level instruction source detected in plugins/agent-sdk-dev/agents/agent-sdk-verifier-ts.md.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "You are a TypeScript Agent SDK application verifier. Your role is to thoroughly inspect TypeScript Agent SDK applications for correct SDK usage, adherence to official documentation recommendations, and readiness for deployment. | - Validate that agent configuration follows SDK patterns (system prompts, models, etc.) | - System prompts are clear and well-structured"
+    },
+    {
+      "id": "plugins/agent-sdk-dev/commands/new-sdk-app.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/agent-sdk-dev/commands/new-sdk-app.md",
+      "title": "new-sdk-app.md",
+      "summary": "Prompt-like agent definition in plugins/agent-sdk-dev/commands/new-sdk-app.md.",
+      "signals": [
+        "frontmatter:description",
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "You are tasked with helping the user create a new Claude Agent SDK application. Follow these steps carefully:"
+    },
+    {
+      "id": "plugins/agent-sdk-dev/commands/new-sdk-app.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/agent-sdk-dev/commands/new-sdk-app.md",
+      "title": "new-sdk-app.md",
+      "summary": "System-level instruction source detected in plugins/agent-sdk-dev/commands/new-sdk-app.md.",
+      "signals": [
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are tasked with helping the user create a new Claude Agent SDK application. Follow these steps carefully: | - Explain key concepts: system prompts, permissions, tools, MCP servers | - How to customize the system prompt"
+    },
+    {
+      "id": "plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/SKILL.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/SKILL.md",
+      "title": "claude-opus-4-5-migration",
+      "summary": "Prompt-like agent definition in plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:claude"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "## Migration Workflow"
+    },
+    {
+      "id": "plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/SKILL.md",
+      "title": "claude-opus-4-5-migration",
+      "summary": "Skill definition or skill-like instruction source in plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "## Migration Workflow"
+    },
+    {
+      "id": "plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/SKILL.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/SKILL.md",
+      "title": "claude-opus-4-5-migration",
+      "summary": "System-level instruction source detected in plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/SKILL.md.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- Place snippets in logical locations (e.g., coding guidelines near other coding instructions) | Opus 4.5 is more responsive to system prompts. Aggressive language that prevented undertriggering on previous models may now cause overtriggering. | Only apply to tool-triggering instructions. Leave other uses of emphasis alone."
+    },
+    {
+      "id": "plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/references/prompt-snippets.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/references/prompt-snippets.md",
+      "title": "prompt-snippets.md",
+      "summary": "Prompt-like agent definition in plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/references/prompt-snippets.md.",
+      "signals": [
+        "path:claude",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "| `You are REQUIRED to...` | `You should...` |"
+    },
+    {
+      "id": "plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/references/prompt-snippets.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/references/prompt-snippets.md",
+      "title": "prompt-snippets.md",
+      "summary": "System-level instruction source detected in plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/references/prompt-snippets.md.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "| `You are REQUIRED to...` | `You should...` | | **Snippet to add to system prompt**: | **Snippet to add to system prompt**:"
+    },
+    {
+      "id": "plugins/code-review/commands/code-review.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/code-review/commands/code-review.md",
+      "title": "code-review.md",
+      "summary": "Prompt-like agent definition in plugins/code-review/commands/code-review.md.",
+      "signals": [
+        "frontmatter:description",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "If you are not certain an issue is real, do not flag it. False positives erode trust and waste reviewer time. | 8. Create a list of all comments that you plan on leaving. This is only for you to make sure you are comfortable with the comments. Do not post this list anywhere. | - Provide at least 1 line of context before and after, centered on the line you are commenting about (eg. if you are comme"
+    },
+    {
+      "id": "plugins/explanatory-output-style/README.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/explanatory-output-style/README.md",
+      "title": "README.md",
+      "summary": "System-level instruction source detected in plugins/explanatory-output-style/README.md.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "WARNING: Do not install this plugin unless you are fine with incurring the token | cost of this plugin's additional instructions and output. | When enabled, this plugin automatically adds instructions at the start of each"
+    },
+    {
+      "id": "plugins/feature-dev/README.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "plugins/feature-dev/README.md",
+      "title": "README.md",
+      "summary": "Workflow or handoff instructions detected in plugins/feature-dev/README.md.",
+      "signals": [
+        "text:phase 1",
+        "text:phase 2"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "### Phase 1: Discovery | ### Phase 2: Codebase Exploration | - Follows patterns discovered in Phase 2"
+    },
+    {
+      "id": "plugins/feature-dev/agents/code-architect.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/feature-dev/agents/code-architect.md",
+      "title": "code-architect",
+      "summary": "Prompt-like agent definition in plugins/feature-dev/agents/code-architect.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are a senior software architect who delivers comprehensive, actionable architecture blueprints by deeply understanding codebases and making confident architectural decisions."
+    },
+    {
+      "id": "plugins/feature-dev/agents/code-architect.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/feature-dev/agents/code-architect.md",
+      "title": "code-architect",
+      "summary": "Tool contract or integration guidance detected in plugins/feature-dev/agents/code-architect.md.",
+      "signals": [
+        "frontmatter:tools",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: Glob, Grep, LS, Read, NotebookRead, WebFetch, TodoWrite, WebSearch, KillShell, BashOutput"
+    },
+    {
+      "id": "plugins/feature-dev/agents/code-explorer.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/feature-dev/agents/code-explorer.md",
+      "title": "code-explorer",
+      "summary": "Prompt-like agent definition in plugins/feature-dev/agents/code-explorer.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:core mission",
+        "text:you are"
+      ],
+      "confidence": 0.93,
+      "source_snippet": "You are an expert code analyst specializing in tracing and understanding feature implementations across codebases. | ## Core Mission"
+    },
+    {
+      "id": "plugins/feature-dev/agents/code-explorer.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/feature-dev/agents/code-explorer.md",
+      "title": "code-explorer",
+      "summary": "Tool contract or integration guidance detected in plugins/feature-dev/agents/code-explorer.md.",
+      "signals": [
+        "frontmatter:tools",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: Glob, Grep, LS, Read, NotebookRead, WebFetch, TodoWrite, WebSearch, KillShell, BashOutput"
+    },
+    {
+      "id": "plugins/feature-dev/agents/code-reviewer.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/feature-dev/agents/code-reviewer.md",
+      "title": "code-reviewer",
+      "summary": "Prompt-like agent definition in plugins/feature-dev/agents/code-reviewer.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are an expert code reviewer specializing in modern software development across multiple languages and frameworks. Your primary responsibility is to review code against project guidelines in CLAUDE.md with high precision to minimize false positives."
+    },
+    {
+      "id": "plugins/feature-dev/agents/code-reviewer.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/feature-dev/agents/code-reviewer.md",
+      "title": "code-reviewer",
+      "summary": "Tool contract or integration guidance detected in plugins/feature-dev/agents/code-reviewer.md.",
+      "signals": [
+        "frontmatter:tools",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: Glob, Grep, LS, Read, NotebookRead, WebFetch, TodoWrite, WebSearch, KillShell, BashOutput"
+    },
+    {
+      "id": "plugins/feature-dev/commands/feature-dev.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/feature-dev/commands/feature-dev.md",
+      "title": "feature-dev.md",
+      "summary": "Prompt-like agent definition in plugins/feature-dev/commands/feature-dev.md.",
+      "signals": [
+        "frontmatter:description",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are helping a developer implement a new feature. Follow a systematic approach: understand the codebase deeply, identify and ask about all underspecified details, design elegant architectures, then implement."
+    },
+    {
+      "id": "plugins/feature-dev/commands/feature-dev.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "plugins/feature-dev/commands/feature-dev.md",
+      "title": "feature-dev.md",
+      "summary": "Workflow or handoff instructions detected in plugins/feature-dev/commands/feature-dev.md.",
+      "signals": [
+        "text:phase 1",
+        "text:phase 2"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "## Phase 1: Discovery | ## Phase 2: Codebase Exploration"
+    },
+    {
+      "id": "plugins/frontend-design/skills/frontend-design/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "plugins/frontend-design/skills/frontend-design/SKILL.md",
+      "title": "frontend-design",
+      "summary": "Skill definition or skill-like instruction source in plugins/frontend-design/skills/frontend-design/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/",
+        "text:use this skill"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "description: Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, or applications. Generates creative, polished code that avoids generic AI aesthetics."
+    },
+    {
+      "id": "plugins/hookify/agents/conversation-analyzer.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/hookify/agents/conversation-analyzer.md",
+      "title": "conversation-analyzer",
+      "summary": "Prompt-like agent definition in plugins/hookify/agents/conversation-analyzer.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are a conversation analysis specialist that identifies problematic behaviors in Claude Code sessions that could be prevented with hooks."
+    },
+    {
+      "id": "plugins/hookify/agents/conversation-analyzer.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/hookify/agents/conversation-analyzer.md",
+      "title": "conversation-analyzer",
+      "summary": "Tool contract or integration guidance detected in plugins/hookify/agents/conversation-analyzer.md.",
+      "signals": [
+        "frontmatter:tools",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: [\"Read\", \"Grep\"]"
+    },
+    {
+      "id": "plugins/hookify/commands/hookify.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/hookify/commands/hookify.md",
+      "title": "hookify.md",
+      "summary": "Prompt-like agent definition in plugins/hookify/commands/hookify.md.",
+      "signals": [
+        "frontmatter:description",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"prompt\": \"You are analyzing a Claude Code conversation to find behaviors the user wants to prevent."
+    },
+    {
+      "id": "plugins/hookify/commands/hookify.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/hookify/commands/hookify.md",
+      "title": "hookify.md",
+      "summary": "System-level instruction source detected in plugins/hookify/commands/hookify.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "description: Create hooks to prevent unwanted behaviors from conversation analysis or explicit instructions | Create hook rules to prevent problematic behaviors by analyzing the conversation or from explicit user instructions. | - User has given specific instructions: `$ARGUMENTS`"
+    },
+    {
+      "id": "plugins/hookify/skills/writing-rules/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "plugins/hookify/skills/writing-rules/SKILL.md",
+      "title": "Writing Hookify Rules",
+      "summary": "Skill definition or skill-like instruction source in plugins/hookify/skills/writing-rules/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "## Workflow"
+    },
+    {
+      "id": "plugins/learning-output-style/README.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/learning-output-style/README.md",
+      "title": "README.md",
+      "summary": "System-level instruction source detected in plugins/learning-output-style/README.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "WARNING: Do not install this plugin unless you are fine with incurring the token cost of this plugin's additional instructions and the interactive nature of learning mode. | When enabled, this plugin automatically adds instructions at the start of each session that encourage Claude to:"
+    },
+    {
+      "id": "plugins/plugin-dev/agents/agent-creator.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/plugin-dev/agents/agent-creator.md",
+      "title": "agent-creator",
+      "summary": "Prompt-like agent definition in plugins/plugin-dev/agents/agent-creator.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are an elite AI agent architect specializing in crafting high-performance agent configurations. Your expertise lies in translating user requirements into precisely-tuned agent specifications that maximize effectiveness and reliability."
+    },
+    {
+      "id": "plugins/plugin-dev/agents/agent-creator.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/plugin-dev/agents/agent-creator.md",
+      "title": "agent-creator",
+      "summary": "System-level instruction source detected in plugins/plugin-dev/agents/agent-creator.md.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "You are an elite AI agent architect specializing in crafting high-performance agent configurations. Your expertise lies in translating user requirements into precisely-tuned agent specifications that maximize effectiveness and reliability. | **Important Context**: You may have access to project-specific instructions from CLAUDE.md files and other context that may include coding standards, project "
+    },
+    {
+      "id": "plugins/plugin-dev/agents/agent-creator.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/plugin-dev/agents/agent-creator.md",
+      "title": "agent-creator",
+      "summary": "Tool contract or integration guidance detected in plugins/plugin-dev/agents/agent-creator.md.",
+      "signals": [
+        "frontmatter:tools",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: [\"Write\", \"Read\"] | tools: [\"Tool1\", \"Tool2\"] # Optional | - **Tools:** [list or \"all tools\"]"
+    },
+    {
+      "id": "plugins/plugin-dev/agents/plugin-validator.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/plugin-dev/agents/plugin-validator.md",
+      "title": "plugin-validator",
+      "summary": "Prompt-like agent definition in plugins/plugin-dev/agents/plugin-validator.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are an expert plugin validator specializing in comprehensive validation of Claude Code plugin structure, configuration, and components."
+    },
+    {
+      "id": "plugins/plugin-dev/agents/plugin-validator.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/plugin-dev/agents/plugin-validator.md",
+      "title": "plugin-validator",
+      "summary": "System-level instruction source detected in plugins/plugin-dev/agents/plugin-validator.md.",
+      "signals": [
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are an expert plugin validator specializing in comprehensive validation of Claude Code plugin structure, configuration, and components. | - System prompt exists and is substantial (>20 chars)"
+    },
+    {
+      "id": "plugins/plugin-dev/agents/plugin-validator.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/plugin-dev/agents/plugin-validator.md",
+      "title": "plugin-validator",
+      "summary": "Tool contract or integration guidance detected in plugins/plugin-dev/agents/plugin-validator.md.",
+      "signals": [
+        "frontmatter:tools",
+        "text:mcpservers",
+        "text:tools:"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "tools: [\"Read\", \"Grep\", \"Glob\", \"Bash\"] | - `mcpServers`: Valid server configurations | 8. **Validate MCP Configuration** (if `.mcp.json` or `mcpServers` in manifest):"
+    },
+    {
+      "id": "plugins/plugin-dev/agents/skill-reviewer.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/plugin-dev/agents/skill-reviewer.md",
+      "title": "skill-reviewer",
+      "summary": "Prompt-like agent definition in plugins/plugin-dev/agents/skill-reviewer.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are an expert skill architect specializing in reviewing and improving Claude Code skills for maximum effectiveness and reliability."
+    },
+    {
+      "id": "plugins/plugin-dev/agents/skill-reviewer.md::persona_definition",
+      "kind": "persona_definition",
+      "path": "plugins/plugin-dev/agents/skill-reviewer.md",
+      "title": "skill-reviewer",
+      "summary": "Persona/voice layer detected in plugins/plugin-dev/agents/skill-reviewer.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: [\"Read\", \"Grep\", \"Glob\"] | You are an expert skill architect specializing in reviewing and improving Claude Code skills for maximum effectiveness and reliability."
+    },
+    {
+      "id": "plugins/plugin-dev/agents/skill-reviewer.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/plugin-dev/agents/skill-reviewer.md",
+      "title": "skill-reviewer",
+      "summary": "Tool contract or integration guidance detected in plugins/plugin-dev/agents/skill-reviewer.md.",
+      "signals": [
+        "frontmatter:tools",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: [\"Read\", \"Grep\", \"Glob\"]"
+    },
+    {
+      "id": "plugins/plugin-dev/commands/create-plugin.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/plugin-dev/commands/create-plugin.md",
+      "title": "create-plugin.md",
+      "summary": "System-level instruction source detected in plugins/plugin-dev/commands/create-plugin.md.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- Write instructions FOR Claude (not TO user) | - Create agent markdown file with frontmatter and system prompt | 4. Provide setup instructions"
+    },
+    {
+      "id": "plugins/plugin-dev/commands/create-plugin.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "plugins/plugin-dev/commands/create-plugin.md",
+      "title": "create-plugin.md",
+      "summary": "Workflow or handoff instructions detected in plugins/plugin-dev/commands/create-plugin.md.",
+      "signals": [
+        "text:activate",
+        "text:phase 1",
+        "text:phase 2"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "## Phase 1: Discovery | ## Phase 2: Component Planning | - [ ] Hooks activate on events (if applicable)"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/SKILL.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/plugin-dev/skills/agent-development/SKILL.md",
+      "title": "Agent Development",
+      "summary": "Prompt-like agent definition in plugins/plugin-dev/skills/agent-development/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "You are [agent role description]... | You are [role] specializing in [domain]. | - Write in second person (\"You are...\", \"You will...\")"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/SKILL.md::persona_definition",
+      "kind": "persona_definition",
+      "path": "plugins/plugin-dev/skills/agent-development/SKILL.md",
+      "title": "Agent Development",
+      "summary": "Persona/voice layer detected in plugins/plugin-dev/skills/agent-development/SKILL.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: [\"Read\", \"Write\", \"Grep\"] | You are [agent role description]... | [Step-by-step workflow]"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "plugins/plugin-dev/skills/agent-development/SKILL.md",
+      "title": "Agent Development",
+      "summary": "Skill definition or skill-like instruction source in plugins/plugin-dev/skills/agent-development/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "tools: [\"Read\", \"Write\", \"Grep\"] | You are [agent role description]... | [Step-by-step workflow]"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/SKILL.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/plugin-dev/skills/agent-development/SKILL.md",
+      "title": "Agent Development",
+      "summary": "System-level instruction source detected in plugins/plugin-dev/skills/agent-development/SKILL.md.",
+      "signals": [
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "description: This skill should be used when the user asks to \"create an agent\", \"add an agent\", \"write a subagent\", \"agent frontmatter\", \"when to use description\", \"agent examples\", \"agent tools\", \"agent colors\", \"autonomous agent\", or needs guidance on agent structure, system prompts, triggering conditions, or agent development best practices for Claude Code plugins. | Agents are autonomous subpr"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/examples/agent-creation-prompt.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/plugin-dev/skills/agent-development/examples/agent-creation-prompt.md",
+      "title": "agent-creation-prompt.md",
+      "summary": "Prompt-like agent definition in plugins/plugin-dev/skills/agent-development/examples/agent-creation-prompt.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"systemPrompt\": \"You are... **Your Core Responsibilities:**...\" | \"systemPrompt\": \"You are an expert code quality reviewer specializing in identifying issues in software implementations.\\n\\n**Your Core Responsibilities:**\\n1. Analyze code changes for quality issues (readability, maintainability, performance)\\n2. Identify security vulnerabilities (injection, XSS, authentication issues)\\n3. Check ad"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/examples/agent-creation-prompt.md::persona_definition",
+      "kind": "persona_definition",
+      "path": "plugins/plugin-dev/skills/agent-development/examples/agent-creation-prompt.md",
+      "title": "agent-creation-prompt.md",
+      "summary": "Persona/voice layer detected in plugins/plugin-dev/skills/agent-development/examples/agent-creation-prompt.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"systemPrompt\": \"You are... **Your Core Responsibilities:**...\" | tools: [\"Read\", \"Write\", \"Grep\"] # Optional: restrict tools | \"systemPrompt\": \"You are an expert code quality reviewer specializing in identifying issues in software implementations.\\n\\n**Your Core Responsibilities:**\\n1. Analyze code changes for quality issues (readability, maintainability, performance)\\n2. Identify security vulner"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/examples/agent-creation-prompt.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/plugin-dev/skills/agent-development/examples/agent-creation-prompt.md",
+      "title": "agent-creation-prompt.md",
+      "summary": "System-level instruction source detected in plugins/plugin-dev/skills/agent-development/examples/agent-creation-prompt.md.",
+      "signals": [
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "Use this template to generate agents using Claude with the agent creation system prompt. | \"systemPrompt\": \"You are... **Your Core Responsibilities:**...\" | \"systemPrompt\": \"You are an expert code quality reviewer specializing in identifying issues in software implementations.\\n\\n**Your Core Responsibilities:**\\n1. Analyze code changes for quality issues (readability, maintainability, performance)"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/examples/complete-agent-examples.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/plugin-dev/skills/agent-development/examples/complete-agent-examples.md",
+      "title": "complete-agent-examples.md",
+      "summary": "Prompt-like agent definition in plugins/plugin-dev/skills/agent-development/examples/complete-agent-examples.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are an expert code quality reviewer specializing in identifying issues, security vulnerabilities, and opportunities for improvement in software implementations. | You are an expert test engineer specializing in creating comprehensive, maintainable unit tests that ensure code correctness and reliability. | You are an expert technical writer specializing in creating clear, comprehensive document"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/examples/complete-agent-examples.md::persona_definition",
+      "kind": "persona_definition",
+      "path": "plugins/plugin-dev/skills/agent-development/examples/complete-agent-examples.md",
+      "title": "complete-agent-examples.md",
+      "summary": "Persona/voice layer detected in plugins/plugin-dev/skills/agent-development/examples/complete-agent-examples.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: [\"Read\", \"Grep\", \"Glob\"] | You are an expert code quality reviewer specializing in identifying issues, security vulnerabilities, and opportunities for improvement in software implementations. | tools: [\"Read\", \"Write\", \"Grep\", \"Bash\"]"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/references/agent-creation-system-prompt.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/plugin-dev/skills/agent-development/references/agent-creation-system-prompt.md",
+      "title": "agent-creation-system-prompt.md",
+      "summary": "Prompt-like agent definition in plugins/plugin-dev/skills/agent-development/references/agent-creation-system-prompt.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are an elite AI agent architect specializing in crafting high-performance agent configurations. Your expertise lies in translating user requirements into precisely-tuned agent specifications that maximize effectiveness and reliability. | - NOTE: Ensure that in the examples, you are making the assistant use the Agent tool and not simply respond directly to the task. | \"systemPrompt\": \"The compl"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/references/agent-creation-system-prompt.md::persona_definition",
+      "kind": "persona_definition",
+      "path": "plugins/plugin-dev/skills/agent-development/references/agent-creation-system-prompt.md",
+      "title": "agent-creation-system-prompt.md",
+      "summary": "Persona/voice layer detected in plugins/plugin-dev/skills/agent-development/references/agent-creation-system-prompt.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are an elite AI agent architect specializing in crafting high-performance agent configurations. Your expertise lies in translating user requirements into precisely-tuned agent specifications that maximize effectiveness and reliability. | - Efficient workflow patterns | - NOTE: Ensure that in the examples, you are making the assistant use the Agent tool and not simply respond directly to the ta"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/references/agent-creation-system-prompt.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/plugin-dev/skills/agent-development/references/agent-creation-system-prompt.md",
+      "title": "agent-creation-system-prompt.md",
+      "summary": "System-level instruction source detected in plugins/plugin-dev/skills/agent-development/references/agent-creation-system-prompt.md.",
+      "signals": [
+        "path:system",
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "# Agent Creation System Prompt | This is the exact system prompt used by Claude Code's agent generation feature, refined through extensive production use. | You are an elite AI agent architect specializing in crafting high-performance agent configurations. Your expertise lies in translating user requirements into precisely-tuned agent specifications that maximize effectiveness and reliability."
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md",
+      "title": "system-prompt-design.md",
+      "summary": "Prompt-like agent definition in plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are [specific role] specializing in [specific domain]. | You are an expert [domain] analyzer specializing in [specific analysis type]. | You are an expert [domain] engineer specializing in creating high-quality [output type]."
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md::persona_definition",
+      "kind": "persona_definition",
+      "path": "plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md",
+      "title": "system-prompt-design.md",
+      "summary": "Persona/voice layer detected in plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are [specific role] specializing in [specific domain]. | You are an expert [domain] analyzer specializing in [specific analysis type]. | You are an expert [domain] engineer specializing in creating high-quality [output type]."
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md",
+      "title": "system-prompt-design.md",
+      "summary": "System-level instruction source detected in plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md.",
+      "signals": [
+        "path:system",
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "# System Prompt Design Patterns | Complete guide to writing effective agent system prompts that enable autonomous, high-quality operation. | Every agent system prompt should follow this proven structure:"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md",
+      "title": "system-prompt-design.md",
+      "summary": "Workflow or handoff instructions detected in plugins/plugin-dev/skills/agent-development/references/system-prompt-design.md.",
+      "signals": [
+        "text:phase 1",
+        "text:phase 2"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- Phase 1: [What] using [tools] | - Phase 2: [What] using [tools]"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/agent-development/references/triggering-examples.md::persona_definition",
+      "kind": "persona_definition",
+      "path": "plugins/plugin-dev/skills/agent-development/references/triggering-examples.md",
+      "title": "triggering-examples.md",
+      "summary": "Persona/voice layer detected in plugins/plugin-dev/skills/agent-development/references/triggering-examples.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "plugins/plugin-dev/skills/command-development/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "plugins/plugin-dev/skills/command-development/SKILL.md",
+      "title": "Command Development",
+      "summary": "Skill definition or skill-like instruction source in plugins/plugin-dev/skills/command-development/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "Slash commands are frequently-used prompts defined as Markdown files that Claude executes during interactive sessions. Understanding command structure, frontmatter options, and dynamic features enables creating powerful, reusable workflows. | - **Consistency**: Standardize common workflows | - Use for: Team workflows, project-specific tasks"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/command-development/SKILL.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "plugins/plugin-dev/skills/command-development/SKILL.md",
+      "title": "Command Development",
+      "summary": "Workflow or handoff instructions detected in plugins/plugin-dev/skills/command-development/SKILL.md.",
+      "signals": [
+        "text:phase 1",
+        "text:phase 2"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "Phase 1 - Static Analysis: | Phase 2 - Deep Review:"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/command-development/examples/plugin-commands.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "plugins/plugin-dev/skills/command-development/examples/plugin-commands.md",
+      "title": "plugin-commands.md",
+      "summary": "Workflow or handoff instructions detected in plugins/plugin-dev/skills/command-development/examples/plugin-commands.md.",
+      "signals": [
+        "text:phase 1",
+        "text:phase 2"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "**Phase 1: Automated Analysis** | **Phase 2: Deep Review (Agent)**"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/command-development/references/interactive-commands.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "plugins/plugin-dev/skills/command-development/references/interactive-commands.md",
+      "title": "interactive-commands.md",
+      "summary": "Workflow or handoff instructions detected in plugins/plugin-dev/skills/command-development/references/interactive-commands.md.",
+      "signals": [
+        "text:phase 1",
+        "text:phase 2"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "## Phase 1: Core Settings | ## Phase 2: Review Core Settings | Use AskUserQuestion for settings based on Phase 1 answers."
+    },
+    {
+      "id": "plugins/plugin-dev/skills/hook-development/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "plugins/plugin-dev/skills/hook-development/SKILL.md",
+      "title": "Hook Development",
+      "summary": "Skill definition or skill-like instruction source in plugins/plugin-dev/skills/hook-development/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "Hooks are event-driven automation scripts that execute in response to Claude Code events. Use hooks to validate operations, enforce policies, add context, and integrate external tools into workflows. | - Automate workflows across the development lifecycle | **Multiple tools:**"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/mcp-integration/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "plugins/plugin-dev/skills/mcp-integration/SKILL.md",
+      "title": "MCP Integration",
+      "summary": "Skill definition or skill-like instruction source in plugins/plugin-dev/skills/mcp-integration/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "allowed-tools: [ | allowed-tools: [\"mcp__plugin_asana_asana__*\"] | allowed-tools: [\"mcp__plugin_name_server__create_item\"]"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/mcp-integration/SKILL.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/plugin-dev/skills/mcp-integration/SKILL.md",
+      "title": "MCP Integration",
+      "summary": "Tool contract or integration guidance detected in plugins/plugin-dev/skills/mcp-integration/SKILL.md.",
+      "signals": [
+        "path:integration",
+        "path:mcp",
+        "text:mcpservers",
+        "text:tools:"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "Add `mcpServers` field to plugin.json: | \"mcpServers\": { | allowed-tools: ["
+    },
+    {
+      "id": "plugins/plugin-dev/skills/mcp-integration/examples/http-server.json::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/plugin-dev/skills/mcp-integration/examples/http-server.json",
+      "title": "http-server.json",
+      "summary": "Tool contract or integration guidance detected in plugins/plugin-dev/skills/mcp-integration/examples/http-server.json.",
+      "signals": [
+        "path:integration",
+        "path:mcp"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "plugins/plugin-dev/skills/mcp-integration/examples/sse-server.json::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/plugin-dev/skills/mcp-integration/examples/sse-server.json",
+      "title": "sse-server.json",
+      "summary": "Tool contract or integration guidance detected in plugins/plugin-dev/skills/mcp-integration/examples/sse-server.json.",
+      "signals": [
+        "path:integration",
+        "path:mcp"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "plugins/plugin-dev/skills/mcp-integration/examples/stdio-server.json::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/plugin-dev/skills/mcp-integration/examples/stdio-server.json",
+      "title": "stdio-server.json",
+      "summary": "Tool contract or integration guidance detected in plugins/plugin-dev/skills/mcp-integration/examples/stdio-server.json.",
+      "signals": [
+        "path:integration",
+        "path:mcp"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "plugins/plugin-dev/skills/mcp-integration/references/authentication.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/plugin-dev/skills/mcp-integration/references/authentication.md",
+      "title": "authentication.md",
+      "summary": "Tool contract or integration guidance detected in plugins/plugin-dev/skills/mcp-integration/references/authentication.md.",
+      "signals": [
+        "path:integration",
+        "path:mcp"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "plugins/plugin-dev/skills/mcp-integration/references/server-types.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/plugin-dev/skills/mcp-integration/references/server-types.md",
+      "title": "server-types.md",
+      "summary": "Tool contract or integration guidance detected in plugins/plugin-dev/skills/mcp-integration/references/server-types.md.",
+      "signals": [
+        "path:integration",
+        "path:mcp"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "plugins/plugin-dev/skills/mcp-integration/references/tool-usage.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/plugin-dev/skills/mcp-integration/references/tool-usage.md",
+      "title": "tool-usage.md",
+      "summary": "Tool contract or integration guidance detected in plugins/plugin-dev/skills/mcp-integration/references/tool-usage.md.",
+      "signals": [
+        "path:integration",
+        "path:mcp",
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "allowed-tools: [ | allowed-tools: [ | allowed-tools: [\"mcp__plugin_asana_asana__*\"]"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/plugin-settings/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "plugins/plugin-dev/skills/plugin-settings/SKILL.md",
+      "title": "Plugin Settings",
+      "summary": "Skill definition or skill-like instruction source in plugins/plugin-dev/skills/plugin-settings/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "allowed-tools: [\"Read\", \"Bash\"] | ## Implementation Workflow"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/plugin-settings/examples/create-settings-command.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "plugins/plugin-dev/skills/plugin-settings/examples/create-settings-command.md",
+      "title": "create-settings-command.md",
+      "summary": "Skill definition or skill-like instruction source in plugins/plugin-dev/skills/plugin-settings/examples/create-settings-command.md.",
+      "signals": [
+        "frontmatter:description",
+        "path:skills/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "allowed-tools: [\"Write\", \"AskUserQuestion\"]"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/plugin-structure/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "plugins/plugin-dev/skills/plugin-structure/SKILL.md",
+      "title": "Plugin Structure",
+      "summary": "Skill definition or skill-like instruction source in plugins/plugin-dev/skills/plugin-structure/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/",
+        "text:use this skill",
+        "text:when to use this skill"
+      ],
+      "confidence": 0.93,
+      "source_snippet": "description: When to use this skill"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/plugin-structure/references/manifest-reference.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "plugins/plugin-dev/skills/plugin-structure/references/manifest-reference.md",
+      "title": "manifest-reference.md",
+      "summary": "System-level instruction source detected in plugins/plugin-dev/skills/plugin-structure/references/manifest-reference.md.",
+      "signals": [
+        "text:instructions",
+        "text:must follow"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- Installation instructions | All paths in component fields must follow these rules:"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/skill-development/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "plugins/plugin-dev/skills/skill-development/SKILL.md",
+      "title": "Skill Development",
+      "summary": "Skill definition or skill-like instruction source in plugins/plugin-dev/skills/skill-development/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/",
+        "text:use this skill"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "**Metadata Quality:** The `name` and `description` in YAML frontmatter determine when Claude will use the skill. Be specific about what the skill does and when to use it. Use the third-person (e.g. \"This skill should be used when...\" instead of \"Use this skill when...\"). | description: Use this skill when working with hooks. # Wrong person, vague | description: Use this skill when you want to crea"
+    },
+    {
+      "id": "plugins/plugin-dev/skills/skill-development/references/skill-creator-original.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "plugins/plugin-dev/skills/skill-development/references/skill-creator-original.md",
+      "title": "skill-creator",
+      "summary": "Skill definition or skill-like instruction source in plugins/plugin-dev/skills/skill-development/references/skill-creator-original.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skills/",
+        "text:use this skill"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "**Metadata Quality:** The `name` and `description` in YAML frontmatter determine when Claude will use the skill. Be specific about what the skill does and when to use it. Use the third-person (e.g. \"This skill should be used when...\" instead of \"Use this skill when...\")."
+    },
+    {
+      "id": "plugins/pr-review-toolkit/agents/code-reviewer.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/pr-review-toolkit/agents/code-reviewer.md",
+      "title": "code-reviewer",
+      "summary": "Prompt-like agent definition in plugins/pr-review-toolkit/agents/code-reviewer.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are an expert code reviewer specializing in modern software development across multiple languages and frameworks. Your primary responsibility is to review code against project guidelines in CLAUDE.md with high precision to minimize false positives."
+    },
+    {
+      "id": "plugins/pr-review-toolkit/agents/code-simplifier.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/pr-review-toolkit/agents/code-simplifier.md",
+      "title": "code-simplifier",
+      "summary": "Prompt-like agent definition in plugins/pr-review-toolkit/agents/code-simplifier.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are an expert code simplification specialist focused on enhancing code clarity, consistency, and maintainability while preserving exact functionality. Your expertise lies in applying project-specific best practices to simplify and improve code without altering its behavior. You prioritize readable, explicit code over overly compact solutions. This is a balance that you have mastered as a resul"
+    },
+    {
+      "id": "plugins/pr-review-toolkit/agents/comment-analyzer.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/pr-review-toolkit/agents/comment-analyzer.md",
+      "title": "comment-analyzer",
+      "summary": "Prompt-like agent definition in plugins/pr-review-toolkit/agents/comment-analyzer.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are a meticulous code comment analyzer with deep expertise in technical documentation and long-term code maintainability. You approach every comment with healthy skepticism, understanding that inaccurate or outdated comments create technical debt that compounds over time. | Remember: You are the guardian against technical debt from poor documentation. Be thorough, be skeptical, and always prio"
+    },
+    {
+      "id": "plugins/pr-review-toolkit/agents/pr-test-analyzer.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/pr-review-toolkit/agents/pr-test-analyzer.md",
+      "title": "pr-test-analyzer",
+      "summary": "Prompt-like agent definition in plugins/pr-review-toolkit/agents/pr-test-analyzer.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are an expert test coverage analyst specializing in pull request review. Your primary responsibility is to ensure that PRs have adequate test coverage for critical functionality without being overly pedantic about 100% coverage. | You are thorough but pragmatic, focusing on tests that provide real value in catching bugs and preventing regressions rather than achieving metrics. You understand t"
+    },
+    {
+      "id": "plugins/pr-review-toolkit/agents/silent-failure-hunter.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/pr-review-toolkit/agents/silent-failure-hunter.md",
+      "title": "silent-failure-hunter",
+      "summary": "Prompt-like agent definition in plugins/pr-review-toolkit/agents/silent-failure-hunter.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "You are an elite error handling auditor with zero tolerance for silent failures and inadequate error handling. Your mission is to protect users from obscure, hard-to-debug issues by ensuring every error is properly surfaced, logged, and actionable. | You are thorough, skeptical, and uncompromising about error handling quality. You:"
+    },
+    {
+      "id": "plugins/pr-review-toolkit/agents/type-design-analyzer.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "plugins/pr-review-toolkit/agents/type-design-analyzer.md",
+      "title": "type-design-analyzer",
+      "summary": "Prompt-like agent definition in plugins/pr-review-toolkit/agents/type-design-analyzer.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:core mission",
+        "text:you are"
+      ],
+      "confidence": 0.93,
+      "source_snippet": "You are a type design expert with extensive experience in large-scale software architecture. Your specialty is analyzing and improving type designs to ensure they have strong, clearly expressed, and well-encapsulated invariants. | **Your Core Mission:**"
+    },
+    {
+      "id": "plugins/pr-review-toolkit/commands/review-pr.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "plugins/pr-review-toolkit/commands/review-pr.md",
+      "title": "review-pr.md",
+      "summary": "Tool contract or integration guidance detected in plugins/pr-review-toolkit/commands/review-pr.md.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "allowed-tools: [\"Bash\", \"Glob\", \"Grep\", \"Read\", \"Task\"]"
+    },
+    {
+      "id": "plugins/ralph-wiggum/README.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "plugins/ralph-wiggum/README.md",
+      "title": "README.md",
+      "summary": "Workflow or handoff instructions detected in plugins/ralph-wiggum/README.md.",
+      "signals": [
+        "text:phase 1",
+        "text:phase 2"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "Phase 1: User authentication (JWT, tests) | Phase 2: Product catalog (list/search, tests)"
+    }
+  ]
+}

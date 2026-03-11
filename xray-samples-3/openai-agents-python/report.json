@@ -1,0 +1,4202 @@
+{
+  "repo": {
+    "name": "openai-agents-python",
+    "target": "https://github.com/openai/openai-agents-python",
+    "source_type": "github",
+    "commit": "a8be7c0056a268399b5f4641d04b15e25373bfe6",
+    "root_path": "C:\\Users\\mur4t\\AppData\\Local\\Temp\\prompt_xray_cache\\openai-agents-python-a1e2c5f2d5"
+  },
+  "summary": {
+    "repo_archetype": "mixed",
+    "orchestration_model": "runtime-implemented",
+    "memory_model": "implemented-runtime",
+    "xray_call": "Real runtime with visible prompt layers.",
+    "verdict": "This repo mixes real implementation with prompt/config behavior surfaces; it is not prompt-only."
+  },
+  "counts": {
+    "candidate_files": 512,
+    "artifacts": 302
+  },
+  "tooling_surfaces": [
+    "Claude Code"
+  ],
+  "behavior_sources": [
+    {
+      "path": ".agents/skills/implementation-strategy/SKILL.md",
+      "score": 10.03,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "skill_definition"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:skill",
+        "path:skill.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/code-change-verification/SKILL.md",
+      "score": 9.62,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "skill_definition"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:skill",
+        "path:skill.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/final-release-review/SKILL.md",
+      "score": 9.62,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "skill_definition"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:skill",
+        "path:skill.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/openai-knowledge/SKILL.md",
+      "score": 9.62,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "skill_definition"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:skill",
+        "path:skill.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/pr-draft-summary/SKILL.md",
+      "score": 9.62,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "skill_definition"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:skill",
+        "path:skill.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/test-coverage-improver/SKILL.md",
+      "score": 9.62,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "skill_definition"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:skill",
+        "path:skill.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/docs-sync/SKILL.md",
+      "score": 9.22,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "skill_definition"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:skill",
+        "path:skill.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/examples-auto-run/SKILL.md",
+      "score": 9.22,
+      "kinds": [
+        "agent_prompt",
+        "persona_definition",
+        "skill_definition"
+      ],
+      "reasons": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:skill",
+        "path:skill.md"
+      ]
+    },
+    {
+      "path": "docs/running_agents.md",
+      "score": 7.84,
+      "kinds": [
+        "agent_prompt",
+        "memory_pattern",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:agents.md",
+        "text:instructions",
+        "text:remember",
+        "text:rollback",
+        "text:system prompt",
+        "text:you are"
+      ]
+    },
+    {
+      "path": "src/agents/agent.py",
+      "score": 7.59,
+      "kinds": [
+        "agent_prompt",
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agent",
+        "path:agents/",
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ]
+    }
+  ],
+  "missing_runtime_pieces": [],
+  "real_vs_packaging": {
+    "real_implementation": [
+      "Runtime-oriented files were detected (5 shown): examples/customer_service/main.py, examples/financial_research_agent/main.py, examples/mcp/filesystem_example/main.py, examples/mcp/get_all_mcp_tools_example/main.py, examples/mcp/git_example/main.py",
+      "The repo contains real packaging/integration logic for multiple AI tool surfaces."
+    ],
+    "prompt_config_structure": [
+      "Behavior is primarily defined through prompt/rule assets rather than executable runtime code.",
+      "Workflow, handoff, and memory behavior is largely expressed as instructions in docs/prompts.",
+      "Behavior is adapted across tool ecosystems via repo-specific prompt packaging."
+    ],
+    "presentation_marketing_layer": [
+      "README-level framing is part of the repo's perceived product story."
+    ]
+  },
+  "artifacts": [
+    {
+      "id": ".agents/skills/code-change-verification/SKILL.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".agents/skills/code-change-verification/SKILL.md",
+      "title": "code-change-verification",
+      "summary": "Prompt-like agent definition in .agents/skills/code-change-verification/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "## Manual workflow"
+    },
+    {
+      "id": ".agents/skills/code-change-verification/SKILL.md::persona_definition",
+      "kind": "persona_definition",
+      "path": ".agents/skills/code-change-verification/SKILL.md",
+      "title": "code-change-verification",
+      "summary": "Persona/voice layer detected in .agents/skills/code-change-verification/SKILL.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "## Manual workflow"
+    },
+    {
+      "id": ".agents/skills/code-change-verification/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": ".agents/skills/code-change-verification/SKILL.md",
+      "title": "code-change-verification",
+      "summary": "Skill definition or skill-like instruction source in .agents/skills/code-change-verification/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/",
+        "text:use this skill"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "Ensure work is only marked complete after formatting, linting, type checking, and tests pass. Use this skill when changes affect runtime code, tests, or build/test configuration. You can skip it for docs-only or repository metadata unless a user asks for the full stack."
+    },
+    {
+      "id": ".agents/skills/docs-sync/SKILL.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".agents/skills/docs-sync/SKILL.md",
+      "title": "docs-sync",
+      "summary": "Prompt-like agent definition in .agents/skills/docs-sync/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "## Workflow"
+    },
+    {
+      "id": ".agents/skills/docs-sync/SKILL.md::persona_definition",
+      "kind": "persona_definition",
+      "path": ".agents/skills/docs-sync/SKILL.md",
+      "title": "docs-sync",
+      "summary": "Persona/voice layer detected in .agents/skills/docs-sync/SKILL.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "## Workflow"
+    },
+    {
+      "id": ".agents/skills/docs-sync/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": ".agents/skills/docs-sync/SKILL.md",
+      "title": "docs-sync",
+      "summary": "Skill definition or skill-like instruction source in .agents/skills/docs-sync/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "## Workflow"
+    },
+    {
+      "id": ".agents/skills/docs-sync/references/doc-coverage-checklist.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".agents/skills/docs-sync/references/doc-coverage-checklist.md",
+      "title": "doc-coverage-checklist.md",
+      "summary": "Prompt-like agent definition in .agents/skills/docs-sync/references/doc-coverage-checklist.md.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": ".agents/skills/docs-sync/references/doc-coverage-checklist.md::persona_definition",
+      "kind": "persona_definition",
+      "path": ".agents/skills/docs-sync/references/doc-coverage-checklist.md",
+      "title": "doc-coverage-checklist.md",
+      "summary": "Persona/voice layer detected in .agents/skills/docs-sync/references/doc-coverage-checklist.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": ".agents/skills/examples-auto-run/SKILL.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".agents/skills/examples-auto-run/SKILL.md",
+      "title": "examples-auto-run",
+      "summary": "Prompt-like agent definition in .agents/skills/examples-auto-run/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": ""
+    },
+    {
+      "id": ".agents/skills/examples-auto-run/SKILL.md::persona_definition",
+      "kind": "persona_definition",
+      "path": ".agents/skills/examples-auto-run/SKILL.md",
+      "title": "examples-auto-run",
+      "summary": "Persona/voice layer detected in .agents/skills/examples-auto-run/SKILL.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": ".agents/skills/examples-auto-run/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": ".agents/skills/examples-auto-run/SKILL.md",
+      "title": "examples-auto-run",
+      "summary": "Skill definition or skill-like instruction source in .agents/skills/examples-auto-run/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": ""
+    },
+    {
+      "id": ".agents/skills/final-release-review/SKILL.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".agents/skills/final-release-review/SKILL.md",
+      "title": "final-release-review",
+      "summary": "Prompt-like agent definition in .agents/skills/final-release-review/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "## Workflow"
+    },
+    {
+      "id": ".agents/skills/final-release-review/SKILL.md::persona_definition",
+      "kind": "persona_definition",
+      "path": ".agents/skills/final-release-review/SKILL.md",
+      "title": "final-release-review",
+      "summary": "Persona/voice layer detected in .agents/skills/final-release-review/SKILL.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "## Workflow"
+    },
+    {
+      "id": ".agents/skills/final-release-review/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": ".agents/skills/final-release-review/SKILL.md",
+      "title": "final-release-review",
+      "summary": "Skill definition or skill-like instruction source in .agents/skills/final-release-review/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/",
+        "text:use this skill"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "Use this skill when validating the latest release candidate commit (default tip of `origin/main`) for release. It guides you to fetch remote tags, pick the previous release tag, and thoroughly inspect the `BASE_TAG...TARGET` diff for breaking changes, introduced bugs/regressions, improvement opportunities, and release risks."
+    },
+    {
+      "id": ".agents/skills/final-release-review/references/review-checklist.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".agents/skills/final-release-review/references/review-checklist.md",
+      "title": "review-checklist.md",
+      "summary": "Prompt-like agent definition in .agents/skills/final-release-review/references/review-checklist.md.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": ".agents/skills/final-release-review/references/review-checklist.md::persona_definition",
+      "kind": "persona_definition",
+      "path": ".agents/skills/final-release-review/references/review-checklist.md",
+      "title": "review-checklist.md",
+      "summary": "Persona/voice layer detected in .agents/skills/final-release-review/references/review-checklist.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": ".agents/skills/implementation-strategy/SKILL.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".agents/skills/implementation-strategy/SKILL.md",
+      "title": "implementation-strategy",
+      "summary": "Prompt-like agent definition in .agents/skills/implementation-strategy/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "1. Identify the surface you are changing: released public API, unreleased branch-local API, internal helper, persisted schema, wire protocol, CLI/config/env surface, or docs/examples only."
+    },
+    {
+      "id": ".agents/skills/implementation-strategy/SKILL.md::persona_definition",
+      "kind": "persona_definition",
+      "path": ".agents/skills/implementation-strategy/SKILL.md",
+      "title": "implementation-strategy",
+      "summary": "Persona/voice layer detected in .agents/skills/implementation-strategy/SKILL.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "1. Identify the surface you are changing: released public API, unreleased branch-local API, internal helper, persisted schema, wire protocol, CLI/config/env surface, or docs/examples only."
+    },
+    {
+      "id": ".agents/skills/implementation-strategy/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": ".agents/skills/implementation-strategy/SKILL.md",
+      "title": "implementation-strategy",
+      "summary": "Skill definition or skill-like instruction source in .agents/skills/implementation-strategy/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/",
+        "text:use this skill"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "Use this skill before editing code when the task changes runtime behavior or anything that might look like a compatibility concern. The goal is to keep implementations simple while protecting real released contracts."
+    },
+    {
+      "id": ".agents/skills/openai-knowledge/SKILL.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".agents/skills/openai-knowledge/SKILL.md",
+      "title": "openai-knowledge",
+      "summary": "Prompt-like agent definition in .agents/skills/openai-knowledge/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "If you are unsure, run `codex mcp list` and check for `openaiDeveloperDocs`."
+    },
+    {
+      "id": ".agents/skills/openai-knowledge/SKILL.md::persona_definition",
+      "kind": "persona_definition",
+      "path": ".agents/skills/openai-knowledge/SKILL.md",
+      "title": "openai-knowledge",
+      "summary": "Persona/voice layer detected in .agents/skills/openai-knowledge/SKILL.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "## Workflow | If you are unsure, run `codex mcp list` and check for `openaiDeveloperDocs`."
+    },
+    {
+      "id": ".agents/skills/openai-knowledge/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": ".agents/skills/openai-knowledge/SKILL.md",
+      "title": "openai-knowledge",
+      "summary": "Skill definition or skill-like instruction source in .agents/skills/openai-knowledge/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "## Workflow | If you are unsure, run `codex mcp list` and check for `openaiDeveloperDocs`."
+    },
+    {
+      "id": ".agents/skills/pr-draft-summary/SKILL.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".agents/skills/pr-draft-summary/SKILL.md",
+      "title": "pr-draft-summary",
+      "summary": "Prompt-like agent definition in .agents/skills/pr-draft-summary/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "- You are about to send the \"work complete\" response and need the PR block included."
+    },
+    {
+      "id": ".agents/skills/pr-draft-summary/SKILL.md::persona_definition",
+      "kind": "persona_definition",
+      "path": ".agents/skills/pr-draft-summary/SKILL.md",
+      "title": "pr-draft-summary",
+      "summary": "Persona/voice layer detected in .agents/skills/pr-draft-summary/SKILL.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- You are about to send the \"work complete\" response and need the PR block included. | ## Workflow"
+    },
+    {
+      "id": ".agents/skills/pr-draft-summary/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": ".agents/skills/pr-draft-summary/SKILL.md",
+      "title": "pr-draft-summary",
+      "summary": "Skill definition or skill-like instruction source in .agents/skills/pr-draft-summary/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "- You are about to send the \"work complete\" response and need the PR block included. | ## Workflow"
+    },
+    {
+      "id": ".agents/skills/test-coverage-improver/SKILL.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": ".agents/skills/test-coverage-improver/SKILL.md",
+      "title": "test-coverage-improver",
+      "summary": "Prompt-like agent definition in .agents/skills/test-coverage-improver/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "## Workflow Details"
+    },
+    {
+      "id": ".agents/skills/test-coverage-improver/SKILL.md::persona_definition",
+      "kind": "persona_definition",
+      "path": ".agents/skills/test-coverage-improver/SKILL.md",
+      "title": "test-coverage-improver",
+      "summary": "Persona/voice layer detected in .agents/skills/test-coverage-improver/SKILL.md.",
+      "signals": [
+        "path:agent",
+        "path:skill"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "## Workflow Details"
+    },
+    {
+      "id": ".agents/skills/test-coverage-improver/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": ".agents/skills/test-coverage-improver/SKILL.md",
+      "title": "test-coverage-improver",
+      "summary": "Skill definition or skill-like instruction source in .agents/skills/test-coverage-improver/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/",
+        "text:use this skill"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "Use this skill whenever coverage needs assessment or improvement (coverage regressions, failing thresholds, or user requests for stronger tests). It runs the coverage suite, analyzes results, highlights the biggest gaps, and prepares test additions while confirming with the user before changing code."
+    },
+    {
+      "id": "AGENTS.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "AGENTS.md",
+      "title": "AGENTS.md",
+      "summary": "Prompt-like agent definition in AGENTS.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "2. If dependencies changed or you are setting up the repo, run `make sync`."
+    },
+    {
+      "id": "AGENTS.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "AGENTS.md",
+      "title": "AGENTS.md",
+      "summary": "System-level instruction source detected in AGENTS.md.",
+      "signals": [
+        "path:agents.md",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "2. If dependencies changed or you are setting up the repo, run `make sync`."
+    },
+    {
+      "id": "README.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "README.md",
+      "title": "README.md",
+      "summary": "System-level instruction source detected in README.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "1. [**Agents**](https://openai.github.io/openai-agents-python/agents): LLMs configured with instructions, tools, guardrails, and handoffs | agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")"
+    },
+    {
+      "id": "README.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "README.md",
+      "title": "README.md",
+      "summary": "Workflow or handoff instructions detected in README.md.",
+      "signals": [
+        "text:activate",
+        "text:handoff"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "1. [**Agents**](https://openai.github.io/openai-agents-python/agents): LLMs configured with instructions, tools, guardrails, and handoffs | 1. **[Agents as tools](https://openai.github.io/openai-agents-python/tools/#agents-as-tools) / [Handoffs](https://openai.github.io/openai-agents-python/handoffs/)**: Delegating to other agents for specific tasks | source .venv/bin/activate # On Windows: .venv\\"
+    },
+    {
+      "id": "docs/agents.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "docs/agents.md",
+      "title": "agents.md",
+      "summary": "Prompt-like agent definition in docs/agents.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "Use this page when you want to define or customize a single agent. If you are deciding how multiple agents should collaborate, read [Agent orchestration](multi_agent.md). | When you are using OpenAI Responses tool search, named tool choices are more limited: you cannot target bare namespace names or deferred-only tools with `tool_choice`, and `tool_choice=\"tool_search\"` does not target [`ToolSearc"
+    },
+    {
+      "id": "docs/agents.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/agents.md",
+      "title": "agents.md",
+      "summary": "System-level instruction source detected in docs/agents.md.",
+      "signals": [
+        "path:agents.md",
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "Agents are the core building block in your apps. An agent is a large language model (LLM) configured with instructions, tools, and optional runtime behavior such as handoffs, guardrails, and structured outputs. | Use this page when you want to define or customize a single agent. If you are deciding how multiple agents should collaborate, read [Agent orchestration](multi_agent.md). | | `instruction"
+    },
+    {
+      "id": "docs/context.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/context.md",
+      "title": "context.md",
+      "summary": "System-level instruction source detected in docs/context.md.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "instructions=\"You are a helpful agent that can tell the weather of a given city.\", | 1. You can add it to the Agent `instructions`. This is also known as a \"system prompt\" or \"developer message\". System prompts can be static strings, or they can be dynamic functions that receive the context and output a string. This is a common tactic for information that is always useful (for example, the user's "
+    },
+    {
+      "id": "docs/guardrails.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/guardrails.md",
+      "title": "guardrails.md",
+      "summary": "System-level instruction source detected in docs/guardrails.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"Check if the user is asking you to do their math homework.\", | instructions=\"You are a customer support agent. You help customers with their questions.\", | instructions=\"Check if the output includes any math.\","
+    },
+    {
+      "id": "docs/human_in_the_loop.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/human_in_the_loop.md",
+      "title": "human_in_the_loop.md",
+      "summary": "System-level instruction source detected in docs/human_in_the_loop.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"Handle tickets and ask for approval when needed.\", | If you are also using a session, keep passing the same session instance when you resume from `RunState`, or pass another session object that points at the same backing store. The resumed turn is then appended to the same stored conversation history. See [Sessions](sessions/index.md) for the session lifecycle details. | instructions"
+    },
+    {
+      "id": "docs/index.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/index.md",
+      "title": "index.md",
+      "summary": "System-level instruction source detected in docs/index.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- **Agents**, which are LLMs equipped with instructions and tools | agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\") | - If you are deciding between handoffs and manager-style orchestration, read [Agent orchestration](multi_agent.md)."
+    },
+    {
+      "id": "docs/ja/agents.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ja/agents.md",
+      "title": "agents.md",
+      "summary": "System-level instruction source detected in docs/ja/agents.md.",
+      "signals": [
+        "path:agents.md",
+        "text:instructions"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u306f\u3001\u30a2\u30d7\u30ea\u306b\u304a\u3051\u308b\u4e2d\u6838\u7684\u306a\u57fa\u672c\u30b3\u30f3\u30dd\u30fc\u30cd\u30f3\u30c8\u3067\u3059\u3002\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u3068\u306f\u3001instructions\u3001tools\u3001\u305d\u3057\u3066 handoffs\u3001\u30ac\u30fc\u30c9\u30ec\u30fc\u30eb\u3001structured outputs \u306a\u3069\u306e\u4efb\u610f\u306e\u5b9f\u884c\u6642\u52d5\u4f5c\u3067\u69cb\u6210\u3055\u308c\u305f\u5927\u898f\u6a21\u8a00\u8a9e\u30e2\u30c7\u30eb (LLM) \u3067\u3059\u3002 | | `instructions` | \u306f\u3044 | \u30b7\u30b9\u30c6\u30e0\u30d7\u30ed\u30f3\u30d7\u30c8\u3001\u307e\u305f\u306f\u52d5\u7684 instructions \u30b3\u30fc\u30eb\u30d0\u30c3\u30af\u3067\u3059\u3002[Dynamic instructions](#dynamic-instructions)\u3092\u53c2\u7167\u3057\u3066\u304f\u3060\u3055\u3044\u3002 | | instructions=\"Always respond in haiku form\","
+    },
+    {
+      "id": "docs/ja/context.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ja/context.md",
+      "title": "context.md",
+      "summary": "System-level instruction source detected in docs/ja/context.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"You are a helpful agent that can tell the weather of a given city.\", | 1. Agent \u306e `instructions` \u306b\u8ffd\u52a0\u3067\u304d\u307e\u3059\u3002\u3053\u308c\u306f\u300c\u30b7\u30b9\u30c6\u30e0\u30d7\u30ed\u30f3\u30d7\u30c8\u300d\u307e\u305f\u306f\u300c\u958b\u767a\u8005\u30e1\u30c3\u30bb\u30fc\u30b8\u300d\u3068\u3082\u547c\u3070\u308c\u307e\u3059\u3002\u30b7\u30b9\u30c6\u30e0\u30d7\u30ed\u30f3\u30d7\u30c8\u306f\u9759\u7684\u6587\u5b57\u5217\u306b\u3082\u3001\u30b3\u30f3\u30c6\u30ad\u30b9\u30c8\u3092\u53d7\u3051\u53d6\u3063\u3066\u6587\u5b57\u5217\u3092\u8fd4\u3059\u52d5\u7684\u95a2\u6570\u306b\u3082\u3067\u304d\u307e\u3059\u3002\u3053\u308c\u306f\u3001\u5e38\u306b\u6709\u7528\u306a\u60c5\u5831 (\u305f\u3068\u3048\u3070\u30e6\u30fc\u30b6\u30fc\u540d\u3084\u73fe\u5728\u65e5\u4ed8) \u306b\u5bfe\u3059\u308b\u4e00\u822c\u7684\u306a\u624b\u6cd5\u3067\u3059\u3002 | 2. `Runner.run` \u95a2\u6570\u3092\u547c\u3073\u51fa\u3059\u3068\u304d\u306e `input` \u306b\u8ffd\u52a0\u3057\u307e\u3059\u3002\u3053\u308c\u306f `instructions` \u306e\u624b\u6cd5\u306b\u4f3c\u3066\u3044\u307e\u3059\u304c\u3001[chain of command](https://cdn.openai.com/spec/model-spec-2024-05-08.html#follow-t"
+    },
+    {
+      "id": "docs/ja/guardrails.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ja/guardrails.md",
+      "title": "guardrails.md",
+      "summary": "System-level instruction source detected in docs/ja/guardrails.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"Check if the user is asking you to do their math homework.\", | instructions=\"You are a customer support agent. You help customers with their questions.\", | instructions=\"Check if the output includes any math.\","
+    },
+    {
+      "id": "docs/ja/index.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ja/index.md",
+      "title": "index.md",
+      "summary": "System-level instruction source detected in docs/ja/index.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- **\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8**: instructions \u3068 tools \u3092\u5099\u3048\u305f LLM | agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")"
+    },
+    {
+      "id": "docs/ja/mcp.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "docs/ja/mcp.md",
+      "title": "mcp.md",
+      "summary": "Tool contract or integration guidance detected in docs/ja/mcp.md.",
+      "signals": [
+        "path:mcp",
+        "text:mcpservers",
+        "text:tools:"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "| \u30ed\u30fc\u30ab\u30eb\u307e\u305f\u306f\u30ea\u30e2\u30fc\u30c8\u3067\u5b9f\u884c\u3057\u3066\u3044\u308b Streamable HTTP \u30b5\u30fc\u30d0\u30fc\u306b\u63a5\u7d9a\u3059\u308b | [`MCPServerStreamableHttp`][agents.mcp.server.MCPServerStreamableHttp] \u306b\u3088\u308b **Streamable HTTP MCP servers** | | | Server-Sent Events \u3092\u4f7f\u3046 HTTP \u3092\u5b9f\u88c5\u3057\u305f\u30b5\u30fc\u30d0\u30fc\u3068\u901a\u4fe1\u3059\u308b | [`MCPServerSse`][agents.mcp.server.MCPServerSse] \u306b\u3088\u308b **HTTP with SSE MCP servers** | | | \u30ed\u30fc\u30ab\u30eb\u30d7\u30ed\u30bb\u30b9\u3092\u8d77\u52d5\u3057 stdin/stdout \u7d4c\u7531\u3067\u901a\u4fe1\u3059\u308b | [`MCPServerStdio`][agents.mcp.server.MCPServerStdio] \u306b\u3088\u308b **stdio MCP"
+    },
+    {
+      "id": "docs/ja/quickstart.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "docs/ja/quickstart.md",
+      "title": "quickstart.md",
+      "summary": "Workflow or handoff instructions detected in docs/ja/quickstart.md.",
+      "signals": [
+        "text:activate",
+        "text:handoff"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "source .venv/bin/activate | \u8ffd\u52a0\u306e\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u3082\u540c\u3058\u65b9\u6cd5\u3067\u5b9a\u7fa9\u3067\u304d\u307e\u3059\u3002`handoff_description` \u306f\u3001\u3044\u3064\u59d4\u8b72\u3059\u308b\u304b\u306b\u3064\u3044\u3066\u30eb\u30fc\u30c6\u30a3\u30f3\u30b0\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u306b\u8ffd\u52a0\u306e\u30b3\u30f3\u30c6\u30ad\u30b9\u30c8\u3092\u4e0e\u3048\u307e\u3059\u3002 | handoff_description=\"Specialist agent for historical questions\","
+    },
+    {
+      "id": "docs/ja/realtime/quickstart.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ja/realtime/quickstart.md",
+      "title": "quickstart.md",
+      "summary": "System-level instruction source detected in docs/ja/realtime/quickstart.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"You are a helpful voice assistant. Keep responses short and conversational.\","
+    },
+    {
+      "id": "docs/ja/repl.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ja/repl.md",
+      "title": "repl.md",
+      "summary": "System-level instruction source detected in docs/ja/repl.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant.\")"
+    },
+    {
+      "id": "docs/ja/running_agents.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "docs/ja/running_agents.md",
+      "title": "running_agents.md",
+      "summary": "Prompt-like agent definition in docs/ja/running_agents.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")"
+    },
+    {
+      "id": "docs/ja/running_agents.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ja/running_agents.md",
+      "title": "running_agents.md",
+      "summary": "System-level instruction source detected in docs/ja/running_agents.md.",
+      "signals": [
+        "path:agents.md",
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\") | agent = Agent(name=\"Assistant\", instructions=\"Be concise.\") | agent = Agent(name=\"Assistant\", instructions=\"Be concise.\")"
+    },
+    {
+      "id": "docs/ja/streaming.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ja/streaming.md",
+      "title": "streaming.md",
+      "summary": "System-level instruction source detected in docs/ja/streaming.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"You are a helpful assistant.\", | instructions=\"First call the `how_many_jokes` tool, then tell that many jokes.\","
+    },
+    {
+      "id": "docs/ja/tools.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ja/tools.md",
+      "title": "tools.md",
+      "summary": "System-level instruction source detected in docs/ja/tools.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"Load the crm namespace before using CRM tools.\", | instructions=\"Use the mounted skill when helpful.\", | instructions=\"Use tools when helpful.\","
+    },
+    {
+      "id": "docs/ja/tools.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "docs/ja/tools.md",
+      "title": "tools.md",
+      "summary": "Tool contract or integration guidance detected in docs/ja/tools.md.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- Agents as tools: \u5b8c\u5168\u306a\u30cf\u30f3\u30c9\u30aa\u30d5\u306a\u3057\u3067\u3001\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u3092\u547c\u3073\u51fa\u3057\u53ef\u80fd\u306a\u30c4\u30fc\u30eb\u3068\u3057\u3066\u516c\u958b\u3057\u307e\u3059\u3002 | for tool in agent.tools:"
+    },
+    {
+      "id": "docs/ko/agents.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ko/agents.md",
+      "title": "agents.md",
+      "summary": "System-level instruction source detected in docs/ko/agents.md.",
+      "signals": [
+        "path:agents.md",
+        "text:instructions"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\uc5d0\uc774\uc804\ud2b8\ub294 \uc571\uc758 \ud575\uc2ec \uad6c\uc131 \uc694\uc18c\uc785\ub2c8\ub2e4. \uc5d0\uc774\uc804\ud2b8\ub294 instructions, tools, \uadf8\ub9ac\uace0 \ud578\ub4dc\uc624\ud504, \uac00\ub4dc\ub808\uc77c, structured outputs \uac19\uc740 \uc120\ud0dd\uc801 \ub7f0\ud0c0\uc784 \ub3d9\uc791\uc73c\ub85c \uad6c\uc131\ub41c \ub300\uaddc\ubaa8 \uc5b8\uc5b4 \ubaa8\ub378(LLM)\uc785\ub2c8\ub2e4. | | `instructions` | \uc608 | \uc2dc\uc2a4\ud15c \ud504\ub86c\ud504\ud2b8 \ub610\ub294 \ub3d9\uc801 instructions \ucf5c\ubc31. [\ub3d9\uc801 instructions](#dynamic-instructions) \ucc38\uc870 | | instructions=\"Always respond in haiku form\","
+    },
+    {
+      "id": "docs/ko/context.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ko/context.md",
+      "title": "context.md",
+      "summary": "System-level instruction source detected in docs/ko/context.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"You are a helpful agent that can tell the weather of a given city.\", | 1. \uc5d0\uc774\uc804\ud2b8 `instructions`\uc5d0 \ucd94\uac00\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4. \uc774\ub294 \"\uc2dc\uc2a4\ud15c \ud504\ub86c\ud504\ud2b8\" \ub610\ub294 \"\uac1c\ubc1c\uc790 \uba54\uc2dc\uc9c0\"\ub77c\uace0\ub3c4 \ud569\ub2c8\ub2e4. \uc2dc\uc2a4\ud15c \ud504\ub86c\ud504\ud2b8\ub294 \uc815\uc801 \ubb38\uc790\uc5f4\uc77c \uc218\ub3c4 \uc788\uace0, \ucee8\ud14d\uc2a4\ud2b8\ub97c \ubc1b\uc544 \ubb38\uc790\uc5f4\uc744 \ucd9c\ub825\ud558\ub294 \ub3d9\uc801 \ud568\uc218\uc77c \uc218\ub3c4 \uc788\uc2b5\ub2c8\ub2e4. \uc774\ub294 \ud56d\uc0c1 \uc720\uc6a9\ud55c \uc815\ubcf4(\uc608: \uc0ac\uc6a9\uc790 \uc774\ub984 \ub610\ub294 \ud604\uc7ac \ub0a0\uc9dc)\uc5d0 \ub300\ud55c \uc77c\ubc18\uc801\uc778 \uc804\ub7b5\uc785\ub2c8\ub2e4 | 2. `Runner.run` \ud568\uc218\ub97c \ud638\ucd9c\ud560 \ub54c `input`\uc5d0 \ucd94\uac00\ud569\ub2c8\ub2e4. \uc774\ub294 `instructions` \uc804\ub7b5\uacfc \uc720\uc0ac\ud558\uc9c0\ub9cc, [chain of command](https://cdn.openai.com/spec/model-spec-2024-"
+    },
+    {
+      "id": "docs/ko/guardrails.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ko/guardrails.md",
+      "title": "guardrails.md",
+      "summary": "System-level instruction source detected in docs/ko/guardrails.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"Check if the user is asking you to do their math homework.\", | instructions=\"You are a customer support agent. You help customers with their questions.\", | instructions=\"Check if the output includes any math.\","
+    },
+    {
+      "id": "docs/ko/index.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ko/index.md",
+      "title": "index.md",
+      "summary": "System-level instruction source detected in docs/ko/index.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- **\uc5d0\uc774\uc804\ud2b8**: instructions\uc640 tools\ub97c \uac16\ucd98 LLM | agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")"
+    },
+    {
+      "id": "docs/ko/mcp.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "docs/ko/mcp.md",
+      "title": "mcp.md",
+      "summary": "Tool contract or integration guidance detected in docs/ko/mcp.md.",
+      "signals": [
+        "path:mcp",
+        "text:mcpservers",
+        "text:tools:"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "| \ub85c\uceec \ub610\ub294 \uc6d0\uaca9\uc5d0\uc11c \uc2e4\ud589\ud558\ub294 Streamable HTTP \uc11c\ubc84\uc5d0 \uc5f0\uacb0 | [`MCPServerStreamableHttp`][agents.mcp.server.MCPServerStreamableHttp]\ub97c \ud1b5\ud55c **Streamable HTTP MCP \uc11c\ubc84** | | | Server-Sent Events\ub97c \uc0ac\uc6a9\ud558\ub294 HTTP\ub97c \uad6c\ud604\ud55c \uc11c\ubc84\uc640 \ud1b5\uc2e0 | [`MCPServerSse`][agents.mcp.server.MCPServerSse]\ub97c \ud1b5\ud55c **SSE \uae30\ubc18 HTTP MCP \uc11c\ubc84** | | | \ub85c\uceec \ud504\ub85c\uc138\uc2a4\ub97c \uc2e4\ud589\ud558\uace0 stdin/stdout\uc73c\ub85c \ud1b5\uc2e0 | [`MCPServerStdio`][agents.mcp.server.MCPServerStdio]\ub97c \ud1b5\ud55c **stdio MCP \uc11c\ubc84** |"
+    },
+    {
+      "id": "docs/ko/quickstart.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "docs/ko/quickstart.md",
+      "title": "quickstart.md",
+      "summary": "Workflow or handoff instructions detected in docs/ko/quickstart.md.",
+      "signals": [
+        "text:activate",
+        "text:handoff"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "source .venv/bin/activate | \ucd94\uac00 \uc5d0\uc774\uc804\ud2b8\ub3c4 \uac19\uc740 \ubc29\uc2dd\uc73c\ub85c \uc815\uc758\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4. `handoff_description`\uc740 \ub77c\uc6b0\ud305 \uc5d0\uc774\uc804\ud2b8\uc5d0 \uc5b8\uc81c \uc704\uc784\ud560\uc9c0\uc5d0 \ub300\ud55c \ucd94\uac00 \ucee8\ud14d\uc2a4\ud2b8\ub97c \uc81c\uacf5\ud569\ub2c8\ub2e4 | handoff_description=\"Specialist agent for historical questions\","
+    },
+    {
+      "id": "docs/ko/realtime/quickstart.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ko/realtime/quickstart.md",
+      "title": "quickstart.md",
+      "summary": "System-level instruction source detected in docs/ko/realtime/quickstart.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"You are a helpful voice assistant. Keep responses short and conversational.\","
+    },
+    {
+      "id": "docs/ko/repl.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ko/repl.md",
+      "title": "repl.md",
+      "summary": "System-level instruction source detected in docs/ko/repl.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant.\")"
+    },
+    {
+      "id": "docs/ko/running_agents.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "docs/ko/running_agents.md",
+      "title": "running_agents.md",
+      "summary": "Prompt-like agent definition in docs/ko/running_agents.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")"
+    },
+    {
+      "id": "docs/ko/running_agents.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ko/running_agents.md",
+      "title": "running_agents.md",
+      "summary": "System-level instruction source detected in docs/ko/running_agents.md.",
+      "signals": [
+        "path:agents.md",
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\") | agent = Agent(name=\"Assistant\", instructions=\"Be concise.\") | agent = Agent(name=\"Assistant\", instructions=\"Be concise.\")"
+    },
+    {
+      "id": "docs/ko/streaming.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ko/streaming.md",
+      "title": "streaming.md",
+      "summary": "System-level instruction source detected in docs/ko/streaming.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"You are a helpful assistant.\", | instructions=\"First call the `how_many_jokes` tool, then tell that many jokes.\","
+    },
+    {
+      "id": "docs/ko/tools.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/ko/tools.md",
+      "title": "tools.md",
+      "summary": "System-level instruction source detected in docs/ko/tools.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"Load the crm namespace before using CRM tools.\", | instructions=\"Use the mounted skill when helpful.\", | instructions=\"Use tools when helpful.\","
+    },
+    {
+      "id": "docs/ko/tools.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "docs/ko/tools.md",
+      "title": "tools.md",
+      "summary": "Tool contract or integration guidance detected in docs/ko/tools.md.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- Agents as tools: \uc804\uccb4 \ud578\ub4dc\uc624\ud504 \uc5c6\uc774 \uc5d0\uc774\uc804\ud2b8\ub97c \ud638\ucd9c \uac00\ub2a5\ud55c \ub3c4\uad6c\ub85c \ub178\ucd9c\ud569\ub2c8\ub2e4 | for tool in agent.tools:"
+    },
+    {
+      "id": "docs/mcp.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/mcp.md",
+      "title": "mcp.md",
+      "summary": "System-level instruction source detected in docs/mcp.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"Use the MCP tools to answer the questions.\", | instructions=\"Use the files in the sample directory to answer questions.\", | instructions=\"Use MCP tools when they help.\","
+    },
+    {
+      "id": "docs/mcp.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "docs/mcp.md",
+      "title": "mcp.md",
+      "summary": "Tool contract or integration guidance detected in docs/mcp.md.",
+      "signals": [
+        "path:mcp",
+        "text:mcpservers",
+        "text:tools:"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "| Connect to Streamable HTTP servers that you run locally or remotely | **Streamable HTTP MCP servers** via [`MCPServerStreamableHttp`][agents.mcp.server.MCPServerStreamableHttp] | | | Talk to servers that implement HTTP with Server-Sent Events | **HTTP with SSE MCP servers** via [`MCPServerSse`][agents.mcp.server.MCPServerSse] | | | Launch a local process and communicate over stdin/stdout | **std"
+    },
+    {
+      "id": "docs/models/index.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/models/index.md",
+      "title": "index.md",
+      "summary": "System-level instruction source detected in docs/models/index.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"You're a helpful agent.\", | instructions=\"You're a helpful agent.\", | instructions=\"Be concise.\","
+    },
+    {
+      "id": "docs/quickstart.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "docs/quickstart.md",
+      "title": "quickstart.md",
+      "summary": "Workflow or handoff instructions detected in docs/quickstart.md.",
+      "signals": [
+        "text:activate",
+        "text:handoff"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "### Activate the virtual environment | source .venv/bin/activate | - **Handoffs**: a specialist takes over the conversation for that part of the turn."
+    },
+    {
+      "id": "docs/realtime/guide.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/realtime/guide.md",
+      "title": "guide.md",
+      "summary": "System-level instruction source detected in docs/realtime/guide.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "If you want the default Python path, read the [quickstart](quickstart.md) first. If you are deciding whether your app should use server-side WebSocket or SIP, read [Realtime transport](transport.md). Browser WebRTC transport is not part of the Python SDK. | - **RealtimeAgent**: Instructions, tools, output guardrails, and handoffs for one realtime specialist | - Instructions, function tools, handof"
+    },
+    {
+      "id": "docs/realtime/quickstart.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/realtime/quickstart.md",
+      "title": "quickstart.md",
+      "summary": "System-level instruction source detected in docs/realtime/quickstart.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"You are a helpful voice assistant. Keep responses short and conversational.\","
+    },
+    {
+      "id": "docs/repl.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/repl.md",
+      "title": "repl.md",
+      "summary": "System-level instruction source detected in docs/repl.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant.\")"
+    },
+    {
+      "id": "docs/results.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/results.md",
+      "title": "results.md",
+      "summary": "System-level instruction source detected in docs/results.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- If you are using OpenAI server-managed state with `conversation_id` or `previous_response_id`, usually pass only the new user input and reuse the stored ID instead of resending `to_input_list()`. | agent = Agent(name=\"Assistant\", instructions=\"Use tools when needed.\")"
+    },
+    {
+      "id": "docs/running_agents.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "docs/running_agents.md",
+      "title": "running_agents.md",
+      "summary": "Prompt-like agent definition in docs/running_agents.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\") | `result.to_input_list()` and `session` are client-managed. `conversation_id` and `previous_response_id` are OpenAI-managed and only apply when you are using the OpenAI Responses API. In most applications, pick one persistence strategy per conversation. Mixing client-managed history with OpenAI-managed state can duplicate"
+    },
+    {
+      "id": "docs/running_agents.md::memory_pattern",
+      "kind": "memory_pattern",
+      "path": "docs/running_agents.md",
+      "title": "running_agents.md",
+      "summary": "Memory or recall behavior is described in docs/running_agents.md.",
+      "signals": [
+        "text:remember",
+        "text:rollback"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "# Second turn - agent automatically remembers previous context | rollback of recently persisted input items to reduce duplicate history entries after a retry."
+    },
+    {
+      "id": "docs/running_agents.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/running_agents.md",
+      "title": "running_agents.md",
+      "summary": "System-level instruction source detected in docs/running_agents.md.",
+      "signals": [
+        "path:agents.md",
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.77,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\") | agent = Agent(name=\"Assistant\", instructions=\"Be concise.\") | agent = Agent(name=\"Assistant\", instructions=\"Be concise.\")"
+    },
+    {
+      "id": "docs/sessions/index.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/sessions/index.md",
+      "title": "index.md",
+      "summary": "System-level instruction source detected in docs/sessions/index.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"Reply very concisely.\", | If you are implementing a Python server for ChatKit, use a `chatkit.store.Store` implementation for ChatKit's thread and item persistence. Agents SDK sessions such as `SQLAlchemySession` manage SDK-side conversation history, but they are not a drop-in replacement for ChatKit's store. See the [`chatkit-python` guide on implementing your ChatKit data store](ht"
+    },
+    {
+      "id": "docs/streaming.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/streaming.md",
+      "title": "streaming.md",
+      "summary": "System-level instruction source detected in docs/streaming.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"You are a helpful assistant.\", | instructions=\"First call the `how_many_jokes` tool, then tell that many jokes.\","
+    },
+    {
+      "id": "docs/tools.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/tools.md",
+      "title": "tools.md",
+      "summary": "System-level instruction source detected in docs/tools.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"Load the crm namespace before using CRM tools.\", | instructions=\"Use the mounted skill when helpful.\", | When you are using OpenAI Responses models, `@function_tool(defer_loading=True)` hides a function tool until `ToolSearchTool()` loads it. You can also group related function tools with [`tool_namespace()`][agents.tool.tool_namespace]. See [Hosted tool search](#hosted-tool-search) "
+    },
+    {
+      "id": "docs/tools.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "docs/tools.md",
+      "title": "tools.md",
+      "summary": "Tool contract or integration guidance detected in docs/tools.md.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "- Hosted OpenAI tools: run alongside the model on OpenAI servers. | - Local/runtime execution tools: `ComputerTool` and `ApplyPatchTool` always run in your environment, while `ShellTool` can run locally or in a hosted container. | - Agents as tools: expose an agent as a callable tool without a full handoff."
+    },
+    {
+      "id": "docs/zh/agents.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/zh/agents.md",
+      "title": "agents.md",
+      "summary": "System-level instruction source detected in docs/zh/agents.md.",
+      "signals": [
+        "path:agents.md",
+        "text:instructions"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\u667a\u80fd\u4f53\u662f\u5e94\u7528\u4e2d\u7684\u6838\u5fc3\u6784\u5efa\u6a21\u5757\u3002\u667a\u80fd\u4f53\u662f\u4e00\u4e2a\u5927\u578b\u8bed\u8a00\u6a21\u578b\uff08LLM\uff09\uff0c\u901a\u8fc7 instructions\u3001tools \u4ee5\u53ca\u53ef\u9009\u7684\u8fd0\u884c\u65f6\u884c\u4e3a\uff08\u5982\u4efb\u52a1\u8f6c\u79fb\u3001\u5b89\u5168\u9632\u62a4\u63aa\u65bd\u548c structured outputs\uff09\u8fdb\u884c\u914d\u7f6e\u3002 | | `instructions` | \u662f | \u7cfb\u7edf\u63d0\u793a\u8bcd\u6216\u52a8\u6001 instructions \u56de\u8c03\u3002\u53c2\u89c1[\u52a8\u6001\u8bf4\u660e](#dynamic-instructions)\u3002 | | instructions=\"Always respond in haiku form\","
+    },
+    {
+      "id": "docs/zh/context.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/zh/context.md",
+      "title": "context.md",
+      "summary": "System-level instruction source detected in docs/zh/context.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"You are a helpful agent that can tell the weather of a given city.\", | 1. \u4f60\u53ef\u4ee5\u5c06\u5176\u6dfb\u52a0\u5230\u667a\u80fd\u4f53\u7684 `instructions` \u4e2d\u3002\u8fd9\u4e5f\u79f0\u4e3a\u201c\u7cfb\u7edf\u63d0\u793a\u8bcd\u201d\u6216\u201c\u5f00\u53d1\u8005\u6d88\u606f\u201d\u3002\u7cfb\u7edf\u63d0\u793a\u8bcd\u53ef\u4ee5\u662f\u9759\u6001\u5b57\u7b26\u4e32\uff0c\u4e5f\u53ef\u4ee5\u662f\u63a5\u6536\u4e0a\u4e0b\u6587\u5e76\u8f93\u51fa\u5b57\u7b26\u4e32\u7684\u52a8\u6001\u51fd\u6570\u3002\u8fd9\u662f\u5904\u7406\u59cb\u7ec8\u6709\u7528\u4fe1\u606f\u7684\u5e38\u89c1\u7b56\u7565\uff08\u4f8b\u5982\uff0c\u7528\u6237\u59d3\u540d\u6216\u5f53\u524d\u65e5\u671f\uff09\u3002 | 2. \u5728\u8c03\u7528 `Runner.run` \u51fd\u6570\u65f6\u5c06\u5176\u52a0\u5165 `input`\u3002\u8fd9\u4e0e `instructions` \u7b56\u7565\u7c7b\u4f3c\uff0c\u4f46\u5141\u8bb8\u4f60\u7684\u6d88\u606f\u5728[\u6307\u4ee4\u94fe](https://cdn.openai.com/spec/model-spec-2024-05-08.html#follow-the-chain-of-command)\u4e2d\u7684\u4f18\u5148\u7ea7\u66f4\u4f4e\u3002"
+    },
+    {
+      "id": "docs/zh/guardrails.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/zh/guardrails.md",
+      "title": "guardrails.md",
+      "summary": "System-level instruction source detected in docs/zh/guardrails.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"Check if the user is asking you to do their math homework.\", | instructions=\"You are a customer support agent. You help customers with their questions.\", | instructions=\"Check if the output includes any math.\","
+    },
+    {
+      "id": "docs/zh/index.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/zh/index.md",
+      "title": "index.md",
+      "summary": "System-level instruction source detected in docs/zh/index.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")"
+    },
+    {
+      "id": "docs/zh/mcp.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "docs/zh/mcp.md",
+      "title": "mcp.md",
+      "summary": "Tool contract or integration guidance detected in docs/zh/mcp.md.",
+      "signals": [
+        "path:mcp",
+        "text:mcpservers",
+        "text:tools:"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "| \u8fde\u63a5\u4f60\u5728\u672c\u5730\u6216\u8fdc\u7a0b\u8fd0\u884c\u7684 Streamable HTTP \u670d\u52a1 | \u901a\u8fc7 [`MCPServerStreamableHttp`][agents.mcp.server.MCPServerStreamableHttp] \u4f7f\u7528**Streamable HTTP MCP servers** | | | \u4e0e\u5b9e\u73b0\u4e86 HTTP + Server-Sent Events \u7684\u670d\u52a1\u901a\u4fe1 | \u901a\u8fc7 [`MCPServerSse`][agents.mcp.server.MCPServerSse] \u4f7f\u7528**HTTP with SSE MCP servers** | | | \u542f\u52a8\u672c\u5730\u8fdb\u7a0b\u5e76\u901a\u8fc7 stdin/stdout \u901a\u4fe1 | \u901a\u8fc7 [`MCPServerStdio`][agents.mcp.server.MCPServerStdio] \u4f7f\u7528**stdio MCP servers** |"
+    },
+    {
+      "id": "docs/zh/quickstart.md::workflow_instruction",
+      "kind": "workflow_instruction",
+      "path": "docs/zh/quickstart.md",
+      "title": "quickstart.md",
+      "summary": "Workflow or handoff instructions detected in docs/zh/quickstart.md.",
+      "signals": [
+        "text:activate",
+        "text:handoff"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "source .venv/bin/activate | \u5176\u4ed6\u667a\u80fd\u4f53\u4e5f\u53ef\u4ee5\u7528\u540c\u6837\u65b9\u5f0f\u5b9a\u4e49\u3002`handoff_description` \u4f1a\u4e3a\u8def\u7531\u667a\u80fd\u4f53\u63d0\u4f9b\u989d\u5916\u4e0a\u4e0b\u6587\uff0c\u4ee5\u5224\u65ad\u4f55\u65f6\u59d4\u6d3e\u3002 | handoff_description=\"Specialist agent for historical questions\","
+    },
+    {
+      "id": "docs/zh/realtime/quickstart.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/zh/realtime/quickstart.md",
+      "title": "quickstart.md",
+      "summary": "System-level instruction source detected in docs/zh/realtime/quickstart.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"You are a helpful voice assistant. Keep responses short and conversational.\","
+    },
+    {
+      "id": "docs/zh/repl.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/zh/repl.md",
+      "title": "repl.md",
+      "summary": "System-level instruction source detected in docs/zh/repl.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant.\")"
+    },
+    {
+      "id": "docs/zh/running_agents.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "docs/zh/running_agents.md",
+      "title": "running_agents.md",
+      "summary": "Prompt-like agent definition in docs/zh/running_agents.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")"
+    },
+    {
+      "id": "docs/zh/running_agents.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/zh/running_agents.md",
+      "title": "running_agents.md",
+      "summary": "System-level instruction source detected in docs/zh/running_agents.md.",
+      "signals": [
+        "path:agents.md",
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\") | agent = Agent(name=\"Assistant\", instructions=\"Be concise.\") | agent = Agent(name=\"Assistant\", instructions=\"Be concise.\")"
+    },
+    {
+      "id": "docs/zh/streaming.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/zh/streaming.md",
+      "title": "streaming.md",
+      "summary": "System-level instruction source detected in docs/zh/streaming.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"You are a helpful assistant.\", | instructions=\"First call the `how_many_jokes` tool, then tell that many jokes.\","
+    },
+    {
+      "id": "docs/zh/tools.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "docs/zh/tools.md",
+      "title": "tools.md",
+      "summary": "System-level instruction source detected in docs/zh/tools.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions=\"Load the crm namespace before using CRM tools.\", | instructions=\"Use the mounted skill when helpful.\", | instructions=\"Use tools when helpful.\","
+    },
+    {
+      "id": "docs/zh/tools.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "docs/zh/tools.md",
+      "title": "tools.md",
+      "summary": "Tool contract or integration guidance detected in docs/zh/tools.md.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "for tool in agent.tools:"
+    },
+    {
+      "id": "examples/financial_research_agent/README.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/financial_research_agent/README.md",
+      "title": "README.md",
+      "summary": "Prompt-like agent definition in examples/financial_research_agent/README.md.",
+      "signals": [
+        "path:agent",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "You are a senior financial analyst. You will be provided with the original query"
+    },
+    {
+      "id": "examples/financial_research_agent/README.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "examples/financial_research_agent/README.md",
+      "title": "README.md",
+      "summary": "System-level instruction source detected in examples/financial_research_agent/README.md.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "The writer agent is seeded with instructions similar to: | You are a senior financial analyst. You will be provided with the original query"
+    },
+    {
+      "id": "examples/financial_research_agent/agents/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/financial_research_agent/agents/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in examples/financial_research_agent/agents/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "examples/financial_research_agent/agents/financials_agent.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/financial_research_agent/agents/financials_agent.py",
+      "title": "financials_agent.py",
+      "summary": "Prompt-like agent definition in examples/financial_research_agent/agents/financials_agent.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "\"You are a financial analyst focused on company fundamentals such as revenue, \""
+    },
+    {
+      "id": "examples/financial_research_agent/agents/financials_agent.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "examples/financial_research_agent/agents/financials_agent.py",
+      "title": "financials_agent.py",
+      "summary": "System-level instruction source detected in examples/financial_research_agent/agents/financials_agent.py.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"You are a financial analyst focused on company fundamentals such as revenue, \" | instructions=FINANCIALS_PROMPT,"
+    },
+    {
+      "id": "examples/financial_research_agent/agents/planner_agent.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/financial_research_agent/agents/planner_agent.py",
+      "title": "planner_agent.py",
+      "summary": "Prompt-like agent definition in examples/financial_research_agent/agents/planner_agent.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "\"You are a financial research planner. Given a request for financial analysis, \""
+    },
+    {
+      "id": "examples/financial_research_agent/agents/planner_agent.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "examples/financial_research_agent/agents/planner_agent.py",
+      "title": "planner_agent.py",
+      "summary": "System-level instruction source detected in examples/financial_research_agent/agents/planner_agent.py.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"You are a financial research planner. Given a request for financial analysis, \" | instructions=PROMPT,"
+    },
+    {
+      "id": "examples/financial_research_agent/agents/risk_agent.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/financial_research_agent/agents/risk_agent.py",
+      "title": "risk_agent.py",
+      "summary": "Prompt-like agent definition in examples/financial_research_agent/agents/risk_agent.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "\"You are a risk analyst looking for potential red flags in a company's outlook. \""
+    },
+    {
+      "id": "examples/financial_research_agent/agents/risk_agent.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "examples/financial_research_agent/agents/risk_agent.py",
+      "title": "risk_agent.py",
+      "summary": "System-level instruction source detected in examples/financial_research_agent/agents/risk_agent.py.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"You are a risk analyst looking for potential red flags in a company's outlook. \" | instructions=RISK_PROMPT,"
+    },
+    {
+      "id": "examples/financial_research_agent/agents/search_agent.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/financial_research_agent/agents/search_agent.py",
+      "title": "search_agent.py",
+      "summary": "Prompt-like agent definition in examples/financial_research_agent/agents/search_agent.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "\"You are a research assistant specializing in financial topics. \""
+    },
+    {
+      "id": "examples/financial_research_agent/agents/search_agent.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "examples/financial_research_agent/agents/search_agent.py",
+      "title": "search_agent.py",
+      "summary": "System-level instruction source detected in examples/financial_research_agent/agents/search_agent.py.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "INSTRUCTIONS = ( | \"You are a research assistant specializing in financial topics. \" | instructions=INSTRUCTIONS,"
+    },
+    {
+      "id": "examples/financial_research_agent/agents/verifier_agent.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/financial_research_agent/agents/verifier_agent.py",
+      "title": "verifier_agent.py",
+      "summary": "Prompt-like agent definition in examples/financial_research_agent/agents/verifier_agent.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "\"You are a meticulous auditor. You have been handed a financial analysis report. \""
+    },
+    {
+      "id": "examples/financial_research_agent/agents/verifier_agent.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "examples/financial_research_agent/agents/verifier_agent.py",
+      "title": "verifier_agent.py",
+      "summary": "System-level instruction source detected in examples/financial_research_agent/agents/verifier_agent.py.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"You are a meticulous auditor. You have been handed a financial analysis report. \" | instructions=VERIFIER_PROMPT,"
+    },
+    {
+      "id": "examples/financial_research_agent/agents/writer_agent.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/financial_research_agent/agents/writer_agent.py",
+      "title": "writer_agent.py",
+      "summary": "Prompt-like agent definition in examples/financial_research_agent/agents/writer_agent.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "\"You are a senior financial analyst. You will be provided with the original query and \""
+    },
+    {
+      "id": "examples/financial_research_agent/agents/writer_agent.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "examples/financial_research_agent/agents/writer_agent.py",
+      "title": "writer_agent.py",
+      "summary": "System-level instruction source detected in examples/financial_research_agent/agents/writer_agent.py.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"You are a senior financial analyst. You will be provided with the original query and \" | instructions=WRITER_PROMPT,"
+    },
+    {
+      "id": "examples/mcp/filesystem_example/README.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/mcp/filesystem_example/README.md",
+      "title": "README.md",
+      "summary": "Tool contract or integration guidance detected in examples/mcp/filesystem_example/README.md.",
+      "signals": [
+        "path:mcp",
+        "text:mcpservers"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "The example uses the `MCPServerStdio` class from `agents.mcp`, with the command:"
+    },
+    {
+      "id": "examples/mcp/get_all_mcp_tools_example/README.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/mcp/get_all_mcp_tools_example/README.md",
+      "title": "README.md",
+      "summary": "Tool contract or integration guidance detected in examples/mcp/get_all_mcp_tools_example/README.md.",
+      "signals": [
+        "path:mcp",
+        "path:tool"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "examples/mcp/get_all_mcp_tools_example/sample_files/books.txt::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/mcp/get_all_mcp_tools_example/sample_files/books.txt",
+      "title": "books.txt",
+      "summary": "Tool contract or integration guidance detected in examples/mcp/get_all_mcp_tools_example/sample_files/books.txt.",
+      "signals": [
+        "path:mcp",
+        "path:tool"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "examples/mcp/get_all_mcp_tools_example/sample_files/favorite_songs.txt::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/mcp/get_all_mcp_tools_example/sample_files/favorite_songs.txt",
+      "title": "favorite_songs.txt",
+      "summary": "Tool contract or integration guidance detected in examples/mcp/get_all_mcp_tools_example/sample_files/favorite_songs.txt.",
+      "signals": [
+        "path:mcp",
+        "path:tool"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "examples/mcp/git_example/README.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/mcp/git_example/README.md",
+      "title": "README.md",
+      "summary": "Tool contract or integration guidance detected in examples/mcp/git_example/README.md.",
+      "signals": [
+        "path:mcp",
+        "text:mcpservers"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "The example uses the `MCPServerStdio` class from `agents.mcp`, with the command:"
+    },
+    {
+      "id": "examples/mcp/prompt_server/README.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/mcp/prompt_server/README.md",
+      "title": "README.md",
+      "summary": "Tool contract or integration guidance detected in examples/mcp/prompt_server/README.md.",
+      "signals": [
+        "path:mcp",
+        "text:mcpservers"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "The example uses the `MCPServerStreamableHttp` class from `agents.mcp`. The script auto-selects an open localhost port (or honors `STREAMABLE_HTTP_PORT`) and runs the server at `http://<host>:<port>/mcp`, providing user-controlled prompts that generate agent instructions."
+    },
+    {
+      "id": "examples/mcp/sse_example/README.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/mcp/sse_example/README.md",
+      "title": "README.md",
+      "summary": "Tool contract or integration guidance detected in examples/mcp/sse_example/README.md.",
+      "signals": [
+        "path:mcp",
+        "text:mcpservers"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "The example uses the `MCPServerSse` class from `agents.mcp`. The server runs in a sub-process at `https://localhost:8000/sse`."
+    },
+    {
+      "id": "examples/mcp/streamablehttp_custom_client_example/README.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/mcp/streamablehttp_custom_client_example/README.md",
+      "title": "README.md",
+      "summary": "Tool contract or integration guidance detected in examples/mcp/streamablehttp_custom_client_example/README.md.",
+      "signals": [
+        "path:mcp",
+        "text:mcpservers"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "This example demonstrates how to use the new `httpx_client_factory` parameter in `MCPServerStreamableHttp` to configure custom HTTP client behavior for MCP StreamableHTTP connections. | from agents.mcp import MCPServerStreamableHttp | async with MCPServerStreamableHttp("
+    },
+    {
+      "id": "examples/mcp/streamablehttp_example/README.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/mcp/streamablehttp_example/README.md",
+      "title": "README.md",
+      "summary": "Tool contract or integration guidance detected in examples/mcp/streamablehttp_example/README.md.",
+      "signals": [
+        "path:mcp",
+        "text:mcpservers"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "The example uses the `MCPServerStreamableHttp` class from `agents.mcp`. The script picks an open localhost port automatically (or honors `STREAMABLE_HTTP_PORT` if you set it) and starts the server at `http://<host>:<port>/mcp`. Set `STREAMABLE_HTTP_HOST` if you need a different bind address."
+    },
+    {
+      "id": "examples/mcp/tool_filter_example/README.md::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/mcp/tool_filter_example/README.md",
+      "title": "README.md",
+      "summary": "Tool contract or integration guidance detected in examples/mcp/tool_filter_example/README.md.",
+      "signals": [
+        "path:mcp",
+        "path:tool"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "examples/mcp/tool_filter_example/sample_files/books.txt::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/mcp/tool_filter_example/sample_files/books.txt",
+      "title": "books.txt",
+      "summary": "Tool contract or integration guidance detected in examples/mcp/tool_filter_example/sample_files/books.txt.",
+      "signals": [
+        "path:mcp",
+        "path:tool"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "examples/mcp/tool_filter_example/sample_files/favorite_songs.txt::tool_contract",
+      "kind": "tool_contract",
+      "path": "examples/mcp/tool_filter_example/sample_files/favorite_songs.txt",
+      "title": "favorite_songs.txt",
+      "summary": "Tool contract or integration guidance detected in examples/mcp/tool_filter_example/sample_files/favorite_songs.txt.",
+      "signals": [
+        "path:mcp",
+        "path:tool"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "examples/research_bot/agents/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/research_bot/agents/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in examples/research_bot/agents/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "examples/research_bot/agents/planner_agent.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/research_bot/agents/planner_agent.py",
+      "title": "planner_agent.py",
+      "summary": "Prompt-like agent definition in examples/research_bot/agents/planner_agent.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "\"You are a helpful research assistant. Given a query, come up with a set of web searches \""
+    },
+    {
+      "id": "examples/research_bot/agents/planner_agent.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "examples/research_bot/agents/planner_agent.py",
+      "title": "planner_agent.py",
+      "summary": "System-level instruction source detected in examples/research_bot/agents/planner_agent.py.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"You are a helpful research assistant. Given a query, come up with a set of web searches \" | instructions=PROMPT,"
+    },
+    {
+      "id": "examples/research_bot/agents/search_agent.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/research_bot/agents/search_agent.py",
+      "title": "search_agent.py",
+      "summary": "Prompt-like agent definition in examples/research_bot/agents/search_agent.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "\"You are a research assistant. Given a search term, you search the web for that term and \""
+    },
+    {
+      "id": "examples/research_bot/agents/search_agent.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "examples/research_bot/agents/search_agent.py",
+      "title": "search_agent.py",
+      "summary": "System-level instruction source detected in examples/research_bot/agents/search_agent.py.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "INSTRUCTIONS = ( | \"You are a research assistant. Given a search term, you search the web for that term and \" | instructions=INSTRUCTIONS,"
+    },
+    {
+      "id": "examples/research_bot/agents/writer_agent.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "examples/research_bot/agents/writer_agent.py",
+      "title": "writer_agent.py",
+      "summary": "Prompt-like agent definition in examples/research_bot/agents/writer_agent.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "\"You are a senior researcher tasked with writing a cohesive report for a research query. \""
+    },
+    {
+      "id": "examples/research_bot/agents/writer_agent.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "examples/research_bot/agents/writer_agent.py",
+      "title": "writer_agent.py",
+      "summary": "System-level instruction source detected in examples/research_bot/agents/writer_agent.py.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"You are a senior researcher tasked with writing a cohesive report for a research query. \" | instructions=PROMPT,"
+    },
+    {
+      "id": "examples/tools/skills/csv-workbench/SKILL.md::skill_definition",
+      "kind": "skill_definition",
+      "path": "examples/tools/skills/csv-workbench/SKILL.md",
+      "title": "csv-workbench",
+      "summary": "Skill definition or skill-like instruction source in examples/tools/skills/csv-workbench/SKILL.md.",
+      "signals": [
+        "frontmatter:description",
+        "frontmatter:name",
+        "path:skill.md",
+        "path:skills/",
+        "text:use this skill"
+      ],
+      "confidence": 0.85,
+      "source_snippet": "Use this skill when the user asks for quick analysis of tabular data."
+    },
+    {
+      "id": "src/agents/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/_config.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/_config.py",
+      "title": "_config.py",
+      "summary": "Prompt-like agent definition in src/agents/_config.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/_debug.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/_debug.py",
+      "title": "_debug.py",
+      "summary": "Prompt-like agent definition in src/agents/_debug.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/_mcp_tool_metadata.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/_mcp_tool_metadata.py",
+      "title": "_mcp_tool_metadata.py",
+      "summary": "Prompt-like agent definition in src/agents/_mcp_tool_metadata.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "for tool in tools:"
+    },
+    {
+      "id": "src/agents/_mcp_tool_metadata.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "src/agents/_mcp_tool_metadata.py",
+      "title": "_mcp_tool_metadata.py",
+      "summary": "Tool contract or integration guidance detected in src/agents/_mcp_tool_metadata.py.",
+      "signals": [
+        "path:mcp",
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "for tool in tools:"
+    },
+    {
+      "id": "src/agents/_tool_identity.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/_tool_identity.py",
+      "title": "_tool_identity.py",
+      "summary": "Prompt-like agent definition in src/agents/_tool_identity.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "def should_allow_bare_name_approval_alias(tool: Any, all_tools: Sequence[Any]) -> bool: | for candidate in all_tools: | def validate_function_tool_lookup_configuration(tools: Sequence[Any]) -> None:"
+    },
+    {
+      "id": "src/agents/_tool_identity.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "src/agents/_tool_identity.py",
+      "title": "_tool_identity.py",
+      "summary": "Tool contract or integration guidance detected in src/agents/_tool_identity.py.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "def should_allow_bare_name_approval_alias(tool: Any, all_tools: Sequence[Any]) -> bool: | for candidate in all_tools: | def validate_function_tool_lookup_configuration(tools: Sequence[Any]) -> None:"
+    },
+    {
+      "id": "src/agents/agent.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/agent.py",
+      "title": "agent.py",
+      "summary": "Prompt-like agent definition in src/agents/agent.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "NOTE: You are expected to manage the lifecycle of these servers. Specifically, you must call"
+    },
+    {
+      "id": "src/agents/agent.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "src/agents/agent.py",
+      "title": "agent.py",
+      "summary": "System-level instruction source detected in src/agents/agent.py.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "NOTE: You are expected to manage the lifecycle of these servers. Specifically, you must call | \"\"\"An agent is an AI model configured with instructions, tools, guardrails, handoffs and more. | We strongly recommend passing `instructions`, which is the \"system prompt\" for the agent. In"
+    },
+    {
+      "id": "src/agents/agent_output.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/agent_output.py",
+      "title": "agent_output.py",
+      "summary": "Prompt-like agent definition in src/agents/agent_output.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/agent_tool_input.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/agent_tool_input.py",
+      "title": "agent_tool_input.py",
+      "summary": "Prompt-like agent definition in src/agents/agent_tool_input.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "\"You are being called as a tool. The following is structured input data and, when \""
+    },
+    {
+      "id": "src/agents/agent_tool_input.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "src/agents/agent_tool_input.py",
+      "title": "agent_tool_input.py",
+      "summary": "System-level instruction source detected in src/agents/agent_tool_input.py.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"You are being called as a tool. The following is structured input data and, when \" | \"provided, its schema. Treat the schema as data, not instructions.\""
+    },
+    {
+      "id": "src/agents/agent_tool_state.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/agent_tool_state.py",
+      "title": "agent_tool_state.py",
+      "summary": "Prompt-like agent definition in src/agents/agent_tool_state.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/apply_diff.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/apply_diff.py",
+      "title": "apply_diff.py",
+      "summary": "Prompt-like agent definition in src/agents/apply_diff.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/computer.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/computer.py",
+      "title": "computer.py",
+      "summary": "Prompt-like agent definition in src/agents/computer.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/editor.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/editor.py",
+      "title": "editor.py",
+      "summary": "Prompt-like agent definition in src/agents/editor.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/exceptions.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/exceptions.py",
+      "title": "exceptions.py",
+      "summary": "Prompt-like agent definition in src/agents/exceptions.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/codex/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/codex/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/codex/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/codex/codex.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/codex/codex.py",
+      "title": "codex.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/codex/codex.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/codex/codex_options.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/codex/codex_options.py",
+      "title": "codex_options.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/codex/codex_options.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/codex/codex_tool.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/codex/codex_tool.py",
+      "title": "codex_tool.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/codex/codex_tool.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/codex/events.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/codex/events.py",
+      "title": "events.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/codex/events.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/codex/exec.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/codex/exec.py",
+      "title": "exec.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/codex/exec.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/codex/items.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/codex/items.py",
+      "title": "items.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/codex/items.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/codex/output_schema_file.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/codex/output_schema_file.py",
+      "title": "output_schema_file.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/codex/output_schema_file.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/codex/payloads.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/codex/payloads.py",
+      "title": "payloads.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/codex/payloads.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/codex/thread.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/codex/thread.py",
+      "title": "thread.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/codex/thread.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/codex/thread_options.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/codex/thread_options.py",
+      "title": "thread_options.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/codex/thread_options.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/experimental/codex/turn_options.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/experimental/codex/turn_options.py",
+      "title": "turn_options.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/experimental/codex/turn_options.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/handoff_filters.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/handoff_filters.py",
+      "title": "handoff_filters.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/handoff_filters.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/handoff_prompt.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/handoff_prompt.py",
+      "title": "handoff_prompt.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/handoff_prompt.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "\"You are part of a multi-agent system called the Agents SDK, designed to make agent \""
+    },
+    {
+      "id": "src/agents/extensions/handoff_prompt.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "src/agents/extensions/handoff_prompt.py",
+      "title": "handoff_prompt.py",
+      "summary": "System-level instruction source detected in src/agents/extensions/handoff_prompt.py.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "# similar instructions in any agents that use handoffs. | \"You are part of a multi-agent system called the Agents SDK, designed to make agent \" | \"**Handoffs**. An agent encompasses instructions and tools and can hand off a \""
+    },
+    {
+      "id": "src/agents/extensions/memory/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/memory/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/memory/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/memory/advanced_sqlite_session.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/memory/advanced_sqlite_session.py",
+      "title": "advanced_sqlite_session.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/memory/advanced_sqlite_session.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/memory/async_sqlite_session.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/memory/async_sqlite_session.py",
+      "title": "async_sqlite_session.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/memory/async_sqlite_session.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/memory/dapr_session.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/memory/dapr_session.py",
+      "title": "dapr_session.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/memory/dapr_session.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/memory/encrypt_session.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/memory/encrypt_session.py",
+      "title": "encrypt_session.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/memory/encrypt_session.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/memory/redis_session.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/memory/redis_session.py",
+      "title": "redis_session.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/memory/redis_session.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/memory/sqlalchemy_session.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/memory/sqlalchemy_session.py",
+      "title": "sqlalchemy_session.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/memory/sqlalchemy_session.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/models/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/models/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/models/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/models/litellm_model.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/models/litellm_model.py",
+      "title": "litellm_model.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/models/litellm_model.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: list[Tool], | tools: list[Tool], | tools: list[Tool],"
+    },
+    {
+      "id": "src/agents/extensions/models/litellm_provider.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/models/litellm_provider.py",
+      "title": "litellm_provider.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/models/litellm_provider.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/extensions/tool_output_trimmer.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/tool_output_trimmer.py",
+      "title": "tool_output_trimmer.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/tool_output_trimmer.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "trimmable_tools: Optional set of tool names whose outputs can be trimmed. For | trimmable_tools: frozenset[str] | None = field(default=None)"
+    },
+    {
+      "id": "src/agents/extensions/tool_output_trimmer.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "src/agents/extensions/tool_output_trimmer.py",
+      "title": "tool_output_trimmer.py",
+      "summary": "Tool contract or integration guidance detected in src/agents/extensions/tool_output_trimmer.py.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "trimmable_tools: Optional set of tool names whose outputs can be trimmed. For | trimmable_tools: frozenset[str] | None = field(default=None)"
+    },
+    {
+      "id": "src/agents/extensions/visualization.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/extensions/visualization.py",
+      "title": "visualization.py",
+      "summary": "Prompt-like agent definition in src/agents/extensions/visualization.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "for tool in agent.tools: | for tool in agent.tools:"
+    },
+    {
+      "id": "src/agents/function_schema.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/function_schema.py",
+      "title": "function_schema.py",
+      "summary": "Prompt-like agent definition in src/agents/function_schema.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/guardrail.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/guardrail.py",
+      "title": "guardrail.py",
+      "summary": "Prompt-like agent definition in src/agents/guardrail.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/handoffs/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/handoffs/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/handoffs/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/handoffs/history.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/handoffs/history.py",
+      "title": "history.py",
+      "summary": "Prompt-like agent definition in src/agents/handoffs/history.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/items.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/items.py",
+      "title": "items.py",
+      "summary": "Prompt-like agent definition in src/agents/items.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/lifecycle.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/lifecycle.py",
+      "title": "lifecycle.py",
+      "summary": "Prompt-like agent definition in src/agents/lifecycle.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/logger.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/logger.py",
+      "title": "logger.py",
+      "summary": "Prompt-like agent definition in src/agents/logger.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/mcp/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/mcp/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/mcp/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/mcp/__init__.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "src/agents/mcp/__init__.py",
+      "title": "__init__.py",
+      "summary": "Tool contract or integration guidance detected in src/agents/mcp/__init__.py.",
+      "signals": [
+        "path:mcp",
+        "text:mcpservers"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "MCPServerSse, | MCPServerSseParams, | MCPServerStdio,"
+    },
+    {
+      "id": "src/agents/mcp/manager.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/mcp/manager.py",
+      "title": "manager.py",
+      "summary": "Prompt-like agent definition in src/agents/mcp/manager.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/mcp/server.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/mcp/server.py",
+      "title": "server.py",
+      "summary": "Prompt-like agent definition in src/agents/mcp/server.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: list[MCPTool], | self, tools: list[MCPTool], static_filter: ToolFilterStatic | tools: list[MCPTool],"
+    },
+    {
+      "id": "src/agents/mcp/server.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "src/agents/mcp/server.py",
+      "title": "server.py",
+      "summary": "Tool contract or integration guidance detected in src/agents/mcp/server.py.",
+      "signals": [
+        "path:mcp",
+        "text:mcpservers",
+        "text:tools:"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "tools: list[MCPTool], | self, tools: list[MCPTool], static_filter: ToolFilterStatic | tools: list[MCPTool],"
+    },
+    {
+      "id": "src/agents/mcp/util.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/mcp/util.py",
+      "title": "util.py",
+      "summary": "Prompt-like agent definition in src/agents/mcp/util.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/memory/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/memory/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/memory/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/memory/openai_conversations_session.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/memory/openai_conversations_session.py",
+      "title": "openai_conversations_session.py",
+      "summary": "Prompt-like agent definition in src/agents/memory/openai_conversations_session.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/memory/openai_responses_compaction_session.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/memory/openai_responses_compaction_session.py",
+      "title": "openai_responses_compaction_session.py",
+      "summary": "Prompt-like agent definition in src/agents/memory/openai_responses_compaction_session.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/memory/session.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/memory/session.py",
+      "title": "session.py",
+      "summary": "Prompt-like agent definition in src/agents/memory/session.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/memory/session_settings.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/memory/session_settings.py",
+      "title": "session_settings.py",
+      "summary": "Prompt-like agent definition in src/agents/memory/session_settings.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/memory/sqlite_session.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/memory/sqlite_session.py",
+      "title": "sqlite_session.py",
+      "summary": "Prompt-like agent definition in src/agents/memory/sqlite_session.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/memory/util.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/memory/util.py",
+      "title": "util.py",
+      "summary": "Prompt-like agent definition in src/agents/memory/util.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/model_settings.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/model_settings.py",
+      "title": "model_settings.py",
+      "summary": "Prompt-like agent definition in src/agents/model_settings.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "for the specific model and provider you are using."
+    },
+    {
+      "id": "src/agents/models/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/models/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/models/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/models/_openai_shared.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/models/_openai_shared.py",
+      "title": "_openai_shared.py",
+      "summary": "Prompt-like agent definition in src/agents/models/_openai_shared.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/models/chatcmpl_converter.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/models/chatcmpl_converter.py",
+      "title": "chatcmpl_converter.py",
+      "summary": "Prompt-like agent definition in src/agents/models/chatcmpl_converter.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/models/chatcmpl_helpers.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/models/chatcmpl_helpers.py",
+      "title": "chatcmpl_helpers.py",
+      "summary": "Prompt-like agent definition in src/agents/models/chatcmpl_helpers.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/models/chatcmpl_stream_handler.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/models/chatcmpl_stream_handler.py",
+      "title": "chatcmpl_stream_handler.py",
+      "summary": "Prompt-like agent definition in src/agents/models/chatcmpl_stream_handler.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/models/default_models.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/models/default_models.py",
+      "title": "default_models.py",
+      "summary": "Prompt-like agent definition in src/agents/models/default_models.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/models/fake_id.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/models/fake_id.py",
+      "title": "fake_id.py",
+      "summary": "Prompt-like agent definition in src/agents/models/fake_id.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/models/interface.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/models/interface.py",
+      "title": "interface.py",
+      "summary": "Prompt-like agent definition in src/agents/models/interface.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: list[Tool], | tools: The tools available to the model. | tools: list[Tool],"
+    },
+    {
+      "id": "src/agents/models/multi_provider.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/models/multi_provider.py",
+      "title": "multi_provider.py",
+      "summary": "Prompt-like agent definition in src/agents/models/multi_provider.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/models/openai_chatcompletions.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/models/openai_chatcompletions.py",
+      "title": "openai_chatcompletions.py",
+      "summary": "Prompt-like agent definition in src/agents/models/openai_chatcompletions.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: list[Tool], | tools: list[Tool], | tools: list[Tool],"
+    },
+    {
+      "id": "src/agents/models/openai_provider.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/models/openai_provider.py",
+      "title": "openai_provider.py",
+      "summary": "Prompt-like agent definition in src/agents/models/openai_provider.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/models/openai_responses.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/models/openai_responses.py",
+      "title": "openai_responses.py",
+      "summary": "Prompt-like agent definition in src/agents/models/openai_responses.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: list[FunctionToolParam] | tools: Sequence[ResponsesToolParam], | typed_tools: list[ResponsesToolParam] = []"
+    },
+    {
+      "id": "src/agents/prompts.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/prompts.py",
+      "title": "prompts.py",
+      "summary": "Prompt-like agent definition in src/agents/prompts.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/py.typed::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/py.typed",
+      "title": "py.typed",
+      "summary": "Prompt-like agent definition in src/agents/py.typed.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/README.md::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/README.md",
+      "title": "README.md",
+      "summary": "Prompt-like agent definition in src/agents/realtime/README.md.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/_default_tracker.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/_default_tracker.py",
+      "title": "_default_tracker.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/_default_tracker.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/_util.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/_util.py",
+      "title": "_util.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/_util.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/agent.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/agent.py",
+      "title": "agent.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/agent.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/agent.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "src/agents/realtime/agent.py",
+      "title": "agent.py",
+      "summary": "System-level instruction source detected in src/agents/realtime/agent.py.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions: ( | \"\"\"The instructions for the agent. Will be used as the \"system prompt\" when this agent is | Can either be a string, or a function that dynamically generates instructions for the agent. If"
+    },
+    {
+      "id": "src/agents/realtime/audio_formats.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/audio_formats.py",
+      "title": "audio_formats.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/audio_formats.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/config.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/config.py",
+      "title": "config.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/config.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: NotRequired[list[Tool]] | workflow_name: NotRequired[str] | \"\"\"The workflow name to use for tracing.\"\"\""
+    },
+    {
+      "id": "src/agents/realtime/events.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/events.py",
+      "title": "events.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/events.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/handoffs.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/handoffs.py",
+      "title": "handoffs.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/handoffs.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/items.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/items.py",
+      "title": "items.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/items.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/model.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/model.py",
+      "title": "model.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/model.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "speeds, create an instance of RealtimePlaybackTracker and pass it to the session. You are"
+    },
+    {
+      "id": "src/agents/realtime/model_events.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/model_events.py",
+      "title": "model_events.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/model_events.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/model_inputs.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/model_inputs.py",
+      "title": "model_inputs.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/model_inputs.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/openai_realtime.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/openai_realtime.py",
+      "title": "openai_realtime.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/openai_realtime.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "self, tools: list[Tool], handoffs: list[Handoff] | converted_tools: list[OpenAISessionFunction] = [] | for tool in tools:"
+    },
+    {
+      "id": "src/agents/realtime/runner.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/runner.py",
+      "title": "runner.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/runner.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/realtime/session.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/realtime/session.py",
+      "title": "session.py",
+      "summary": "Prompt-like agent definition in src/agents/realtime/session.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "you are done."
+    },
+    {
+      "id": "src/agents/realtime/session.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "src/agents/realtime/session.py",
+      "title": "session.py",
+      "summary": "System-level instruction source detected in src/agents/realtime/session.py.",
+      "signals": [
+        "text:instructions",
+        "text:you are"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "you are done. | # First, send the session update so the model receives the new instructions | instructions, tools, handoffs = await asyncio.gather("
+    },
+    {
+      "id": "src/agents/repl.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/repl.py",
+      "title": "repl.py",
+      "summary": "Prompt-like agent definition in src/agents/repl.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/responses_websocket_session.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/responses_websocket_session.py",
+      "title": "responses_websocket_session.py",
+      "summary": "Prompt-like agent definition in src/agents/responses_websocket_session.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/result.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/result.py",
+      "title": "result.py",
+      "summary": "Prompt-like agent definition in src/agents/result.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run.py",
+      "title": "run.py",
+      "summary": "Prompt-like agent definition in src/agents/run.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/",
+        "text:you are"
+      ],
+      "confidence": 0.69,
+      "source_snippet": "We recommend only using this if you are exclusively using OpenAI models;"
+    },
+    {
+      "id": "src/agents/run_config.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_config.py",
+      "title": "run_config.py",
+      "summary": "Prompt-like agent definition in src/agents/run_config.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "workflow_name: str = \"Agent workflow\" | \"Code generation workflow\" or \"Customer support agent\"."
+    },
+    {
+      "id": "src/agents/run_config.py::system_prompt",
+      "kind": "system_prompt",
+      "path": "src/agents/run_config.py",
+      "title": "run_config.py",
+      "summary": "System-level instruction source detected in src/agents/run_config.py.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "instructions: str | None | agent, context and the model input (instructions and input items), and must return a possibly | For example, you can use this to add a system prompt to the input."
+    },
+    {
+      "id": "src/agents/run_context.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_context.py",
+      "title": "run_context.py",
+      "summary": "Prompt-like agent definition in src/agents/run_context.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_error_handlers.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_error_handlers.py",
+      "title": "run_error_handlers.py",
+      "summary": "Prompt-like agent definition in src/agents/run_error_handlers.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/_asyncio_progress.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/_asyncio_progress.py",
+      "title": "_asyncio_progress.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/_asyncio_progress.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/agent_runner_helpers.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/agent_runner_helpers.py",
+      "title": "agent_runner_helpers.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/agent_runner_helpers.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "from temporalio import workflow as temporal_workflow # type: ignore[import-not-found] | if not temporal_workflow.in_workflow(): | return bool(temporal_workflow.patched(_PARALLEL_INPUT_GUARDRAIL_CANCEL_PATCH_ID))"
+    },
+    {
+      "id": "src/agents/run_internal/approvals.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/approvals.py",
+      "title": "approvals.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/approvals.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/error_handlers.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/error_handlers.py",
+      "title": "error_handlers.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/error_handlers.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/guardrails.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/guardrails.py",
+      "title": "guardrails.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/guardrails.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/items.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/items.py",
+      "title": "items.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/items.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/oai_conversation.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/oai_conversation.py",
+      "title": "oai_conversation.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/oai_conversation.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/run_loop.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/run_loop.py",
+      "title": "run_loop.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/run_loop.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "all_tools: list[Tool], | for tool in all_tools: | all_tools: list[Tool],"
+    },
+    {
+      "id": "src/agents/run_internal/run_steps.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/run_steps.py",
+      "title": "run_steps.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/run_steps.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/session_persistence.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/session_persistence.py",
+      "title": "session_persistence.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/session_persistence.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/streaming.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/streaming.py",
+      "title": "streaming.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/streaming.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/tool_actions.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/tool_actions.py",
+      "title": "tool_actions.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/tool_actions.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/tool_execution.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/tool_execution.py",
+      "title": "tool_execution.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/tool_execution.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "if not function_tools: | tools: list[Tool], | if not computer_tools:"
+    },
+    {
+      "id": "src/agents/run_internal/tool_execution.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "src/agents/run_internal/tool_execution.py",
+      "title": "tool_execution.py",
+      "summary": "Tool contract or integration guidance detected in src/agents/run_internal/tool_execution.py.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "if not function_tools: | tools: list[Tool], | if not computer_tools:"
+    },
+    {
+      "id": "src/agents/run_internal/tool_planning.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/tool_planning.py",
+      "title": "tool_planning.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/tool_planning.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/tool_use_tracker.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/tool_use_tracker.py",
+      "title": "tool_use_tracker.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/tool_use_tracker.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "self.agent_to_tools: list[tuple[Agent[Any], list[str]]] = [] | def record_used_tools(self, agent: Agent[Any], tools: list[ToolRunFunction]) -> None: | for agent, names in self.agent_to_tools:"
+    },
+    {
+      "id": "src/agents/run_internal/tool_use_tracker.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "src/agents/run_internal/tool_use_tracker.py",
+      "title": "tool_use_tracker.py",
+      "summary": "Tool contract or integration guidance detected in src/agents/run_internal/tool_use_tracker.py.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "self.agent_to_tools: list[tuple[Agent[Any], list[str]]] = [] | def record_used_tools(self, agent: Agent[Any], tools: list[ToolRunFunction]) -> None: | for agent, names in self.agent_to_tools:"
+    },
+    {
+      "id": "src/agents/run_internal/turn_preparation.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/turn_preparation.py",
+      "title": "turn_preparation.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/turn_preparation.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/run_internal/turn_resolution.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_internal/turn_resolution.py",
+      "title": "turn_resolution.py",
+      "summary": "Prompt-like agent definition in src/agents/run_internal/turn_resolution.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "all_tools: list[Tool], | all_tools: list[Tool],"
+    },
+    {
+      "id": "src/agents/run_state.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/run_state.py",
+      "title": "run_state.py",
+      "summary": "Prompt-like agent definition in src/agents/run_state.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"\"\"Remember that _generated_items already include the current processed response.\"\"\" | tools: Sequence[Any], tool_type: type[Any] | for tool in tools:"
+    },
+    {
+      "id": "src/agents/stream_events.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/stream_events.py",
+      "title": "stream_events.py",
+      "summary": "Prompt-like agent definition in src/agents/stream_events.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/strict_schema.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/strict_schema.py",
+      "title": "strict_schema.py",
+      "summary": "Prompt-like agent definition in src/agents/strict_schema.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/tool.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tool.py",
+      "title": "tool.py",
+      "summary": "Prompt-like agent definition in src/agents/tool.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: list[FunctionTool], | namespaced_tools: list[FunctionTool] = [] | for tool in tools:"
+    },
+    {
+      "id": "src/agents/tool.py::tool_contract",
+      "kind": "tool_contract",
+      "path": "src/agents/tool.py",
+      "title": "tool.py",
+      "summary": "Tool contract or integration guidance detected in src/agents/tool.py.",
+      "signals": [
+        "path:tool",
+        "text:tools:"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: list[FunctionTool], | namespaced_tools: list[FunctionTool] = [] | for tool in tools:"
+    },
+    {
+      "id": "src/agents/tool_context.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tool_context.py",
+      "title": "tool_context.py",
+      "summary": "Prompt-like agent definition in src/agents/tool_context.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/tool_guardrails.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tool_guardrails.py",
+      "title": "tool_guardrails.py",
+      "summary": "Prompt-like agent definition in src/agents/tool_guardrails.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/tracing/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/tracing/config.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/config.py",
+      "title": "config.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/config.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/tracing/context.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/context.py",
+      "title": "context.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/context.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "workflow_name: str, | if trace_state.workflow_name != workflow_name: | workflow_name: str,"
+    },
+    {
+      "id": "src/agents/tracing/create.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/create.py",
+      "title": "create.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/create.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "workflow_name: str, | In addition to the workflow name and optional grouping identifier, you can provide | workflow_name: The name of the logical app or workflow. For example, you might provide"
+    },
+    {
+      "id": "src/agents/tracing/logger.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/logger.py",
+      "title": "logger.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/logger.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/tracing/model_tracing.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/model_tracing.py",
+      "title": "model_tracing.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/model_tracing.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/tracing/processor_interface.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/processor_interface.py",
+      "title": "processor_interface.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/processor_interface.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "trace: The trace that started. Contains workflow name and metadata."
+    },
+    {
+      "id": "src/agents/tracing/processors.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/processors.py",
+      "title": "processors.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/processors.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/tracing/provider.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/provider.py",
+      "title": "provider.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/provider.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/tracing/scope.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/scope.py",
+      "title": "scope.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/scope.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/tracing/setup.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/setup.py",
+      "title": "setup.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/setup.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/tracing/span_data.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/span_data.py",
+      "title": "span_data.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/span_data.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "tools: list[str] | None = None, | self.tools: list[str] | None = tools"
+    },
+    {
+      "id": "src/agents/tracing/spans.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/spans.py",
+      "title": "spans.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/spans.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/tracing/traces.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/traces.py",
+      "title": "traces.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/traces.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "\"\"\"A complete end-to-end workflow containing related spans and metadata. | A trace represents a logical workflow or operation (e.g., \"Customer Service Query\" | during that workflow."
+    },
+    {
+      "id": "src/agents/tracing/util.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/tracing/util.py",
+      "title": "util.py",
+      "summary": "Prompt-like agent definition in src/agents/tracing/util.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/usage.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/usage.py",
+      "title": "usage.py",
+      "summary": "Prompt-like agent definition in src/agents/usage.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/util/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/util/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/util/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/util/_approvals.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/util/_approvals.py",
+      "title": "_approvals.py",
+      "summary": "Prompt-like agent definition in src/agents/util/_approvals.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/util/_coro.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/util/_coro.py",
+      "title": "_coro.py",
+      "summary": "Prompt-like agent definition in src/agents/util/_coro.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/util/_error_tracing.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/util/_error_tracing.py",
+      "title": "_error_tracing.py",
+      "summary": "Prompt-like agent definition in src/agents/util/_error_tracing.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/util/_json.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/util/_json.py",
+      "title": "_json.py",
+      "summary": "Prompt-like agent definition in src/agents/util/_json.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/util/_pretty_print.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/util/_pretty_print.py",
+      "title": "_pretty_print.py",
+      "summary": "Prompt-like agent definition in src/agents/util/_pretty_print.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/util/_transforms.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/util/_transforms.py",
+      "title": "_transforms.py",
+      "summary": "Prompt-like agent definition in src/agents/util/_transforms.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/util/_types.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/util/_types.py",
+      "title": "_types.py",
+      "summary": "Prompt-like agent definition in src/agents/util/_types.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/version.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/version.py",
+      "title": "version.py",
+      "summary": "Prompt-like agent definition in src/agents/version.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/voice/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "from .workflow import ( | SingleAgentVoiceWorkflow, | SingleAgentWorkflowCallbacks,"
+    },
+    {
+      "id": "src/agents/voice/events.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/events.py",
+      "title": "events.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/events.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/voice/exceptions.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/exceptions.py",
+      "title": "exceptions.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/exceptions.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/voice/imports.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/imports.py",
+      "title": "imports.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/imports.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/voice/input.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/input.py",
+      "title": "input.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/input.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/voice/model.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/model.py",
+      "title": "model.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/model.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/voice/models/__init__.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/models/__init__.py",
+      "title": "__init__.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/models/__init__.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/voice/models/openai_model_provider.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/models/openai_model_provider.py",
+      "title": "openai_model_provider.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/models/openai_model_provider.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/voice/models/openai_stt.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/models/openai_stt.py",
+      "title": "openai_stt.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/models/openai_stt.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/voice/models/openai_tts.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/models/openai_tts.py",
+      "title": "openai_tts.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/models/openai_tts.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/voice/pipeline.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/pipeline.py",
+      "title": "pipeline.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/pipeline.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "from .workflow import VoiceWorkflowBase | 2. Run the provided `workflow`, which produces a sequence of text responses. | workflow: VoiceWorkflowBase,"
+    },
+    {
+      "id": "src/agents/voice/pipeline_config.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/pipeline_config.py",
+      "title": "pipeline_config.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/pipeline_config.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "voice pipeline, and not for anything that goes on inside your Workflow.\"\"\" | workflow_name: str = \"Voice Agent\" | \"\"\"The name of the workflow to use for tracing. Defaults to `Voice Agent`.\"\"\""
+    },
+    {
+      "id": "src/agents/voice/result.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/result.py",
+      "title": "result.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/result.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/voice/utils.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/utils.py",
+      "title": "utils.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/utils.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": ""
+    },
+    {
+      "id": "src/agents/voice/workflow.py::agent_prompt",
+      "kind": "agent_prompt",
+      "path": "src/agents/voice/workflow.py",
+      "title": "workflow.py",
+      "summary": "Prompt-like agent definition in src/agents/voice/workflow.py.",
+      "signals": [
+        "path:agent",
+        "path:agents/"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "class VoiceWorkflowBase(abc.ABC): | A base class for a voice workflow. You must implement the `run` method. A \"workflow\" is any | some or all of the text events from the stream. You can use the `VoiceWorkflowHelper` class to"
+    }
+  ]
+}

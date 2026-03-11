@@ -1,0 +1,84 @@
+{
+  "repo": {
+    "name": "langgraph",
+    "target": "https://github.com/langchain-ai/langgraph",
+    "source_type": "github",
+    "commit": "acae5e23b00ff19d61bd9d3fa352765c76c8ae2c",
+    "root_path": "C:\\Users\\mur4t\\AppData\\Local\\Temp\\prompt_xray_cache\\langgraph-f46ea04101"
+  },
+  "summary": {
+    "repo_archetype": "mixed",
+    "orchestration_model": "runtime-implemented",
+    "memory_model": "none",
+    "verdict": "This repo mixes real implementation with prompt/config behavior surfaces; it is not prompt-only."
+  },
+  "counts": {
+    "candidate_files": 90,
+    "artifacts": 2
+  },
+  "tooling_surfaces": [
+    "Claude Code"
+  ],
+  "behavior_sources": [
+    {
+      "path": "AGENTS.md",
+      "score": 3.66,
+      "kinds": [
+        "system_prompt"
+      ],
+      "reasons": [
+        "path:agents.md",
+        "text:instructions"
+      ]
+    },
+    {
+      "path": "libs/cli/js-examples/README.md",
+      "score": 2.56,
+      "kinds": [
+        "system_prompt"
+      ],
+      "reasons": [
+        "text:instructions",
+        "text:system prompt"
+      ]
+    }
+  ],
+  "missing_runtime_pieces": [],
+  "real_vs_packaging": {
+    "real_implementation": [
+      "Runtime-oriented files were detected (5 shown): libs/cli/js-examples/src/agent/graph.ts, libs/cli/js-examples/src/agent/state.ts, libs/cli/js-monorepo-example/apps/agent/src/graph.ts, libs/cli/js-monorepo-example/apps/agent/src/state.ts, libs/cli/js-monorepo-example/libs/shared/src/index.ts"
+    ],
+    "prompt_config_structure": [
+      "Behavior is adapted across tool ecosystems via repo-specific prompt packaging."
+    ],
+    "presentation_marketing_layer": []
+  },
+  "artifacts": [
+    {
+      "id": "AGENTS.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "AGENTS.md",
+      "title": "AGENTS.md",
+      "summary": "System-level instruction source detected in AGENTS.md.",
+      "signals": [
+        "path:agents.md",
+        "text:instructions"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "# AGENTS Instructions"
+    },
+    {
+      "id": "libs/cli/js-examples/README.md::system_prompt",
+      "kind": "system_prompt",
+      "path": "libs/cli/js-examples/README.md",
+      "title": "README.md",
+      "summary": "System-level instruction source detected in libs/cli/js-examples/README.md.",
+      "signals": [
+        "text:instructions",
+        "text:system prompt"
+      ],
+      "confidence": 0.61,
+      "source_snippet": "End setup instructions | - Modifying the system prompt to give your chatbot a unique personality."
+    }
+  ]
+}

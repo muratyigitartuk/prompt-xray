@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt-xray UI</title>
+  <link rel="stylesheet" href="./ui/styles.css">
+</head>
+<body>
+  <div class="shell" id="shell">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">
+          <div class="brand-mark">PX</div>
+          <div class="brand-text">
+            <p class="eyebrow">Prompt Archaeology</p>
+            <h1>Prompt-xray</h1>
+          </div>
+        </div>
+        <button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Collapse sidebar" aria-expanded="true">
+          <span class="toggle-open">Close</span>
+          <span class="toggle-closed">Open</span>
+        </button>
+      </div>
+
+      <p class="sidebar-copy collapsible-copy">
+        Browse the strongest scans and comparisons without reading raw JSON. This UI is powered by the generated report artifacts already in the repo.
+      </p>
+
+      <section class="nav-group collapsible-block">
+        <div class="nav-group-head">
+          <span>Reports</span>
+          <span id="report-count" class="count-pill">0</span>
+        </div>
+        <div id="report-list" class="nav-list"></div>
+      </section>
+
+      <section class="nav-group collapsible-block">
+        <div class="nav-group-head">
+          <span>Comparisons</span>
+          <span id="compare-count" class="count-pill">0</span>
+        </div>
+        <div id="compare-list" class="nav-list"></div>
+      </section>
+    </aside>
+
+    <main class="main">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Live Demo Surface</p>
+          <h2>See where the real behavior comes from.</h2>
+          <p>
+            Select any sample on the left. Reports show prompt surfaces, behavior sources, and missing runtime pieces.
+            Comparisons show the fastest way to explain why two AI repos are structurally different.
+          </p>
+        </div>
+        <div class="hero-note">
+          <div class="hero-note-card">
+            <div class="mode-switch" role="tablist" aria-label="Analysis mode">
+              <button id="mode-scan" class="mode-button active" type="button">Scan</button>
+              <button id="mode-compare" class="mode-button" type="button">Compare</button>
+            </div>
+            <form id="scan-form" class="action-form">
+              <label>
+                <span>Repo or local path</span>
+                <input id="scan-target" name="target" type="text" placeholder="https://github.com/owner/repo or C:\path\to\repo" required>
+              </label>
+              <div class="form-row">
+                <label>
+                  <span>Max file size KB</span>
+                  <input id="scan-size" name="max_file_size_kb" type="number" min="1" value="1024">
+                </label>
+                <label class="checkbox-row">
+                  <input id="scan-snippets" name="include_snippets" type="checkbox" checked>
+                  <span>Include snippets</span>
+                </label>
+              </div>
+              <button class="submit-button" type="submit">Run scan</button>
+            </form>
+
+            <form id="compare-form" class="action-form hidden">
+              <label>
+                <span>Left repo or path</span>
+                <input id="compare-left" name="left" type="text" placeholder="https://github.com/owner/repo" required>
+              </label>
+              <label>
+                <span>Right repo or path</span>
+                <input id="compare-right" name="right" type="text" placeholder="https://github.com/owner/repo" required>
+              </label>
+              <div class="form-row">
+                <label>
+                  <span>Max file size KB</span>
+                  <input id="compare-size" name="max_file_size_kb" type="number" min="1" value="1024">
+                </label>
+                <label class="checkbox-row">
+                  <input id="compare-snippets" name="include_snippets" type="checkbox">
+                  <span>Include snippets</span>
+                </label>
+              </div>
+              <button class="submit-button" type="submit">Run compare</button>
+            </form>
+
+            <div id="hero-status" class="hero-status">
+              <span>Best first click</span>
+              <strong>`agency-agents` vs `claude-code`</strong>
+              <small>The cleanest contrast in the current benchmark set.</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section id="viewport" class="viewport">
+        <div class="empty-state">
+          <p class="eyebrow">No Selection</p>
+          <h3>Choose a report or comparison</h3>
+          <p>The dashboard will render a proper UI from the generated JSON artifacts.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./ui/app.js"></script>
+</body>
+</html>

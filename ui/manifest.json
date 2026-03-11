@@ -1,0 +1,48 @@
+{
+  "reports": [
+    {
+      "id": "agency-agents",
+      "label": "agency-agents",
+      "path": "./xray-samples-3/agency-agents/report.json",
+      "highlight": "Prompt pack, not agent runtime."
+    },
+    {
+      "id": "claude-code",
+      "label": "claude-code",
+      "path": "./xray-samples-3/claude-code/report.json",
+      "highlight": "Real runtime with visible prompt layers."
+    },
+    {
+      "id": "openai-agents-python",
+      "label": "openai-agents-python",
+      "path": "./xray-samples-3/openai-agents-python/report.json",
+      "highlight": "Framework/runtime with heavy skill surfaces."
+    },
+    {
+      "id": "crewai",
+      "label": "crewAI",
+      "path": "./xray-samples-3/crewai/report.json",
+      "highlight": "Large mixed repo with adapter-heavy runtime signals."
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "agency-vs-claude",
+      "label": "agency-agents vs claude-code",
+      "path": "./compare-demo-2/compare.json",
+      "highlight": "Cleanest benchmark contrast."
+    },
+    {
+      "id": "agency-vs-inspector",
+      "label": "agency-agents vs inspector",
+      "path": "./compare-benchmarks/agency-vs-inspector/compare.json",
+      "highlight": "Prompt-heavy repo vs not-prompt-centric tool."
+    },
+    {
+      "id": "browser-vs-langgraph",
+      "label": "browser-use vs langgraph",
+      "path": "./compare-benchmarks/browser-use-vs-langgraph/compare.json",
+      "highlight": "Two runtimes, different prompt density."
+    }
+  ]
+}
