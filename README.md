@@ -2,14 +2,15 @@
 
 **See what an AI repo actually does.**
 
-Prompt-xray scans or compares GitHub repos and local folders, then tells you where the real behavior comes from:
+Prompt-xray scans or compares GitHub repos and local folders, then reports where the behavior of an AI system is really defined. It is built for repos where prompts, skills, rules, docs, integrations, and runtime code are mixed together.
 
-- prompt pack
-- real runtime
-- mixed system
-- not prompt-centric
+It uses deterministic heuristics only:
 
-It is deterministic. No API keys. No LLM calls. No GitHub API. Just prompt archaeology.
+- no API keys
+- no LLM calls
+- no GitHub API
+
+Typical output:
 
 ```text
 agency-agents   -> Prompt pack, not agent runtime.
@@ -17,37 +18,17 @@ claude-code     -> Real runtime with visible prompt layers.
 mcp-inspector   -> Not a prompt-centric repo.
 ```
 
-**Best first demo**
+## What it does
 
-```bash
-prompt-xray compare \
-  https://github.com/msitarzewski/agency-agents \
-  https://github.com/anthropics/claude-code --html
-```
+For a single repo, Prompt-xray tells you:
 
-That one comparison explains the whole product:
-
-- one repo is mostly prompts and packaging
-- one repo is a real runtime with visible prompt layers
-- Prompt-xray makes that difference legible in one report
-
-## Why use it
-
-AI repos are slow to evaluate because the real behavior is scattered across prompt files, skills, rules, docs, integrations, and runtime code. Prompt-xray compresses that into a blunt first-pass answer:
-
-- what this repo really is
+- what the repo most likely is
 - which files shape behavior
-- whether orchestration is real or prompt-defined
-- whether memory is implemented or just documented
-- what is real implementation versus packaging
+- whether orchestration is implemented or only described
+- whether memory is runtime-backed or only documented
+- what looks like implementation versus packaging
 
-## Repo call
-
-Prompt-xray gives every repo a short call you can understand in one line:
-
-- `Prompt pack, not agent runtime.`
-- `Real runtime with visible prompt layers.`
-- `Not a prompt-centric repo.`
+For two repos, it shows the differences side by side.
 
 ## Install
 
@@ -55,28 +36,81 @@ Prompt-xray gives every repo a short call you can understand in one line:
 pip install -e .
 ```
 
-## Usage
+## Quick start
+
+Scan one repo:
+
+```bash
+prompt-xray scan https://github.com/msitarzewski/agency-agents
+prompt-xray scan ../agency-agents --html
+```
+
+Compare two repos:
+
+```bash
+prompt-xray compare \
+  https://github.com/msitarzewski/agency-agents \
+  https://github.com/anthropics/claude-code --html
+```
+
+Serve the web UI:
+
+```bash
+prompt-xray serve --host 127.0.0.1 --port 8765
+```
+
+Then open [http://127.0.0.1:8765/](http://127.0.0.1:8765/).
+
+By default, generated files are written under `.prompt-xray/<repo-slug>/`.
+
+## Web UI
+
+The included web app exposes the same functionality as the CLI:
+
+- scan a local path or GitHub repo
+- compare two local paths or GitHub repos
+- inspect the repo call, behavior sources, orchestration, and memory classification
+- browse saved sample scans and comparisons
+
+## Command reference
+
+```bash
+prompt-xray scan <target> [--out <dir>] [--format markdown|json|both] [--html]
+prompt-xray compare <left> <right> [--out <dir>] [--format markdown|json|both] [--html]
+prompt-xray serve [--host 127.0.0.1] [--port 8765]
+```
+
+Useful scan examples:
 
 ```bash
 prompt-xray scan https://github.com/msitarzewski/agency-agents
 prompt-xray scan ../agency-agents --out reports/agency-agents
 prompt-xray scan ../agency-agents --format json
 prompt-xray scan https://github.com/msitarzewski/agency-agents --html
-prompt-xray compare https://github.com/msitarzewski/agency-agents https://github.com/anthropics/claude-code
-prompt-xray compare https://github.com/msitarzewski/agency-agents https://github.com/anthropics/claude-code --html
 ```
 
-By default, reports are written to `.prompt-xray/<repo-slug>/`.
+Useful compare examples:
+
+```bash
+prompt-xray compare https://github.com/msitarzewski/agency-agents https://github.com/anthropics/claude-code
+prompt-xray compare https://github.com/browser-use/browser-use https://github.com/langchain-ai/langgraph --html
+```
 
 ## Output
 
-Each scan writes:
+Each scan can write:
 
 - `report.md`
 - `report.json`
 - `report.html` when `--html` is passed
 
-The Markdown report has a fixed structure:
+Each comparison can write:
+
+- `compare.md`
+- `compare.json`
+- `compare.html` when `--html` is passed
+
+The Markdown report uses this structure:
 
 ```md
 # Prompt-xray Report: <repo>
@@ -92,151 +126,84 @@ The Markdown report has a fixed structure:
 ## Verdict
 ```
 
-## Demo angle
+## Example results
 
-The intended README story is simple:
+### `agency-agents`
 
-> Paste any agent repo. See where the real behavior comes from.
-
-Launch-ready copy lives in [docs/launch-copy.md](docs/launch-copy.md).
-
-## Example scans
-
-These examples were generated by Prompt-xray against public repos.
-
-### Example: `agency-agents`
-
-```bash
-prompt-xray scan https://github.com/msitarzewski/agency-agents
-
-Prompt-xray report for agency-agents
-- Archetype: prompt-library
-- Orchestration: prompt-defined
-- Memory: documented-only
-- Candidate files: 152
-- Artifacts: 416
+```text
+Archetype: prompt-library
+Orchestration: prompt-defined
+Memory: documented-only
+Call: Prompt pack, not agent runtime.
 ```
 
-What this tells you:
+### `claude-code`
 
-- Call: `Prompt pack, not agent runtime.`
-- This is a prompt pack, not an agent runtime.
-- The repo talks about orchestration and memory, but those behaviors live at the prompt layer.
-- The most influential files are agent definitions and orchestration prompts, not server code.
-
-### Example: `claude-code`
-
-```bash
-prompt-xray scan https://github.com/anthropics/claude-code
-
-Prompt-xray report for claude-code
-- Archetype: mixed
-- Orchestration: runtime-implemented
-- Memory: documented-only
-- Candidate files: 143
-- Artifacts: 90
+```text
+Archetype: mixed
+Orchestration: runtime-implemented
+Memory: documented-only
+Call: Real runtime with visible prompt layers.
 ```
 
-What this tells you:
+### `browser-use`
 
-- Call: `Real runtime with visible prompt layers.`
-- This is a real runtime project with prompt surfaces layered on top.
-- Plugin skills and agent-definition files are important, but they are not the whole system.
-- Prompt-xray can separate runtime code from prompt/config behavior.
-
-### Example: `browser-use`
-
-```bash
-prompt-xray scan https://github.com/browser-use/browser-use
-
-Prompt-xray report for browser-use
-- Archetype: mixed
-- Orchestration: runtime-implemented
-- Memory: none
-- Candidate files: 66
-- Artifacts: 32
+```text
+Archetype: mixed
+Orchestration: runtime-implemented
+Memory: none
+Call: Real runtime with visible prompt layers.
 ```
-
-What this tells you:
-
-- Call: `Real runtime with visible prompt layers.`
-- The repo has real runtime behavior.
-- Prompt assets still matter, and Prompt-xray surfaces the actual prompt files that shape the agent.
-- This is not just marketing copy with rules files wrapped around it.
-
-## Compare mode
-
-This is the most shareable feature:
-
-```bash
-prompt-xray compare \
-  https://github.com/msitarzewski/agency-agents \
-  https://github.com/anthropics/claude-code
-```
-
-Expected contrast:
-
-- `agency-agents`: `Prompt pack, not agent runtime.`
-- `claude-code`: `Real runtime with visible prompt layers.`
-
-That difference is the product.
-
-## Screenshot mode
-
-Use `--html` to emit a single-file visual report built for screenshots and quick sharing:
-
-```bash
-prompt-xray scan https://github.com/msitarzewski/agency-agents --html
-prompt-xray compare https://github.com/msitarzewski/agency-agents https://github.com/anthropics/claude-code --html
-```
-
-The HTML output gives you:
-
-- a big repo call at the top
-- cleaner behavior-source tables
-- better contrast for screenshots
-- a compare page that is easier to post than raw markdown
 
 ## Comparison snapshot
 
 Generated from Prompt-xray runs on March 11, 2026.
 
-| Repo | Archetype | Orchestration | Memory | Artifacts | Takeaway |
+| Repo | Archetype | Orchestration | Memory | Artifacts | Summary |
 | --- | --- | --- | --- | ---: | --- |
 | `msitarzewski/agency-agents` | `prompt-library` | `prompt-defined` | `documented-only` | 416 | Prompt-heavy library with packaging logic, not a runtime agent system. |
 | `anthropics/claude-code` | `mixed` | `runtime-implemented` | `documented-only` | 90 | Real product/runtime with visible skill and prompt layers. |
-| `browser-use/browser-use` | `mixed` | `runtime-implemented` | `none` | 32 | Runtime-first repo with prompt files that still materially shape behavior. |
+| `browser-use/browser-use` | `mixed` | `runtime-implemented` | `none` | 32 | Runtime-first repo with prompt files that still shape behavior. |
 | `openai/openai-agents-python` | `mixed` | `runtime-implemented` | `implemented-runtime` | 302 | Framework/runtime plus strong internal skill and instruction surfaces. |
 | `crewAIInc/crewAI` | `mixed` | `runtime-implemented` | `implemented-runtime` | 317 | Large runtime framework with a lot of prompt and doc-level behavior clues. |
-| `langchain-ai/langgraph` | `mixed` | `runtime-implemented` | `none` | 2 | Mostly runtime from Prompt-xray's perspective; very little prompt surface in the repo. |
-| `modelcontextprotocol/servers` | `mixed` | `runtime-implemented` | `implemented-runtime` | 9 | Real implementation repo with limited prompt surface and clear MCP/runtime signals. |
-| `modelcontextprotocol/inspector` | `unclear` | `runtime-implemented` | `none` | 1 | Useful negative control: not every AI-adjacent repo is prompt-centric. |
+| `langchain-ai/langgraph` | `mixed` | `runtime-implemented` | `none` | 2 | Mostly runtime from Prompt-xray's perspective with very little prompt surface. |
+| `modelcontextprotocol/servers` | `mixed` | `runtime-implemented` | `implemented-runtime` | 9 | Implementation repo with limited prompt surface and clear MCP/runtime signals. |
+| `modelcontextprotocol/inspector` | `unclear` | `runtime-implemented` | `none` | 1 | Useful negative control for non prompt-centric AI tooling. |
 
-## Killer benchmark comparisons
+## How it works
 
-These are the comparisons that best sell the product:
+Prompt-xray runs a static analysis pipeline:
 
-| Comparison | Why it is good |
-| --- | --- |
-| `agency-agents` vs `claude-code` | Prompt library vs real runtime with prompt layers. This is the cleanest contrast. |
-| `agency-agents` vs `mcp-inspector` | Prompt-heavy repo vs not-prompt-centric runtime tool. Good for proving Prompt-xray can say "this is not the same kind of thing." |
-| `browser-use` vs `langgraph` | Both are real runtimes, but Prompt-xray shows that prompt surface density is very different. |
-| `openai-agents-python` vs `crewAI` | Both are mixed/runtime-heavy repos, useful for stress-testing large mixed systems. |
+1. resolve a local folder or clone a GitHub repo with `git clone --depth 1`
+2. collect candidate prompt, rule, config, and documentation files
+3. extract prompt-like artifacts and file-level signals
+4. classify the repo using deterministic heuristics
+5. render Markdown, JSON, and optional HTML reports
 
-## Social-ready lines
+It looks for signals such as:
 
-Examples you can post directly:
+- agent and prompt files
+- skills and rule files
+- tool-specific integrations like Cursor, Claude Code, Copilot, Windsurf, and Gemini CLI
+- orchestration markers such as handoff, phases, gates, and retry loops
+- memory markers in docs, config, and runtime paths
+- runtime code that suggests actual implementation rather than documentation alone
 
-- `agency-agents` -> `Prompt pack, not agent runtime.`
-- `claude-code` -> `Real runtime with visible prompt layers.`
-- `mcp-inspector` -> `Not a prompt-centric repo.`
+## Limitations
 
-## Why this is interesting
+Prompt-xray is useful as a first-pass analysis tool, not as a formal verifier.
 
-Prompt-xray is most useful when two repos look similar from the outside but are structurally different:
+- it relies on heuristics rather than execution
+- large mixed repos are harder to classify cleanly than prompt-heavy repos
+- runtime and memory detection are directional, not guaranteed
+- generated, vendored, binary, and oversized files are skipped
 
-- one is mostly prompts and packaging
-- one is runtime plus prompts
-- one barely uses prompt assets at all
+## Development
 
-That contrast is the product.
+Run tests:
+
+```bash
+python -m pytest -q
+```
+
+Launch copy for GitHub, X, Reddit, and HN is in [docs/launch-copy.md](docs/launch-copy.md).
