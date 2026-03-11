@@ -2,3 +2,12 @@
 __pycache__/
 *.pyc
 .prompt-xray/
+demo-local/
+demo-local-2/
+demo-remote/
+compare-demo/
+xray-samples/
+xray-samples-2/
+xray-samples-3/
+compare-demo-2/
+compare-benchmarks/

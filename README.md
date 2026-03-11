@@ -70,7 +70,7 @@ The included web app exposes the same functionality as the CLI:
 - scan a local path or GitHub repo
 - compare two local paths or GitHub repos
 - inspect the repo call, behavior sources, orchestration, and memory classification
-- browse saved sample scans and comparisons
+- browse a small curated set of sample scans and comparisons
 
 ## Command reference
 
@@ -205,5 +205,3 @@ Run tests:
 ```bash
 python -m pytest -q
 ```
-
-Launch copy for GitHub, X, Reddit, and HN is in [docs/launch-copy.md](docs/launch-copy.md).
