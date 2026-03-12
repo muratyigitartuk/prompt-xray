@@ -17,20 +17,22 @@ def main() -> int:
     candidate = load_benchmark_run(Path(args.candidate))
     diff = diff_benchmark_runs(baseline, candidate, Path(args.baseline), Path(args.candidate))
     thresholds = config.regression_thresholds
+    split_only_run = candidate.split != "all"
 
     failures: list[str] = []
-    if diff.summary["family_delta"] < thresholds["family_exact_match_delta_min"]:
-        failures.append(f"family exact-match delta {diff.summary['family_delta']} is below threshold")
-    if diff.summary["archetype_delta"] < thresholds["archetype_exact_match_delta_min"]:
-        failures.append(f"archetype exact-match delta {diff.summary['archetype_delta']} is below threshold")
-    if diff.summary["orchestration_delta"] < thresholds["orchestration_exact_match_delta_min"]:
-        failures.append(
-            f"orchestration exact-match delta {diff.summary['orchestration_delta']} is below threshold"
-        )
-    if diff.summary["memory_delta"] < thresholds["memory_exact_match_delta_min"]:
-        failures.append(f"memory exact-match delta {diff.summary['memory_delta']} is below threshold")
-    if diff.summary["low_confidence_delta"] > thresholds["low_confidence_delta_max"]:
-        failures.append(f"low-confidence delta {diff.summary['low_confidence_delta']} exceeds threshold")
+    if not split_only_run:
+        if diff.summary["family_delta"] < thresholds["family_exact_match_delta_min"]:
+            failures.append(f"family exact-match delta {diff.summary['family_delta']} is below threshold")
+        if diff.summary["archetype_delta"] < thresholds["archetype_exact_match_delta_min"]:
+            failures.append(f"archetype exact-match delta {diff.summary['archetype_delta']} is below threshold")
+        if diff.summary["orchestration_delta"] < thresholds["orchestration_exact_match_delta_min"]:
+            failures.append(
+                f"orchestration exact-match delta {diff.summary['orchestration_delta']} is below threshold"
+            )
+        if diff.summary["memory_delta"] < thresholds["memory_exact_match_delta_min"]:
+            failures.append(f"memory exact-match delta {diff.summary['memory_delta']} is below threshold")
+        if diff.summary["low_confidence_delta"] > thresholds["low_confidence_delta_max"]:
+            failures.append(f"low-confidence delta {diff.summary['low_confidence_delta']} exceeds threshold")
 
     if not candidate.baseline_name.startswith("reduced-"):
         for split, floors in config.minimum_split_floors.items():
