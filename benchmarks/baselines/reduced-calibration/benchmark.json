@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T23:47:02.024287+00:00",
+  "generated_at": "2026-03-12T12:14:53.981321+00:00",
   "config_path": "benchmarks/cases",
   "case_count": 5,
   "baseline_name": "reduced-calibration",
@@ -164,7 +164,7 @@
           "reasons": [
             "final=runtime-framework",
             "support=3.6 margin=0.6",
-            "runtime-density=0.24 docs-ratio=3.1"
+            "runtime-density=0.22 docs-ratio=3.1"
           ]
         },
         "repo_archetype": {
@@ -316,7 +316,7 @@
           "reasons": [
             "final=runtime-implemented",
             "support=13.0 margin=13.0",
-            "entrypoint-reachability=0.07"
+            "entrypoint-reachability=0.0"
           ]
         },
         "memory": {

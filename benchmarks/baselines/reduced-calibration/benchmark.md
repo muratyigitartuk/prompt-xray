@@ -1,6 +1,6 @@
 # Prompt-xray Benchmark Run
 
-- Generated at: 2026-03-11T23:47:02.024287+00:00
+- Generated at: 2026-03-12T12:14:53.981321+00:00
 - Cases: 5
 - Baseline name: reduced-calibration
 - Split: calibration

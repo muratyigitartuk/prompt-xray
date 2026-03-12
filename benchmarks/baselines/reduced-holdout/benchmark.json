@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T23:51:21.052467+00:00",
+  "generated_at": "2026-03-12T12:16:28.287042+00:00",
   "config_path": "benchmarks/cases",
   "case_count": 5,
   "baseline_name": "reduced-holdout",
@@ -29,7 +29,7 @@
           "reasons": [
             "final=runtime-framework",
             "support=4.6 margin=0.1",
-            "runtime-density=0.56 docs-ratio=0.99"
+            "runtime-density=0.53 docs-ratio=1.0"
           ]
         },
         "repo_archetype": {
@@ -38,7 +38,7 @@
           "reasons": [
             "final=mixed",
             "support=4.4 margin=4.0",
-            "prompt-density=0.25 links=1.7"
+            "prompt-density=0.24 links=1.7"
           ]
         },
         "orchestration": {
@@ -56,7 +56,7 @@
           "reasons": [
             "final=implemented-runtime",
             "support=13.0 margin=13.0",
-            "runtime-code=675 docs-ratio=0.99"
+            "runtime-code=656 docs-ratio=1.0"
           ]
         },
         "overall": {
@@ -300,16 +300,16 @@
           "reasons": [
             "final=runtime-framework",
             "support=4.6 margin=0.1",
-            "runtime-density=0.38 docs-ratio=0.72"
+            "runtime-density=0.38 docs-ratio=0.99"
           ]
         },
         "repo_archetype": {
-          "score": 0.92,
+          "score": 0.93,
           "level": "high",
           "reasons": [
             "final=mixed",
-            "support=4.4 margin=4.0",
-            "prompt-density=0.25 links=0.8"
+            "support=4.4 margin=1.0",
+            "prompt-density=0.38 links=0.8"
           ]
         },
         "orchestration": {
@@ -327,11 +327,11 @@
           "reasons": [
             "final=implemented-runtime",
             "support=13.0 margin=13.0",
-            "runtime-code=162 docs-ratio=0.72"
+            "runtime-code=163 docs-ratio=0.99"
           ]
         },
         "overall": {
-          "score": 0.92,
+          "score": 0.93,
           "level": "high",
           "reasons": [
             "final-state confidence derived after constraint resolution",
