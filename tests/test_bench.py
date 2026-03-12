@@ -194,3 +194,47 @@ def test_benchmark_run_records_case_errors(monkeypatch, tmp_path: Path) -> None:
     assert run.metrics.total_cases == 1
     assert run.metrics.major_regressions == ["one"]
     assert run.results[0].error == "RuntimeError: cannot clone"
+
+
+def test_benchmark_run_retries_transient_remote_errors(monkeypatch, tmp_path: Path) -> None:
+    cases_dir = tmp_path / "cases"
+    _write_case(
+        cases_dir / "one.json",
+        {
+            "id": "one",
+            "repo_url": "https://github.com/example/one.git",
+            "commit": "deadbeef",
+            "repo_family": "prompt-pack",
+            "repo_archetype": "prompt-library",
+            "orchestration_model": "prompt-defined",
+            "memory_model": "documented-only",
+            "confidence_expectation": "high",
+            "rationale": "fixture",
+            "split": "calibration",
+            "tags": ["fixture"],
+            "ambiguity_policy": "strict",
+            "allowed_labels": {},
+        },
+    )
+    cases = load_cases(cases_dir)
+    state = {"calls": 0, "clears": 0}
+
+    def flaky(*args, **kwargs):
+        state["calls"] += 1
+        if state["calls"] == 1:
+            raise RuntimeError("transient clone issue")
+        return _fake_report("one", "prompt-pack", "prompt-library", "prompt-defined", "documented-only")
+
+    monkeypatch.setattr("prompt_xray.bench.analyze_target", flaky)
+    monkeypatch.setattr(
+        "prompt_xray.bench.clear_cached_repo",
+        lambda *args, **kwargs: state.__setitem__("clears", state["clears"] + 1),
+    )
+
+    run = run_benchmark(cases)
+
+    assert run.metrics.total_cases == 1
+    assert run.metrics.family_exact_matches == 1
+    assert run.results[0].error == ""
+    assert state["calls"] == 2
+    assert state["clears"] == 1

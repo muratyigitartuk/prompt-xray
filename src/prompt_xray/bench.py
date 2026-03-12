@@ -8,6 +8,7 @@ from pathlib import Path
 from pydantic import BaseModel, Field
 
 from .analysis import analyze_target
+from .intake import clear_cached_repo, is_github_url
 
 
 class BenchmarkCase(BaseModel):
@@ -137,48 +138,57 @@ def _field_matches(case: BenchmarkCase, field: str, actual: str) -> bool:
 
 def _evaluate_case(case: BenchmarkCase, max_file_size_kb: int, max_code_files_per_language: int) -> BenchmarkCaseResult:
     expected = case.model_dump(include={"repo_family", "repo_archetype", "orchestration_model", "memory_model"})
-    try:
-        report = analyze_target(
-            case.repo_url,
-            max_file_size_kb=max_file_size_kb,
-            max_code_files_per_language=max_code_files_per_language,
-            include_snippets=False,
-            git_ref=case.commit,
-        )
-        actual = {
-            "repo_family": report.summary.repo_family,
-            "repo_archetype": report.summary.repo_archetype,
-            "orchestration_model": report.summary.orchestration_model,
-            "memory_model": report.summary.memory_model,
-            "xray_call": report.summary.xray_call,
-        }
-        mismatches = [key for key in expected if not _field_matches(case, key, actual.get(key, "error"))]
-        return BenchmarkCaseResult(
-            id=case.id,
-            repo_url=case.repo_url,
-            commit=case.commit,
-            expected=expected,
-            actual=actual,
-            confidence={
-                "repo_family": report.repo_family_confidence.model_dump(mode="json"),
-                "repo_archetype": report.repo_archetype_confidence.model_dump(mode="json"),
-                "orchestration": report.orchestration_confidence.model_dump(mode="json"),
-                "memory": report.memory_confidence.model_dump(mode="json"),
-                "overall": report.overall_confidence.model_dump(mode="json"),
-            },
-            mismatches=mismatches,
-        )
-    except Exception as exc:
-        return BenchmarkCaseResult(
-            id=case.id,
-            repo_url=case.repo_url,
-            commit=case.commit,
-            expected=expected,
-            actual={},
-            confidence={"overall": {"score": 0.0, "level": "low", "reasons": ["benchmark-case-error"]}},
-            mismatches=sorted(expected.keys()),
-            error=f"{type(exc).__name__}: {exc}",
-        )
+    last_exc: Exception | None = None
+    for attempt in range(2):
+        try:
+            report = analyze_target(
+                case.repo_url,
+                max_file_size_kb=max_file_size_kb,
+                max_code_files_per_language=max_code_files_per_language,
+                include_snippets=False,
+                git_ref=case.commit,
+            )
+            actual = {
+                "repo_family": report.summary.repo_family,
+                "repo_archetype": report.summary.repo_archetype,
+                "orchestration_model": report.summary.orchestration_model,
+                "memory_model": report.summary.memory_model,
+                "xray_call": report.summary.xray_call,
+            }
+            mismatches = [key for key in expected if not _field_matches(case, key, actual.get(key, "error"))]
+            return BenchmarkCaseResult(
+                id=case.id,
+                repo_url=case.repo_url,
+                commit=case.commit,
+                expected=expected,
+                actual=actual,
+                confidence={
+                    "repo_family": report.repo_family_confidence.model_dump(mode="json"),
+                    "repo_archetype": report.repo_archetype_confidence.model_dump(mode="json"),
+                    "orchestration": report.orchestration_confidence.model_dump(mode="json"),
+                    "memory": report.memory_confidence.model_dump(mode="json"),
+                    "overall": report.overall_confidence.model_dump(mode="json"),
+                },
+                mismatches=mismatches,
+            )
+        except Exception as exc:
+            last_exc = exc
+            if attempt == 0 and is_github_url(case.repo_url):
+                clear_cached_repo(case.repo_url, git_ref=case.commit)
+                continue
+            break
+
+    assert last_exc is not None
+    return BenchmarkCaseResult(
+        id=case.id,
+        repo_url=case.repo_url,
+        commit=case.commit,
+        expected=expected,
+        actual={},
+        confidence={"overall": {"score": 0.0, "level": "low", "reasons": ["benchmark-case-error"]}},
+        mismatches=sorted(expected.keys()),
+        error=f"{type(last_exc).__name__}: {last_exc}",
+    )
 
 
 def _metrics(results: list[BenchmarkCaseResult]) -> BenchmarkMetrics:

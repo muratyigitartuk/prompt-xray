@@ -67,6 +67,19 @@ def main() -> int:
         for failure in failures:
             print(f"benchmark validation failed: {failure}")
         print(f"changed cases: {len(diff.changed_cases)}")
+        for item in diff.changed_cases[:10]:
+            before = item.get("before", {})
+            after = item.get("after", {})
+            if item.get("after_error"):
+                print(f"- {item['id']}: error -> {item['after_error']}")
+                continue
+            print(
+                f"- {item['id']}: "
+                f"{before.get('repo_family', '?')}/{before.get('repo_archetype', '?')}/"
+                f"{before.get('orchestration_model', '?')}/{before.get('memory_model', '?')} -> "
+                f"{after.get('repo_family', '?')}/{after.get('repo_archetype', '?')}/"
+                f"{after.get('orchestration_model', '?')}/{after.get('memory_model', '?')}"
+            )
         return 1
 
     print("benchmark validation passed")

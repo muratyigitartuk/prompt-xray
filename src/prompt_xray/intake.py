@@ -5,6 +5,7 @@ import re
 import shutil
 import subprocess
 import tempfile
+import time
 from pathlib import Path
 
 from .models import RepoInfo
@@ -38,70 +39,105 @@ def _git_output(repo_path: Path, *args: str) -> str:
         return ""
 
 
-def _clone_repo(url: str, git_ref: str = "") -> Path:
+def _cache_path(url: str, git_ref: str = "") -> Path:
     slug = slug_from_target(url)
     ref_part = git_ref.strip()[:12] if git_ref else "head"
     digest = hashlib.sha1(f"{url}@{ref_part}".encode("utf-8")).hexdigest()[:10]
     cache_root = Path(tempfile.gettempdir()) / "prompt_xray_cache"
-    clone_path = cache_root / f"{slug}-{digest}"
     cache_root.mkdir(parents=True, exist_ok=True)
+    return cache_root / f"{slug}-{digest}"
 
-    if clone_path.exists() and (clone_path / ".git").exists():
+
+def clear_cached_repo(url: str, git_ref: str = "") -> None:
+    shutil.rmtree(_cache_path(url, git_ref=git_ref), ignore_errors=True)
+
+
+def _is_valid_git_checkout(repo_path: Path, git_ref: str = "") -> bool:
+    if not repo_path.exists() or not (repo_path / ".git").exists():
+        return False
+    if _git_output(repo_path, "rev-parse", "--is-inside-work-tree") != "true":
+        return False
+    head = _git_output(repo_path, "rev-parse", "HEAD")
+    if not head:
+        return False
+    if git_ref:
+        requested = git_ref.strip().lower()
+        current = head.strip().lower()
+        if current != requested and not current.startswith(requested) and not requested.startswith(current):
+            return False
+    return True
+
+
+def _clone_repo(url: str, git_ref: str = "") -> Path:
+    clone_path = _cache_path(url, git_ref=git_ref)
+
+    if _is_valid_git_checkout(clone_path, git_ref=git_ref):
         return clone_path
     if clone_path.exists():
         shutil.rmtree(clone_path, ignore_errors=True)
 
-    try:
-        if git_ref:
-            subprocess.run(
-                ["git", "clone", "--filter=blob:none", "--no-checkout", url, str(clone_path)],
-                check=True,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
-            try:
+    last_error: Exception | None = None
+    for attempt in range(3):
+        try:
+            if git_ref:
                 subprocess.run(
-                    ["git", "checkout", "--detach", git_ref],
-                    cwd=clone_path,
+                    ["git", "clone", "--filter=blob:none", "--no-checkout", url, str(clone_path)],
                     check=True,
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.DEVNULL,
                 )
-            except subprocess.CalledProcessError:
-                subprocess.run(
-                    ["git", "fetch", "--filter=blob:none", "origin", git_ref],
-                    cwd=clone_path,
-                    check=True,
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL,
-                )
-                subprocess.run(
-                    ["git", "checkout", "--detach", git_ref],
-                    cwd=clone_path,
-                    check=True,
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL,
-                )
-        else:
-            try:
-                subprocess.run(
-                    ["git", "clone", "--depth", "1", url, str(clone_path)],
-                    check=True,
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL,
-                )
-            except subprocess.CalledProcessError:
-                shutil.rmtree(clone_path, ignore_errors=True)
-                subprocess.run(
-                    ["git", "clone", "--filter=blob:none", url, str(clone_path)],
-                    check=True,
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL,
-                )
-        return clone_path
-    except subprocess.CalledProcessError:
-        shutil.rmtree(clone_path, ignore_errors=True)
-        raise
+                try:
+                    subprocess.run(
+                        ["git", "checkout", "--detach", git_ref],
+                        cwd=clone_path,
+                        check=True,
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL,
+                    )
+                except subprocess.CalledProcessError:
+                    subprocess.run(
+                        ["git", "fetch", "--filter=blob:none", "origin", git_ref],
+                        cwd=clone_path,
+                        check=True,
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL,
+                    )
+                    subprocess.run(
+                        ["git", "checkout", "--detach", git_ref],
+                        cwd=clone_path,
+                        check=True,
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL,
+                    )
+            else:
+                try:
+                    subprocess.run(
+                        ["git", "clone", "--depth", "1", url, str(clone_path)],
+                        check=True,
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL,
+                    )
+                except subprocess.CalledProcessError:
+                    shutil.rmtree(clone_path, ignore_errors=True)
+                    subprocess.run(
+                        ["git", "clone", "--filter=blob:none", url, str(clone_path)],
+                        check=True,
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL,
+                    )
+            if _is_valid_git_checkout(clone_path, git_ref=git_ref):
+                return clone_path
+            raise RuntimeError(f"Cloned repository cache is invalid for {url}")
+        except (subprocess.CalledProcessError, OSError, RuntimeError) as exc:
+            last_error = exc
+            shutil.rmtree(clone_path, ignore_errors=True)
+            if attempt < 2:
+                time.sleep(1 + attempt)
+                continue
+            break
+    if last_error:
+        raise last_error
+    raise RuntimeError(f"Unable to clone repository: {url}")
 
 
 def resolve_target(target: str, git_ref: str = "") -> tuple[RepoInfo, Path]:
