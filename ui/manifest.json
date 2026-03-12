@@ -16,13 +16,13 @@
       "id": "openai-agents-python",
       "label": "openai-agents-python",
       "path": "./samples/reports/openai-agents-python/report.json",
-      "highlight": "Agent framework with runtime-backed state."
+      "highlight": "Real runtime with visible prompt layers."
     },
     {
       "id": "crewai",
       "label": "crewAI",
       "path": "./samples/reports/crewai/report.json",
-      "highlight": "Large agent framework with runtime-backed state."
+      "highlight": "Real runtime with visible prompt layers."
     }
   ],
   "comparisons": [
@@ -36,13 +36,13 @@
       "id": "agency-vs-inspector",
       "label": "agency-agents vs inspector",
       "path": "./samples/comparisons/agency-vs-inspector/compare.json",
-      "highlight": "Prompt-heavy repo vs not-prompt-centric tool."
+      "highlight": "Prompt pack vs runtime-heavy MCP tooling."
     },
     {
       "id": "browser-vs-langgraph",
       "label": "browser-use vs langgraph",
       "path": "./samples/comparisons/browser-vs-langgraph/compare.json",
-      "highlight": "Two runtimes, different prompt density."
+      "highlight": "Two runtimes, different evidence stacks."
     }
   ]
 }

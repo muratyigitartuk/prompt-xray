@@ -6,7 +6,14 @@
   "repo_archetype": "mixed",
   "orchestration_model": "runtime-implemented",
   "memory_model": "implemented-runtime",
-  "confidence_expectation": "medium",
+  "confidence_expectation": "high",
   "rationale": "Coding tool with real runtime behavior plus prompt/system instruction surfaces.",
-  "tags": ["mixed-runtime", "python", "benchmark"]
+  "tags": [
+    "mixed-runtime",
+    "python",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

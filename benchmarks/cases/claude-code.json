@@ -2,12 +2,19 @@
   "id": "claude-code",
   "repo_url": "https://github.com/anthropics/claude-code.git",
   "commit": "45b54301267d60b8c2b482ab80d2c0b36443a5f1",
-  "repo_family": "plugin-ecosystem",
-  "repo_archetype": "mixed",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "agent-framework",
   "orchestration_model": "runtime-implemented",
   "memory_model": "tool-assisted",
-  "confidence_expectation": "medium",
+  "confidence_expectation": "high",
   "rationale": "Real coding runtime plus visible plugin, agent, and skill layers.",
   "calibration_note": "Memory classification can drift between documented-only and tool-assisted depending on how plugin state is weighted.",
-  "tags": ["mixed-runtime", "typescript", "benchmark"]
+  "tags": [
+    "mixed-runtime",
+    "typescript",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

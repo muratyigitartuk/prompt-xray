@@ -6,7 +6,15 @@
   "repo_archetype": "mixed",
   "orchestration_model": "runtime-implemented",
   "memory_model": "implemented-runtime",
-  "confidence_expectation": "medium",
+  "confidence_expectation": "high",
   "rationale": "Large AI SDK and framework surface that should resist overclassification as a prompt pack.",
-  "tags": ["sdk", "python", "negative-control"]
+  "tags": [
+    "sdk",
+    "python",
+    "negative-control",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

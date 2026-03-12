@@ -1,0 +1,25 @@
+{
+  "id": "langgraphjs",
+  "repo_url": "https://github.com/langchain-ai/langgraphjs.git",
+  "commit": "ad48dee9dcaf29c718c9f6b1c188756c14e85a0f",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "high",
+  "rationale": "TS graph runtime with agentic APIs and docs, useful for mixed-framework pressure.",
+  "calibration_note": "Holdout stress case for TS graph runtime classification.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "typescript",
+    "runtime-framework",
+    "graph-runtime"
+  ],
+  "ambiguity_policy": "allow-weaker",
+  "allowed_labels": {
+    "repo_archetype": [
+      "agent-framework"
+    ]
+  }
+}

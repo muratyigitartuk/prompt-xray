@@ -6,7 +6,14 @@
   "repo_archetype": "prompt-library",
   "orchestration_model": "prompt-defined",
   "memory_model": "none",
-  "confidence_expectation": "high",
+  "confidence_expectation": "medium",
   "rationale": "Large prompt catalog with integrations and workflow docs, but no real runtime.",
-  "tags": ["prompt-heavy", "python-light", "benchmark"]
+  "tags": [
+    "prompt-heavy",
+    "python-light",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

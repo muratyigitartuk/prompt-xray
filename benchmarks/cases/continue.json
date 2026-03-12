@@ -1,0 +1,25 @@
+{
+  "id": "continue",
+  "repo_url": "https://github.com/continuedev/continue.git",
+  "commit": "7b1708f716a862ca4a62e2b3e19223dc64d08128",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "tool-assisted",
+  "confidence_expectation": "high",
+  "rationale": "Plugin-like coding runtime with mixed packaging and real execution.",
+  "calibration_note": "Holdout stress case for runtime plus plugin packaging.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "typescript",
+    "runtime-framework",
+    "plugin-like"
+  ],
+  "ambiguity_policy": "allow-weaker",
+  "allowed_labels": {
+    "memory_model": [
+      "implemented-runtime"
+    ]
+  }
+}

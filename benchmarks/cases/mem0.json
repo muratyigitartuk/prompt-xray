@@ -1,0 +1,21 @@
+{
+  "id": "mem0",
+  "repo_url": "https://github.com/mem0ai/mem0.git",
+  "commit": "21df43c69930af799ce6ddcfa94ef007f41f1233",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "high",
+  "rationale": "Memory-heavy runtime repo that should keep memory classifications honest.",
+  "calibration_note": "Holdout stress case for memory-heavy runtime detection.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "python",
+    "runtime-framework",
+    "memory-heavy"
+  ],
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
+}

@@ -1,0 +1,378 @@
+{
+  "generated_at": "2026-03-11T23:47:02.024287+00:00",
+  "config_path": "benchmarks/cases",
+  "case_count": 5,
+  "baseline_name": "reduced-calibration",
+  "split": "calibration",
+  "results": [
+    {
+      "id": "agency-agents",
+      "repo_url": "https://github.com/msitarzewski/agency-agents.git",
+      "commit": "5e59a20bbfb1c801e2d12b70c684b48db652bcff",
+      "expected": {
+        "repo_family": "prompt-pack",
+        "repo_archetype": "prompt-library",
+        "orchestration_model": "prompt-defined",
+        "memory_model": "none"
+      },
+      "actual": {
+        "repo_family": "prompt-pack",
+        "repo_archetype": "prompt-library",
+        "orchestration_model": "prompt-defined",
+        "memory_model": "none",
+        "xray_call": "Prompt pack, not agent runtime."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.87,
+          "level": "high",
+          "reasons": [
+            "final=prompt-pack",
+            "support=4.2 margin=1.8",
+            "runtime-density=0.0 docs-ratio=135.0"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.95,
+          "level": "high",
+          "reasons": [
+            "final=prompt-library",
+            "support=5.4 margin=3.8",
+            "prompt-density=3.16 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.87,
+          "level": "high",
+          "reasons": [
+            "final=prompt-defined",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.0"
+          ]
+        },
+        "memory": {
+          "score": 0.79,
+          "level": "medium",
+          "reasons": [
+            "final=none",
+            "provisional=documented-only",
+            "constraint=family-policy:Prompt packs may describe memory, but memory is not runtime-backed here.",
+            "runtime-code=0 docs-ratio=135.0"
+          ]
+        },
+        "overall": {
+          "score": 0.79,
+          "level": "medium",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=1",
+            "contradictions=2"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "claude-code",
+      "repo_url": "https://github.com/anthropics/claude-code.git",
+      "commit": "45b54301267d60b8c2b482ab80d2c0b36443a5f1",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.9,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.4",
+            "runtime-density=0.24 docs-ratio=3.41"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final=agent-framework",
+            "support=3.4 margin=0.4",
+            "prompt-density=1.03 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.86"
+          ]
+        },
+        "memory": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=tool-assisted",
+            "support=13.0 margin=13.0",
+            "runtime-code=32 docs-ratio=3.41"
+          ]
+        },
+        "overall": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "openai-agents-python",
+      "repo_url": "https://github.com/openai/openai-agents-python.git",
+      "commit": "a8be7c0056a268399b5f4641d04b15e25373bfe6",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=0.24 docs-ratio=3.1"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final=agent-framework",
+            "support=3.4 margin=0.4",
+            "prompt-density=1.05 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.0"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=125 docs-ratio=3.1"
+          ]
+        },
+        "overall": {
+          "score": 0.96,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "openai-cookbook",
+      "repo_url": "https://github.com/openai/openai-cookbook.git",
+      "commit": "c2d6fbe04fa19709ededb1e617d9a7fa5aec6cdb",
+      "expected": {
+        "repo_family": "unclear",
+        "repo_archetype": "unclear",
+        "orchestration_model": "none",
+        "memory_model": "none"
+      },
+      "actual": {
+        "repo_family": "unclear",
+        "repo_archetype": "unclear",
+        "orchestration_model": "none",
+        "memory_model": "none",
+        "xray_call": "Not a prompt-centric repo."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.83,
+          "level": "high",
+          "reasons": [
+            "final=unclear",
+            "support=2.4 margin=2.2",
+            "runtime-density=0.0 docs-ratio=0.0"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.83,
+          "level": "high",
+          "reasons": [
+            "final=unclear",
+            "support=2.2 margin=2.0",
+            "prompt-density=0.0 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=none",
+            "support=3.0 margin=3.0",
+            "entrypoint-reachability=0.0"
+          ]
+        },
+        "memory": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=none",
+            "support=3.0 margin=3.0",
+            "runtime-code=0 docs-ratio=0.0"
+          ]
+        },
+        "overall": {
+          "score": 0.81,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "openai-python",
+      "repo_url": "https://github.com/openai/openai-python.git",
+      "commit": "15afa21e54952c06e2ac4d3e3a82f144c2cf9ed9",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "unclear",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "unclear",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted",
+        "xray_call": "Not a prompt-centric repo."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=2.2",
+            "runtime-density=0.16 docs-ratio=0.23"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.55,
+          "level": "medium",
+          "reasons": [
+            "final=unclear",
+            "support=0.4 margin=0.2",
+            "prompt-density=0.0 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.07"
+          ]
+        },
+        "memory": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=tool-assisted",
+            "support=13.0 margin=13.0",
+            "runtime-code=65 docs-ratio=0.23"
+          ]
+        },
+        "overall": {
+          "score": 0.84,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    }
+  ],
+  "metrics": {
+    "total_cases": 5,
+    "archetype_exact_matches": 5,
+    "orchestration_exact_matches": 5,
+    "memory_exact_matches": 5,
+    "family_exact_matches": 5,
+    "low_confidence_cases": 0,
+    "major_regressions": [],
+    "family_confusions": {},
+    "archetype_confusions": {},
+    "orchestration_confusions": {},
+    "memory_confusions": {}
+  },
+  "split_metrics": {
+    "calibration": {
+      "total_cases": 5,
+      "archetype_exact_matches": 5,
+      "orchestration_exact_matches": 5,
+      "memory_exact_matches": 5,
+      "family_exact_matches": 5,
+      "low_confidence_cases": 0,
+      "major_regressions": [],
+      "family_confusions": {},
+      "archetype_confusions": {},
+      "orchestration_confusions": {},
+      "memory_confusions": {}
+    }
+  },
+  "failure_clusters": {
+    "by_language": {},
+    "by_expected_family": {},
+    "by_ambiguity_policy": {}
+  }
+}

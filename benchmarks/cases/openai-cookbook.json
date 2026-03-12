@@ -2,11 +2,19 @@
   "id": "openai-cookbook",
   "repo_url": "https://github.com/openai/openai-cookbook.git",
   "commit": "c2d6fbe04fa19709ededb1e617d9a7fa5aec6cdb",
-  "repo_family": "docs-examples",
+  "repo_family": "unclear",
   "repo_archetype": "unclear",
   "orchestration_model": "none",
   "memory_model": "none",
   "confidence_expectation": "high",
   "rationale": "Documentation and examples repo, not an agent runtime or prompt pack.",
-  "tags": ["docs", "python", "negative-control"]
+  "tags": [
+    "docs",
+    "python",
+    "negative-control",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

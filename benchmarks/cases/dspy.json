@@ -2,11 +2,19 @@
   "id": "dspy",
   "repo_url": "https://github.com/stanfordnlp/dspy.git",
   "commit": "bb7fd6f01c80291e9c5d8a66417fe63ddb5c5d7a",
-  "repo_family": "sdk-library",
-  "repo_archetype": "unclear",
-  "orchestration_model": "none",
-  "memory_model": "none",
-  "confidence_expectation": "medium",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "high",
   "rationale": "Programming model / library repo rather than a prompt-pack or application runtime.",
-  "tags": ["sdk", "python", "negative-control"]
+  "tags": [
+    "sdk",
+    "python",
+    "negative-control",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

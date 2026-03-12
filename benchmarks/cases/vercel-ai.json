@@ -6,7 +6,15 @@
   "repo_archetype": "mixed",
   "orchestration_model": "runtime-implemented",
   "memory_model": "tool-assisted",
-  "confidence_expectation": "medium",
+  "confidence_expectation": "high",
   "rationale": "AI SDK and UI tooling surface; should not be overcalled as an agent runtime.",
-  "tags": ["sdk", "typescript", "negative-control"]
+  "tags": [
+    "sdk",
+    "typescript",
+    "negative-control",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

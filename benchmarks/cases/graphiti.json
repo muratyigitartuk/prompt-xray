@@ -1,0 +1,25 @@
+{
+  "id": "graphiti",
+  "repo_url": "https://github.com/getzep/graphiti.git",
+  "commit": "19e44a97a929ebf121294f97f26966f0379d8e30",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "tool-assisted",
+  "confidence_expectation": "high",
+  "rationale": "Runtime repository with memory/state vocabulary and real graph-backed code.",
+  "calibration_note": "Holdout stress case for memory tool-assisted vs implemented distinctions.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "python",
+    "runtime-framework",
+    "memory-heavy"
+  ],
+  "ambiguity_policy": "allow-weaker",
+  "allowed_labels": {
+    "memory_model": [
+      "implemented-runtime"
+    ]
+  }
+}

@@ -14,6 +14,14 @@
     "xray_call": "Real runtime with visible prompt layers.",
     "verdict": "This repo behaves like a runtime-framework with real implementation and prompt/config behavior surfaces; the call is grounded in runtime, graph, and prompt evidence together."
   },
+  "provisional_summary": {
+    "repo_family": "runtime-framework",
+    "repo_archetype": "agent-framework",
+    "orchestration_model": "runtime-implemented",
+    "memory_model": "implemented-runtime",
+    "xray_call": "",
+    "verdict": ""
+  },
   "counts": {
     "candidate_files": 1196,
     "artifacts": 52
@@ -167,7 +175,9 @@
       ]
     }
   ],
-  "missing_runtime_pieces": [],
+  "missing_runtime_pieces": [
+    "Prompt-like assets exist, but runtime code does not appear to load them directly."
+  ],
   "real_vs_packaging": {
     "real_implementation": [
       "Runtime-backed behavior is supported by code and graph evidence in entrypoints, services, or stateful modules.",
@@ -222,6 +232,15 @@
     "code_evidence": 106,
     "graph_evidence": 0,
     "negative_evidence": 807
+  },
+  "provenance_summary": {
+    "docs_evidence": 336,
+    "config_evidence": 32,
+    "prompt_asset_evidence": 304,
+    "runtime_code_evidence": 131,
+    "graph_evidence": 0,
+    "negative_evidence": 807,
+    "docs_dominance_ratio": 2.81
   },
   "runtime_evidence": [
     {
@@ -542,48 +561,94 @@
     }
   ],
   "repo_family_confidence": {
-    "score": 0.98,
-    "level": "high",
-    "reasons": [
-      "runtime=10",
-      "tooling=2",
-      "links=0"
-    ]
-  },
-  "repo_archetype_confidence": {
-    "score": 0.98,
-    "level": "high",
-    "reasons": [
-      "prompt-assets=252",
-      "runtime-signals=10",
-      "workflow-artifacts=0"
-    ]
-  },
-  "orchestration_confidence": {
     "score": 0.92,
     "level": "high",
     "reasons": [
-      "evidence=10",
-      "model=runtime-implemented"
+      "final=runtime-framework",
+      "support=3.6 margin=0.6",
+      "runtime-density=0.11 docs-ratio=2.81"
+    ]
+  },
+  "repo_archetype_confidence": {
+    "score": 0.91,
+    "level": "high",
+    "reasons": [
+      "final=agent-framework",
+      "support=3.4 margin=0.4",
+      "prompt-density=0.39 links=0.0"
+    ]
+  },
+  "orchestration_confidence": {
+    "score": 0.99,
+    "level": "high",
+    "reasons": [
+      "final=runtime-implemented",
+      "support=13.0 margin=13.0",
+      "entrypoint-reachability=0.0"
     ]
   },
   "memory_confidence": {
-    "score": 0.95,
+    "score": 0.99,
     "level": "high",
     "reasons": [
-      "evidence=10",
-      "model=implemented-runtime"
+      "final=implemented-runtime",
+      "support=13.0 margin=13.0",
+      "runtime-code=131 docs-ratio=2.81"
     ]
   },
   "overall_confidence": {
-    "score": 0.96,
+    "score": 0.95,
     "level": "high",
     "reasons": [
-      "combined family/archetype/orchestration/memory confidence"
+      "final-state confidence derived after constraint resolution",
+      "adjustments=0",
+      "contradictions=1"
     ]
   },
-  "contradictions": [],
+  "contradictions": [
+    "Prompt-like assets exist, but runtime code does not appear to load them directly."
+  ],
+  "contradiction_details": [
+    {
+      "severity": "low",
+      "message": "Prompt-like assets exist, but runtime code does not appear to load them directly.",
+      "basis": "orphaned-prompt-surface"
+    }
+  ],
   "prompt_runtime_links": [],
+  "constraint_adjustments": [],
+  "decision_trace": [
+    {
+      "stage": "raw-evidence",
+      "label": "evidence-loaded",
+      "reason": "candidate-files=821, code-files=403, artifacts=52, runtime-evidence=10, links=0",
+      "basis": "structural-evidence"
+    },
+    {
+      "stage": "repo-family",
+      "label": "runtime-framework",
+      "reason": "runtime=55, prompt=252, docs-ratio=2.81, links=0, manifest-sdk=0, manifest-plugin=0",
+      "basis": "structural-evidence"
+    },
+    {
+      "stage": "repo-archetype",
+      "label": "agent-framework",
+      "reason": "runtime=55, prompt=252, workflow-artifacts=0, integration-artifacts=8, prompt-density=0.39",
+      "basis": "structural-evidence"
+    },
+    {
+      "stage": "provisional-labels",
+      "label": "runtime-framework/agent-framework/runtime-implemented/implemented-runtime",
+      "reason": "Initial labels before family-policy or confidence fallback adjustments.",
+      "basis": "structural-evidence"
+    },
+    {
+      "stage": "final-labels",
+      "label": "runtime-framework/agent-framework/runtime-implemented/implemented-runtime",
+      "reason": "Final labels after family-policy constraints and confidence fallback.",
+      "basis": "resolved-state"
+    }
+  ],
   "scan_limits": {
     "max_file_size_kb": 1024,
     "max_code_files_per_language": 400,
@@ -594,6 +659,9 @@
       "python"
     ]
   },
+  "runtime_density": 0.11,
+  "prompt_density": 0.39,
+  "linkage_density": 0.0,
   "file_analyses": [
     {
       "path": ".github/ISSUE_TEMPLATE/bug_report.yml",

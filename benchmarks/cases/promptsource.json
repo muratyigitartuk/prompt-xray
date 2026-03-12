@@ -2,12 +2,19 @@
   "id": "promptsource",
   "repo_url": "https://github.com/bigscience-workshop/promptsource.git",
   "commit": "7dab96a3eeb3717cea633705135ebc488885d709",
-  "repo_family": "prompt-pack",
-  "repo_archetype": "prompt-library",
-  "orchestration_model": "none",
-  "memory_model": "none",
-  "confidence_expectation": "medium",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "high",
   "rationale": "Prompt dataset/library negative control against runtime overclassification.",
   "calibration_note": "This repo still contains executable utilities; preserve prompt-pack expectations as a regression check against runtime overcalling.",
-  "tags": ["prompt-heavy", "python", "benchmark"]
+  "tags": [
+    "prompt-heavy",
+    "python",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

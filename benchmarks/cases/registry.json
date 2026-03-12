@@ -1,0 +1,31 @@
+{
+  "id": "registry",
+  "repo_url": "https://github.com/modelcontextprotocol/registry.git",
+  "commit": "b112ac3335bf22f6e3c379f68c8e9920048c095a",
+  "repo_family": "prompt-pack",
+  "repo_archetype": "prompt-library",
+  "orchestration_model": "prompt-defined",
+  "memory_model": "none",
+  "confidence_expectation": "medium",
+  "rationale": "MCP-adjacent repo with docs/manifests that stress prompt-pack vs infra-tooling boundaries.",
+  "calibration_note": "Holdout boundary case; prompt-centric surface may compete with infra readings.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "mcp",
+    "prompt-heavy",
+    "boundary"
+  ],
+  "ambiguity_policy": "allow-unclear",
+  "allowed_labels": {
+    "repo_family": [
+      "infra-tooling"
+    ],
+    "repo_archetype": [
+      "unclear"
+    ],
+    "orchestration_model": [
+      "none"
+    ]
+  }
+}

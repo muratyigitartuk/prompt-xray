@@ -159,7 +159,15 @@ You are surgical.
     assert "scan_limits" in payload
     assert "repo_family_confidence" in payload
     assert "contradictions" in payload
+    assert "contradiction_details" in payload
     assert "prompt_runtime_links" in payload
+    assert "provisional_summary" in payload
+    assert "constraint_adjustments" in payload
+    assert "decision_trace" in payload
+    assert "provenance_summary" in payload
+    assert "runtime_density" in payload
+    assert "prompt_density" in payload
+    assert "linkage_density" in payload
     json.dumps(payload)
 
 
@@ -224,6 +232,8 @@ app = FastAPI()
     assert "## Headline Difference" in markdown
     assert "Prompt-xray Compare" in html
     assert "runtime_evidence" in comparison["right"]
+    assert "what_is_policy_constrained" in comparison
+    assert "constraint_delta" in comparison["differences"]
 
 
 def test_docs_only_memory_is_not_marked_as_implemented(tmp_path: Path) -> None:

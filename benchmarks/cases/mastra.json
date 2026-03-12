@@ -1,0 +1,21 @@
+{
+  "id": "mastra",
+  "repo_url": "https://github.com/mastra-ai/mastra.git",
+  "commit": "ee19c9ba3ec3ed91feb214ad539bdc766c53bb01",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "high",
+  "rationale": "Large TS runtime platform with visible prompt/config layers.",
+  "calibration_note": "Holdout stress case for monorepo TS runtime classification.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "typescript",
+    "runtime-framework",
+    "monorepo"
+  ],
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
+}

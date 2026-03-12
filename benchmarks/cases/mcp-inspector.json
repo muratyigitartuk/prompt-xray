@@ -2,12 +2,20 @@
   "id": "mcp-inspector",
   "repo_url": "https://github.com/modelcontextprotocol/inspector.git",
   "commit": "7c8b031ffac663031ee5a0d0a7dc79735321c2d1",
-  "repo_family": "infra-tooling",
-  "repo_archetype": "unclear",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
   "orchestration_model": "runtime-implemented",
-  "memory_model": "none",
+  "memory_model": "implemented-runtime",
   "confidence_expectation": "high",
   "rationale": "Real runtime developer tool for inspecting MCP servers, not an agent repo.",
   "calibration_note": "Infrastructure-tooling vs mixed is an intentional boundary because the repo has a substantial runtime app surface.",
-  "tags": ["infra", "typescript", "negative-control"]
+  "tags": [
+    "infra",
+    "typescript",
+    "negative-control",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

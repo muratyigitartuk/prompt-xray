@@ -66,7 +66,10 @@ def test_load_cases_reads_metadata_files(tmp_path: Path) -> None:
             "memory_model": "documented-only",
             "confidence_expectation": "high",
             "rationale": "fixture",
+            "split": "calibration",
             "tags": ["fixture"],
+            "ambiguity_policy": "strict",
+            "allowed_labels": {},
         },
     )
 
@@ -90,7 +93,10 @@ def test_benchmark_run_and_diff_are_stable(monkeypatch, tmp_path: Path) -> None:
             "memory_model": "documented-only",
             "confidence_expectation": "high",
             "rationale": "fixture",
+            "split": "calibration",
             "tags": ["fixture"],
+            "ambiguity_policy": "strict",
+            "allowed_labels": {},
         },
     )
     cases = load_cases(cases_dir)
@@ -105,6 +111,7 @@ def test_benchmark_run_and_diff_are_stable(monkeypatch, tmp_path: Path) -> None:
     markdown = render_benchmark_markdown(reloaded)
 
     assert run.metrics.total_cases == 1
+    assert run.split_metrics["calibration"].total_cases == 1
     assert run.metrics.family_exact_matches == 1
     assert "Prompt-xray Benchmark Run" in markdown
 
@@ -132,9 +139,12 @@ def test_benchmark_config_and_subset_selection(tmp_path: Path) -> None:
                     "family_exact_match_delta_min": 0,
                     "archetype_exact_match_delta_min": 0,
                     "orchestration_exact_match_delta_min": 0,
-                    "memory_exact_match_delta_min": 0,
-                    "low_confidence_delta_max": 1,
+                "memory_exact_match_delta_min": 0,
+                "low_confidence_delta_max": 1,
                 },
+                "reduced_case_ids_by_split": {"holdout": ["two"]},
+                "minimum_split_floors": {"holdout": {"family_exact_matches_min": 0}},
+                "split_regression_thresholds": {"holdout": {"family_exact_match_delta_min": 0}},
             }
         ),
         encoding="utf-8",
@@ -150,6 +160,7 @@ def test_benchmark_config_and_subset_selection(tmp_path: Path) -> None:
     assert config.default_max_code_files_per_language == 123
     assert len(selected) == 1
     assert selected[0].id == "one"
+    assert config.reduced_case_ids_by_split["holdout"] == ["two"]
 
 
 def test_benchmark_run_records_case_errors(monkeypatch, tmp_path: Path) -> None:
@@ -166,7 +177,10 @@ def test_benchmark_run_records_case_errors(monkeypatch, tmp_path: Path) -> None:
             "memory_model": "documented-only",
             "confidence_expectation": "high",
             "rationale": "fixture",
+            "split": "calibration",
             "tags": ["fixture"],
+            "ambiguity_policy": "strict",
+            "allowed_labels": {},
         },
     )
     cases = load_cases(cases_dir)

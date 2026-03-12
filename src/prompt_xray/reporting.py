@@ -70,6 +70,10 @@ def render_markdown(report: ScanReport) -> str:
         ]
     )
     contradictions = "\n".join(f"- {item}" for item in report.contradictions) or "- None detected"
+    contradiction_details = "\n".join(
+        f"- `{item.severity}` {item.message} [{item.basis}]"
+        for item in report.contradiction_details
+    ) or "- None detected"
     prompt_runtime_links = "\n".join(
         f"- `{item.source_path}` -> `{item.target_path}` `{item.kind}` [{', '.join(item.reasons) if item.reasons else 'no reasons'}]"
         for item in report.prompt_runtime_links
@@ -80,6 +84,23 @@ def render_markdown(report: ScanReport) -> str:
         f"- max code files per language: {report.scan_limits.max_code_files_per_language}\n"
         f"- truncated languages: {', '.join(report.scan_limits.truncated_languages) or 'None'}"
     )
+    provenance = (
+        f"- docs evidence: {report.provenance_summary.docs_evidence}\n"
+        f"- config evidence: {report.provenance_summary.config_evidence}\n"
+        f"- prompt asset evidence: {report.provenance_summary.prompt_asset_evidence}\n"
+        f"- runtime code evidence: {report.provenance_summary.runtime_code_evidence}\n"
+        f"- graph evidence: {report.provenance_summary.graph_evidence}\n"
+        f"- negative evidence: {report.provenance_summary.negative_evidence}\n"
+        f"- docs dominance ratio: {report.provenance_summary.docs_dominance_ratio}"
+    )
+    adjustments = "\n".join(
+        f"- `{item.field}` `{item.before}` -> `{item.after}` [{item.basis}] {item.reason}"
+        for item in report.constraint_adjustments
+    ) or "- No post-classification adjustments"
+    decision_trace = "\n".join(
+        f"- `{item.stage}` `{item.label}` [{item.basis or 'n/a'}] {item.reason}"
+        for item in report.decision_trace
+    ) or "- No decision trace"
 
     return f"""# Prompt-xray Report: {report.repo.name}
 
@@ -90,6 +111,15 @@ This repo is classified as **{report.summary.repo_archetype}** in the **{report.
 > {report.summary.xray_call}
 
 {report.summary.verdict}
+
+### Provisional vs final
+
+- Provisional: `{report.provisional_summary.repo_family}` / `{report.provisional_summary.repo_archetype}` / `{report.provisional_summary.orchestration_model}` / `{report.provisional_summary.memory_model}`
+- Final: `{report.summary.repo_family}` / `{report.summary.repo_archetype}` / `{report.summary.orchestration_model}` / `{report.summary.memory_model}`
+
+### Constraint adjustments
+
+{adjustments}
 
 ## Prompt Surface Map
 
@@ -142,6 +172,9 @@ This repo is classified as **{report.summary.repo_archetype}** in the **{report.
 ### Claim/implementation mismatches
 {contradictions}
 
+### Contradiction severity
+{contradiction_details}
+
 ## Evidence Summary
 
 ### File roles
@@ -150,8 +183,14 @@ This repo is classified as **{report.summary.repo_archetype}** in the **{report.
 ### Evidence counts
 {evidence_summary}
 
+### Provenance summary
+{provenance}
+
 ### Scan limits
 {scan_limits}
+
+### Decision trace
+{decision_trace}
 
 ## Artifact Inventory
 
@@ -364,6 +403,11 @@ def build_comparison(left: ScanReport, right: ScanReport) -> dict[str, Any]:
     confidence_gap = round(left.overall_confidence.score - right.overall_confidence.score, 2)
     contradiction_gap = len(left.contradictions) - len(right.contradictions)
     linkage_gap = len(left.prompt_runtime_links) - len(right.prompt_runtime_links)
+    family_basis_delta = (
+        f"{left.summary.repo_family}:{'policy-constrained' if left.constraint_adjustments else 'structural'} vs "
+        f"{right.summary.repo_family}:{'policy-constrained' if right.constraint_adjustments else 'structural'}"
+    )
+    constraint_delta = len(left.constraint_adjustments) - len(right.constraint_adjustments)
     why_they_differ = [
         f"Repo family: {left.summary.repo_family} vs {right.summary.repo_family}",
         f"Runtime density gap: {runtime_gap}",
@@ -371,6 +415,7 @@ def build_comparison(left: ScanReport, right: ScanReport) -> dict[str, Any]:
         f"Confidence gap: {confidence_gap}",
         f"Contradiction gap: {contradiction_gap}",
         f"Linkage gap: {linkage_gap}",
+        f"Constraint gap: {constraint_delta}",
     ]
     if left.summary.repo_family != right.summary.repo_family:
         most_defensible_difference = (
@@ -404,10 +449,13 @@ def build_comparison(left: ScanReport, right: ScanReport) -> dict[str, Any]:
             "contradictions": left.contradictions,
             "prompt_runtime_links": [item.model_dump(mode="json") for item in left.prompt_runtime_links[:6]],
             "call_basis": _basis(left),
-            "runtime_density": left.evidence_summary.code_evidence + left.evidence_summary.graph_evidence,
-            "prompt_density": left.counts.artifacts + left.evidence_summary.text_evidence,
+            "runtime_density": left.runtime_density,
+            "prompt_density": left.prompt_density,
+            "linkage_density": left.linkage_density,
             "runtime_evidence": [item.model_dump(mode="json") for item in left.runtime_evidence[:4]],
             "top_behavior_sources": left_sources,
+            "constraint_adjustments": [item.model_dump(mode="json") for item in left.constraint_adjustments],
+            "decision_trace": [item.model_dump(mode="json") for item in left.decision_trace[:8]],
         },
         "right": {
             "name": right.repo.name,
@@ -427,10 +475,13 @@ def build_comparison(left: ScanReport, right: ScanReport) -> dict[str, Any]:
             "contradictions": right.contradictions,
             "prompt_runtime_links": [item.model_dump(mode="json") for item in right.prompt_runtime_links[:6]],
             "call_basis": _basis(right),
-            "runtime_density": right.evidence_summary.code_evidence + right.evidence_summary.graph_evidence,
-            "prompt_density": right.counts.artifacts + right.evidence_summary.text_evidence,
+            "runtime_density": right.runtime_density,
+            "prompt_density": right.prompt_density,
+            "linkage_density": right.linkage_density,
             "runtime_evidence": [item.model_dump(mode="json") for item in right.runtime_evidence[:4]],
             "top_behavior_sources": right_sources,
+            "constraint_adjustments": [item.model_dump(mode="json") for item in right.constraint_adjustments],
+            "decision_trace": [item.model_dump(mode="json") for item in right.decision_trace[:8]],
         },
         "differences": {
             "same_family": left.summary.repo_family == right.summary.repo_family,
@@ -442,6 +493,9 @@ def build_comparison(left: ScanReport, right: ScanReport) -> dict[str, Any]:
             "prompt_density_gap": prompt_gap,
             "contradiction_gap": contradiction_gap,
             "linkage_gap": linkage_gap,
+            "family_basis_delta": family_basis_delta,
+            "constraint_delta": constraint_delta,
+            "linkage_density_delta": round(left.linkage_density - right.linkage_density, 2),
             "shared_tooling": sorted(set(left.tooling_surfaces).intersection(right.tooling_surfaces)),
             "left_only_tooling": sorted(set(left.tooling_surfaces) - set(right.tooling_surfaces)),
             "right_only_tooling": sorted(set(right.tooling_surfaces) - set(left.tooling_surfaces)),
@@ -449,6 +503,18 @@ def build_comparison(left: ScanReport, right: ScanReport) -> dict[str, Any]:
         },
         "why_they_differ": why_they_differ,
         "most_defensible_difference": most_defensible_difference,
+        "what_is_structurally_supported": [
+            f"{left.repo.name}: {left.summary.repo_family} via {left.runtime_density} runtime density and {left.prompt_density} prompt density",
+            f"{right.repo.name}: {right.summary.repo_family} via {right.runtime_density} runtime density and {right.prompt_density} prompt density",
+        ],
+        "what_is_policy_constrained": [
+            f"{left.repo.name}: {len(left.constraint_adjustments)} adjustments",
+            f"{right.repo.name}: {len(right.constraint_adjustments)} adjustments",
+        ],
+        "what_remains_uncertain": [
+            f"{left.repo.name}: {left.overall_confidence.level} confidence",
+            f"{right.repo.name}: {right.overall_confidence.level} confidence",
+        ],
     }
 
 
@@ -481,6 +547,17 @@ def render_comparison_markdown(left: ScanReport, right: ScanReport) -> str:
 
 - Most defensible difference: {comparison["most_defensible_difference"]}
 {chr(10).join(f"- {item}" for item in comparison["why_they_differ"])}
+
+## Structural vs Policy
+
+### Structurally supported
+{chr(10).join(f"- {item}" for item in comparison["what_is_structurally_supported"])}
+
+### Policy constrained
+{chr(10).join(f"- {item}" for item in comparison["what_is_policy_constrained"])}
+
+### Still uncertain
+{chr(10).join(f"- {item}" for item in comparison["what_remains_uncertain"])}
 
 ## Tooling Overlap
 

@@ -1,0 +1,31 @@
+{
+  "id": "anthropic-sdk-go",
+  "repo_url": "https://github.com/anthropics/anthropic-sdk-go.git",
+  "commit": "4d669338f2041f3c60640b6dd317c4895dc71cd4",
+  "repo_family": "prompt-pack",
+  "repo_archetype": "prompt-library",
+  "orchestration_model": "prompt-defined",
+  "memory_model": "none",
+  "confidence_expectation": "medium",
+  "rationale": "Go SDK boundary case similar to openai-go, useful for language-blind generalization checks.",
+  "calibration_note": "Holdout ambiguous case; allowed to degrade to unclear or sdk-library.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "go",
+    "sdk-boundary",
+    "prompt-heavy"
+  ],
+  "ambiguity_policy": "allow-unclear",
+  "allowed_labels": {
+    "repo_family": [
+      "sdk-library"
+    ],
+    "repo_archetype": [
+      "unclear"
+    ],
+    "orchestration_model": [
+      "none"
+    ]
+  }
+}

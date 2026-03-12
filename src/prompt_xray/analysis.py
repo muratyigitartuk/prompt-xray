@@ -11,9 +11,32 @@ from .detectors import (
     build_prompt_runtime_links,
     build_runtime_evidence,
 )
+from .decisioning import (
+    apply_confidence_fallbacks,
+    contradictions as build_contradictions,
+    field_confidence,
+    manifest_profile,
+    missing_runtime_pieces,
+    provenance_summary,
+    repo_archetype as resolve_repo_archetype,
+    repo_family as resolve_repo_family,
+    resolve_constraints,
+    verdict as build_verdict,
+    xray_call as build_xray_call,
+)
 from .discovery import discover_candidate_files, discover_code_files
 from .intake import resolve_target
-from .models import Artifact, BehaviorSource, ConfidenceScore, Counts, FileAnalysis, RealVsPackaging, ScanReport, Summary
+from .models import (
+    Artifact,
+    BehaviorSource,
+    ConfidenceScore,
+    Counts,
+    DecisionTraceStep,
+    FileAnalysis,
+    RealVsPackaging,
+    ScanReport,
+    Summary,
+)
 
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n?", re.DOTALL)
 
@@ -611,89 +634,217 @@ def analyze_target(target: str, max_file_size_kb: int = 1024, include_snippets: 
     prompt_runtime_links = build_prompt_runtime_links(file_analyses)
     behavior_sources = _behavior_sources(file_analyses, artifacts)
 
-    repo_family, repo_family_scores = _repo_family(repo_info.name, file_analyses, runtime_evidence, tooling_surfaces, prompt_runtime_links)
-    orchestration_model = _orchestration_model(orchestration_evidence)
-    memory_model = _memory_model(memory_evidence)
-    repo_archetype, repo_archetype_scores = _repo_archetype(repo_family, file_analyses, artifacts, runtime_evidence, prompt_runtime_links)
-    contradictions = _contradictions(repo_family, memory_model, orchestration_model, runtime_evidence, file_analyses, prompt_runtime_links)
+    provenance, metrics = provenance_summary(file_analyses, artifacts, evidence_summary, runtime_evidence, prompt_runtime_links)
+    manifest = manifest_profile(repo_path)
 
-    repo_family_confidence = _score_confidence(
+    repo_family, repo_family_scores, repo_family_trace = resolve_repo_family(
+        file_analyses,
+        tooling_surfaces,
+        prompt_runtime_links,
+        provenance,
+        metrics,
+        manifest,
+    )
+    repo_archetype, repo_archetype_scores, repo_archetype_trace = resolve_repo_archetype(
         repo_family,
-        repo_family_scores,
-        [f"runtime={len(runtime_evidence)}", f"tooling={len(tooling_surfaces)}", f"links={len(prompt_runtime_links)}"],
-        contradictions,
+        file_analyses,
+        artifacts,
+        runtime_evidence,
+        prompt_runtime_links,
+        provenance,
+        metrics,
     )
-    repo_archetype_confidence = _score_confidence(
-        repo_archetype,
-        repo_archetype_scores,
-        [f"prompt-assets={sum(1 for analysis in file_analyses if analysis.role in {'prompt_doc', 'rule_or_skill'})}", f"runtime-signals={len(runtime_evidence)}", f"workflow-artifacts={sum(1 for artifact in artifacts if artifact.kind == 'workflow_instruction')}"],
-        contradictions,
-    )
-    orchestration_confidence = _build_confidence(
-        0.45 + min(len(orchestration_evidence) * 0.08, 0.35) + (0.12 if orchestration_model == "runtime-implemented" else 0) - (0.06 * len(contradictions)),
-        [f"evidence={len(orchestration_evidence)}", f"model={orchestration_model}"],
-    )
-    memory_confidence = _build_confidence(
-        0.45 + min(len(memory_evidence) * 0.08, 0.35) + (0.15 if memory_model == "implemented-runtime" else 0) - (0.06 * len(contradictions)),
-        [f"evidence={len(memory_evidence)}", f"model={memory_model}"],
-    )
-    overall_confidence = _build_confidence(
-        (repo_family_confidence.score + repo_archetype_confidence.score + orchestration_confidence.score + memory_confidence.score) / 4,
-        ["combined family/archetype/orchestration/memory confidence"],
-    )
-
-    summary = Summary(
+    provisional_summary = Summary(
         repo_family=repo_family,
         repo_archetype=repo_archetype,
-        orchestration_model=orchestration_model,
-        memory_model=memory_model,
+        orchestration_model=_orchestration_model(orchestration_evidence),
+        memory_model=_memory_model(memory_evidence),
     )
-    repo_name_lower = repo_info.name.lower()
-    if summary.repo_family == "prompt-pack":
-        summary.repo_archetype = "prompt-library"
-        if summary.orchestration_model != "prompt-defined":
-            summary.orchestration_model = "none"
-        summary.memory_model = "none"
-    if summary.repo_family in {"sdk-library", "docs-examples"} and summary.repo_archetype == "unclear":
-        summary.orchestration_model = "none"
-        summary.memory_model = "none"
-    if summary.repo_family == "sdk-library" and repo_name_lower not in {"semantic-kernel"}:
-        summary.repo_archetype = "unclear"
-        summary.orchestration_model = "none"
-        summary.memory_model = "none"
-    if summary.repo_family == "docs-examples":
-        summary.repo_archetype = "unclear"
-        summary.orchestration_model = "none"
-        summary.memory_model = "none"
-    if summary.repo_family == "infra-tooling" and summary.repo_archetype == "unclear" and not prompt_runtime_links:
-        summary.memory_model = "none"
-    if summary.repo_family == "infra-tooling" and repo_name_lower in {"inspector", "servers"}:
-        summary.repo_archetype = "unclear"
-        summary.memory_model = "none"
-    summary = _fallback(summary, repo_family_confidence, repo_archetype_confidence, orchestration_confidence, memory_confidence)
-    summary.verdict = _verdict(summary.repo_family, summary.repo_archetype, summary.orchestration_model, summary.memory_model, overall_confidence)
-    summary.xray_call = _xray_call(summary.repo_family, summary.repo_archetype, summary.orchestration_model, summary.memory_model, overall_confidence, prompt_runtime_links)
+    summary, constraint_adjustments, constraint_trace = resolve_constraints(
+        provisional_summary,
+        provenance,
+        metrics,
+        runtime_evidence,
+        prompt_runtime_links,
+    )
+
+    preliminary_contradictions = build_contradictions(
+        provisional_summary,
+        summary,
+        provenance,
+        runtime_evidence,
+        prompt_runtime_links,
+        file_analyses,
+        constraint_adjustments,
+    )
+    repo_family_confidence = field_confidence(
+        "repo_family",
+        summary.repo_family,
+        provisional_summary.repo_family,
+        repo_family_scores,
+        provenance,
+        metrics,
+        constraint_adjustments,
+        preliminary_contradictions,
+    )
+    repo_archetype_confidence = field_confidence(
+        "repo_archetype",
+        summary.repo_archetype,
+        provisional_summary.repo_archetype,
+        repo_archetype_scores,
+        provenance,
+        metrics,
+        constraint_adjustments,
+        preliminary_contradictions,
+    )
+    orchestration_confidence = field_confidence(
+        "orchestration_model",
+        summary.orchestration_model,
+        provisional_summary.orchestration_model,
+        {summary.orchestration_model: 3.0 + len(orchestration_evidence)},
+        provenance,
+        metrics,
+        constraint_adjustments,
+        preliminary_contradictions,
+    )
+    memory_confidence = field_confidence(
+        "memory_model",
+        summary.memory_model,
+        provisional_summary.memory_model,
+        {summary.memory_model: 3.0 + len(memory_evidence)},
+        provenance,
+        metrics,
+        constraint_adjustments,
+        preliminary_contradictions,
+    )
+    decision_trace = [
+        DecisionTraceStep(
+            stage="raw-evidence",
+            label="evidence-loaded",
+            basis="structural-evidence",
+            reason=(
+                f"candidate-files={len(candidate_files)}, code-files={len(code_files)}, artifacts={len(artifacts)}, "
+                f"runtime-evidence={len(runtime_evidence)}, links={len(prompt_runtime_links)}"
+            ),
+        ),
+        repo_family_trace,
+        repo_archetype_trace,
+        DecisionTraceStep(
+            stage="provisional-labels",
+            label=(
+                f"{provisional_summary.repo_family}/{provisional_summary.repo_archetype}/"
+                f"{provisional_summary.orchestration_model}/{provisional_summary.memory_model}"
+            ),
+            basis="structural-evidence",
+            reason="Initial labels before family-policy or confidence fallback adjustments.",
+        ),
+        *constraint_trace,
+    ]
+
+    summary = apply_confidence_fallbacks(
+        summary,
+        repo_family_confidence,
+        repo_archetype_confidence,
+        orchestration_confidence,
+        memory_confidence,
+        constraint_adjustments,
+        decision_trace,
+    )
+    contradiction_details = build_contradictions(
+        provisional_summary,
+        summary,
+        provenance,
+        runtime_evidence,
+        prompt_runtime_links,
+        file_analyses,
+        constraint_adjustments,
+    )
+    repo_family_confidence = field_confidence(
+        "repo_family",
+        summary.repo_family,
+        provisional_summary.repo_family,
+        repo_family_scores,
+        provenance,
+        metrics,
+        constraint_adjustments,
+        contradiction_details,
+    )
+    repo_archetype_confidence = field_confidence(
+        "repo_archetype",
+        summary.repo_archetype,
+        provisional_summary.repo_archetype,
+        repo_archetype_scores,
+        provenance,
+        metrics,
+        constraint_adjustments,
+        contradiction_details,
+    )
+    orchestration_confidence = field_confidence(
+        "orchestration_model",
+        summary.orchestration_model,
+        provisional_summary.orchestration_model,
+        {summary.orchestration_model: 3.0 + len(orchestration_evidence)},
+        provenance,
+        metrics,
+        constraint_adjustments,
+        contradiction_details,
+    )
+    memory_confidence = field_confidence(
+        "memory_model",
+        summary.memory_model,
+        provisional_summary.memory_model,
+        {summary.memory_model: 3.0 + len(memory_evidence)},
+        provenance,
+        metrics,
+        constraint_adjustments,
+        contradiction_details,
+    )
+    overall_base = (
+        repo_family_confidence.score
+        + repo_archetype_confidence.score
+        + orchestration_confidence.score
+        + memory_confidence.score
+    ) / 4
+    overall_base -= 0.08 * sum(1 for item in contradiction_details if item.severity in {"medium", "high"})
+    if summary.repo_family == "unclear":
+        overall_base -= 0.06
+    overall_confidence = _build_confidence(
+        overall_base,
+        [
+            "final-state confidence derived after constraint resolution",
+            f"adjustments={len(constraint_adjustments)}",
+            f"contradictions={len(contradiction_details)}",
+        ],
+    )
+    summary.verdict = build_verdict(summary, overall_confidence, constraint_adjustments)
+    summary.xray_call = build_xray_call(summary, overall_confidence, prompt_runtime_links, constraint_adjustments)
+    decision_trace.append(
+        DecisionTraceStep(
+            stage="final-labels",
+            label=(
+                f"{summary.repo_family}/{summary.repo_archetype}/"
+                f"{summary.orchestration_model}/{summary.memory_model}"
+            ),
+            basis="resolved-state",
+            reason="Final labels after family-policy constraints and confidence fallback.",
+        )
+    )
 
     real_vs_packaging = _real_vs_packaging(file_analyses, tooling_surfaces, runtime_evidence, memory_evidence, prompt_runtime_links)
-    missing_runtime_pieces = _missing_runtime_pieces(
-        summary.repo_family,
-        summary.repo_archetype,
-        summary.orchestration_model,
-        summary.memory_model,
-        runtime_evidence,
-        contradictions,
-    )
+    missing = missing_runtime_pieces(summary, runtime_evidence, contradiction_details)
 
     return ScanReport(
         repo=repo_info,
         summary=summary,
+        provisional_summary=provisional_summary,
         counts=Counts(candidate_files=len(set(candidate_files + code_files)), artifacts=len(artifacts)),
         tooling_surfaces=tooling_surfaces,
         behavior_sources=behavior_sources,
-        missing_runtime_pieces=missing_runtime_pieces,
+        missing_runtime_pieces=missing,
         real_vs_packaging=real_vs_packaging,
         file_roles_summary=file_roles_summary,
         evidence_summary=evidence_summary,
+        provenance_summary=provenance,
         runtime_evidence=runtime_evidence,
         memory_evidence=memory_evidence,
         orchestration_evidence=orchestration_evidence,
@@ -702,9 +853,15 @@ def analyze_target(target: str, max_file_size_kb: int = 1024, include_snippets: 
         orchestration_confidence=orchestration_confidence,
         memory_confidence=memory_confidence,
         overall_confidence=overall_confidence,
-        contradictions=contradictions,
+        contradictions=[item.message for item in contradiction_details],
+        contradiction_details=contradiction_details,
         prompt_runtime_links=prompt_runtime_links,
+        constraint_adjustments=constraint_adjustments,
+        decision_trace=decision_trace,
         scan_limits=scan_limits,
+        runtime_density=metrics["runtime_density"],
+        prompt_density=metrics["prompt_density"],
+        linkage_density=metrics["linkage_density"],
         file_analyses=file_analyses[:60],
         artifacts=artifacts,
     )

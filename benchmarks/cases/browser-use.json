@@ -3,11 +3,18 @@
   "repo_url": "https://github.com/browser-use/browser-use.git",
   "commit": "3e70fa9d6eebf37db5950fb0bb62ab1952d87de1",
   "repo_family": "runtime-framework",
-  "repo_archetype": "agent-framework",
+  "repo_archetype": "mixed",
   "orchestration_model": "runtime-implemented",
   "memory_model": "implemented-runtime",
-  "confidence_expectation": "medium",
+  "confidence_expectation": "high",
   "rationale": "Runtime-heavy browser agent application with less emphasis on persistent memory.",
   "calibration_note": "Current classifier tends to upgrade this repo toward runtime-framework and implemented-runtime memory because of explicit session modules.",
-  "tags": ["mixed-runtime", "python", "benchmark"]
+  "tags": [
+    "mixed-runtime",
+    "python",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

@@ -2,11 +2,19 @@
   "id": "langchain",
   "repo_url": "https://github.com/langchain-ai/langchain.git",
   "commit": "f9dbd22fe18184c8f929ab933f36215b2940037f",
-  "repo_family": "sdk-library",
-  "repo_archetype": "unclear",
-  "orchestration_model": "none",
-  "memory_model": "none",
-  "confidence_expectation": "medium",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "agent-framework",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "high",
   "rationale": "Broad SDK/library surface with AI utilities rather than a single prompt-centric repo identity.",
-  "tags": ["sdk", "python", "negative-control"]
+  "tags": [
+    "sdk",
+    "python",
+    "negative-control",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

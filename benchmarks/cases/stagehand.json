@@ -1,0 +1,21 @@
+{
+  "id": "stagehand",
+  "repo_url": "https://github.com/browserbase/stagehand.git",
+  "commit": "4b7137482706ebf89f82aec527770d0dda71db59",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "high",
+  "rationale": "TS repo with browser automation runtime and agent-like docs.",
+  "calibration_note": "Holdout stress case for TS runtime plus prompt layers.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "typescript",
+    "runtime-framework",
+    "browser"
+  ],
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
+}

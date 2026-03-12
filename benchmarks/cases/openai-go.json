@@ -1,0 +1,31 @@
+{
+  "id": "openai-go",
+  "repo_url": "https://github.com/openai/openai-go.git",
+  "commit": "b9d280a37149430982e9dfeed16c41d27d45cfc5",
+  "repo_family": "prompt-pack",
+  "repo_archetype": "prompt-library",
+  "orchestration_model": "prompt-defined",
+  "memory_model": "none",
+  "confidence_expectation": "medium",
+  "rationale": "Go SDK/docs boundary case that should stress prompt-pack overfitting and ambiguity handling.",
+  "calibration_note": "Holdout ambiguous case; current classifier reads it as prompt-centric despite SDK flavor.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "go",
+    "sdk-boundary",
+    "prompt-heavy"
+  ],
+  "ambiguity_policy": "allow-unclear",
+  "allowed_labels": {
+    "repo_family": [
+      "sdk-library"
+    ],
+    "repo_archetype": [
+      "unclear"
+    ],
+    "orchestration_model": [
+      "none"
+    ]
+  }
+}

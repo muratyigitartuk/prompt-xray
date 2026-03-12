@@ -3,10 +3,17 @@
   "repo_url": "https://github.com/OpenInterpreter/open-interpreter.git",
   "commit": "681f5ce5b84bc96a2a4cc5e90daa6328f3f796e0",
   "repo_family": "runtime-framework",
-  "repo_archetype": "agent-framework",
+  "repo_archetype": "mixed",
   "orchestration_model": "runtime-implemented",
   "memory_model": "tool-assisted",
-  "confidence_expectation": "medium",
+  "confidence_expectation": "high",
   "rationale": "User-facing runtime with prompt surfaces and conversational history, but mixed persistence signals.",
-  "tags": ["mixed-runtime", "python", "benchmark"]
+  "tags": [
+    "mixed-runtime",
+    "python",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

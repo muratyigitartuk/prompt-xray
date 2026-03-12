@@ -1,0 +1,2321 @@
+{
+  "generated_at": "2026-03-11T23:41:26.896409+00:00",
+  "config_path": "benchmarks/cases",
+  "case_count": 34,
+  "baseline_name": "calibration",
+  "split": "calibration",
+  "results": [
+    {
+      "id": "agency-agents",
+      "repo_url": "https://github.com/msitarzewski/agency-agents.git",
+      "commit": "5e59a20bbfb1c801e2d12b70c684b48db652bcff",
+      "expected": {
+        "repo_family": "prompt-pack",
+        "repo_archetype": "prompt-library",
+        "orchestration_model": "prompt-defined",
+        "memory_model": "none"
+      },
+      "actual": {
+        "repo_family": "prompt-pack",
+        "repo_archetype": "prompt-library",
+        "orchestration_model": "prompt-defined",
+        "memory_model": "none",
+        "xray_call": "Prompt pack, not agent runtime."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.87,
+          "level": "high",
+          "reasons": [
+            "final=prompt-pack",
+            "support=4.2 margin=1.8",
+            "runtime-density=0.0 docs-ratio=135.0"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.95,
+          "level": "high",
+          "reasons": [
+            "final=prompt-library",
+            "support=5.4 margin=3.8",
+            "prompt-density=3.16 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.87,
+          "level": "high",
+          "reasons": [
+            "final=prompt-defined",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.0"
+          ]
+        },
+        "memory": {
+          "score": 0.79,
+          "level": "medium",
+          "reasons": [
+            "final=none",
+            "provisional=documented-only",
+            "constraint=family-policy:Prompt packs may describe memory, but memory is not runtime-backed here.",
+            "runtime-code=0 docs-ratio=135.0"
+          ]
+        },
+        "overall": {
+          "score": 0.79,
+          "level": "medium",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=1",
+            "contradictions=2"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "aider",
+      "repo_url": "https://github.com/Aider-AI/aider.git",
+      "commit": "861a1e4d154f268547a06497cc380e5a5dc8483a",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.81,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.71 docs-ratio=0.71"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.26 links=0.1"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.66"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=121 docs-ratio=0.71"
+          ]
+        },
+        "overall": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "anthropic-cookbook",
+      "repo_url": "https://github.com/anthropics/anthropic-cookbook.git",
+      "commit": "410d60f2ac532bfd66b00746ec419c8dba5e8984",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.8,
+          "level": "medium",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.53 docs-ratio=0.95"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=1.0",
+            "prompt-density=0.56 links=0.4"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.11"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=103 docs-ratio=0.95"
+          ]
+        },
+        "overall": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "anthropic-sdk-python",
+      "repo_url": "https://github.com/anthropics/anthropic-sdk-python.git",
+      "commit": "49d639a671cb0ac30c767e8e1e68fdd5925205d5",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=0.08 docs-ratio=0.44"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=3.0 margin=2.6",
+            "prompt-density=0.01 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.0"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=32 docs-ratio=0.44"
+          ]
+        },
+        "overall": {
+          "score": 0.95,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "anthropic-sdk-typescript",
+      "repo_url": "https://github.com/anthropics/anthropic-sdk-typescript.git",
+      "commit": "fdaa72bed14cdd9671bba1add1ba9e912c9d1ced",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.82,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.97 docs-ratio=1.27"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.05 links=0.6"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.86"
+          ]
+        },
+        "memory": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=tool-assisted",
+            "support=13.0 margin=13.0",
+            "runtime-code=37 docs-ratio=1.27"
+          ]
+        },
+        "overall": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "autogen",
+      "repo_url": "https://github.com/microsoft/autogen.git",
+      "commit": "b0477309d2a0baf489aa256646e41e513ab3bfe8",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.8,
+          "level": "medium",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.54 docs-ratio=1.49"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=1.0",
+            "prompt-density=0.51 links=0.1"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.1"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=256 docs-ratio=1.49"
+          ]
+        },
+        "overall": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "autogpt",
+      "repo_url": "https://github.com/Significant-Gravitas/AutoGPT.git",
+      "commit": "19d775c43578696baa1db1e0eaf93e701752fa2a",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.94,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=0.69 docs-ratio=0.62"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.9,
+          "level": "high",
+          "reasons": [
+            "final=agent-framework",
+            "support=3.4 margin=0.4",
+            "prompt-density=0.34 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.02"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=348 docs-ratio=0.62"
+          ]
+        },
+        "overall": {
+          "score": 0.96,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "browser-use",
+      "repo_url": "https://github.com/browser-use/browser-use.git",
+      "commit": "3e70fa9d6eebf37db5950fb0bb62ab1952d87de1",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=1.67 docs-ratio=0.45"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=3.0 margin=2.6",
+            "prompt-density=0.24 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=1.0"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=172 docs-ratio=0.45"
+          ]
+        },
+        "overall": {
+          "score": 0.97,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "chatdev",
+      "repo_url": "https://github.com/OpenBMB/ChatDev.git",
+      "commit": "980f6249fa2bde13f3ff4e739a1804eb8a02764e",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.98,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=1.5 docs-ratio=0.82"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=agent-framework",
+            "support=3.4 margin=0.4",
+            "prompt-density=0.54 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.74"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=160 docs-ratio=0.82"
+          ]
+        },
+        "overall": {
+          "score": 0.97,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "claude-code",
+      "repo_url": "https://github.com/anthropics/claude-code.git",
+      "commit": "45b54301267d60b8c2b482ab80d2c0b36443a5f1",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.9,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.4",
+            "runtime-density=0.24 docs-ratio=3.41"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final=agent-framework",
+            "support=3.4 margin=0.4",
+            "prompt-density=1.03 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.86"
+          ]
+        },
+        "memory": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=tool-assisted",
+            "support=13.0 margin=13.0",
+            "runtime-code=32 docs-ratio=3.41"
+          ]
+        },
+        "overall": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "crewai",
+      "repo_url": "https://github.com/crewAIInc/crewAI.git",
+      "commit": "542afe61a8adfca1b9a0434189b9f339dfb07817",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=0.11 docs-ratio=2.81"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=agent-framework",
+            "support=3.4 margin=0.4",
+            "prompt-density=0.39 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.0"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=131 docs-ratio=2.81"
+          ]
+        },
+        "overall": {
+          "score": 0.95,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "dspy",
+      "repo_url": "https://github.com/stanfordnlp/dspy.git",
+      "commit": "bb7fd6f01c80291e9c5d8a66417fe63ddb5c5d7a",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.83,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=1.16 docs-ratio=0.64"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.17 links=0.2"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.8"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=83 docs-ratio=0.64"
+          ]
+        },
+        "overall": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "fastmcp",
+      "repo_url": "https://github.com/jlowin/fastmcp.git",
+      "commit": "30308332bb13e75282f1bea5214a112db743454a",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.96,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=5.2 margin=2.2",
+            "runtime-density=0.98 docs-ratio=0.78"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=3.0 margin=2.6",
+            "prompt-density=0.18 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.43"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=118 docs-ratio=0.78"
+          ]
+        },
+        "overall": {
+          "score": 0.97,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "gradio",
+      "repo_url": "https://github.com/gradio-app/gradio.git",
+      "commit": "7874d0411c81dcde9c4b08e7e064ca0dbef94e2e",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.81,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.8 docs-ratio=0.27"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.08 links=2.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.07"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=992 docs-ratio=0.27"
+          ]
+        },
+        "overall": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "langchain",
+      "repo_url": "https://github.com/langchain-ai/langchain.git",
+      "commit": "f9dbd22fe18184c8f929ab933f36215b2940037f",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=0.17 docs-ratio=2.03"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=agent-framework",
+            "support=3.4 margin=0.4",
+            "prompt-density=0.6 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.0"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=142 docs-ratio=2.03"
+          ]
+        },
+        "overall": {
+          "score": 0.95,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "langgraph",
+      "repo_url": "https://github.com/langchain-ai/langgraph.git",
+      "commit": "7488cf2448dc796ce8fb338b2dff315da81f83c7",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.81,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.71 docs-ratio=0.26"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.11 links=0.2"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.22"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=284 docs-ratio=0.26"
+          ]
+        },
+        "overall": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "llama-index",
+      "repo_url": "https://github.com/run-llama/llama_index.git",
+      "commit": "6109664cf26ae41177356dd5cf51ec52b1b96c3b",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.78,
+          "level": "medium",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.3 docs-ratio=6.52"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=1.0",
+            "prompt-density=0.32 links=0.1"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.31"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=286 docs-ratio=6.52"
+          ]
+        },
+        "overall": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "mcp-inspector",
+      "repo_url": "https://github.com/modelcontextprotocol/inspector.git",
+      "commit": "7c8b031ffac663031ee5a0d0a7dc79735321c2d1",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.96,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=6.2 margin=1.7",
+            "runtime-density=0.98 docs-ratio=0.51"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.07 links=1.3"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.62"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=55 docs-ratio=0.51"
+          ]
+        },
+        "overall": {
+          "score": 0.96,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "mcp-python-sdk",
+      "repo_url": "https://github.com/modelcontextprotocol/python-sdk.git",
+      "commit": "62eb08e5b23944510b8ec500a51c8f895fb58553",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.94,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=0.66 docs-ratio=0.39"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=3.0 margin=2.6",
+            "prompt-density=0.05 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.5"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=116 docs-ratio=0.39"
+          ]
+        },
+        "overall": {
+          "score": 0.96,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "mcp-servers",
+      "repo_url": "https://github.com/modelcontextprotocol/servers.git",
+      "commit": "a97aba19eb218bedd37ae19c27893ee6659f1555",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.8,
+          "level": "medium",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.59 docs-ratio=0.66"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.28 links=0.2"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.22"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=65 docs-ratio=0.66"
+          ]
+        },
+        "overall": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "mcp-typescript-sdk",
+      "repo_url": "https://github.com/modelcontextprotocol/typescript-sdk.git",
+      "commit": "108f2f3ab6a1267587c7c4f900b6eca3cc2dae51",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.78,
+          "level": "medium",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.25 docs-ratio=0.81"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.04 links=0.6"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.17"
+          ]
+        },
+        "memory": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=tool-assisted",
+            "support=13.0 margin=13.0",
+            "runtime-code=57 docs-ratio=0.81"
+          ]
+        },
+        "overall": {
+          "score": 0.9,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "open-interpreter",
+      "repo_url": "https://github.com/OpenInterpreter/open-interpreter.git",
+      "commit": "681f5ce5b84bc96a2a4cc5e90daa6328f3f796e0",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=0.44 docs-ratio=0.77"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=3.0 margin=2.6",
+            "prompt-density=0.23 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.4"
+          ]
+        },
+        "memory": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=tool-assisted",
+            "support=13.0 margin=13.0",
+            "runtime-code=53 docs-ratio=0.77"
+          ]
+        },
+        "overall": {
+          "score": 0.94,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "openai-agents-python",
+      "repo_url": "https://github.com/openai/openai-agents-python.git",
+      "commit": "a8be7c0056a268399b5f4641d04b15e25373bfe6",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=0.24 docs-ratio=3.1"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final=agent-framework",
+            "support=3.4 margin=0.4",
+            "prompt-density=1.05 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.0"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=125 docs-ratio=3.1"
+          ]
+        },
+        "overall": {
+          "score": 0.96,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "openai-cookbook",
+      "repo_url": "https://github.com/openai/openai-cookbook.git",
+      "commit": "c2d6fbe04fa19709ededb1e617d9a7fa5aec6cdb",
+      "expected": {
+        "repo_family": "unclear",
+        "repo_archetype": "unclear",
+        "orchestration_model": "none",
+        "memory_model": "none"
+      },
+      "actual": {
+        "repo_family": "unclear",
+        "repo_archetype": "unclear",
+        "orchestration_model": "none",
+        "memory_model": "none",
+        "xray_call": "Not a prompt-centric repo."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.83,
+          "level": "high",
+          "reasons": [
+            "final=unclear",
+            "support=2.4 margin=2.2",
+            "runtime-density=0.0 docs-ratio=0.0"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.83,
+          "level": "high",
+          "reasons": [
+            "final=unclear",
+            "support=2.2 margin=2.0",
+            "prompt-density=0.0 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=none",
+            "support=3.0 margin=3.0",
+            "entrypoint-reachability=0.0"
+          ]
+        },
+        "memory": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=none",
+            "support=3.0 margin=3.0",
+            "runtime-code=0 docs-ratio=0.0"
+          ]
+        },
+        "overall": {
+          "score": 0.81,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "openai-node",
+      "repo_url": "https://github.com/openai/openai-node.git",
+      "commit": "09de6c0ec40e860583d6581973cbd3ede76de4c9",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.82,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=1.08 docs-ratio=1.62"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.03 links=0.4"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.44"
+          ]
+        },
+        "memory": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=tool-assisted",
+            "support=13.0 margin=13.0",
+            "runtime-code=40 docs-ratio=1.62"
+          ]
+        },
+        "overall": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "openai-python",
+      "repo_url": "https://github.com/openai/openai-python.git",
+      "commit": "15afa21e54952c06e2ac4d3e3a82f144c2cf9ed9",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "unclear",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "unclear",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted",
+        "xray_call": "Not a prompt-centric repo."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=2.2",
+            "runtime-density=0.16 docs-ratio=0.23"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.55,
+          "level": "medium",
+          "reasons": [
+            "final=unclear",
+            "support=0.4 margin=0.2",
+            "prompt-density=0.0 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.07"
+          ]
+        },
+        "memory": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=tool-assisted",
+            "support=13.0 margin=13.0",
+            "runtime-code=65 docs-ratio=0.23"
+          ]
+        },
+        "overall": {
+          "score": 0.84,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "openhands",
+      "repo_url": "https://github.com/All-Hands-AI/OpenHands.git",
+      "commit": "4eb6e4da09a75ca831adf183579cd242bc133832",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.84,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=1.47 docs-ratio=0.42"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=1.0",
+            "prompt-density=0.34 links=0.2"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.94"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=689 docs-ratio=0.42"
+          ]
+        },
+        "overall": {
+          "score": 0.94,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "potpie",
+      "repo_url": "https://github.com/potpie-ai/potpie.git",
+      "commit": "62434265809c306348d234bc9f1ca426b1b2b8f7",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=2.54 docs-ratio=0.16"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=agent-framework",
+            "support=3.4 margin=0.4",
+            "prompt-density=0.42 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.86"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=448 docs-ratio=0.16"
+          ]
+        },
+        "overall": {
+          "score": 0.97,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "promptflow",
+      "repo_url": "https://github.com/microsoft/promptflow.git",
+      "commit": "f9799d0b60d8199a8e8c13e26cc3412a450918c4",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.77,
+          "level": "medium",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.04 docs-ratio=4.35"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.07 links=0.3"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.11"
+          ]
+        },
+        "memory": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=tool-assisted",
+            "support=13.0 margin=13.0",
+            "runtime-code=62 docs-ratio=4.35"
+          ]
+        },
+        "overall": {
+          "score": 0.9,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "promptsource",
+      "repo_url": "https://github.com/bigscience-workshop/promptsource.git",
+      "commit": "7dab96a3eeb3717cea633705135ebc488885d709",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.77,
+          "level": "medium",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.07 docs-ratio=23.75"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.02 links=0.25"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=7.0 margin=7.0",
+            "entrypoint-reachability=1.0"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=12.0 margin=12.0",
+            "runtime-code=12 docs-ratio=23.75"
+          ]
+        },
+        "overall": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "semantic-kernel",
+      "repo_url": "https://github.com/microsoft/semantic-kernel.git",
+      "commit": "02da6c47d768b0e84512557f046e913e0bd08d75",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.81,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.71 docs-ratio=1.19"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.95,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=1.0",
+            "prompt-density=0.94 links=0.1"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.36"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=882 docs-ratio=1.19"
+          ]
+        },
+        "overall": {
+          "score": 0.94,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "smolagents",
+      "repo_url": "https://github.com/huggingface/smolagents.git",
+      "commit": "5c684c18df01895832ed0e0caecb6896f72890da",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "agent-framework",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=0.23 docs-ratio=2.93"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=agent-framework",
+            "support=3.4 margin=0.4",
+            "prompt-density=0.63 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=1.0"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=29 docs-ratio=2.93"
+          ]
+        },
+        "overall": {
+          "score": 0.96,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "transformers",
+      "repo_url": "https://github.com/huggingface/transformers.git",
+      "commit": "852f785aa36683f808892a3e519fab23db5ddb60",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=0.15 docs-ratio=0.89"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=3.0 margin=2.6",
+            "prompt-density=0.11 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.35"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=236 docs-ratio=0.89"
+          ]
+        },
+        "overall": {
+          "score": 0.95,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "vercel-ai",
+      "repo_url": "https://github.com/vercel/ai.git",
+      "commit": "612763a96b2ec7a46b05e82921e72f59eb6807f3",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "tool-assisted",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.78,
+          "level": "medium",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.25 docs-ratio=3.02"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.14 links=2.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=1.0"
+          ]
+        },
+        "memory": {
+          "score": 0.91,
+          "level": "high",
+          "reasons": [
+            "final=tool-assisted",
+            "support=13.0 margin=13.0",
+            "runtime-code=174 docs-ratio=3.02"
+          ]
+        },
+        "overall": {
+          "score": 0.9,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    }
+  ],
+  "metrics": {
+    "total_cases": 34,
+    "archetype_exact_matches": 34,
+    "orchestration_exact_matches": 34,
+    "memory_exact_matches": 34,
+    "family_exact_matches": 34,
+    "low_confidence_cases": 0,
+    "major_regressions": [],
+    "family_confusions": {},
+    "archetype_confusions": {},
+    "orchestration_confusions": {},
+    "memory_confusions": {}
+  },
+  "split_metrics": {
+    "calibration": {
+      "total_cases": 34,
+      "archetype_exact_matches": 34,
+      "orchestration_exact_matches": 34,
+      "memory_exact_matches": 34,
+      "family_exact_matches": 34,
+      "low_confidence_cases": 0,
+      "major_regressions": [],
+      "family_confusions": {},
+      "archetype_confusions": {},
+      "orchestration_confusions": {},
+      "memory_confusions": {}
+    }
+  },
+  "failure_clusters": {
+    "by_language": {},
+    "by_expected_family": {},
+    "by_ambiguity_policy": {}
+  }
+}

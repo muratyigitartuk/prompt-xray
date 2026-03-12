@@ -6,8 +6,15 @@
   "repo_archetype": "mixed",
   "orchestration_model": "runtime-implemented",
   "memory_model": "implemented-runtime",
-  "confidence_expectation": "medium",
+  "confidence_expectation": "high",
   "rationale": "SDK-like repo that still exposes framework-style runtime, orchestration, and memory features.",
   "calibration_note": "Repo-family can reasonably drift between sdk-library and runtime-framework; the memory/orchestration expectation is the more stable signal.",
-  "tags": ["sdk", "mixed-runtime", "benchmark"]
+  "tags": [
+    "sdk",
+    "mixed-runtime",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

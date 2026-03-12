@@ -82,7 +82,7 @@ The included web app exposes the same functionality as the CLI:
 ```bash
 prompt-xray scan <target> [--out <dir>] [--format markdown|json|both] [--html]
 prompt-xray compare <left> <right> [--out <dir>] [--format markdown|json|both] [--html]
-prompt-xray bench run [--cases-dir <dir>] [--out <dir>]
+prompt-xray bench run [--cases-dir <dir>] [--split calibration|holdout|all] [--out <dir>]
 prompt-xray bench diff <left-benchmark.json> <right-benchmark.json> [--out <dir>]
 prompt-xray bench report <benchmark.json>
 prompt-xray serve [--host 127.0.0.1] [--port 8765]
@@ -107,9 +107,10 @@ prompt-xray compare https://github.com/browser-use/browser-use https://github.co
 Benchmark examples:
 
 ```bash
-prompt-xray bench run --out .prompt-xray/bench/latest
-prompt-xray bench run --subset --out .prompt-xray/bench/reduced
-prompt-xray bench report .prompt-xray/bench/latest/benchmark.json
+prompt-xray bench run --split calibration --out .prompt-xray/bench/calibration
+prompt-xray bench run --split holdout --out .prompt-xray/bench/holdout
+prompt-xray bench run --split holdout --subset --out .prompt-xray/bench/reduced-holdout
+prompt-xray bench report .prompt-xray/bench/holdout/benchmark.json
 prompt-xray bench diff .prompt-xray/bench/before/benchmark.json .prompt-xray/bench/after/benchmark.json
 ```
 
@@ -171,7 +172,7 @@ Call: Prompt pack, not agent runtime.
 
 ```text
 Family: plugin-ecosystem
-Archetype: mixed
+Archetype: agent-framework
 Orchestration: runtime-implemented
 Memory: tool-assisted
 Call: Real runtime with visible prompt layers.
@@ -191,18 +192,22 @@ Call: Real runtime with visible prompt layers.
 
 The repo ships with a pinned corpus under [`benchmarks/cases`](./benchmarks/cases):
 
-- 35 public repos
+- 49 public repos
+- 34 calibration repos and 15 frozen holdout repos
 - prompt packs, workflow packs, runtime frameworks, SDKs, plugin ecosystems, infra/tooling, docs/examples, and negative controls
-- expected repo family, archetype, orchestration, memory, and confidence tier per case
+- expected repo family, archetype, orchestration, memory, confidence tier, split, ambiguity policy, and optional allowed labels per case
 
-This is the calibration layer for heuristic and parser changes.
+Calibration cases are for tuning. Holdout cases are for honesty on unseen shapes.
 
 Checked-in baselines live under [`benchmarks/baselines`](./benchmarks/baselines):
 
+- `calibration/benchmark.json` and `calibration/benchmark.md`
+- `holdout/benchmark.json` and `holdout/benchmark.md`
 - `full/benchmark.json` and `full/benchmark.md`
-- `reduced/benchmark.json` and `reduced/benchmark.md`
+- `reduced-calibration/benchmark.json` and `reduced-calibration/benchmark.md`
+- `reduced-holdout/benchmark.json` and `reduced-holdout/benchmark.md`
 
-The reduced baseline is the fast CI gate. The full baseline is the slower `main` and manual benchmark gate.
+The reduced calibration and reduced holdout baselines are the fast CI gates. The split full baselines and combined full baseline are the slower `main` and manual benchmark gates.
 
 ## Confidence and contradictions
 
@@ -211,6 +216,7 @@ Prompt-xray now reports:
 - confidence per family, archetype, orchestration, memory, and overall call
 - claim/implementation contradictions
 - runtime-to-prompt/config linkage
+- provisional labels, constraint adjustments, and a final decision trace
 
 Interpretation:
 
@@ -227,7 +233,7 @@ Prompt-xray runs a static analysis pipeline:
 2. collect candidate prompt, rule, config, and documentation files
 3. build file-role, evidence, and lightweight graph models
 4. parse Python and TS/JS structure to detect entrypoints, services, storage/state, workers, and asset loads
-5. classify the repo using deterministic heuristics plus confidence and contradiction scoring
+5. assign provisional labels, resolve family-policy and confidence constraints, then score the final state
 6. render Markdown, JSON, and optional HTML reports
 
 It looks for signals such as:
@@ -261,8 +267,9 @@ python -m pytest -q
 Maintainer workflow:
 
 ```bash
-prompt-xray bench run --out .prompt-xray/bench/latest
-prompt-xray bench diff benchmarks/baselines/full/benchmark.json .prompt-xray/bench/latest/benchmark.json
+prompt-xray bench run --split calibration --out .prompt-xray/bench/calibration
+prompt-xray bench run --split holdout --out .prompt-xray/bench/holdout
+prompt-xray bench diff benchmarks/baselines/holdout/benchmark.json .prompt-xray/bench/holdout/benchmark.json
 prompt-xray scan https://github.com/msitarzewski/agency-agents --out samples/reports/agency-agents --format json
 ```
 

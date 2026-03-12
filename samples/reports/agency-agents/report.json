@@ -14,6 +14,14 @@
     "xray_call": "Prompt pack, not agent runtime.",
     "verdict": "This is best understood as a prompt-library inside the prompt-pack family."
   },
+  "provisional_summary": {
+    "repo_family": "prompt-pack",
+    "repo_archetype": "prompt-library",
+    "orchestration_model": "prompt-defined",
+    "memory_model": "documented-only",
+    "xray_call": "",
+    "verdict": ""
+  },
   "counts": {
     "candidate_files": 161,
     "artifacts": 325
@@ -326,9 +334,10 @@
     }
   ],
   "missing_runtime_pieces": [
+    "Family policy constrained at least one final label because the structural repo shape outweighed agent-like docs.",
     "No orchestration engine, scheduler, or runtime-backed control loop was detected.",
-    "The repo exposes agent behavior mainly through authored assets rather than executable runtime code.",
-    "The repo talks about memory/state, but there is little or no runtime-backed persistence evidence."
+    "The repo exposes behavior mainly through authored assets rather than executable runtime code.",
+    "The repo talks about memory/state, but runtime-backed persistence evidence remains weak."
   ],
   "real_vs_packaging": {
     "real_implementation": [],
@@ -369,6 +378,15 @@
     "code_evidence": 0,
     "graph_evidence": 0,
     "negative_evidence": 51
+  },
+  "provenance_summary": {
+    "docs_evidence": 131,
+    "config_evidence": 4,
+    "prompt_asset_evidence": 443,
+    "runtime_code_evidence": 0,
+    "graph_evidence": 0,
+    "negative_evidence": 51,
+    "docs_dominance_ratio": 135.0
   },
   "runtime_evidence": [],
   "memory_evidence": [
@@ -612,50 +630,115 @@
     }
   ],
   "repo_family_confidence": {
-    "score": 0.9,
+    "score": 0.87,
     "level": "high",
     "reasons": [
-      "runtime=0",
-      "tooling=8",
-      "links=0"
+      "final=prompt-pack",
+      "support=4.2 margin=1.8",
+      "runtime-density=0.0 docs-ratio=135.0"
     ]
   },
   "repo_archetype_confidence": {
-    "score": 0.9,
+    "score": 0.95,
     "level": "high",
     "reasons": [
-      "prompt-assets=118",
-      "runtime-signals=0",
-      "workflow-artifacts=29"
+      "final=prompt-library",
+      "support=5.4 margin=3.8",
+      "prompt-density=3.16 links=0.0"
     ]
   },
   "orchestration_confidence": {
-    "score": 0.74,
-    "level": "medium",
+    "score": 0.87,
+    "level": "high",
     "reasons": [
-      "evidence=10",
-      "model=prompt-defined"
+      "final=prompt-defined",
+      "support=13.0 margin=13.0",
+      "entrypoint-reachability=0.0"
     ]
   },
   "memory_confidence": {
-    "score": 0.74,
+    "score": 0.79,
     "level": "medium",
     "reasons": [
-      "evidence=10",
-      "model=documented-only"
+      "final=none",
+      "provisional=documented-only",
+      "constraint=family-policy:Prompt packs may describe memory, but memory is not runtime-backed here.",
+      "runtime-code=0 docs-ratio=135.0"
     ]
   },
   "overall_confidence": {
-    "score": 0.82,
-    "level": "high",
+    "score": 0.79,
+    "level": "medium",
     "reasons": [
-      "combined family/archetype/orchestration/memory confidence"
+      "final-state confidence derived after constraint resolution",
+      "adjustments=1",
+      "contradictions=2"
     ]
   },
   "contradictions": [
-    "The repo talks about memory/state, but there is little or no runtime-backed persistence evidence."
+    "The repo talks about memory/state, but runtime-backed persistence evidence remains weak.",
+    "Family policy constrained at least one final label because the structural repo shape outweighed agent-like docs."
+  ],
+  "contradiction_details": [
+    {
+      "severity": "medium",
+      "message": "The repo talks about memory/state, but runtime-backed persistence evidence remains weak.",
+      "basis": "docs-overclaim-runtime"
+    },
+    {
+      "severity": "low",
+      "message": "Family policy constrained at least one final label because the structural repo shape outweighed agent-like docs.",
+      "basis": "family-policy-suppression"
+    }
   ],
   "prompt_runtime_links": [],
+  "constraint_adjustments": [
+    {
+      "field": "memory_model",
+      "before": "documented-only",
+      "after": "none",
+      "reason": "Prompt packs may describe memory, but memory is not runtime-backed here.",
+      "basis": "family-policy"
+    }
+  ],
+  "decision_trace": [
+    {
+      "stage": "raw-evidence",
+      "label": "evidence-loaded",
+      "reason": "candidate-files=161, code-files=0, artifacts=325, runtime-evidence=0, links=0",
+      "basis": "structural-evidence"
+    },
+    {
+      "stage": "repo-family",
+      "label": "prompt-pack",
+      "reason": "runtime=0, prompt=118, docs-ratio=135.0, links=0, manifest-sdk=0, manifest-plugin=0",
+      "basis": "structural-evidence"
+    },
+    {
+      "stage": "repo-archetype",
+      "label": "prompt-library",
+      "reason": "runtime=0, prompt=118, workflow-artifacts=29, integration-artifacts=28, prompt-density=3.16",
+      "basis": "structural-evidence"
+    },
+    {
+      "stage": "provisional-labels",
+      "label": "prompt-pack/prompt-library/prompt-defined/documented-only",
+      "reason": "Initial labels before family-policy or confidence fallback adjustments.",
+      "basis": "structural-evidence"
+    },
+    {
+      "stage": "constraint-resolution",
+      "label": "memory_model=none",
+      "reason": "Prompt packs may describe memory, but memory is not runtime-backed here.",
+      "basis": "family-policy"
+    },
+    {
+      "stage": "final-labels",
+      "label": "prompt-pack/prompt-library/prompt-defined/none",
+      "reason": "Final labels after family-policy constraints and confidence fallback.",
+      "basis": "resolved-state"
+    }
+  ],
   "scan_limits": {
     "max_file_size_kb": 1024,
     "max_code_files_per_language": 400,
@@ -664,6 +747,9 @@
     "code_files_total": 0,
     "truncated_languages": []
   },
+  "runtime_density": 0.0,
+  "prompt_density": 3.16,
+  "linkage_density": 0.0,
   "file_analyses": [
     {
       "path": ".github/FUNDING.yml",

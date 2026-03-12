@@ -21,7 +21,10 @@ class BenchmarkCase(BaseModel):
     confidence_expectation: str
     rationale: str
     calibration_note: str = ""
+    split: str = "calibration"
     tags: list[str] = Field(default_factory=list)
+    ambiguity_policy: str = "strict"
+    allowed_labels: dict[str, list[str]] = Field(default_factory=dict)
 
 
 class BenchmarkCaseResult(BaseModel):
@@ -54,8 +57,11 @@ class BenchmarkRun(BaseModel):
     config_path: str
     case_count: int
     baseline_name: str = ""
+    split: str = "all"
     results: list[BenchmarkCaseResult]
     metrics: BenchmarkMetrics
+    split_metrics: dict[str, BenchmarkMetrics] = Field(default_factory=dict)
+    failure_clusters: dict[str, dict[str, int]] = Field(default_factory=dict)
 
 
 class BenchmarkDiff(BaseModel):
@@ -70,6 +76,7 @@ class BenchmarkConfig(BaseModel):
     default_max_file_size_kb: int = 1024
     default_max_code_files_per_language: int = 400
     reduced_case_ids: list[str] = Field(default_factory=list)
+    reduced_case_ids_by_split: dict[str, list[str]] = Field(default_factory=dict)
     regression_thresholds: dict[str, int] = Field(
         default_factory=lambda: {
             "family_exact_match_delta_min": 0,
@@ -79,6 +86,8 @@ class BenchmarkConfig(BaseModel):
             "low_confidence_delta_max": 0,
         }
     )
+    minimum_split_floors: dict[str, dict[str, int]] = Field(default_factory=dict)
+    split_regression_thresholds: dict[str, dict[str, int]] = Field(default_factory=dict)
 
 
 def _project_root() -> Path:
@@ -106,6 +115,26 @@ def _confusion_key(expected: str, actual: str) -> str:
     return f"{expected} -> {actual}"
 
 
+def _field_matches(case: BenchmarkCase, field: str, actual: str) -> bool:
+    if actual == getattr(case, field):
+        return True
+    allowed = case.allowed_labels.get(field, [])
+    if actual in allowed:
+        return True
+    if case.ambiguity_policy == "allow-unclear" and actual == "unclear":
+        return True
+    if case.ambiguity_policy == "allow-weaker" and field in {"repo_archetype", "orchestration_model", "memory_model"}:
+        weaker = {
+            "agent-framework": {"mixed", "unclear"},
+            "mixed": {"unclear"},
+            "runtime-implemented": {"tool-assisted", "none"},
+            "implemented-runtime": {"tool-assisted", "documented-only", "none"},
+            "tool-assisted": {"documented-only", "none"},
+        }
+        return actual in weaker.get(getattr(case, field), set())
+    return False
+
+
 def _evaluate_case(case: BenchmarkCase, max_file_size_kb: int, max_code_files_per_language: int) -> BenchmarkCaseResult:
     expected = case.model_dump(include={"repo_family", "repo_archetype", "orchestration_model", "memory_model"})
     try:
@@ -123,7 +152,7 @@ def _evaluate_case(case: BenchmarkCase, max_file_size_kb: int, max_code_files_pe
             "memory_model": report.summary.memory_model,
             "xray_call": report.summary.xray_call,
         }
-        mismatches = [key for key, value in expected.items() if actual.get(key) != value]
+        mismatches = [key for key in expected if not _field_matches(case, key, actual.get(key, "error"))]
         return BenchmarkCaseResult(
             id=case.id,
             repo_url=case.repo_url,
@@ -211,11 +240,41 @@ def _metrics(results: list[BenchmarkCaseResult]) -> BenchmarkMetrics:
     )
 
 
+def _split_metrics(cases: list[BenchmarkCase], results: list[BenchmarkCaseResult]) -> dict[str, BenchmarkMetrics]:
+    results_by_id = {result.id: result for result in results}
+    grouped: dict[str, list[BenchmarkCaseResult]] = defaultdict(list)
+    for case in cases:
+        grouped[case.split].append(results_by_id[case.id])
+    return {split: _metrics(group_results) for split, group_results in grouped.items()}
+
+
+def _failure_clusters(cases: list[BenchmarkCase], results: list[BenchmarkCaseResult]) -> dict[str, dict[str, int]]:
+    case_by_id = {case.id: case for case in cases}
+    language_clusters: Counter[str] = Counter()
+    family_clusters: Counter[str] = Counter()
+    ambiguity_clusters: Counter[str] = Counter()
+    for result in results:
+        if not result.mismatches:
+            continue
+        case = case_by_id[result.id]
+        for tag in case.tags:
+            if tag in {"python", "typescript", "javascript", "go", "rust", "java"}:
+                language_clusters[tag] += 1
+        family_clusters[case.repo_family] += 1
+        ambiguity_clusters[case.ambiguity_policy] += 1
+    return {
+        "by_language": dict(language_clusters),
+        "by_expected_family": dict(family_clusters),
+        "by_ambiguity_policy": dict(ambiguity_clusters),
+    }
+
+
 def run_benchmark(
     cases: list[BenchmarkCase],
     max_file_size_kb: int = 1024,
     max_code_files_per_language: int = 400,
     baseline_name: str = "",
+    split: str = "all",
 ) -> BenchmarkRun:
     results = [
         _evaluate_case(case, max_file_size_kb=max_file_size_kb, max_code_files_per_language=max_code_files_per_language)
@@ -226,22 +285,43 @@ def run_benchmark(
         config_path="benchmarks/cases",
         case_count=len(cases),
         baseline_name=baseline_name,
+        split=split,
         results=results,
         metrics=_metrics(results),
+        split_metrics=_split_metrics(cases, results),
+        failure_clusters=_failure_clusters(cases, results),
     )
 
 
 def render_benchmark_markdown(run: BenchmarkRun) -> str:
+    split_lines = "\n".join(
+        f"- {split}: family {metrics.family_exact_matches}/{metrics.total_cases}, "
+        f"archetype {metrics.archetype_exact_matches}/{metrics.total_cases}, "
+        f"orchestration {metrics.orchestration_exact_matches}/{metrics.total_cases}, "
+        f"memory {metrics.memory_exact_matches}/{metrics.total_cases}, "
+        f"low-confidence {metrics.low_confidence_cases}"
+        for split, metrics in sorted(run.split_metrics.items())
+    ) or "- None"
+    failure_clusters = "\n".join(
+        f"### {name.replace('_', ' ').title()}\n"
+        + ("\n".join(f"- `{key}`: {value}" for key, value in sorted(cluster.items())) or "- None")
+        for name, cluster in run.failure_clusters.items()
+    ) or "- None"
     return f"""# Prompt-xray Benchmark Run
 
 - Generated at: {run.generated_at}
 - Cases: {run.case_count}
 - Baseline name: {run.baseline_name or 'ad hoc'}
+- Split: {run.split}
 - Family exact matches: {run.metrics.family_exact_matches}/{run.metrics.total_cases}
 - Archetype exact matches: {run.metrics.archetype_exact_matches}/{run.metrics.total_cases}
 - Orchestration exact matches: {run.metrics.orchestration_exact_matches}/{run.metrics.total_cases}
 - Memory exact matches: {run.metrics.memory_exact_matches}/{run.metrics.total_cases}
 - Low-confidence cases: {run.metrics.low_confidence_cases}
+
+## Per-split metrics
+
+{split_lines}
 
 ## Major regressions
 
@@ -266,6 +346,10 @@ def render_benchmark_markdown(run: BenchmarkRun) -> str:
 ## Memory confusions
 
 {chr(10).join(f"- `{key}`: {value}" for key, value in sorted(run.metrics.memory_confusions.items())) or "- None"}
+
+## Failure clusters
+
+{failure_clusters}
 """
 
 
@@ -307,6 +391,21 @@ def diff_benchmark_runs(left: BenchmarkRun, right: BenchmarkRun, left_path: Path
         "orchestration_delta": right.metrics.orchestration_exact_matches - left.metrics.orchestration_exact_matches,
         "memory_delta": right.metrics.memory_exact_matches - left.metrics.memory_exact_matches,
         "low_confidence_delta": right.metrics.low_confidence_cases - left.metrics.low_confidence_cases,
+        "split_deltas": {
+            split: {
+                "family_delta": right.split_metrics.get(split, BenchmarkMetrics(total_cases=0, archetype_exact_matches=0, orchestration_exact_matches=0, memory_exact_matches=0, family_exact_matches=0, low_confidence_cases=0)).family_exact_matches
+                - left.split_metrics.get(split, BenchmarkMetrics(total_cases=0, archetype_exact_matches=0, orchestration_exact_matches=0, memory_exact_matches=0, family_exact_matches=0, low_confidence_cases=0)).family_exact_matches,
+                "archetype_delta": right.split_metrics.get(split, BenchmarkMetrics(total_cases=0, archetype_exact_matches=0, orchestration_exact_matches=0, memory_exact_matches=0, family_exact_matches=0, low_confidence_cases=0)).archetype_exact_matches
+                - left.split_metrics.get(split, BenchmarkMetrics(total_cases=0, archetype_exact_matches=0, orchestration_exact_matches=0, memory_exact_matches=0, family_exact_matches=0, low_confidence_cases=0)).archetype_exact_matches,
+                "orchestration_delta": right.split_metrics.get(split, BenchmarkMetrics(total_cases=0, archetype_exact_matches=0, orchestration_exact_matches=0, memory_exact_matches=0, family_exact_matches=0, low_confidence_cases=0)).orchestration_exact_matches
+                - left.split_metrics.get(split, BenchmarkMetrics(total_cases=0, archetype_exact_matches=0, orchestration_exact_matches=0, memory_exact_matches=0, family_exact_matches=0, low_confidence_cases=0)).orchestration_exact_matches,
+                "memory_delta": right.split_metrics.get(split, BenchmarkMetrics(total_cases=0, archetype_exact_matches=0, orchestration_exact_matches=0, memory_exact_matches=0, family_exact_matches=0, low_confidence_cases=0)).memory_exact_matches
+                - left.split_metrics.get(split, BenchmarkMetrics(total_cases=0, archetype_exact_matches=0, orchestration_exact_matches=0, memory_exact_matches=0, family_exact_matches=0, low_confidence_cases=0)).memory_exact_matches,
+                "low_confidence_delta": right.split_metrics.get(split, BenchmarkMetrics(total_cases=0, archetype_exact_matches=0, orchestration_exact_matches=0, memory_exact_matches=0, family_exact_matches=0, low_confidence_cases=0)).low_confidence_cases
+                - left.split_metrics.get(split, BenchmarkMetrics(total_cases=0, archetype_exact_matches=0, orchestration_exact_matches=0, memory_exact_matches=0, family_exact_matches=0, low_confidence_cases=0)).low_confidence_cases,
+            }
+            for split in sorted(set(left.split_metrics).union(right.split_metrics))
+        },
     }
     return BenchmarkDiff(
         left_path=str(left_path),
@@ -317,6 +416,10 @@ def diff_benchmark_runs(left: BenchmarkRun, right: BenchmarkRun, left_path: Path
 
 
 def render_benchmark_diff_markdown(diff: BenchmarkDiff) -> str:
+    split_lines = "\n".join(
+        f"- {split}: family {values['family_delta']}, archetype {values['archetype_delta']}, orchestration {values['orchestration_delta']}, memory {values['memory_delta']}, low-confidence {values['low_confidence_delta']}"
+        for split, values in diff.summary.get("split_deltas", {}).items()
+    ) or "- None"
     return f"""# Prompt-xray Benchmark Diff
 
 - Left: `{diff.left_path}`
@@ -326,6 +429,10 @@ def render_benchmark_diff_markdown(diff: BenchmarkDiff) -> str:
 - Orchestration delta: {diff.summary['orchestration_delta']}
 - Memory delta: {diff.summary['memory_delta']}
 - Low-confidence delta: {diff.summary['low_confidence_delta']}
+
+## Per-split deltas
+
+{split_lines}
 
 ## Changed cases
 
@@ -342,8 +449,8 @@ def write_benchmark_diff(diff: BenchmarkDiff, out_dir: Path) -> list[Path]:
     return [json_path, md_path]
 
 
-def select_cases(cases: list[BenchmarkCase], case_ids: list[str]) -> list[BenchmarkCase]:
+def select_cases(cases: list[BenchmarkCase], case_ids: list[str], split: str = "all") -> list[BenchmarkCase]:
     if not case_ids:
-        return cases
+        return [case for case in cases if split == "all" or case.split == split]
     selected = {case_id.strip() for case_id in case_ids if case_id.strip()}
-    return [case for case in cases if case.id in selected]
+    return [case for case in cases if case.id in selected and (split == "all" or case.split == split)]

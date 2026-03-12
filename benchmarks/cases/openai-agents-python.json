@@ -8,5 +8,12 @@
   "memory_model": "implemented-runtime",
   "confidence_expectation": "high",
   "rationale": "Framework-style runtime with stateful features and explicit agent machinery.",
-  "tags": ["runtime-heavy", "python", "benchmark"]
+  "tags": [
+    "runtime-heavy",
+    "python",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

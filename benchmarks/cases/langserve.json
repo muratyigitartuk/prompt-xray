@@ -1,0 +1,28 @@
+{
+  "id": "langserve",
+  "repo_url": "https://github.com/langchain-ai/langserve.git",
+  "commit": "9001867cc19dde5acc8c7eced8fd25ad39c351b7",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "tool-assisted",
+  "confidence_expectation": "high",
+  "rationale": "Runtime-serving layer that can be overcollapsed into SDK or app categories.",
+  "calibration_note": "Holdout stress case for runtime service vs library shape.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "python",
+    "runtime-framework",
+    "service"
+  ],
+  "ambiguity_policy": "allow-weaker",
+  "allowed_labels": {
+    "repo_archetype": [
+      "agent-framework"
+    ],
+    "memory_model": [
+      "implemented-runtime"
+    ]
+  }
+}

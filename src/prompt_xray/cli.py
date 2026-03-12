@@ -136,14 +136,24 @@ def bench_run(
     max_file_size_kb: Optional[int] = typer.Option(None, "--max-file-size-kb", min=1),
     max_code_files_per_language: Optional[int] = typer.Option(None, "--max-code-files-per-language", min=25),
     subset: bool = typer.Option(False, "--subset", help="Run only the reduced benchmark subset from benchmarks/config.json."),
+    split: str = typer.Option("all", "--split", help="calibration, holdout, or all"),
     verbose: bool = typer.Option(False, "--verbose"),
 ) -> None:
+    split = split.strip().lower()
+    if split not in {"calibration", "holdout", "all"}:
+        raise typer.BadParameter("Split must be one of: calibration, holdout, all")
+
     config = load_benchmark_config()
     cases = load_cases(cases_dir)
     if not cases:
         raise typer.BadParameter("No benchmark cases found.")
+    if split != "all":
+        cases = [case for case in cases if case.split == split]
+        if not cases:
+            raise typer.BadParameter(f"No benchmark cases found for split '{split}'.")
     if subset:
-        cases = select_cases(cases, config.reduced_case_ids)
+        case_ids = config.reduced_case_ids_by_split.get(split) or config.reduced_case_ids
+        cases = select_cases(cases, case_ids, split="all")
         if not cases:
             raise typer.BadParameter("Reduced benchmark subset is empty.")
 
@@ -151,7 +161,8 @@ def bench_run(
         cases,
         max_file_size_kb=max_file_size_kb or config.default_max_file_size_kb,
         max_code_files_per_language=max_code_files_per_language or config.default_max_code_files_per_language,
-        baseline_name="reduced" if subset else "full",
+        baseline_name=f"{'reduced-' if subset else ''}{split}",
+        split=split,
     )
     out_dir = out or (Path.cwd() / ".prompt-xray" / "bench" / "latest")
     written = write_benchmark_run(run, out_dir)
@@ -162,6 +173,11 @@ def bench_run(
     typer.echo(f"- Orchestration exact matches: {run.metrics.orchestration_exact_matches}/{run.metrics.total_cases}")
     typer.echo(f"- Memory exact matches: {run.metrics.memory_exact_matches}/{run.metrics.total_cases}")
     typer.echo(f"- Low-confidence cases: {run.metrics.low_confidence_cases}")
+    for split_name, split_metrics in sorted(run.split_metrics.items()):
+        typer.echo(
+            f"- {split_name}: family {split_metrics.family_exact_matches}/{split_metrics.total_cases}, "
+            f"archetype {split_metrics.archetype_exact_matches}/{split_metrics.total_cases}"
+        )
     typer.echo(f"- Output: {out_dir}")
     if verbose:
         for path in written:

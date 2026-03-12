@@ -6,7 +6,14 @@
   "repo_archetype": "agent-framework",
   "orchestration_model": "runtime-implemented",
   "memory_model": "implemented-runtime",
-  "confidence_expectation": "medium",
+  "confidence_expectation": "high",
   "rationale": "Large agent runtime with runtime orchestration and persistent execution/state concepts.",
-  "tags": ["runtime-heavy", "python", "benchmark"]
+  "tags": [
+    "runtime-heavy",
+    "python",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

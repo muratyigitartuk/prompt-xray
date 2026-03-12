@@ -6,7 +6,14 @@
   "repo_archetype": "agent-framework",
   "orchestration_model": "runtime-implemented",
   "memory_model": "implemented-runtime",
-  "confidence_expectation": "medium",
+  "confidence_expectation": "high",
   "rationale": "Multi-agent app framing with runtime behavior, but less clear persistent memory implementation.",
-  "tags": ["mixed-runtime", "python", "benchmark"]
+  "tags": [
+    "mixed-runtime",
+    "python",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

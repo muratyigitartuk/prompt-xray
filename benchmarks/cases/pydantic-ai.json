@@ -1,0 +1,21 @@
+{
+  "id": "pydantic-ai",
+  "repo_url": "https://github.com/pydantic/pydantic-ai.git",
+  "commit": "69793dfac13a5b3627524aaf13f8ebc2c98e6319",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "high",
+  "rationale": "Parser-heavy Python agent runtime with real runtime and prompt surfaces.",
+  "calibration_note": "Frozen holdout for parser-backed Python runtime generalization.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "python",
+    "runtime-framework",
+    "mixed"
+  ],
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
+}

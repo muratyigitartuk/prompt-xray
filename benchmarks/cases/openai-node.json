@@ -2,12 +2,20 @@
   "id": "openai-node",
   "repo_url": "https://github.com/openai/openai-node.git",
   "commit": "09de6c0ec40e860583d6581973cbd3ede76de4c9",
-  "repo_family": "sdk-library",
-  "repo_archetype": "unclear",
-  "orchestration_model": "none",
-  "memory_model": "none",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "tool-assisted",
   "confidence_expectation": "high",
   "rationale": "TypeScript SDK negative control for the benchmark corpus.",
   "calibration_note": "The repo has enough runtime-facing tooling that archetype drift toward mixed should be treated as a calibration watch item.",
-  "tags": ["sdk", "typescript", "negative-control"]
+  "tags": [
+    "sdk",
+    "typescript",
+    "negative-control",
+    "benchmark"
+  ],
+  "split": "calibration",
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
 }

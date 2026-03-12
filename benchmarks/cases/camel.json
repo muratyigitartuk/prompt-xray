@@ -1,0 +1,21 @@
+{
+  "id": "camel",
+  "repo_url": "https://github.com/camel-ai/camel.git",
+  "commit": "3dc8d3745f43caf8c8f7a6ea0807192265e359e0",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "agent-framework",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "high",
+  "rationale": "Clear agent framework holdout to ensure the classifier still makes strong positive calls.",
+  "calibration_note": "Holdout positive control for agent-framework labeling.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "python",
+    "agent-framework",
+    "positive-control"
+  ],
+  "ambiguity_policy": "strict",
+  "allowed_labels": {}
+}

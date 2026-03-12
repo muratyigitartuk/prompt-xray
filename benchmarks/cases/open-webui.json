@@ -1,0 +1,25 @@
+{
+  "id": "open-webui",
+  "repo_url": "https://github.com/open-webui/open-webui.git",
+  "commit": "e4e69a10ec08a725bf2ab3db499ef664f2bd7570",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
+  "confidence_expectation": "high",
+  "rationale": "Application repo with runtime-heavy UI/backend surface and AI features.",
+  "calibration_note": "Holdout stress case for application repo vs framework pressure.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "python",
+    "application-like",
+    "runtime-framework"
+  ],
+  "ambiguity_policy": "allow-weaker",
+  "allowed_labels": {
+    "repo_family": [
+      "application-repo"
+    ]
+  }
+}

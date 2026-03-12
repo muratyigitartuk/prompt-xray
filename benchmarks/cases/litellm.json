@@ -1,12 +1,25 @@
 {
   "id": "litellm",
   "repo_url": "https://github.com/BerriAI/litellm.git",
-  "commit": "59c24b74051cbe5052b4cfce08f6459e0771c754",
-  "repo_family": "sdk-library",
-  "repo_archetype": "unclear",
-  "orchestration_model": "none",
-  "memory_model": "none",
+  "commit": "f5e5d17e4ae7f8d3a33971779c24523e78fb00cf",
+  "repo_family": "runtime-framework",
+  "repo_archetype": "mixed",
+  "orchestration_model": "runtime-implemented",
+  "memory_model": "implemented-runtime",
   "confidence_expectation": "high",
-  "rationale": "Provider abstraction SDK rather than an agent runtime or prompt pack.",
-  "tags": ["sdk", "python", "negative-control"]
+  "rationale": "Runtime-heavy repo with SDK and gateway traits, useful for overfitting checks.",
+  "calibration_note": "Holdout stress case for runtime vs SDK confusion.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "python",
+    "runtime-framework",
+    "sdk-like"
+  ],
+  "ambiguity_policy": "allow-weaker",
+  "allowed_labels": {
+    "repo_archetype": [
+      "agent-framework"
+    ]
+  }
 }

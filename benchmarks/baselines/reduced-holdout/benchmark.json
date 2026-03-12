@@ -1,0 +1,380 @@
+{
+  "generated_at": "2026-03-11T23:51:21.052467+00:00",
+  "config_path": "benchmarks/cases",
+  "case_count": 5,
+  "baseline_name": "reduced-holdout",
+  "split": "holdout",
+  "results": [
+    {
+      "id": "litellm",
+      "repo_url": "https://github.com/BerriAI/litellm.git",
+      "commit": "f5e5d17e4ae7f8d3a33971779c24523e78fb00cf",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.8,
+          "level": "medium",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.56 docs-ratio=0.99"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.25 links=1.7"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.35"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=675 docs-ratio=0.99"
+          ]
+        },
+        "overall": {
+          "score": 0.93,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "openai-java",
+      "repo_url": "https://github.com/openai/openai-java.git",
+      "commit": "01da3b6920e295fd5ee7118e09802e7fb612a239",
+      "expected": {
+        "repo_family": "docs-examples",
+        "repo_archetype": "unclear",
+        "orchestration_model": "none",
+        "memory_model": "none"
+      },
+      "actual": {
+        "repo_family": "docs-examples",
+        "repo_archetype": "unclear",
+        "orchestration_model": "none",
+        "memory_model": "none",
+        "xray_call": "Not a prompt-centric repo."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.81,
+          "level": "high",
+          "reasons": [
+            "final=docs-examples",
+            "support=2.8 margin=0.4",
+            "runtime-density=0.0 docs-ratio=8.0"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.75,
+          "level": "medium",
+          "reasons": [
+            "final=unclear",
+            "support=6.4 margin=6.2",
+            "prompt-density=0.04 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.71,
+          "level": "medium",
+          "reasons": [
+            "final=none",
+            "provisional=prompt-defined",
+            "constraint=family-policy:Example code and guides do not constitute repo-level orchestration.",
+            "entrypoint-reachability=0.0"
+          ]
+        },
+        "memory": {
+          "score": 0.75,
+          "level": "medium",
+          "reasons": [
+            "final=none",
+            "provisional=documented-only",
+            "constraint=family-policy:Docs/example memory references are not runtime-backed memory.",
+            "runtime-code=0 docs-ratio=8.0"
+          ]
+        },
+        "overall": {
+          "score": 0.59,
+          "level": "medium",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=2",
+            "contradictions=3"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "pydantic-ai",
+      "repo_url": "https://github.com/pydantic/pydantic-ai.git",
+      "commit": "69793dfac13a5b3627524aaf13f8ebc2c98e6319",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with visible prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=runtime-framework",
+            "support=3.6 margin=0.6",
+            "runtime-density=0.27 docs-ratio=1.75"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=3.0 margin=2.6",
+            "prompt-density=0.19 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.17"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=93 docs-ratio=1.75"
+          ]
+        },
+        "overall": {
+          "score": 0.96,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=1"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "registry",
+      "repo_url": "https://github.com/modelcontextprotocol/registry.git",
+      "commit": "b112ac3335bf22f6e3c379f68c8e9920048c095a",
+      "expected": {
+        "repo_family": "prompt-pack",
+        "repo_archetype": "prompt-library",
+        "orchestration_model": "prompt-defined",
+        "memory_model": "none"
+      },
+      "actual": {
+        "repo_family": "prompt-pack",
+        "repo_archetype": "prompt-library",
+        "orchestration_model": "prompt-defined",
+        "memory_model": "none",
+        "xray_call": "Prompt pack, not agent runtime."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.87,
+          "level": "high",
+          "reasons": [
+            "final=prompt-pack",
+            "support=4.2 margin=3.8",
+            "runtime-density=0.0 docs-ratio=38.0"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.88,
+          "level": "high",
+          "reasons": [
+            "final=prompt-library",
+            "support=5.4 margin=3.8",
+            "prompt-density=0.28 links=0.0"
+          ]
+        },
+        "orchestration": {
+          "score": 0.87,
+          "level": "high",
+          "reasons": [
+            "final=prompt-defined",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.0"
+          ]
+        },
+        "memory": {
+          "score": 0.79,
+          "level": "medium",
+          "reasons": [
+            "final=none",
+            "provisional=documented-only",
+            "constraint=family-policy:Prompt packs may describe memory, but memory is not runtime-backed here.",
+            "runtime-code=0 docs-ratio=38.0"
+          ]
+        },
+        "overall": {
+          "score": 0.77,
+          "level": "medium",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=1",
+            "contradictions=2"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    },
+    {
+      "id": "stagehand",
+      "repo_url": "https://github.com/browserbase/stagehand.git",
+      "commit": "4b7137482706ebf89f82aec527770d0dda71db59",
+      "expected": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime"
+      },
+      "actual": {
+        "repo_family": "runtime-framework",
+        "repo_archetype": "mixed",
+        "orchestration_model": "runtime-implemented",
+        "memory_model": "implemented-runtime",
+        "xray_call": "Real runtime with linked prompt layers."
+      },
+      "confidence": {
+        "repo_family": {
+          "score": 0.79,
+          "level": "medium",
+          "reasons": [
+            "final=runtime-framework",
+            "support=4.6 margin=0.1",
+            "runtime-density=0.38 docs-ratio=0.72"
+          ]
+        },
+        "repo_archetype": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final=mixed",
+            "support=4.4 margin=4.0",
+            "prompt-density=0.25 links=0.8"
+          ]
+        },
+        "orchestration": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=runtime-implemented",
+            "support=13.0 margin=13.0",
+            "entrypoint-reachability=0.42"
+          ]
+        },
+        "memory": {
+          "score": 0.99,
+          "level": "high",
+          "reasons": [
+            "final=implemented-runtime",
+            "support=13.0 margin=13.0",
+            "runtime-code=162 docs-ratio=0.72"
+          ]
+        },
+        "overall": {
+          "score": 0.92,
+          "level": "high",
+          "reasons": [
+            "final-state confidence derived after constraint resolution",
+            "adjustments=0",
+            "contradictions=0"
+          ]
+        }
+      },
+      "mismatches": [],
+      "error": ""
+    }
+  ],
+  "metrics": {
+    "total_cases": 5,
+    "archetype_exact_matches": 5,
+    "orchestration_exact_matches": 5,
+    "memory_exact_matches": 5,
+    "family_exact_matches": 5,
+    "low_confidence_cases": 0,
+    "major_regressions": [],
+    "family_confusions": {},
+    "archetype_confusions": {},
+    "orchestration_confusions": {},
+    "memory_confusions": {}
+  },
+  "split_metrics": {
+    "holdout": {
+      "total_cases": 5,
+      "archetype_exact_matches": 5,
+      "orchestration_exact_matches": 5,
+      "memory_exact_matches": 5,
+      "family_exact_matches": 5,
+      "low_confidence_cases": 0,
+      "major_regressions": [],
+      "family_confusions": {},
+      "archetype_confusions": {},
+      "orchestration_confusions": {},
+      "memory_confusions": {}
+    }
+  },
+  "failure_clusters": {
+    "by_language": {},
+    "by_expected_family": {},
+    "by_ambiguity_policy": {}
+  }
+}

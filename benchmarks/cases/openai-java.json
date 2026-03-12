@@ -1,0 +1,25 @@
+{
+  "id": "openai-java",
+  "repo_url": "https://github.com/openai/openai-java.git",
+  "commit": "01da3b6920e295fd5ee7118e09802e7fb612a239",
+  "repo_family": "docs-examples",
+  "repo_archetype": "unclear",
+  "orchestration_model": "none",
+  "memory_model": "none",
+  "confidence_expectation": "medium",
+  "rationale": "Java SDK/example boundary case that should resist false runtime-agent claims.",
+  "calibration_note": "Holdout negative control for docs/examples handling in non-parser-backed languages.",
+  "split": "holdout",
+  "tags": [
+    "holdout",
+    "java",
+    "docs-examples",
+    "sdk-boundary"
+  ],
+  "ambiguity_policy": "allow-unclear",
+  "allowed_labels": {
+    "repo_family": [
+      "sdk-library"
+    ]
+  }
+}

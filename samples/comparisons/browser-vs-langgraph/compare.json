@@ -2,59 +2,66 @@
   "left": {
     "name": "browser-use",
     "repo_family": "runtime-framework",
-    "archetype": "agent-framework",
+    "archetype": "mixed",
     "orchestration": "runtime-implemented",
     "memory": "implemented-runtime",
     "xray_call": "Real runtime with visible prompt layers.",
     "artifacts": 28,
     "confidence": {
       "family": {
-        "score": 0.98,
+        "score": 0.99,
         "level": "high",
         "reasons": [
-          "runtime=10",
-          "tooling=1",
-          "links=0"
+          "final=runtime-framework",
+          "support=3.6 margin=0.6",
+          "runtime-density=1.67 docs-ratio=0.45"
         ]
       },
       "archetype": {
-        "score": 0.98,
-        "level": "high",
-        "reasons": [
-          "prompt-assets=45",
-          "runtime-signals=10",
-          "workflow-artifacts=6"
-        ]
-      },
-      "orchestration": {
         "score": 0.92,
         "level": "high",
         "reasons": [
-          "evidence=10",
-          "model=runtime-implemented"
+          "final=mixed",
+          "support=3.0 margin=2.6",
+          "prompt-density=0.24 links=0.0"
+        ]
+      },
+      "orchestration": {
+        "score": 0.99,
+        "level": "high",
+        "reasons": [
+          "final=runtime-implemented",
+          "support=13.0 margin=13.0",
+          "entrypoint-reachability=1.0"
         ]
       },
       "memory": {
-        "score": 0.95,
+        "score": 0.99,
         "level": "high",
         "reasons": [
-          "evidence=10",
-          "model=implemented-runtime"
+          "final=implemented-runtime",
+          "support=13.0 margin=13.0",
+          "runtime-code=172 docs-ratio=0.45"
         ]
       },
       "overall": {
-        "score": 0.96,
+        "score": 0.97,
         "level": "high",
         "reasons": [
-          "combined family/archetype/orchestration/memory confidence"
+          "final-state confidence derived after constraint resolution",
+          "adjustments=0",
+          "contradictions=1"
         ]
       }
     },
-    "contradictions": [],
+    "contradictions": [
+      "Prompt-like assets exist, but runtime code does not appear to load them directly."
+    ],
     "prompt_runtime_links": [],
     "call_basis": "code-led",
-    "runtime_density": 1467,
-    "prompt_density": 609,
+    "runtime_density": 1.67,
+    "prompt_density": 0.24,
+    "linkage_density": 0.0,
     "runtime_evidence": [
       {
         "path": "browser_use/actor/playground/flights.py",
@@ -102,6 +109,39 @@
       "browser_use/browser/session.py",
       "browser_use/dom/playground/extraction.py",
       "browser_use/skill_cli/server.py"
+    ],
+    "constraint_adjustments": [],
+    "decision_trace": [
+      {
+        "stage": "raw-evidence",
+        "label": "evidence-loaded",
+        "reason": "candidate-files=66, code-files=371, artifacts=28, runtime-evidence=10, links=0",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "repo-family",
+        "label": "runtime-framework",
+        "reason": "runtime=72, prompt=45, docs-ratio=0.45, links=0, manifest-sdk=0, manifest-plugin=0",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "repo-archetype",
+        "label": "mixed",
+        "reason": "runtime=72, prompt=45, workflow-artifacts=6, integration-artifacts=1, prompt-density=0.24",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "provisional-labels",
+        "label": "runtime-framework/mixed/runtime-implemented/implemented-runtime",
+        "reason": "Initial labels before family-policy or confidence fallback adjustments.",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "final-labels",
+        "label": "runtime-framework/mixed/runtime-implemented/implemented-runtime",
+        "reason": "Final labels after family-policy constraints and confidence fallback.",
+        "basis": "resolved-state"
+      }
     ]
   },
   "right": {
@@ -114,44 +154,48 @@
     "artifacts": 10,
     "confidence": {
       "family": {
-        "score": 0.98,
+        "score": 0.81,
         "level": "high",
         "reasons": [
-          "runtime=10",
-          "tooling=1",
-          "links=2"
+          "final=runtime-framework",
+          "support=4.6 margin=0.1",
+          "runtime-density=0.71 docs-ratio=0.26"
         ]
       },
       "archetype": {
-        "score": 0.98,
+        "score": 0.91,
         "level": "high",
         "reasons": [
-          "prompt-assets=19",
-          "runtime-signals=10",
-          "workflow-artifacts=0"
+          "final=mixed",
+          "support=4.4 margin=4.0",
+          "prompt-density=0.11 links=0.2"
         ]
       },
       "orchestration": {
-        "score": 0.92,
+        "score": 0.99,
         "level": "high",
         "reasons": [
-          "evidence=10",
-          "model=runtime-implemented"
+          "final=runtime-implemented",
+          "support=13.0 margin=13.0",
+          "entrypoint-reachability=0.22"
         ]
       },
       "memory": {
-        "score": 0.95,
+        "score": 0.99,
         "level": "high",
         "reasons": [
-          "evidence=10",
-          "model=implemented-runtime"
+          "final=implemented-runtime",
+          "support=13.0 margin=13.0",
+          "runtime-code=284 docs-ratio=0.26"
         ]
       },
       "overall": {
-        "score": 0.96,
+        "score": 0.93,
         "level": "high",
         "reasons": [
-          "combined family/archetype/orchestration/memory confidence"
+          "final-state confidence derived after constraint resolution",
+          "adjustments=0",
+          "contradictions=0"
         ]
       }
     },
@@ -179,8 +223,9 @@
       }
     ],
     "call_basis": "docs-led",
-    "runtime_density": 326,
-    "prompt_density": 330,
+    "runtime_density": 0.71,
+    "prompt_density": 0.11,
+    "linkage_density": 0.2,
     "runtime_evidence": [
       {
         "path": ".github/scripts/check_sdk_methods.py",
@@ -222,18 +267,54 @@
       ".github/scripts/run_langgraph_cli_test.py",
       "libs/checkpoint-postgres/langgraph/store/postgres/aio.py",
       "libs/checkpoint-sqlite/langgraph/store/sqlite/aio.py"
+    ],
+    "constraint_adjustments": [],
+    "decision_trace": [
+      {
+        "stage": "raw-evidence",
+        "label": "evidence-loaded",
+        "reason": "candidate-files=90, code-files=315, artifacts=10, runtime-evidence=10, links=2",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "repo-family",
+        "label": "runtime-framework",
+        "reason": "runtime=110, prompt=19, docs-ratio=0.26, links=2, manifest-sdk=0, manifest-plugin=0",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "repo-archetype",
+        "label": "mixed",
+        "reason": "runtime=110, prompt=19, workflow-artifacts=0, integration-artifacts=0, prompt-density=0.11",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "provisional-labels",
+        "label": "runtime-framework/mixed/runtime-implemented/implemented-runtime",
+        "reason": "Initial labels before family-policy or confidence fallback adjustments.",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "final-labels",
+        "label": "runtime-framework/mixed/runtime-implemented/implemented-runtime",
+        "reason": "Final labels after family-policy constraints and confidence fallback.",
+        "basis": "resolved-state"
+      }
     ]
   },
   "differences": {
     "same_family": true,
-    "same_archetype": false,
+    "same_archetype": true,
     "same_orchestration": true,
     "same_memory": true,
     "artifact_gap": 18,
     "runtime_density_gap": 1141,
     "prompt_density_gap": 279,
-    "contradiction_gap": 0,
+    "contradiction_gap": 1,
     "linkage_gap": -2,
+    "family_basis_delta": "runtime-framework:structural vs runtime-framework:structural",
+    "constraint_delta": 0,
+    "linkage_density_delta": -0.2,
     "shared_tooling": [],
     "left_only_tooling": [
       "Gemini CLI"
@@ -241,15 +322,28 @@
     "right_only_tooling": [
       "Claude Code"
     ],
-    "confidence_gap": 0.0
+    "confidence_gap": 0.04
   },
   "why_they_differ": [
     "Repo family: runtime-framework vs runtime-framework",
     "Runtime density gap: 1141",
     "Prompt density gap: 279",
-    "Confidence gap: 0.0",
-    "Contradiction gap: 0",
-    "Linkage gap: -2"
+    "Confidence gap: 0.04",
+    "Contradiction gap: 1",
+    "Linkage gap: -2",
+    "Constraint gap: 0"
   ],
-  "most_defensible_difference": "browser-use has the stronger runtime evidence stack."
+  "most_defensible_difference": "browser-use has the stronger runtime evidence stack.",
+  "what_is_structurally_supported": [
+    "browser-use: runtime-framework via 1.67 runtime density and 0.24 prompt density",
+    "langgraph: runtime-framework via 0.71 runtime density and 0.11 prompt density"
+  ],
+  "what_is_policy_constrained": [
+    "browser-use: 0 adjustments",
+    "langgraph: 0 adjustments"
+  ],
+  "what_remains_uncertain": [
+    "browser-use: high confidence",
+    "langgraph: high confidence"
+  ]
 }

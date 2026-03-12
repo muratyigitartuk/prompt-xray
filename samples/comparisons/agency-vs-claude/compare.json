@@ -9,54 +9,61 @@
     "artifacts": 325,
     "confidence": {
       "family": {
-        "score": 0.9,
+        "score": 0.87,
         "level": "high",
         "reasons": [
-          "runtime=0",
-          "tooling=8",
-          "links=0"
+          "final=prompt-pack",
+          "support=4.2 margin=1.8",
+          "runtime-density=0.0 docs-ratio=135.0"
         ]
       },
       "archetype": {
-        "score": 0.9,
+        "score": 0.95,
         "level": "high",
         "reasons": [
-          "prompt-assets=118",
-          "runtime-signals=0",
-          "workflow-artifacts=29"
+          "final=prompt-library",
+          "support=5.4 margin=3.8",
+          "prompt-density=3.16 links=0.0"
         ]
       },
       "orchestration": {
-        "score": 0.74,
-        "level": "medium",
+        "score": 0.87,
+        "level": "high",
         "reasons": [
-          "evidence=10",
-          "model=prompt-defined"
+          "final=prompt-defined",
+          "support=13.0 margin=13.0",
+          "entrypoint-reachability=0.0"
         ]
       },
       "memory": {
-        "score": 0.74,
+        "score": 0.79,
         "level": "medium",
         "reasons": [
-          "evidence=10",
-          "model=documented-only"
+          "final=none",
+          "provisional=documented-only",
+          "constraint=family-policy:Prompt packs may describe memory, but memory is not runtime-backed here.",
+          "runtime-code=0 docs-ratio=135.0"
         ]
       },
       "overall": {
-        "score": 0.82,
-        "level": "high",
+        "score": 0.79,
+        "level": "medium",
         "reasons": [
-          "combined family/archetype/orchestration/memory confidence"
+          "final-state confidence derived after constraint resolution",
+          "adjustments=1",
+          "contradictions=2"
         ]
       }
     },
     "contradictions": [
-      "The repo talks about memory/state, but there is little or no runtime-backed persistence evidence."
+      "The repo talks about memory/state, but runtime-backed persistence evidence remains weak.",
+      "Family policy constrained at least one final label because the structural repo shape outweighed agent-like docs."
     ],
     "prompt_runtime_links": [],
     "call_basis": "docs-led",
-    "runtime_density": 0,
-    "prompt_density": 1116,
+    "runtime_density": 0.0,
+    "prompt_density": 3.16,
+    "linkage_density": 0.0,
     "runtime_evidence": [],
     "top_behavior_sources": [
       "specialized/specialized-model-qa.md",
@@ -64,64 +71,118 @@
       "integrations/mcp-memory/backend-architect-with-memory.md",
       "support/support-legal-compliance-checker.md",
       "specialized/identity-graph-operator.md"
+    ],
+    "constraint_adjustments": [
+      {
+        "field": "memory_model",
+        "before": "documented-only",
+        "after": "none",
+        "reason": "Prompt packs may describe memory, but memory is not runtime-backed here.",
+        "basis": "family-policy"
+      }
+    ],
+    "decision_trace": [
+      {
+        "stage": "raw-evidence",
+        "label": "evidence-loaded",
+        "reason": "candidate-files=161, code-files=0, artifacts=325, runtime-evidence=0, links=0",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "repo-family",
+        "label": "prompt-pack",
+        "reason": "runtime=0, prompt=118, docs-ratio=135.0, links=0, manifest-sdk=0, manifest-plugin=0",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "repo-archetype",
+        "label": "prompt-library",
+        "reason": "runtime=0, prompt=118, workflow-artifacts=29, integration-artifacts=28, prompt-density=3.16",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "provisional-labels",
+        "label": "prompt-pack/prompt-library/prompt-defined/documented-only",
+        "reason": "Initial labels before family-policy or confidence fallback adjustments.",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "constraint-resolution",
+        "label": "memory_model=none",
+        "reason": "Prompt packs may describe memory, but memory is not runtime-backed here.",
+        "basis": "family-policy"
+      },
+      {
+        "stage": "final-labels",
+        "label": "prompt-pack/prompt-library/prompt-defined/none",
+        "reason": "Final labels after family-policy constraints and confidence fallback.",
+        "basis": "resolved-state"
+      }
     ]
   },
   "right": {
     "name": "claude-code",
-    "repo_family": "plugin-ecosystem",
-    "archetype": "mixed",
+    "repo_family": "runtime-framework",
+    "archetype": "agent-framework",
     "orchestration": "runtime-implemented",
     "memory": "tool-assisted",
     "xray_call": "Real runtime with visible prompt layers.",
     "artifacts": 68,
     "confidence": {
       "family": {
-        "score": 0.98,
+        "score": 0.9,
         "level": "high",
         "reasons": [
-          "runtime=9",
-          "tooling=1",
-          "links=0"
+          "final=runtime-framework",
+          "support=3.6 margin=0.4",
+          "runtime-density=0.24 docs-ratio=3.41"
         ]
       },
       "archetype": {
-        "score": 0.98,
+        "score": 0.93,
         "level": "high",
         "reasons": [
-          "prompt-assets=61",
-          "runtime-signals=9",
-          "workflow-artifacts=5"
+          "final=agent-framework",
+          "support=3.4 margin=0.4",
+          "prompt-density=1.03 links=0.0"
         ]
       },
       "orchestration": {
-        "score": 0.92,
+        "score": 0.99,
         "level": "high",
         "reasons": [
-          "evidence=10",
-          "model=runtime-implemented"
+          "final=runtime-implemented",
+          "support=13.0 margin=13.0",
+          "entrypoint-reachability=0.86"
         ]
       },
       "memory": {
-        "score": 0.8,
+        "score": 0.91,
         "level": "high",
         "reasons": [
-          "evidence=10",
-          "model=tool-assisted"
+          "final=tool-assisted",
+          "support=13.0 margin=13.0",
+          "runtime-code=32 docs-ratio=3.41"
         ]
       },
       "overall": {
-        "score": 0.92,
+        "score": 0.93,
         "level": "high",
         "reasons": [
-          "combined family/archetype/orchestration/memory confidence"
+          "final-state confidence derived after constraint resolution",
+          "adjustments=0",
+          "contradictions=1"
         ]
       }
     },
-    "contradictions": [],
+    "contradictions": [
+      "Prompt-like assets exist, but runtime code does not appear to load them directly."
+    ],
     "prompt_runtime_links": [],
     "call_basis": "docs-led",
-    "runtime_density": 25,
-    "prompt_density": 370,
+    "runtime_density": 0.24,
+    "prompt_density": 1.03,
+    "linkage_density": 0.0,
     "runtime_evidence": [
       {
         "path": "plugins/hookify/core/config_loader.py",
@@ -169,6 +230,39 @@
       "plugins/hookify/core/rule_engine.py",
       "plugins/hookify/hooks/posttooluse.py",
       "plugins/hookify/hooks/pretooluse.py"
+    ],
+    "constraint_adjustments": [],
+    "decision_trace": [
+      {
+        "stage": "raw-evidence",
+        "label": "evidence-loaded",
+        "reason": "candidate-files=143, code-files=17, artifacts=68, runtime-evidence=9, links=0",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "repo-family",
+        "label": "runtime-framework",
+        "reason": "runtime=8, prompt=61, docs-ratio=3.41, links=0, manifest-sdk=0, manifest-plugin=0",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "repo-archetype",
+        "label": "agent-framework",
+        "reason": "runtime=8, prompt=61, workflow-artifacts=5, integration-artifacts=11, prompt-density=1.03",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "provisional-labels",
+        "label": "runtime-framework/agent-framework/runtime-implemented/tool-assisted",
+        "reason": "Initial labels before family-policy or confidence fallback adjustments.",
+        "basis": "structural-evidence"
+      },
+      {
+        "stage": "final-labels",
+        "label": "runtime-framework/agent-framework/runtime-implemented/tool-assisted",
+        "reason": "Final labels after family-policy constraints and confidence fallback.",
+        "basis": "resolved-state"
+      }
     ]
   },
   "differences": {
@@ -181,6 +275,9 @@
     "prompt_density_gap": 746,
     "contradiction_gap": 1,
     "linkage_gap": 0,
+    "family_basis_delta": "prompt-pack:policy-constrained vs runtime-framework:structural",
+    "constraint_delta": 1,
+    "linkage_density_delta": 0.0,
     "shared_tooling": [
       "Claude Code"
     ],
@@ -194,15 +291,28 @@
       "Windsurf"
     ],
     "right_only_tooling": [],
-    "confidence_gap": -0.1
+    "confidence_gap": -0.14
   },
   "why_they_differ": [
-    "Repo family: prompt-pack vs plugin-ecosystem",
+    "Repo family: prompt-pack vs runtime-framework",
     "Runtime density gap: -25",
     "Prompt density gap: 746",
-    "Confidence gap: -0.1",
+    "Confidence gap: -0.14",
     "Contradiction gap: 1",
-    "Linkage gap: 0"
+    "Linkage gap: 0",
+    "Constraint gap: 1"
   ],
-  "most_defensible_difference": "agency-agents reads as prompt-pack; claude-code reads as plugin-ecosystem."
+  "most_defensible_difference": "agency-agents reads as prompt-pack; claude-code reads as runtime-framework.",
+  "what_is_structurally_supported": [
+    "agency-agents: prompt-pack via 0.0 runtime density and 3.16 prompt density",
+    "claude-code: runtime-framework via 0.24 runtime density and 1.03 prompt density"
+  ],
+  "what_is_policy_constrained": [
+    "agency-agents: 1 adjustments",
+    "claude-code: 0 adjustments"
+  ],
+  "what_remains_uncertain": [
+    "agency-agents: medium confidence",
+    "claude-code: high confidence"
+  ]
 }

@@ -27,17 +27,25 @@ jobs:
       - name: Run unit tests
         run: python -m pytest -q
 
-      - name: Run reduced benchmark subset
-        run: prompt-xray bench run --subset --out .prompt-xray/bench/reduced
+      - name: Run reduced calibration subset
+        run: prompt-xray bench run --split calibration --subset --out .prompt-xray/bench/reduced-calibration
 
-      - name: Validate reduced benchmark against baseline
-        run: python -m prompt_xray.bench_ci --baseline benchmarks/baselines/reduced/benchmark.json --candidate .prompt-xray/bench/reduced/benchmark.json
+      - name: Validate reduced calibration benchmark against baseline
+        run: python -m prompt_xray.bench_ci --baseline benchmarks/baselines/reduced-calibration/benchmark.json --candidate .prompt-xray/bench/reduced-calibration/benchmark.json
+
+      - name: Run reduced holdout subset
+        run: prompt-xray bench run --split holdout --subset --out .prompt-xray/bench/reduced-holdout
+
+      - name: Validate reduced holdout benchmark against baseline
+        run: python -m prompt_xray.bench_ci --baseline benchmarks/baselines/reduced-holdout/benchmark.json --candidate .prompt-xray/bench/reduced-holdout/benchmark.json
 
       - name: Upload reduced benchmark artifacts
         uses: actions/upload-artifact@v4
         with:
           name: reduced-benchmark
-          path: .prompt-xray/bench/reduced
+          path: |
+            .prompt-xray/bench/reduced-calibration
+            .prompt-xray/bench/reduced-holdout
 
   full-benchmark:
     if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
@@ -56,14 +64,29 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -e .[dev]
 
-      - name: Run full benchmark corpus
-        run: prompt-xray bench run --out .prompt-xray/bench/full
+      - name: Run full calibration benchmark corpus
+        run: prompt-xray bench run --split calibration --out .prompt-xray/bench/calibration
 
-      - name: Validate full benchmark against baseline
+      - name: Validate full calibration benchmark against baseline
+        run: python -m prompt_xray.bench_ci --baseline benchmarks/baselines/calibration/benchmark.json --candidate .prompt-xray/bench/calibration/benchmark.json
+
+      - name: Run full holdout benchmark corpus
+        run: prompt-xray bench run --split holdout --out .prompt-xray/bench/holdout
+
+      - name: Validate full holdout benchmark against baseline
+        run: python -m prompt_xray.bench_ci --baseline benchmarks/baselines/holdout/benchmark.json --candidate .prompt-xray/bench/holdout/benchmark.json
+
+      - name: Run full combined benchmark corpus
+        run: prompt-xray bench run --split all --out .prompt-xray/bench/full
+
+      - name: Validate full combined benchmark against baseline
         run: python -m prompt_xray.bench_ci --baseline benchmarks/baselines/full/benchmark.json --candidate .prompt-xray/bench/full/benchmark.json
 
       - name: Upload full benchmark artifacts
         uses: actions/upload-artifact@v4
         with:
           name: full-benchmark
-          path: .prompt-xray/bench/full
+          path: |
+            .prompt-xray/bench/calibration
+            .prompt-xray/bench/holdout
+            .prompt-xray/bench/full

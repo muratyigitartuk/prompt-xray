@@ -149,6 +149,17 @@ const renderReport = (report) => {
   };
   const contradictions = report.contradictions || [];
   const promptRuntimeLinks = report.prompt_runtime_links || [];
+  const provenance = report.provenance_summary || {
+    docs_evidence: 0,
+    config_evidence: 0,
+    prompt_asset_evidence: 0,
+    runtime_code_evidence: 0,
+    graph_evidence: 0,
+    negative_evidence: 0,
+    docs_dominance_ratio: 0,
+  };
+  const adjustments = report.constraint_adjustments || [];
+  const decisionTrace = report.decision_trace || [];
 
   viewport.innerHTML = `
     <section class="panel">
@@ -294,6 +305,14 @@ const renderReport = (report) => {
           <li>Graph evidence: ${escapeHtml(evidenceSummary.graph_evidence)}</li>
           <li>Negative evidence: ${escapeHtml(evidenceSummary.negative_evidence)}</li>
         </ul>
+        <p class="eyebrow" style="margin-top:22px;">Provenance</p>
+        <ul>
+          <li>Docs evidence: ${escapeHtml(provenance.docs_evidence)}</li>
+          <li>Config evidence: ${escapeHtml(provenance.config_evidence)}</li>
+          <li>Prompt asset evidence: ${escapeHtml(provenance.prompt_asset_evidence)}</li>
+          <li>Runtime code evidence: ${escapeHtml(provenance.runtime_code_evidence)}</li>
+          <li>Docs dominance ratio: ${escapeHtml(provenance.docs_dominance_ratio)}</li>
+        </ul>
       </article>
     </section>
 
@@ -317,6 +336,36 @@ const renderReport = (report) => {
         <p class="eyebrow">Contradictions</p>
         <h3>Claim / implementation mismatches</h3>
         <ul>${formatList(contradictions, "No contradictions detected")}</ul>
+        <p class="eyebrow" style="margin-top:22px;">Adjustments</p>
+        <ul>${
+          adjustments.length
+            ? adjustments.map((item) => `<li><strong>${escapeHtml(item.field)}</strong> ${escapeHtml(item.before)} -> ${escapeHtml(item.after)}<div class="muted">${escapeHtml(item.basis)} | ${escapeHtml(item.reason)}</div></li>`).join("")
+            : "<li>No post-classification adjustments</li>"
+        }</ul>
+      </article>
+    </section>
+
+    <section class="two-col">
+      <article class="list-panel">
+        <p class="eyebrow">Decision Trace</p>
+        <h3>How the final call was resolved</h3>
+        <ul>${
+          decisionTrace.length
+            ? decisionTrace.slice(0, 10).map((item) => `<li><strong>${escapeHtml(item.stage)}</strong> ${escapeHtml(item.label)}<div class="muted">${escapeHtml(item.basis || "n/a")} | ${escapeHtml(item.reason)}</div></li>`).join("")
+            : "<li>No decision trace</li>"
+        }</ul>
+      </article>
+
+      <article class="list-panel">
+        <p class="eyebrow">Resolution</p>
+        <h3>Provisional vs final</h3>
+        <ul>
+          <li>Provisional: ${escapeHtml(`${report.provisional_summary.repo_family} / ${report.provisional_summary.repo_archetype} / ${report.provisional_summary.orchestration_model} / ${report.provisional_summary.memory_model}`)}</li>
+          <li>Final: ${escapeHtml(`${report.summary.repo_family} / ${report.summary.repo_archetype} / ${report.summary.orchestration_model} / ${report.summary.memory_model}`)}</li>
+          <li>Runtime density: ${escapeHtml(report.runtime_density)}</li>
+          <li>Prompt density: ${escapeHtml(report.prompt_density)}</li>
+          <li>Linkage density: ${escapeHtml(report.linkage_density)}</li>
+        </ul>
       </article>
     </section>
 
@@ -405,6 +454,12 @@ const renderComparison = (comparison) => {
       <p class="eyebrow">Why They Differ</p>
       <h3>Evidence-backed delta summary</h3>
       <ul>${formatList(comparison.why_they_differ, "No difference summary available")}</ul>
+      <p class="eyebrow" style="margin-top:22px;">Policy vs structure</p>
+      <ul>
+        <li>Family basis delta: ${escapeHtml(comparison.differences.family_basis_delta || "n/a")}</li>
+        <li>Constraint delta: ${escapeHtml(comparison.differences.constraint_delta ?? "0")}</li>
+        <li>Linkage density delta: ${escapeHtml(comparison.differences.linkage_density_delta ?? "0")}</li>
+      </ul>
     </section>
 
     <section class="two-col">
@@ -497,6 +552,22 @@ const renderComparison = (comparison) => {
         <p class="eyebrow">Uncertainty</p>
         <h3>${escapeHtml(comparison.right.name)}</h3>
         <ul>${formatList(comparison.right.contradictions, "No contradictions detected")}</ul>
+      </article>
+    </section>
+
+    <section class="two-col">
+      <article class="list-panel">
+        <p class="eyebrow">Structurally Supported</p>
+        <h3>What is strong</h3>
+        <ul>${formatList(comparison.what_is_structurally_supported, "No structural summary available")}</ul>
+      </article>
+      <article class="list-panel">
+        <p class="eyebrow">Policy / Uncertainty</p>
+        <h3>What is constrained</h3>
+        <strong>Policy constrained</strong>
+        <ul>${formatList(comparison.what_is_policy_constrained, "None")}</ul>
+        <strong>Still uncertain</strong>
+        <ul>${formatList(comparison.what_remains_uncertain, "None")}</ul>
       </article>
     </section>
   `;

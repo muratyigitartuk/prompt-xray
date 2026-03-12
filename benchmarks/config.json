@@ -18,5 +18,53 @@
     "orchestration_exact_match_delta_min": 0,
     "memory_exact_match_delta_min": 0,
     "low_confidence_delta_max": 0
+  },
+  "reduced_case_ids_by_split": {
+    "calibration": [
+      "agency-agents",
+      "openai-agents-python",
+      "openai-python",
+      "openai-cookbook",
+      "claude-code"
+    ],
+    "holdout": [
+      "pydantic-ai",
+      "stagehand",
+      "openai-java",
+      "registry",
+      "litellm"
+    ]
+  },
+  "minimum_split_floors": {
+    "calibration": {
+      "family_exact_matches_min": 28,
+      "archetype_exact_matches_min": 28,
+      "orchestration_exact_matches_min": 30,
+      "memory_exact_matches_min": 28,
+      "low_confidence_cases_max": 6
+    },
+    "holdout": {
+      "family_exact_matches_min": 10,
+      "archetype_exact_matches_min": 10,
+      "orchestration_exact_matches_min": 10,
+      "memory_exact_matches_min": 9,
+      "low_confidence_cases_max": 4
+    }
+  },
+  "split_regression_thresholds": {
+    "calibration": {
+      "family_exact_match_delta_min": -2,
+      "archetype_exact_match_delta_min": -2,
+      "orchestration_exact_match_delta_min": -1,
+      "memory_exact_match_delta_min": -1,
+      "low_confidence_delta_max": 2
+    },
+    "holdout": {
+      "family_exact_match_delta_min": 0,
+      "archetype_exact_match_delta_min": 0,
+      "orchestration_exact_match_delta_min": 0,
+      "memory_exact_match_delta_min": 0,
+      "low_confidence_delta_max": 0
+    }
   }
 }
