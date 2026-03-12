@@ -5,7 +5,7 @@
   "repo_family": "runtime-framework",
   "repo_archetype": "mixed",
   "orchestration_model": "runtime-implemented",
-  "memory_model": "tool-assisted",
+  "memory_model": "implemented-runtime",
   "confidence_expectation": "high",
   "rationale": "Flow/runtime system where orchestration and execution are code-backed, not only documented.",
   "tags": [

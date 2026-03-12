@@ -124,7 +124,8 @@ def discover_candidate_files(repo_path: Path, max_file_size_kb: int) -> list[Pat
     max_bytes = max_file_size_kb * 1024
     candidates: list[Path] = []
 
-    for file_path in repo_path.rglob("*"):
+    all_paths = sorted(repo_path.rglob("*"), key=lambda path: path.relative_to(repo_path).as_posix().lower())
+    for file_path in all_paths:
         if not file_path.is_file():
             continue
 
@@ -168,7 +169,8 @@ def discover_code_files(
     totals: dict[str, int] = {language: 0 for language in LANGUAGE_EXTENSIONS}
     kept: dict[str, int] = {language: 0 for language in LANGUAGE_EXTENSIONS}
 
-    for file_path in repo_path.rglob("*"):
+    all_paths = sorted(repo_path.rglob("*"), key=lambda path: path.relative_to(repo_path).as_posix().lower())
+    for file_path in all_paths:
         if not file_path.is_file():
             continue
 
@@ -209,7 +211,8 @@ def discover_runtime_markers(repo_path: Path, max_scan_files: int = 5000) -> lis
     markers: list[str] = []
     scanned = 0
 
-    for file_path in repo_path.rglob("*"):
+    all_paths = sorted(repo_path.rglob("*"), key=lambda path: path.relative_to(repo_path).as_posix().lower())
+    for file_path in all_paths:
         if scanned >= max_scan_files:
             break
         if not file_path.is_file():

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T23:41:26.896409+00:00",
+  "generated_at": "2026-03-12T10:33:08.034229+00:00",
   "config_path": "benchmarks/cases",
   "case_count": 34,
   "baseline_name": "calibration",
@@ -365,7 +365,7 @@
           "reasons": [
             "final=runtime-framework",
             "support=4.6 margin=0.1",
-            "runtime-density=0.54 docs-ratio=1.49"
+            "runtime-density=0.53 docs-ratio=1.51"
           ]
         },
         "repo_archetype": {
@@ -383,7 +383,7 @@
           "reasons": [
             "final=runtime-implemented",
             "support=13.0 margin=13.0",
-            "entrypoint-reachability=0.1"
+            "entrypoint-reachability=0.11"
           ]
         },
         "memory": {
@@ -392,7 +392,7 @@
           "reasons": [
             "final=implemented-runtime",
             "support=13.0 margin=13.0",
-            "runtime-code=256 docs-ratio=1.49"
+            "runtime-code=253 docs-ratio=1.51"
           ]
         },
         "overall": {
@@ -432,7 +432,7 @@
           "reasons": [
             "final=runtime-framework",
             "support=3.6 margin=0.6",
-            "runtime-density=0.69 docs-ratio=0.62"
+            "runtime-density=0.66 docs-ratio=0.67"
           ]
         },
         "repo_archetype": {
@@ -459,7 +459,7 @@
           "reasons": [
             "final=implemented-runtime",
             "support=13.0 margin=13.0",
-            "runtime-code=348 docs-ratio=0.62"
+            "runtime-code=321 docs-ratio=0.67"
           ]
         },
         "overall": {
@@ -695,21 +695,21 @@
       },
       "confidence": {
         "repo_family": {
-          "score": 0.92,
+          "score": 0.91,
           "level": "high",
           "reasons": [
             "final=runtime-framework",
             "support=3.6 margin=0.6",
-            "runtime-density=0.11 docs-ratio=2.81"
+            "runtime-density=0.07 docs-ratio=4.11"
           ]
         },
         "repo_archetype": {
-          "score": 0.91,
+          "score": 0.9,
           "level": "high",
           "reasons": [
             "final=agent-framework",
             "support=3.4 margin=0.4",
-            "prompt-density=0.39 links=0.0"
+            "prompt-density=0.37 links=0.0"
           ]
         },
         "orchestration": {
@@ -727,7 +727,7 @@
           "reasons": [
             "final=implemented-runtime",
             "support=13.0 margin=13.0",
-            "runtime-code=131 docs-ratio=2.81"
+            "runtime-code=84 docs-ratio=4.11"
           ]
         },
         "overall": {
@@ -919,7 +919,7 @@
           "reasons": [
             "final=runtime-implemented",
             "support=13.0 margin=13.0",
-            "entrypoint-reachability=0.07"
+            "entrypoint-reachability=0.08"
           ]
         },
         "memory": {
@@ -928,7 +928,7 @@
           "reasons": [
             "final=implemented-runtime",
             "support=13.0 margin=13.0",
-            "runtime-code=992 docs-ratio=0.27"
+            "runtime-code=997 docs-ratio=0.27"
           ]
         },
         "overall": {
@@ -968,7 +968,7 @@
           "reasons": [
             "final=runtime-framework",
             "support=3.6 margin=0.6",
-            "runtime-density=0.17 docs-ratio=2.03"
+            "runtime-density=0.17 docs-ratio=2.08"
           ]
         },
         "repo_archetype": {
@@ -977,7 +977,7 @@
           "reasons": [
             "final=agent-framework",
             "support=3.4 margin=0.4",
-            "prompt-density=0.6 links=0.0"
+            "prompt-density=0.61 links=0.0"
           ]
         },
         "orchestration": {
@@ -995,7 +995,7 @@
           "reasons": [
             "final=implemented-runtime",
             "support=13.0 margin=13.0",
-            "runtime-code=142 docs-ratio=2.03"
+            "runtime-code=139 docs-ratio=2.08"
           ]
         },
         "overall": {
@@ -1102,7 +1102,7 @@
           "reasons": [
             "final=runtime-framework",
             "support=4.6 margin=0.1",
-            "runtime-density=0.3 docs-ratio=6.52"
+            "runtime-density=0.28 docs-ratio=6.52"
           ]
         },
         "repo_archetype": {
@@ -1504,7 +1504,7 @@
           "reasons": [
             "final=runtime-framework",
             "support=3.6 margin=0.6",
-            "runtime-density=0.24 docs-ratio=3.1"
+            "runtime-density=0.22 docs-ratio=3.1"
           ]
         },
         "repo_archetype": {
@@ -1723,7 +1723,7 @@
           "reasons": [
             "final=runtime-implemented",
             "support=13.0 margin=13.0",
-            "entrypoint-reachability=0.07"
+            "entrypoint-reachability=0.0"
           ]
         },
         "memory": {
@@ -1767,12 +1767,12 @@
       },
       "confidence": {
         "repo_family": {
-          "score": 0.84,
+          "score": 0.83,
           "level": "high",
           "reasons": [
             "final=runtime-framework",
             "support=4.6 margin=0.1",
-            "runtime-density=1.47 docs-ratio=0.42"
+            "runtime-density=1.29 docs-ratio=0.45"
           ]
         },
         "repo_archetype": {
@@ -1781,7 +1781,7 @@
           "reasons": [
             "final=mixed",
             "support=4.4 margin=1.0",
-            "prompt-density=0.34 links=0.2"
+            "prompt-density=0.33 links=0.2"
           ]
         },
         "orchestration": {
@@ -1799,11 +1799,11 @@
           "reasons": [
             "final=implemented-runtime",
             "support=13.0 margin=13.0",
-            "runtime-code=689 docs-ratio=0.42"
+            "runtime-code=632 docs-ratio=0.45"
           ]
         },
         "overall": {
-          "score": 0.94,
+          "score": 0.93,
           "level": "high",
           "reasons": [
             "final-state confidence derived after constraint resolution",
@@ -1890,13 +1890,13 @@
         "repo_family": "runtime-framework",
         "repo_archetype": "mixed",
         "orchestration_model": "runtime-implemented",
-        "memory_model": "tool-assisted"
+        "memory_model": "implemented-runtime"
       },
       "actual": {
         "repo_family": "runtime-framework",
         "repo_archetype": "mixed",
         "orchestration_model": "runtime-implemented",
-        "memory_model": "tool-assisted",
+        "memory_model": "implemented-runtime",
         "xray_call": "Real runtime with linked prompt layers."
       },
       "confidence": {
@@ -1906,7 +1906,7 @@
           "reasons": [
             "final=runtime-framework",
             "support=4.6 margin=0.1",
-            "runtime-density=0.04 docs-ratio=4.35"
+            "runtime-density=0.05 docs-ratio=3.27"
           ]
         },
         "repo_archetype": {
@@ -1915,7 +1915,7 @@
           "reasons": [
             "final=mixed",
             "support=4.4 margin=4.0",
-            "prompt-density=0.07 links=0.3"
+            "prompt-density=0.07 links=0.1"
           ]
         },
         "orchestration": {
@@ -1924,20 +1924,20 @@
           "reasons": [
             "final=runtime-implemented",
             "support=13.0 margin=13.0",
-            "entrypoint-reachability=0.11"
+            "entrypoint-reachability=0.06"
           ]
         },
         "memory": {
-          "score": 0.91,
+          "score": 0.99,
           "level": "high",
           "reasons": [
-            "final=tool-assisted",
+            "final=implemented-runtime",
             "support=13.0 margin=13.0",
-            "runtime-code=62 docs-ratio=4.35"
+            "runtime-code=84 docs-ratio=3.27"
           ]
         },
         "overall": {
-          "score": 0.9,
+          "score": 0.92,
           "level": "high",
           "reasons": [
             "final-state confidence derived after constraint resolution",
@@ -2035,12 +2035,12 @@
       },
       "confidence": {
         "repo_family": {
-          "score": 0.81,
+          "score": 0.8,
           "level": "high",
           "reasons": [
             "final=runtime-framework",
             "support=4.6 margin=0.1",
-            "runtime-density=0.71 docs-ratio=1.19"
+            "runtime-density=0.68 docs-ratio=1.19"
           ]
         },
         "repo_archetype": {
@@ -2058,7 +2058,7 @@
           "reasons": [
             "final=runtime-implemented",
             "support=13.0 margin=13.0",
-            "entrypoint-reachability=0.36"
+            "entrypoint-reachability=0.25"
           ]
         },
         "memory": {
@@ -2071,7 +2071,7 @@
           ]
         },
         "overall": {
-          "score": 0.94,
+          "score": 0.93,
           "level": "high",
           "reasons": [
             "final-state confidence derived after constraint resolution",
@@ -2174,7 +2174,7 @@
           "reasons": [
             "final=runtime-framework",
             "support=3.6 margin=0.6",
-            "runtime-density=0.15 docs-ratio=0.89"
+            "runtime-density=0.15 docs-ratio=0.85"
           ]
         },
         "repo_archetype": {
@@ -2192,7 +2192,7 @@
           "reasons": [
             "final=runtime-implemented",
             "support=13.0 margin=13.0",
-            "entrypoint-reachability=0.35"
+            "entrypoint-reachability=0.33"
           ]
         },
         "memory": {
@@ -2201,7 +2201,7 @@
           "reasons": [
             "final=implemented-runtime",
             "support=13.0 margin=13.0",
-            "runtime-code=236 docs-ratio=0.89"
+            "runtime-code=245 docs-ratio=0.85"
           ]
         },
         "overall": {
